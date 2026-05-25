@@ -108,13 +108,13 @@ const Hero = () => {
         {/* Right Illustration Column (Collage of premium children photos) */}
         <div className={styles.heroIllustration}>
           <div className={styles.collageContainer}>
-            {/* Polaroid 1 (Left tilted) */}
+            {/* Polaroid 1 (Left slightly staggered) */}
             <motion.div 
               className={`${styles.collageCard} ${styles.photoLeft}`}
-              initial={{ opacity: 0, x: -40, rotate: -10 }}
-              animate={{ opacity: 1, x: 0, rotate: -6 }}
+              initial={{ opacity: 0, x: -20, y: -20 }}
+              animate={{ opacity: 1, x: 0, y: -10 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.05, rotate: -2, zIndex: 10 }}
+              whileHover={{ scale: 1.03, y: -15, zIndex: 10 }}
             >
               <div className={styles.photoImgWrapper}>
                 <img 
@@ -128,13 +128,13 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Polaroid 2 (Right tilted) */}
+            {/* Polaroid 2 (Right slightly staggered) */}
             <motion.div 
               className={`${styles.collageCard} ${styles.photoRight}`}
-              initial={{ opacity: 0, x: 40, rotate: 10 }}
-              animate={{ opacity: 1, x: 0, rotate: 6 }}
+              initial={{ opacity: 0, x: 20, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 10 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05, rotate: 2, zIndex: 10 }}
+              whileHover={{ scale: 1.03, y: 5, zIndex: 10 }}
             >
               <div className={styles.photoImgWrapper}>
                 <img 
@@ -146,20 +146,6 @@ const Hero = () => {
                 <h4>Storytelling & Reading Nest</h4>
                 <p>Nursery Fun Hours, 2026</p>
               </div>
-            </motion.div>
-
-            {/* Floating round child badge overlay */}
-            <motion.div 
-              className={`${styles.floatingMascotBadge} animate-float`}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1596464601899-76506300a20e?auto=format&fit=crop&q=80&w=200" 
-                alt="Smiling child explorer" 
-              />
-              <span className={styles.badgeLabel}>A Kingdom of Joy! 👑</span>
             </motion.div>
           </div>
         </div>

@@ -42,11 +42,6 @@ const AboutPreview = () => {
               <p>Experiential Play Time, 2026</p>
             </div>
           </motion.div>
-          
-          {/* Floating badge */}
-          <div className={`${styles.badgeFloating} ${styles.badgeGreen} animate-float`} style={{ backgroundColor: '#D4AF37', color: '#FFFFFF' }}>
-            <span>A Kingdom of Joy! 👑</span>
-          </div>
         </div>
 
         {/* Right Side: Rebranded Content */}
