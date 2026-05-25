@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, ZoomIn, Sparkles } from 'lucide-react';
+import { X, ZoomIn, Sparkles } from 'lucide-react';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './GalleryPage.module.scss';
 
@@ -76,6 +76,19 @@ const Gallery = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  // Close lightbox modal upon hitting the Escape keyboard button
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedPhoto(null);
+      }
+    };
+    if (selectedPhoto) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPhoto]);
+
   const filteredPhotos = activeTab === "All"
     ? galleryPhotos
     : galleryPhotos.filter(photo => photo.category === activeTab);
@@ -84,7 +97,7 @@ const Gallery = () => {
     <div className={styles.galleryPage}>
       
       {/* Banner Header */}
-      <section className={styles.pageHeader}>
+      <section className={styles.pageHeader} style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #FF4081 100%)' }}>
         <div className="container">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
@@ -97,13 +110,13 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Main mosaic filtering and lightbox */}
+      {/* Main mosaic list */}
       <section className="section">
         <div className="container">
           
           <SectionTitle 
             tag="Capturing Memories"
-            title="Life & Discoveries at Kingdom Of Planet"
+            title="Life & Discoveries at Kingdom of Learning"
             highlightWord="Discoveries"
             align="center"
             subtitle="Filter images below to explore classrooms, campus yards, creative play circles, and seasonal festival highlights."
@@ -125,21 +138,21 @@ const Gallery = () => {
           {/* Photo Mosaic Grid */}
           <motion.div layout className={styles.mosaicGrid}>
             <AnimatePresence mode="popLayout">
-              {filteredPhotos.map((photo) => (
+              {filteredPhotos.map((photo, index) => (
                 <motion.div 
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
                   className={styles.photoCard}
                   key={photo.id}
                   onClick={() => setSelectedPhoto(photo)}
                   style={{ '--accent-color': photo.color }}
                 >
-                  <img src={photo.url} alt={photo.title} className={styles.image} />
+                  <img src={photo.url} alt={photo.title} className={styles.image} loading="lazy" />
                   
-                  {/* Overlay icon and description */}
+                  {/* Overlay icon */}
                   <div className={styles.hoverOverlay}>
                     <ZoomIn className={styles.zoomIcon} size={28} />
                     <h4 className={styles.photoTitle}>{photo.title}</h4>
@@ -163,19 +176,20 @@ const Gallery = () => {
             exit={{ opacity: 0 }}
             onClick={() => setSelectedPhoto(null)}
           >
-            <button className={styles.closeBtn} onClick={() => setSelectedPhoto(null)}>
+            <button className={styles.closeBtn} onClick={() => setSelectedPhoto(null)} aria-label="Close Lightbox">
               <X size={32} />
             </button>
 
             <motion.div 
               className={styles.lightboxCard}
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()} // Prevent overlay close when card is clicked
+              initial={{ scale: 0.92, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.92, y: 15 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
             >
               <div className={styles.lightboxImageContainer}>
-                <img src={selectedPhoto.url} alt={selectedPhoto.title} />
+                <img src={selectedPhoto.url} alt={selectedPhoto.title} loading="eager" />
               </div>
               <div className={styles.lightboxDetails}>
                 <h3>{selectedPhoto.title}</h3>

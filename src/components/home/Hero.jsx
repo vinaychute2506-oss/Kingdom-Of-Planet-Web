@@ -3,6 +3,26 @@ import { motion } from 'framer-motion';
 import { Sparkles, Calendar, Star } from 'lucide-react';
 import styles from './Hero.module.scss';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 18 }
+  }
+};
+
 const Hero = () => {
   const handleProgramsClick = () => {
     window.location.hash = '#programs';
@@ -21,13 +41,16 @@ const Hero = () => {
 
       <div className={`container ${styles.heroGrid}`}>
         
-        {/* Left Content Column */}
-        <div className={styles.heroContent}>
+        {/* Left Content Column (With Staggered Variant Entrances) */}
+        <motion.div 
+          className={styles.heroContent}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <motion.div 
             className={styles.welcomeTag}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            variants={itemVariants}
           >
             <Sparkles size={16} className={styles.sparkleIcon} />
             <span>A Kingdom Where Learning Comes Alive</span>
@@ -35,9 +58,7 @@ const Hero = () => {
 
           <motion.h1 
             className={styles.heading}
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            variants={itemVariants}
           >
             Where Every Child <br />
             Learns, Grows & <span className={styles.highlight}>Shines</span>
@@ -45,9 +66,7 @@ const Hero = () => {
 
           <motion.p 
             className={styles.tagline}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={itemVariants}
           >
             A nurturing preschool environment designed to inspire confidence, creativity, joyful learning, and holistic development.
           </motion.p>
@@ -55,9 +74,7 @@ const Hero = () => {
           {/* Action CTAs */}
           <motion.div 
             className={styles.actions}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            variants={itemVariants}
           >
             <button className={styles.primaryBtn} onClick={handleProgramsClick}>
               Explore Classes
@@ -68,12 +85,10 @@ const Hero = () => {
             </button>
           </motion.div>
 
-          {/* Metrics badges row */}
+          {/* Metrics Row */}
           <motion.div 
             className={styles.metricsGrid}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            variants={itemVariants}
           >
             <div className={styles.metricCard}>
               <h3 className={styles.number} style={{ color: '#D4AF37' }}>12+</h3>
@@ -88,15 +103,15 @@ const Hero = () => {
               <p className={styles.label}>Personal Attention</p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Right Illustration Column (Luxury Minimal Vector Crest) */}
+        {/* Right Illustration Column */}
         <div className={styles.heroIllustration}>
           <motion.div 
             className={styles.illustrationWrapper}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring" }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
           >
             {/* Elegant Floating preschool objects */}
             <div className={`${styles.floatElement} ${styles.pencil} animate-float`}>🎨</div>

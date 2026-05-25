@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import PageLoader from './components/common/PageLoader';
@@ -16,11 +17,23 @@ import Contact from './pages/Contact';
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#home');
   const [loading, setLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Monitor scroll coordinate metrics for top progress indicator
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress((window.scrollY / totalHeight) * 100);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Monitor location hash shifts to run dynamic state routing
   useEffect(() => {
     const handleHashChange = () => {
-      // Default to #home if hash is empty
       const hash = window.location.hash || '#home';
       setCurrentHash(hash);
       
@@ -63,24 +76,50 @@ function App() {
 
   return (
     <>
-      {/* 1. Playful Introductory preloader screen */}
+      {/* 1. Playful Shimmering preloader screen */}
       <PageLoader />
+
+      {/* 2. Thin top Scroll Progress Indicator in Wine/Gold */}
+      <div 
+        style={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          width: `${scrollProgress}%`, 
+          height: '4px', 
+          background: 'linear-gradient(90deg, #6B1D2F 0%, #D4AF37 100%)', 
+          zIndex: 99999, 
+          transition: 'width 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)',
+          boxShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
+        }} 
+      />
 
       {/* Main shell layout wrapper */}
       <div className="app-shell" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         
-        {/* 2. Sticky navigation header */}
+        {/* 3. Sticky glassmorphism header */}
         <Navbar currentHash={currentHash} />
 
-        {/* 3. Rendered central page view */}
-        <main className="main-content" style={{ flexGrow: 1, paddingBottom: '40px' }}>
-          {renderActivePage()}
+        {/* 4. Cinematic Page Transition Overlay */}
+        <main className="main-content" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentHash}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.8, 0.25, 1] }}
+              style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+            >
+              {renderActivePage()}
+            </motion.div>
+          </AnimatePresence>
         </main>
 
-        {/* 4. Playful footer details */}
+        {/* 5. Luxury footer details */}
         <Footer />
 
-        {/* 5. Global floats widgets */}
+        {/* 6. Global floating support widgets */}
         <WhatsAppButton />
         <StickyEnrollMobile currentHash={currentHash} />
 
