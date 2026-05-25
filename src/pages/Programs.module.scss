@@ -319,3 +319,24 @@
     justify-content: center;
   }
 }
+
+.imageOverlayContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.imageOverlayTitle {
+  font-family: $font-heading;
+  font-size: 1.8rem;
+  color: $color-bg-white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}

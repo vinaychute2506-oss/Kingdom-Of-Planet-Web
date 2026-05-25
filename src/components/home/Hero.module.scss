@@ -225,104 +225,152 @@
   width: 100%;
 }
 
-.illustrationWrapper {
+// Overlapping Polaroid Collage
+.collageContainer {
   position: relative;
   width: 100%;
   max-width: 460px;
-  height: 400px;
-  background: radial-gradient(circle, $color-bg-white 0%, #D98F9F 100%);
-  border: 4px dashed #CCA4AE;
-  border-radius: 40px;
-  box-shadow: $shadow-medium;
-  @include flex-center;
-  flex-direction: column;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @include responsive(mobile) {
     height: 320px;
   }
 }
 
-.characterContainer {
-  display: flex;
-  gap: 24px;
-  z-index: 2;
-  margin-bottom: 20px;
-}
-
-.mascotCard {
-  padding: 16px 20px;
+.collageCard {
+  position: absolute;
+  background-color: $color-bg-white;
+  padding: 14px;
+  padding-bottom: 22px;
   border-radius: $radius-md;
   box-shadow: $shadow-soft;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid $color-bg-white;
-  transition: $transition-smooth;
-
-  &:hover {
-    transform: scale(1.05) translateY(-5px);
-  }
-
-  .avatarEmoji {
-    font-size: 3.5rem;
-    margin-bottom: 8px;
-
-    @include responsive(mobile) {
-      font-size: 2.5rem;
-    }
-  }
-
-  .mascotLabel {
-    color: $color-bg-white;
-    font-size: 0.8rem;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: $radius-full;
-  }
-}
-
-.playgroundDesk {
-  background-color: $color-yellow;
-  border: 3px solid $color-bg-white;
-  padding: 8px 30px;
-  border-radius: $radius-full;
-  box-shadow: $shadow-soft;
+  border: 4px solid $color-bg-white;
+  width: 260px;
+  transition: $transition-bounce;
+  cursor: pointer;
   z-index: 2;
 
-  .deskToys {
-    font-size: 1.8rem;
-    letter-spacing: 6px;
+  &:hover {
+    box-shadow: $shadow-hover;
+    transform: scale(1.04) translateY(-4px) !important;
+  }
+
+  @include responsive(mobile) {
+    width: 190px;
+    padding: 8px;
+    padding-bottom: 14px;
   }
 }
 
-// Floating items positions
-.floatElement {
+.photoLeft {
+  left: 10px;
+  top: 30px;
+  transform: rotate(-6deg);
+  border-color: #FAF6EE;
+
+  @include responsive(mobile) {
+    left: 5px;
+    top: 15px;
+  }
+}
+
+.photoRight {
+  right: 10px;
+  bottom: 30px;
+  transform: rotate(6deg);
+  border-color: #FCF9F4;
+
+  @include responsive(mobile) {
+    right: 5px;
+    bottom: 15px;
+  }
+}
+
+.photoImgWrapper {
+  width: 100%;
+  height: 180px;
+  border-radius: $radius-sm;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include responsive(mobile) {
+    height: 120px;
+  }
+}
+
+.photoCaption {
+  margin-top: 12px;
+  text-align: center;
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.05rem;
+    color: $color-text-dark;
+  }
+
+  p {
+    font-size: 0.75rem;
+    color: $color-text-light;
+    margin-top: 2px;
+    font-weight: 700;
+  }
+
+  @include responsive(mobile) {
+    margin-top: 6px;
+    h4 { font-size: 0.85rem; }
+    p { font-size: 0.65rem; }
+  }
+}
+
+.floatingMascotBadge {
   position: absolute;
-  font-size: 2rem;
-  z-index: 3;
-}
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: $color-bg-white;
+  border: 4px solid $color-gold;
+  box-shadow: 0 10px 25px rgba(107, 29, 47, 0.15);
+  overflow: hidden;
+  z-index: 5;
+  @include flex-center;
 
-.pencil {
-  top: 10%;
-  left: 8%;
-}
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-.book {
-  top: 15%;
-  right: 8%;
-}
+  .badgeLabel {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $color-wine;
+    color: $color-bg-white;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: $radius-full;
+    white-space: nowrap;
+  }
 
-.planet {
-  bottom: 12%;
-  left: 6%;
-}
-
-.globe {
-  bottom: 25%;
-  right: 5%;
-}
-
-.star {
-  top: -12px;
-  right: 25%;
+  @include responsive(mobile) {
+    width: 80px;
+    height: 80px;
+    .badgeLabel {
+      font-size: 0.5rem;
+      padding: 2px 6px;
+    }
+  }
 }

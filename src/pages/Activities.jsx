@@ -14,6 +14,19 @@ const iconMap = {
   Calendar: Calendar
 };
 
+const activityImages = {
+  "art-craft": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=500",
+  "music-dance": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=500",
+  "storytelling-rhymes": "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=500",
+  "indoor-outdoor-games": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=500",
+  "sensory-activities": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=500",
+  "festival-celebrations": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=500",
+  "personality-development": "https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=500",
+  "creative-learning": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=500",
+  "motor-skill-development": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=500",
+  "fun-learning-activities": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=500"
+};
+
 const filterCategories = ["All", "Creative", "Physical", "Cognitive", "Social"];
 
 const Activities = () => {
@@ -83,21 +96,32 @@ const Activities = () => {
                     style={{ '--accent-color': act.color, '--bg-soft': act.bgSoft }}
                   >
                     
-                    {/* Header with circular icon */}
-                    <div className={styles.cardHeader}>
-                      <div className={styles.iconCircle}>
-                        <IconComponent size={24} />
-                      </div>
+                    {/* Top Image Banner */}
+                    <div className={styles.cardImageWrapper}>
+                      <img 
+                        src={activityImages[act.id]} 
+                        alt={act.title} 
+                        className={styles.cardImage} 
+                        loading="lazy" 
+                      />
                       <span className={styles.categoryBadge}>{act.category}</span>
                     </div>
 
-                    <h3 className={styles.cardTitle}>{act.title}</h3>
-                    <p className={styles.cardDesc}>{act.description}</p>
-                    <p className={styles.cardDetails}>{act.details}</p>
+                    {/* Content Wrapper */}
+                    <div className={styles.cardContent}>
+                      <div className={styles.titleRow}>
+                        <div className={styles.iconCircle}>
+                          <IconComponent size={18} />
+                        </div>
+                        <h3 className={styles.cardTitle}>{act.title}</h3>
+                      </div>
+                      <p className={styles.cardDesc}>{act.description}</p>
+                      <p className={styles.cardDetails}>{act.details}</p>
 
-                    <div className={styles.scheduleRow}>
-                      <Clock size={16} className={styles.clockIcon} />
-                      <span>{act.schedule}</span>
+                      <div className={styles.scheduleRow}>
+                        <Clock size={16} className={styles.clockIcon} />
+                        <span>{act.schedule}</span>
+                      </div>
                     </div>
 
                   </motion.div>

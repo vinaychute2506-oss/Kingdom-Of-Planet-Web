@@ -96,7 +96,6 @@
 
 .activityCard {
   background-color: $color-bg-white;
-  padding: 36px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
   border: 2px solid transparent;
@@ -104,6 +103,8 @@
   flex-direction: column;
   align-items: flex-start;
   transition: $transition-smooth;
+  padding: 0;
+  overflow: hidden;
 
   &:hover {
     border-color: rgba(var(--accent-color), 0.25);
@@ -115,46 +116,83 @@
       color: $color-bg-white;
       transform: scale(1.08) rotate(5deg);
     }
-  }
 
-  @include responsive(mobile) {
-    padding: 24px;
+    .cardImage {
+      transform: scale(1.05);
+    }
   }
 }
 
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.cardImageWrapper {
   width: 100%;
-  margin-bottom: 20px;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+
+  @include responsive(mobile) {
+    height: 140px;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: $transition-smooth;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba($color-bg-white, 0.95);
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: $radius-full;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.cardContent {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+
+  @include responsive(mobile) {
+    padding: 20px 16px;
+  }
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  width: 100%;
 }
 
 .iconCircle {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background-color: var(--bg-soft);
   color: var(--accent-color);
   @include flex-center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
   transition: $transition-bounce;
-}
-
-.categoryBadge {
-  background-color: var(--bg-soft);
-  color: var(--accent-color);
-  font-size: 0.8rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: $radius-full;
-  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .cardTitle {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: $color-text-dark;
-  margin-bottom: 8px;
+  font-family: $font-heading;
+  line-height: 1.2;
 }
 
 .cardDesc {
@@ -183,6 +221,7 @@
   border-top: 1px dashed rgba($color-text-light, 0.15);
   width: 100%;
   padding-top: 16px;
+  margin-top: auto;
 }
 
 .clockIcon {

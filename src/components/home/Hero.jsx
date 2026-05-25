@@ -105,41 +105,63 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Illustration Column */}
+        {/* Right Illustration Column (Collage of premium children photos) */}
         <div className={styles.heroIllustration}>
-          <motion.div 
-            className={styles.illustrationWrapper}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
-          >
-            {/* Elegant Floating preschool objects */}
-            <div className={`${styles.floatElement} ${styles.pencil} animate-float`}>🎨</div>
-            <div className={`${styles.floatElement} ${styles.book} animate-float`} style={{ animationDelay: '1.5s' }}>📖</div>
-            <div className={`${styles.floatElement} ${styles.planet} animate-float`} style={{ animationDelay: '3s' }}>🪐</div>
-            <div className={`${styles.floatElement} ${styles.globe} animate-float`} style={{ animationDelay: '0.8s' }}>👑</div>
-            <div className={`${styles.floatElement} ${styles.star} animate-float`} style={{ animationDelay: '2.2s' }}><Star size={24} fill="#D4AF37" color="#D4AF37" /></div>
-
-            {/* Custom Interactive Avatar Characters */}
-            <div className={styles.characterContainer}>
-              {/* Cute Mascot Girl */}
-              <div className={styles.mascotCard} style={{ backgroundColor: '#FAF6EE', border: '2px solid #D4AF37' }}>
-                <span className={styles.avatarEmoji}>👑👧</span>
-                <span className={styles.mascotLabel} style={{ backgroundColor: '#6B1D2F' }}>Joyful Play</span>
+          <div className={styles.collageContainer}>
+            {/* Polaroid 1 (Left tilted) */}
+            <motion.div 
+              className={`${styles.collageCard} ${styles.photoLeft}`}
+              initial={{ opacity: 0, x: -40, rotate: -10 }}
+              animate={{ opacity: 1, x: 0, rotate: -6 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.05, rotate: -2, zIndex: 10 }}
+            >
+              <div className={styles.photoImgWrapper}>
+                <img 
+                  src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=500" 
+                  alt="Creative watercolors painting" 
+                />
               </div>
-              {/* Cute Mascot Boy */}
-              <div className={styles.mascotCard} style={{ backgroundColor: '#FAF6EE', border: '2px solid #D4AF37' }}>
-                <span className={styles.avatarEmoji}>👑👦</span>
-                <span className={styles.mascotLabel} style={{ backgroundColor: '#D4AF37' }}>Creative Mind</span>
+              <div className={styles.photoCaption}>
+                <h4>Creative Painting Circle</h4>
+                <p>Experiential Learn Hour, 2026</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Central Playful Desk */}
-            <div className={styles.playgroundDesk} style={{ backgroundColor: '#6B1D2F', borderColor: '#D4AF37' }}>
-              <span className={styles.deskToys} style={{ color: '#FFFDD0' }}>📚🧸🧩🎨</span>
-            </div>
+            {/* Polaroid 2 (Right tilted) */}
+            <motion.div 
+              className={`${styles.collageCard} ${styles.photoRight}`}
+              initial={{ opacity: 0, x: 40, rotate: 10 }}
+              animate={{ opacity: 1, x: 0, rotate: 6 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ scale: 1.05, rotate: 2, zIndex: 10 }}
+            >
+              <div className={styles.photoImgWrapper}>
+                <img 
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=500" 
+                  alt="Phonics story library time" 
+                />
+              </div>
+              <div className={styles.photoCaption}>
+                <h4>Storytelling & Reading Nest</h4>
+                <p>Nursery Fun Hours, 2026</p>
+              </div>
+            </motion.div>
 
-          </motion.div>
+            {/* Floating round child badge overlay */}
+            <motion.div 
+              className={`${styles.floatingMascotBadge} animate-float`}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1596464601899-76506300a20e?auto=format&fit=crop&q=80&w=200" 
+                alt="Smiling child explorer" 
+              />
+              <span className={styles.badgeLabel}>A Kingdom of Joy! 👑</span>
+            </motion.div>
+          </div>
         </div>
 
       </div>

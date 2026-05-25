@@ -11,6 +11,13 @@ const iconMap = {
   BookOpen: BookOpen
 };
 
+const programImages = {
+  toddcare: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600",
+  nursery: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600",
+  "junior-kg": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600",
+  "senior-kg": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600"
+};
+
 const Programs = () => {
   return (
     <div className={styles.programsPage}>
@@ -52,12 +59,19 @@ const Programs = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                   >
-                    <div className={styles.illustrationCard} style={{ background: prog.gradient }}>
-                      <div className={styles.iconContainer}>
-                        <IconComp size={48} />
+                    <div className={styles.illustrationCard} style={{ overflow: 'hidden', padding: 0, position: 'relative' }}>
+                      <img 
+                        src={programImages[prog.id]} 
+                        alt={prog.title} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        loading="lazy"
+                      />
+                      <div className={styles.imageOverlayContainer}>
+                        <div className={styles.agePill} style={{ backgroundColor: prog.accentColor, position: 'static', marginBottom: '8px' }}>
+                          {prog.age}
+                        </div>
+                        <h3 className={styles.imageOverlayTitle}>{prog.title}</h3>
                       </div>
-                      <h2 className={styles.progStageTitle}>{prog.title}</h2>
-                      <div className={styles.agePill}>{prog.age}</div>
                     </div>
                   </motion.div>
 
