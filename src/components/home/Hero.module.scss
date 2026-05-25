@@ -1,0 +1,328 @@
+@import '../../styles/variables.scss';
+
+.heroSection {
+  padding-top: 170px;
+  padding-bottom: 96px;
+  position: relative;
+  overflow: hidden;
+  background-color: $color-bg-soft;
+
+  @include responsive(mobile) {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+}
+
+// Background Blobs
+.blobBg {
+  position: absolute;
+  filter: blur(80px);
+  border-radius: 50%;
+  opacity: 0.25;
+  z-index: 1;
+}
+
+.blobYellow {
+  width: 300px;
+  height: 300px;
+  background-color: $color-yellow;
+  top: -50px;
+  right: 10%;
+}
+
+.blobPurple {
+  width: 400px;
+  height: 400px;
+  background-color: lighten($color-purple, 15%);
+  bottom: -100px;
+  left: -50px;
+}
+
+.blobBlue {
+  width: 250px;
+  height: 250px;
+  background-color: $color-blue;
+  top: 40%;
+  left: 30%;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.welcomeTag {
+  background-color: lighten($color-yellow, 38%);
+  color: darken($color-yellow, 18%);
+  padding: 8px 18px;
+  border-radius: $radius-full;
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  border: 1px solid lighten($color-yellow, 30%);
+
+  .sparkleIcon {
+    color: $color-yellow;
+  }
+}
+
+.heading {
+  font-size: 4rem;
+  font-family: $font-heading;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+  line-height: 1.15;
+
+  .highlight {
+    color: $color-purple;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background-color: rgba($color-yellow, 0.4);
+      z-index: -1;
+      border-radius: 6px;
+    }
+  }
+
+  @include responsive(mobile) {
+    font-size: 2.5rem;
+  }
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: $color-text-light;
+  margin-bottom: 36px;
+  max-width: 540px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 48px;
+
+  @include responsive(mobile) {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, $color-green 0%, darken($color-green, 5%) 100%);
+  color: $color-bg-white;
+  border: none;
+  padding: 16px 36px;
+  border-radius: $radius-full;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba($color-green, 0.25);
+  transition: $transition-bounce;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba($color-green, 0.4);
+  }
+
+  @include responsive(mobile) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.secondaryBtn {
+  background-color: $color-bg-white;
+  color: $color-text-dark;
+  border: 2px dashed lighten($color-text-light, 20%);
+  padding: 16px 36px;
+  border-radius: $radius-full;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: $transition-smooth;
+
+  &:hover {
+    border-color: $color-purple;
+    color: $color-purple;
+    background-color: lighten($color-purple, 45%);
+  }
+
+  @include responsive(mobile) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.metricsGrid {
+  display: flex;
+  gap: 36px;
+
+  @include responsive(mobile) {
+    gap: 18px;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.metricCard {
+  display: flex;
+  flex-direction: column;
+
+  .number {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    color: $color-text-light;
+    font-weight: 700;
+  }
+}
+
+// Right Side Graphic Layout
+.heroIllustration {
+  @include flex-center;
+  width: 100%;
+}
+
+.illustrationWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 400px;
+  background: radial-gradient(circle, $color-bg-white 0%, lighten($color-purple, 42%) 100%);
+  border: 4px dashed lighten($color-purple, 30%);
+  border-radius: 40px;
+  box-shadow: $shadow-medium;
+  @include flex-center;
+  flex-direction: column;
+
+  @include responsive(mobile) {
+    height: 320px;
+  }
+}
+
+.characterContainer {
+  display: flex;
+  gap: 24px;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+
+.mascotCard {
+  padding: 16px 20px;
+  border-radius: $radius-md;
+  box-shadow: $shadow-soft;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid $color-bg-white;
+  transition: $transition-smooth;
+
+  &:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
+
+  .avatarEmoji {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+
+    @include responsive(mobile) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .mascotLabel {
+    color: $color-bg-white;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: $radius-full;
+  }
+}
+
+.playgroundDesk {
+  background-color: $color-yellow;
+  border: 3px solid $color-bg-white;
+  padding: 8px 30px;
+  border-radius: $radius-full;
+  box-shadow: $shadow-soft;
+  z-index: 2;
+
+  .deskToys {
+    font-size: 1.8rem;
+    letter-spacing: 6px;
+  }
+}
+
+// Floating items positions
+.floatElement {
+  position: absolute;
+  font-size: 2rem;
+  z-index: 3;
+}
+
+.pencil {
+  top: 10%;
+  left: 8%;
+}
+
+.book {
+  top: 15%;
+  right: 8%;
+}
+
+.planet {
+  bottom: 12%;
+  left: 6%;
+}
+
+.globe {
+  bottom: 25%;
+  right: 5%;
+}
+
+.star {
+  top: -12px;
+  right: 25%;
+}

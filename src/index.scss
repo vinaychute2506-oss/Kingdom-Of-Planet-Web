@@ -1,0 +1,132 @@
+@import './styles/variables.scss';
+
+// Global Resets
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $color-bg-beige;
+  color: $color-text-dark;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: 800;
+  line-height: 1.25;
+  color: $color-text-dark;
+}
+
+p {
+  color: $color-text-light;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: $transition-smooth;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Core Structural Classes
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+
+  @include responsive(mobile) {
+    padding: 60px 0;
+  }
+}
+
+.section-accent {
+  background-color: $color-bg-white;
+  border-radius: 60px;
+  margin: 0 24px;
+  box-shadow: $shadow-soft;
+
+  @include responsive(mobile) {
+    margin: 0 12px;
+    border-radius: 36px;
+  }
+}
+
+// Keyframes
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+// Custom Scrollbar in Wine & Beige
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg-beige;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: lighten($color-wine, 10%);
+  border-radius: 10px;
+  border: 3px solid $color-bg-beige;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $color-wine;
+}

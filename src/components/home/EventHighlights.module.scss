@@ -1,0 +1,132 @@
+@import '../../styles/variables.scss';
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  margin-top: 12px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.eventCard {
+  background-color: $color-bg-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-text-light, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+    
+    .eventImage {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.imgWrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+
+  @include responsive(mobile) {
+    height: 180px;
+  }
+}
+
+.eventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dateTag {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  color: $color-bg-white;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  border-radius: $radius-full;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  @include flex-center;
+  gap: 6px;
+}
+
+.eventDetails {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @include responsive(mobile) {
+    padding: 20px;
+  }
+}
+
+.eventTitle {
+  font-size: 1.5rem;
+  color: $color-text-dark;
+  margin-bottom: 12px;
+}
+
+.metaRow {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+
+  @include responsive(mobile) {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: $color-text-light;
+  font-weight: 700;
+}
+
+.metaIcon {
+  color: var(--accent-color);
+}
+
+.eventDesc {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba($color-text-light, 0.15);
+  padding-top: 18px;
+}
+
+.themeBadge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-color);
+}

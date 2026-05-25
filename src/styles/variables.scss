@@ -1,0 +1,70 @@
+// Design Tokens for Kingdom of Learning Pre School
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
+
+// Premium School Palette
+$color-wine: #6B1D2F;         // Deep elegant red
+$color-gold: #D4AF37;         // Educative metallic gold
+$color-cream: #FFFDD0;        // Soft vanilla/cream
+$color-bg-white: #FFFFFF;     // Pure white backgrounds
+$color-bg-beige: #FAF6EE;     // Light beige soft backgrounds
+$color-bg-soft: #FAF6EE;      // Alias for compiler backwards-compatibility
+$color-text-dark: #2A2A2A;    // Elegant charcoal text
+$color-text-light: #6A6A6A;   // Balanced soft body text
+
+// Helper Color Aliases for Reusability (maps to brand theme)
+$color-yellow: #D4AF37;       // Map yellow to Gold
+$color-purple: #6B1D2F;       // Map purple to Wine
+$color-green: #4CAF50;        // Accent green for safe checks
+$color-orange: #E67E22;       // Warm active accent
+$color-blue: #2980B9;         // Trustworthy blue
+$color-pink: #C0392B;         // Wine accent
+
+// Fonts
+$font-heading: 'Baloo 2', 'Quicksand', system-ui, sans-serif;
+$font-body: 'Nunito', 'Poppins', system-ui, sans-serif;
+
+// Radii
+$radius-sm: 12px;
+$radius-md: 20px;
+$radius-lg: 32px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-soft: 0 12px 36px rgba(107, 29, 47, 0.04);
+$shadow-medium: 0 16px 44px rgba(107, 29, 47, 0.08);
+$shadow-hover: 0 20px 48px rgba(107, 29, 47, 0.14);
+
+// Transitions
+$transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1200px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: #{$breakpoint-tablet - 1px}) { @content; }
+  } @else if $breakpoint == tablet {
+    @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-wide - 1px}) { @content; }
+  } @else if $breakpoint == desktop {
+    @media (min-width: #{$breakpoint-wide}) { @content; }
+  } @else {
+    @media (min-width: #{$breakpoint}) { @content; }
+  }
+}

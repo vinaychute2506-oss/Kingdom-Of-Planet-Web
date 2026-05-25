@@ -1,0 +1,68 @@
+@import '../../styles/variables.scss';
+
+.safetyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 12px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.safetyCard {
+  background-color: $color-bg-white;
+  padding: 36px 24px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-text-light, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+  }
+}
+
+.iconBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: lighten($color-bg-soft, 1%);
+  color: var(--accent-color);
+  @include flex-center;
+  margin-bottom: 24px;
+  border: 2px dashed var(--accent-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  color: $color-text-dark;
+  margin-bottom: 12px;
+  font-family: $font-heading;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  line-height: 1.6;
+}

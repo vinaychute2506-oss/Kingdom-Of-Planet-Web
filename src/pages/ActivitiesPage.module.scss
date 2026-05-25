@@ -1,0 +1,190 @@
+@import '../styles/variables.scss';
+
+.activitiesPage {
+  padding-bottom: 60px;
+}
+
+.pageHeader {
+  background: linear-gradient(135deg, $color-yellow 0%, $color-orange 100%);
+  color: $color-bg-white;
+  padding: 140px 0 60px 0;
+  text-align: center;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: $shadow-soft;
+
+  h1 {
+    font-size: 3.5rem;
+    color: $color-bg-white;
+    margin-bottom: 12px;
+    font-family: $font-heading;
+
+    @include responsive(mobile) {
+      font-size: 2.4rem;
+    }
+  }
+
+  p {
+    color: rgba($color-bg-white, 0.95);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 700;
+
+    @include responsive(mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Filters Bar
+.filterBar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 48px;
+
+  @include responsive(mobile) {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+}
+
+.filterBtn {
+  background-color: $color-bg-white;
+  color: $color-text-dark;
+  border: 2px solid rgba($color-text-light, 0.15);
+  padding: 10px 24px;
+  border-radius: $radius-full;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: $shadow-soft;
+  transition: $transition-bounce;
+
+  &:hover {
+    border-color: $color-purple;
+    color: $color-purple;
+    background-color: lighten($color-purple, 45%);
+  }
+}
+
+.activeBtn {
+  background: linear-gradient(135deg, $color-purple 0%, darken($color-purple, 5%) 100%) !important;
+  color: $color-bg-white !important;
+  border-color: $color-purple !important;
+  box-shadow: 0 6px 15px rgba($color-purple, 0.25);
+}
+
+// Cards Grid layout
+.activitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+
+.activityCard {
+  background-color: $color-bg-white;
+  padding: 36px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: $transition-smooth;
+
+  &:hover {
+    border-color: rgba(var(--accent-color), 0.25);
+    box-shadow: $shadow-medium;
+    transform: translateY(-6px);
+
+    .iconCircle {
+      background-color: var(--accent-color);
+      color: $color-bg-white;
+      transform: scale(1.08) rotate(5deg);
+    }
+  }
+
+  @include responsive(mobile) {
+    padding: 24px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.iconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background-color: var(--bg-soft);
+  color: var(--accent-color);
+  @include flex-center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: $transition-bounce;
+}
+
+.categoryBadge {
+  background-color: var(--bg-soft);
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  color: $color-text-dark;
+  margin-bottom: 8px;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.cardDetails {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.scheduleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: $color-text-light;
+  font-weight: 800;
+  border-top: 1px dashed rgba($color-text-light, 0.15);
+  width: 100%;
+  padding-top: 16px;
+}
+
+.clockIcon {
+  color: var(--accent-color);
+}

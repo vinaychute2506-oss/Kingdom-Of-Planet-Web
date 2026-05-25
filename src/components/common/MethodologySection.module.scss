@@ -1,0 +1,84 @@
+@import '../../styles/variables.scss';
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 12px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.methodCard {
+  background-color: $color-bg-white;
+  padding: 32px 24px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-wine, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+    border-color: rgba(var(--accent-color), 0.2);
+    transform: translateY(-4px);
+
+    .iconCircle {
+      background-color: var(--accent-color);
+      color: $color-bg-white;
+      transform: scale(1.05) rotate(5deg);
+    }
+  }
+
+  // Set the 7th card to span 2 columns on wide screens for balanced layout
+  &:nth-child(7):last-child {
+    @media (min-width: 1024px) {
+      grid-column: span 2;
+      flex-direction: row;
+      text-align: left;
+      align-items: center;
+      gap: 24px;
+      padding: 32px 48px;
+
+      .iconCircle {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.iconCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background-color: $color-bg-beige;
+  color: var(--accent-color);
+  @include flex-center;
+  margin-bottom: 20px;
+  border: 2px dashed var(--accent-color);
+  transition: $transition-bounce;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  color: $color-text-dark;
+  margin-bottom: 12px;
+  font-family: $font-heading;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  line-height: 1.6;
+}

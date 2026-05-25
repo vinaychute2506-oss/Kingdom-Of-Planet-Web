@@ -1,0 +1,209 @@
+@import '../../styles/variables.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: transparent;
+  z-index: 1000;
+  @include flex-center;
+  transition: $transition-smooth;
+
+  &.scrolled {
+    height: 80px;
+    background-color: rgba($color-bg-white, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba($color-wine, 0.05);
+    border-bottom: 2px dashed rgba($color-gold, 0.15);
+  }
+
+  @include responsive(mobile) {
+    height: 76px;
+    &.scrolled { height: 72px; }
+  }
+}
+
+.navbarContainer {
+  @include flex-between;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logoCrest {
+  width: 46px;
+  height: 46px;
+  background-color: rgba($color-cream, 0.5);
+  border: 2px solid $color-gold;
+  border-radius: 14px;
+  @include flex-center;
+  box-shadow: 0 4px 10px rgba($color-wine, 0.04);
+  transition: $transition-smooth;
+
+  &:hover {
+    transform: scale(1.05) rotate(-3deg);
+  }
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+
+  .wordPlanet {
+    font-family: $font-heading;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $color-wine;
+  }
+
+  .wordSchool {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color-gold;
+  }
+
+  @include responsive(mobile) {
+    .wordPlanet { font-size: 1.15rem; }
+    .wordSchool { font-size: 0.8rem; }
+  }
+}
+
+.desktopNav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+
+  @include responsive(mobile) { display: none; }
+  @include responsive(tablet) { gap: 14px; }
+}
+
+.navLink {
+  position: relative;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: $color-text-dark;
+  padding: 8px 4px;
+  transition: $transition-smooth;
+
+  &:hover {
+    color: $color-wine;
+  }
+}
+
+.activeLink {
+  color: $color-wine;
+}
+
+.indicator {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: $color-wine;
+  border-radius: 2px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.enrollBtn {
+  background: linear-gradient(135deg, $color-gold 0%, darken($color-gold, 8%) 100%);
+  color: $color-bg-white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: $radius-full;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba($color-gold, 0.25);
+  @include flex-center;
+  gap: 8px;
+  transition: $transition-bounce;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($color-gold, 0.35);
+  }
+
+  @include responsive(mobile) {
+    display: none;
+  }
+}
+
+.mobileMenuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: $color-text-dark;
+  cursor: pointer;
+
+  @include responsive(mobile) {
+    display: block;
+  }
+}
+
+// Mobile Full screen menu
+.mobileOverlay {
+  position: fixed;
+  top: 76px;
+  left: 0;
+  width: 100%;
+  background-color: $color-bg-white;
+  z-index: 999;
+  border-bottom: 4px dashed $color-gold;
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
+}
+
+.mobileNavContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+}
+
+.mobileNavLink {
+  font-family: $font-heading;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $color-text-dark;
+  padding: 8px 0;
+  border-bottom: 1px solid lighten($color-text-light, 35%);
+  transition: $transition-smooth;
+
+  &:active {
+    color: $color-wine;
+  }
+}
+
+.mobileActiveLink {
+  color: $color-wine;
+  border-bottom-color: $color-wine;
+}
+
+.mobileEnrollBtn {
+  background: linear-gradient(135deg, $color-wine 0%, darken($color-wine, 5%) 100%);
+  color: $color-bg-white;
+  border: none;
+  padding: 16px;
+  border-radius: $radius-md;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba($color-wine, 0.3);
+}

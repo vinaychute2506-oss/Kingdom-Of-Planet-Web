@@ -1,0 +1,349 @@
+@import '../styles/variables.scss';
+
+.aboutPage {
+  padding-bottom: 60px;
+}
+
+.pageHeader {
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 100%);
+  color: $color-bg-white;
+  padding: 140px 0 60px 0;
+  text-align: center;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: $shadow-soft;
+
+  h1 {
+    font-size: 3.5rem;
+    color: $color-bg-white;
+    margin-bottom: 12px;
+    font-family: $font-heading;
+
+    @include responsive(mobile) {
+      font-size: 2.4rem;
+    }
+  }
+
+  p {
+    color: rgba($color-bg-white, 0.9);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 700;
+
+    @include responsive(mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// 1. Principal message
+.principalCard {
+  background-color: $color-bg-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  padding: 56px;
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 56px;
+  align-items: center;
+  border: 1px solid rgba($color-text-light, 0.05);
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 20px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.principalAvatarCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.principalFrame {
+  width: 170px;
+  height: 170px;
+  border-radius: 40px;
+  background-color: lighten($color-purple, 43%);
+  border: 4px dashed $color-purple;
+  padding: 12px;
+  overflow: hidden;
+  box-shadow: $shadow-medium;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.principalName {
+  font-size: 1.4rem;
+  color: $color-text-dark;
+  margin-bottom: 4px;
+}
+
+.principalRole {
+  font-size: 0.9rem;
+  color: $color-purple;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.messageCol {
+  position: relative;
+}
+
+.quoteMark {
+  position: absolute;
+  top: -30px;
+  left: -20px;
+  font-size: 6rem;
+  color: lighten($color-purple, 40%);
+  font-family: Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.messageTitle {
+  font-size: 1.8rem;
+  color: $color-text-dark;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+
+  @include responsive(mobile) {
+    font-size: 1.4rem;
+  }
+}
+
+.messageText {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: $color-text-light;
+  margin-bottom: 16px;
+}
+
+.signature {
+  margin-top: 32px;
+  border-top: 1px dashed rgba($color-text-light, 0.15);
+  padding-top: 16px;
+
+  .sigName {
+    font-family: $font-heading;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $color-text-dark;
+  }
+
+  .sigTitle {
+    font-size: 0.85rem;
+    color: $color-text-light;
+    font-weight: 700;
+  }
+}
+
+// 2. Vision Mission Cards
+.visionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.visionCard {
+  background-color: $color-bg-white;
+  padding: 48px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid rgba($color-text-light, 0.05);
+
+  .cardIcon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: $color-text-dark;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: $color-text-light;
+  }
+
+  @include responsive(mobile) {
+    padding: 32px 20px;
+  }
+}
+
+.cardPurple {
+  border-left: 6px solid $color-purple;
+}
+
+.cardGreen {
+  border-left: 6px solid $color-green;
+}
+
+// 3. Facilities Grid
+.facilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.facilityCard {
+  background-color: $color-bg-white;
+  padding: 36px 24px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-text-light, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+    transform: translateY(-5px);
+
+    .facIconBox {
+      background-color: var(--accent-color);
+      color: $color-bg-white;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    color: $color-text-dark;
+    margin-bottom: 12px;
+    font-family: $font-heading;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $color-text-light;
+    line-height: 1.5;
+  }
+}
+
+.facIconBox {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background-color: lighten($color-bg-soft, 1%);
+  color: var(--accent-color);
+  @include flex-center;
+  margin-bottom: 20px;
+  border: 2px dashed var(--accent-color);
+  transition: $transition-bounce;
+}
+
+// 4. Polaroid Staff list
+.teachersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 12px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.teacherPolaroid {
+  background-color: $color-bg-white;
+  padding: 16px;
+  padding-bottom: 28px;
+  border-radius: $radius-md;
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.06);
+  border: 1px solid rgba($color-text-light, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: $transition-bounce;
+  cursor: pointer;
+}
+
+.teacherImgBox {
+  width: 100%;
+  height: 180px;
+  border-radius: $radius-sm;
+  background: linear-gradient(135deg, lighten($color-purple, 43%) 0%, lighten($color-blue, 40%) 100%);
+  overflow: hidden;
+  @include flex-center;
+  margin-bottom: 18px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.teacherDetails {
+  text-align: center;
+}
+
+.tName {
+  font-size: 1.25rem;
+  color: $color-text-dark;
+  margin-bottom: 4px;
+}
+
+.tRole {
+  font-size: 0.85rem;
+  color: $color-purple;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.tExp {
+  font-size: 0.8rem;
+  color: $color-green;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.tBio {
+  font-size: 0.85rem;
+  color: $color-text-light;
+  line-height: 1.5;
+}

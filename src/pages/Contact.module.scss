@@ -1,0 +1,344 @@
+@import '../styles/variables.scss';
+
+.contactPage {
+  padding-bottom: 60px;
+}
+
+.pageHeader {
+  background: linear-gradient(135deg, $color-orange 0%, $color-purple 100%);
+  color: $color-bg-white;
+  padding: 140px 0 60px 0;
+  text-align: center;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: $shadow-soft;
+
+  h1 {
+    font-size: 3.5rem;
+    color: $color-bg-white;
+    margin-bottom: 12px;
+    font-family: $font-heading;
+
+    @include responsive(mobile) {
+      font-size: 2.4rem;
+    }
+  }
+
+  p {
+    color: rgba($color-bg-white, 0.95);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 700;
+
+    @include responsive(mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Split panel grids
+.splitGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: flex-start;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+// Form panel styling
+.formPanel {
+  background-color: $color-bg-white;
+  padding: 48px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-text-light, 0.05);
+
+  @include responsive(mobile) {
+    padding: 24px;
+  }
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: $color-text-dark;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid lighten($color-text-light, 35%);
+    background-color: lighten($color-bg-soft, 1%);
+    border-radius: $radius-md;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-text-dark;
+    transition: $transition-smooth;
+
+    &:focus {
+      border-color: $color-orange;
+      background-color: $color-bg-white;
+      box-shadow: 0 4px 15px rgba($color-orange, 0.08);
+    }
+  }
+}
+
+.sendBtn {
+  background: linear-gradient(135deg, $color-orange 0%, darken($color-orange, 5%) 100%);
+  color: $color-bg-white;
+  border: none;
+  padding: 16px;
+  border-radius: $radius-full;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba($color-orange, 0.2);
+  @include flex-center;
+  gap: 10px;
+  transition: $transition-bounce;
+
+  &:hover {
+    box-shadow: 0 10px 25px rgba($color-orange, 0.35);
+  }
+}
+
+// Right panel maps
+.mapCard {
+  width: 100%;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-soft;
+  border: 4px solid $color-bg-white;
+  margin-bottom: 36px;
+}
+
+.mockMap {
+  width: 100%;
+  height: 260px;
+  background: radial-gradient(circle, lighten($color-green, 43%) 0%, lighten($color-blue, 38%) 100%);
+  position: relative;
+  @include flex-center;
+  flex-direction: column;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 2px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+.mapPin {
+  font-size: 3rem;
+  position: relative;
+  z-index: 2;
+  @include flex-center;
+}
+
+.pinRadar {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba($color-purple, 0.2);
+  animation: pulse-ring 2s infinite ease-out;
+  z-index: -1;
+}
+
+.mapLabel {
+  background-color: $color-text-dark;
+  color: $color-bg-white;
+  padding: 6px 14px;
+  border-radius: $radius-sm;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-top: 12px;
+  z-index: 2;
+  box-shadow: $shadow-soft;
+}
+
+.mapLink {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: $color-bg-white;
+  color: $color-text-dark;
+  padding: 6px 12px;
+  border-radius: $radius-sm;
+  font-size: 0.8rem;
+  font-weight: 800;
+  @include flex-center;
+  gap: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 3;
+
+  &:hover {
+    background-color: $color-yellow;
+  }
+}
+
+// Contacts Cards Info
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.detailCard {
+  background-color: $color-bg-white;
+  padding: 24px 28px;
+  border-radius: $radius-md;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-text-light, 0.05);
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+    transform: translateX(4px);
+  }
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    color: $color-text-dark;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $color-text-light;
+    line-height: 1.5;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.iconYellow { color: $color-yellow; }
+.iconGreen { color: $color-green; }
+.iconPurple { color: $color-purple; }
+.iconOrange { color: $color-orange; }
+
+// Success Modals
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 62, 80, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  @include flex-center;
+  padding: 24px;
+}
+
+.modalCard {
+  background-color: $color-bg-white;
+  padding: 48px 40px;
+  border-radius: $radius-lg;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  border: 4px solid $color-orange;
+  @include flex-center;
+  flex-direction: column;
+
+  @include responsive(mobile) {
+    padding: 32px 20px;
+  }
+}
+
+.modalSuccessBox {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: lighten($color-orange, 35%);
+  color: $color-orange;
+  @include flex-center;
+  margin-bottom: 24px;
+}
+
+.mTitle {
+  font-size: 1.8rem;
+  color: $color-text-dark;
+  margin-bottom: 12px;
+}
+
+.mText {
+  font-size: 1.05rem;
+  color: $color-text-dark;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.mSubtext {
+  font-size: 0.9rem;
+  color: $color-text-light;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.mBtn {
+  background-color: $color-text-dark;
+  color: $color-bg-white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: $radius-full;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: $color-orange;
+    box-shadow: 0 6px 15px rgba($color-orange, 0.3);
+  }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}

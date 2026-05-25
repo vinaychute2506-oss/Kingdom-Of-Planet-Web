@@ -1,0 +1,67 @@
+@import '../../styles/variables.scss';
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 12px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.featureCard {
+  background-color: $color-bg-white;
+  padding: 36px 24px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: $transition-smooth;
+
+  &:hover {
+    border-color: rgba(var(--accent-color), 0.2);
+    box-shadow: $shadow-medium;
+    transform: translateY(-5px);
+
+    .iconCircle {
+      background-color: var(--accent-color);
+      color: $color-bg-white;
+      transform: rotate(10deg);
+    }
+  }
+}
+
+.iconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background-color: lighten($color-bg-soft, 1%);
+  color: var(--accent-color);
+  @include flex-center;
+  margin-bottom: 24px;
+  border: 2px dashed var(--accent-color);
+  transition: $transition-bounce;
+}
+
+.featureTitle {
+  font-size: 1.3rem;
+  color: $color-text-dark;
+  margin-bottom: 12px;
+  font-family: $font-heading;
+}
+
+.featureDesc {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  line-height: 1.6;
+}

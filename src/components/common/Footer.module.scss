@@ -1,0 +1,230 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  background-color: $color-text-dark;
+  color: lighten($color-text-light, 35%);
+  padding-top: 120px;
+  position: relative;
+  overflow: visible;
+
+  @include responsive(mobile) {
+    padding-top: 80px;
+  }
+}
+
+.waveContainer {
+  position: absolute;
+  top: -118px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+
+  @include responsive(mobile) {
+    top: -58px;
+  }
+}
+
+.wavePath {
+  fill: $color-text-dark;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1.8fr 1.5fr;
+  gap: 40px;
+  padding-bottom: 60px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  font-family: $font-heading;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: $color-bg-white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .logoPlanet {
+    font-size: 2.2rem;
+  }
+}
+
+.tagline {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: lighten($color-text-light, 20%);
+  font-weight: 600;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIcon {
+  width: 42px;
+  height: 42px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $color-bg-white;
+  border-radius: 50%;
+  @include flex-center;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  color: $color-bg-white;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 35px;
+    height: 4px;
+    background-color: $color-yellow;
+    border-radius: 2px;
+  }
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  button {
+    background: none;
+    border: none;
+    color: lighten($color-text-light, 25%);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: $transition-smooth;
+    padding: 0;
+
+    &:hover {
+      color: $color-yellow;
+      padding-left: 6px;
+    }
+  }
+}
+
+.contactList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    span {
+      color: lighten($color-text-light, 25%);
+    }
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
+.iconYellow { color: $color-yellow; }
+.iconGreen { color: $color-green; }
+.iconPurple { color: $color-purple; }
+.iconOrange { color: $color-orange; }
+.iconBlue { color: $color-blue; }
+
+.hoursCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.hoursBox {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 12px 18px;
+  border-radius: $radius-sm;
+  margin-bottom: 12px;
+  border-left: 4px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .days {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: $color-bg-white;
+  }
+
+  .time {
+    font-size: 0.85rem;
+    color: lighten($color-text-light, 15%);
+  }
+}
+
+.bottomBar {
+  background-color: darken($color-text-dark, 4%);
+  padding: 24px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bottomContainer {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  @include responsive(mobile) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.credits {
+  font-family: $font-heading;
+  font-size: 1rem;
+  color: $color-yellow;
+  letter-spacing: 1px;
+}

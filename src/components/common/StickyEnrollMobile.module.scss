@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+.stickyContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $color-bg-white;
+  padding: 12px 18px;
+  box-shadow: 0 -8px 24px rgba(44, 62, 80, 0.08);
+  z-index: 998;
+  display: none; // Default hidden on large screens
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  @include responsive(mobile) {
+    display: block; // Show on mobile screens
+  }
+}
+
+.ctaButton {
+  width: 100%;
+  background: linear-gradient(135deg, $color-orange 0%, darken($color-orange, 5%) 100%);
+  color: $color-bg-white;
+  border: none;
+  padding: 14px;
+  border-radius: $radius-md;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  @include flex-center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba($color-orange, 0.3);
+  transition: $transition-smooth;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.icon {
+  animation: wiggle 2.5s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
