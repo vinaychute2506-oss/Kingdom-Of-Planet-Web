@@ -45,7 +45,7 @@
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background-color: lighten($color-bg-soft, 1%);
+  background-color: $color-bg-soft-1;
   color: var(--accent-color);
   @include flex-center;
   margin-bottom: 24px;

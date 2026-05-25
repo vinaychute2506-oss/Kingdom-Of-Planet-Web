@@ -66,12 +66,12 @@
   &:hover {
     border-color: $color-purple;
     color: $color-purple;
-    background-color: lighten($color-purple, 45%);
+    background-color: $color-purple-light-43;
   }
 }
 
 .activeBtn {
-  background: linear-gradient(135deg, $color-purple 0%, darken($color-purple, 5%) 100%) !important;
+  background: linear-gradient(135deg, $color-purple 0%, $color-wine-dark-5 100%) !important;
   color: $color-bg-white !important;
   border-color: $color-purple !important;
   box-shadow: 0 6px 15px rgba($color-purple, 0.25);

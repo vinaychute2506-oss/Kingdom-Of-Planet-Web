@@ -71,7 +71,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: lighten($color-purple, 43%);
+  background-color: $color-purple-light-43;
   border: 2px solid $color-bg-white;
   box-shadow: $shadow-soft;
   overflow: hidden;

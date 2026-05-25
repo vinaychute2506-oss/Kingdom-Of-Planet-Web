@@ -26,8 +26,8 @@
 
 .tag {
   color: $color-green;
-  background-color: lighten($color-green, 42%);
-  border: 1px solid lighten($color-green, 30%);
+  background-color: #E2F5E3;
+  border: 1px solid #B0E4B3;
   padding: 6px 18px;
   border-radius: $radius-full;
   font-size: 0.85rem;
@@ -73,7 +73,7 @@
 }
 
 .viewBtn {
-  background: linear-gradient(135deg, $color-green 0%, darken($color-green, 5%) 100%);
+  background: linear-gradient(135deg, $color-green 0%, #3E8E41 100%);
   color: $color-bg-white;
   border: none;
   padding: 14px 30px;

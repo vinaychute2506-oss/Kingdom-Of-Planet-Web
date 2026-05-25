@@ -122,7 +122,7 @@
 }
 
 .enrollBtn {
-  background: linear-gradient(135deg, $color-gold 0%, darken($color-gold, 8%) 100%);
+  background: linear-gradient(135deg, $color-gold 0%, #AE8C23 100%);
   color: $color-bg-white;
   border: none;
   padding: 12px 24px;
@@ -182,7 +182,7 @@
   font-weight: 800;
   color: $color-text-dark;
   padding: 8px 0;
-  border-bottom: 1px solid lighten($color-text-light, 35%);
+  border-bottom: 1px solid $color-text-light-35;
   transition: $transition-smooth;
 
   &:active {
@@ -196,7 +196,7 @@
 }
 
 .mobileEnrollBtn {
-  background: linear-gradient(135deg, $color-wine 0%, darken($color-wine, 5%) 100%);
+  background: linear-gradient(135deg, $color-wine 0%, $color-wine-dark-5 100%);
   color: $color-bg-white;
   border: none;
   padding: 16px;

@@ -22,7 +22,7 @@
 
 // Left Info Column
 .infoCol {
-  background: linear-gradient(135deg, lighten($color-purple, 43%) 0%, lighten($color-blue, 40%) 100%);
+  background: linear-gradient(135deg, $color-purple-light-43 0%, $color-blue-light-40 100%);
   padding: 56px;
   display: flex;
   flex-direction: column;
@@ -36,8 +36,8 @@
 
 .tag {
   color: $color-purple;
-  background-color: lighten($color-purple, 38%);
-  border: 1px solid lighten($color-purple, 28%);
+  background-color: #E6C2CA;
+  border: 1px solid #C49FA6;
   padding: 6px 16px;
   border-radius: $radius-full;
   font-size: 0.85rem;
@@ -146,8 +146,8 @@
     width: 100%;
     padding: 14px 18px;
     padding-left: 44px;
-    border: 2px solid lighten($color-text-light, 35%);
-    background-color: lighten($color-bg-soft, 1%);
+    border: 2px solid $color-text-light-35;
+    background-color: $color-bg-soft-1;
     border-radius: $radius-md;
     font-size: 1rem;
     font-weight: 600;
@@ -180,13 +180,13 @@
 .fieldIcon {
   position: absolute;
   left: 16px;
-  color: lighten($color-text-light, 15%);
+  color: $color-text-light-15;
   pointer-events: none;
 }
 
 .submitBtn {
   width: 100%;
-  background: linear-gradient(135deg, $color-green 0%, darken($color-green, 5%) 100%);
+  background: linear-gradient(135deg, $color-green 0%, #3E8E41 100%);
   color: $color-bg-white;
   border: none;
   padding: 16px;
@@ -239,7 +239,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: lighten($color-green, 42%);
+  background-color: #E2F5E3;
   color: $color-green;
   @include flex-center;
   margin-bottom: 24px;

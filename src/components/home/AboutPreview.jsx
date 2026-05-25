@@ -30,8 +30,12 @@ const AboutPreview = () => {
             transition={{ duration: 0.6, type: "spring" }}
             style={{ borderColor: '#D4AF37' }}
           >
-            <div className={styles.polaroidImageWrapper} style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #D4AF37 100%)' }}>
-              <span className={styles.previewEmoji}>👑📖🧸🧩🎨</span>
+            <div className={styles.polaroidImageWrapper}>
+              <img 
+                src="https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=600" 
+                alt="Teacher-student activity interaction" 
+                loading="lazy" 
+              />
             </div>
             <div className={styles.polaroidCaption}>
               <h4 style={{ color: '#6B1D2F' }}>Where Learning Comes Alive</h4>

@@ -23,7 +23,7 @@
 }
 
 .tag {
-  background-color: lighten($color-purple, 40%);
+  background-color: $color-purple-light-43;
   color: $color-purple;
   padding: 6px 18px;
   border-radius: $radius-full;
@@ -33,7 +33,7 @@
   text-transform: uppercase;
   margin-bottom: 12px;
   display: inline-block;
-  border: 1px solid lighten($color-purple, 30%);
+  border: 1px solid #CCA4AE;
 }
 
 .title {

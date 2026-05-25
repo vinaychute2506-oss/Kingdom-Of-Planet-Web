@@ -66,12 +66,12 @@
   &:hover {
     border-color: $color-purple;
     color: $color-purple;
-    background-color: lighten($color-purple, 45%);
+    background-color: $color-purple-light-43;
   }
 }
 
 .activeBtn {
-  background: linear-gradient(135deg, $color-purple 0%, darken($color-purple, 5%) 100%) !important;
+  background: linear-gradient(135deg, $color-purple 0%, $color-wine-dark-5 100%) !important;
   color: $color-bg-white !important;
   border-color: $color-purple !important;
   box-shadow: 0 6px 15px rgba($color-purple, 0.25);
@@ -81,23 +81,28 @@
 .mosaicGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 160px;
+  grid-auto-flow: dense;
   gap: 24px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 16px;
+    grid-auto-rows: auto;
+    gap: 20px;
   }
 
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
     gap: 20px;
   }
 }
 
 .photoCard {
   width: 100%;
-  height: 280px;
-  border-radius: $radius-lg;
+  height: 100%;
+  grid-row: span 2;
+  border-radius: $radius-md;
   overflow: hidden;
   position: relative;
   box-shadow: $shadow-soft;
@@ -106,9 +111,9 @@
   transition: $transition-bounce;
 
   &:hover {
-    box-shadow: $shadow-medium;
+    box-shadow: $shadow-hover;
     border-color: var(--accent-color);
-    transform: scale(1.02);
+    transform: scale(1.02) translateY(-2px);
 
     .hoverOverlay {
       opacity: 1;
@@ -116,7 +121,22 @@
   }
 
   @include responsive(mobile) {
-    height: 200px;
+    height: 250px !important;
+    grid-row: auto !important;
+    grid-column: auto !important;
+  }
+}
+
+.tallCard {
+  grid-row: span 3;
+}
+
+.wideCard {
+  grid-column: span 2;
+  grid-row: span 2;
+
+  @include responsive(tablet) {
+    grid-column: span 1;
   }
 }
 

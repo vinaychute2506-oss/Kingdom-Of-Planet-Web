@@ -56,8 +56,8 @@ const About = () => {
         <div className="container">
           <div className={styles.principalCard} style={{ borderColor: '#D4AF37' }}>
             <div className={styles.principalAvatarCol}>
-              <div className={styles.principalFrame} style={{ borderColor: '#6B1D2F', backgroundColor: '#FFFDD0' }}>
-                <img src="https://api.dicebear.com/7.x/micah/svg?seed=Komal" alt="Mrs. Komal Singh" />
+              <div className={styles.principalFrame} style={{ borderColor: '#6B1D2F', backgroundColor: '#FAF6EE' }}>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Komal Singh" />
               </div>
               <h3 className={styles.principalName}>Mrs. Komal Singh</h3>
               <p className={styles.principalRole} style={{ color: '#6B1D2F' }}>Founder & Principal</p>
