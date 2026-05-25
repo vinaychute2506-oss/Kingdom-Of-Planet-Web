@@ -14,15 +14,20 @@
 
 .waveContainer {
   position: absolute;
-  top: -118px;
+  bottom: calc(100% - 1px);
   left: 0;
   width: 100%;
+  height: 120px;
   overflow: hidden;
   line-height: 0;
-  transform: rotate(180deg);
 
   @include responsive(mobile) {
-    top: -58px;
+    height: 60px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -56,16 +61,53 @@
 }
 
 .logo {
-  font-family: $font-heading;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: $color-bg-white;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
 
-  .logoPlanet {
-    font-size: 2.2rem;
+.logoCrest {
+  width: 44px;
+  height: 44px;
+  background-color: rgba($color-bg-white, 0.05);
+  border: 2px solid $color-gold;
+  border-radius: 12px;
+  @include flex-center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: $transition-smooth;
+
+  &:hover {
+    transform: scale(1.05) rotate(-3deg);
+  }
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+
+  .wordPlanet {
+    font-family: $font-heading;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $color-bg-white;
+  }
+
+  .wordSchool {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color-gold;
+  }
+
+  @include responsive(mobile) {
+    .wordPlanet { font-size: 1.15rem; }
+    .wordSchool { font-size: 0.8rem; }
   }
 }
 
