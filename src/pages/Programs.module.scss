@@ -5,34 +5,34 @@
 }
 
 .pageHeader {
-  background: linear-gradient(135deg, $color-green 0%, $color-blue 100%);
-  color: $color-bg-white;
-  padding: 140px 0 60px 0;
+  background-color: $color-cream;
+  color: $color-text-dark;
+  padding: 150px 0 64px 0;
   text-align: center;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: $shadow-soft;
+  border-bottom: 1px solid rgba($color-beige, 0.6);
 
   h1 {
-    font-size: 3.5rem;
-    color: $color-bg-white;
-    margin-bottom: 12px;
+    font-size: 3.2rem;
+    color: $color-wine;
+    margin-bottom: 14px;
     font-family: $font-heading;
+    font-weight: 500;
 
     @include responsive(mobile) {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
   }
 
   p {
-    color: rgba($color-bg-white, 0.9);
-    font-size: 1.15rem;
+    color: $color-text-light;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
-    font-weight: 700;
+    font-weight: 400;
+    line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
@@ -41,21 +41,21 @@
 .programDetailsList {
   display: flex;
   flex-direction: column;
-  gap: 96px;
+  gap: 80px;
 
   @include responsive(mobile) {
-    gap: 60px;
+    gap: 48px;
   }
 }
 
 .progBlock {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 56px;
   align-items: center;
 
   &.reverseBlock {
-    grid-template-columns: 1.6fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
 
     .visualCol {
       order: 2;
@@ -98,225 +98,30 @@
 
 .illustrationCard {
   width: 100%;
-  max-width: 380px;
-  height: 380px;
-  border-radius: 48px;
-  padding: 40px;
+  max-width: 360px;
+  height: 440px;
+  border-radius: 180px 180px 24px 24px; // Arch framing
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden;
   box-shadow: $shadow-soft;
-  border: 4px solid $color-bg-white;
-  transition: $transition-bounce;
+  border: 1px solid rgba($color-beige, 0.5);
+  transition: $transition-smooth;
+  position: relative;
 
   &:hover {
-    transform: scale(1.02);
-  }
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
 
-  @include responsive(mobile) {
-    height: 280px;
-    border-radius: 36px;
-  }
-}
-
-.iconContainer {
-  width: 90px;
-  height: 90px;
-  border-radius: 28px;
-  background-color: $color-bg-white;
-  color: var(--accent-color);
-  @include flex-center;
-  box-shadow: $shadow-soft;
-  margin-bottom: 24px;
-
-  @include responsive(mobile) {
-    width: 70px;
-    height: 70px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-  }
-}
-
-.progStageTitle {
-  font-size: 2.2rem;
-  color: $color-text-dark;
-  margin-bottom: 12px;
-
-  @include responsive(mobile) {
-    font-size: 1.6rem;
-  }
-}
-
-.agePill {
-  background-color: var(--accent-color);
-  color: $color-bg-white;
-  font-size: 0.95rem;
-  font-weight: 800;
-  padding: 6px 16px;
-  border-radius: $radius-full;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-// Right description details
-.textCol {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  .title {
-    font-size: 2.4rem;
-    color: $color-text-dark;
-    margin-bottom: 8px;
-
-    @include responsive(mobile) {
-      font-size: 1.8rem;
+    img {
+      transform: scale(1.04);
     }
   }
 
-  .tagline {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-  }
-
-  .descText {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: $color-text-light;
-    margin-bottom: 28px;
-  }
-}
-
-.curriculumGrid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 32px;
-  width: 100%;
-  margin-bottom: 28px;
-
-  h4 {
-    font-family: $font-heading;
-    font-size: 1.2rem;
-    color: $color-text-dark;
-    margin-bottom: 16px;
-  }
-
   @include responsive(mobile) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-}
-
-.checkList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: $color-text-dark;
-    line-height: 1.4;
-  }
-}
-
-.checkIcon {
-  color: var(--accent-color);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.bulletDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-
-.methodologyBox {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  background-color: var(--bg-soft);
-  border-left: 5px solid var(--accent-color);
-  padding: 16px 20px;
-  border-radius: $radius-sm;
-  width: 100%;
-
-  .methodIcon {
-    color: var(--accent-color);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  strong {
-    color: $color-text-dark;
-  }
-
-  span {
-    font-size: 0.95rem;
-    color: $color-text-light;
-    font-weight: 600;
-  }
-}
-
-// CTA Enrollment bottom callout
-.ctaBox {
-  background-color: $color-bg-white;
-  text-align: center;
-  padding: 56px 40px;
-  border-radius: 36px;
-  @include flex-center;
-  flex-direction: column;
-
-  h2 {
-    font-size: 2.2rem;
-    color: $color-text-dark;
-    margin-bottom: 12px;
-
-    @include responsive(mobile) {
-      font-size: 1.6rem;
-    }
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: $color-text-light;
-    max-width: 600px;
-    margin-bottom: 28px;
-  }
-}
-
-.enrollBtn {
-  background: linear-gradient(135deg, $color-orange 0%, #D35400 100%);
-  color: $color-bg-white;
-  border: none;
-  padding: 16px 36px;
-  border-radius: $radius-full;
-  font-size: 1.1rem;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba($color-orange, 0.25);
-  @include flex-center;
-  gap: 10px;
-  transition: $transition-bounce;
-
-  &:hover {
-    box-shadow: 0 10px 25px rgba($color-orange, 0.35);
-  }
-
-  @include responsive(mobile) {
-    width: 100%;
-    justify-content: center;
+    height: 320px;
+    max-width: 280px;
   }
 }
 
@@ -326,7 +131,7 @@
   left: 0;
   width: 100%;
   padding: 24px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, rgba($color-deep-wine, 0.75) 0%, rgba($color-deep-wine, 0) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -336,7 +141,202 @@
 
 .imageOverlayTitle {
   font-family: $font-heading;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  font-weight: 500;
   color: $color-bg-white !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.agePill {
+  font-family: $font-body;
+  background-color: rgba($color-cream, 0.2) !important;
+  color: $color-cream !important;
+  border: 1px solid rgba($color-cream, 0.4);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: $radius-full;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Right description details
+.textCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  .title {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: $color-text-dark;
+    margin-bottom: 6px;
+    line-height: 1.25;
+
+    @include responsive(mobile) {
+      font-size: 1.6rem;
+    }
+  }
+
+  .tagline {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: $color-wine !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+
+  .descText {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: $color-text-light;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+}
+
+.curriculumGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 24px;
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: $color-text-dark;
+    margin-bottom: 12px;
+  }
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.checkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: $color-text-dark;
+    line-height: 1.4;
+  }
+}
+
+.checkIcon {
+  color: $color-wine !important;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bulletDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 6px;
+  background-color: $color-brown !important;
+}
+
+.methodologyBox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: rgba($color-beige, 0.15) !important;
+  border-left: 3px solid $color-wine !important;
+  padding: 14px 18px;
+  border-radius: $radius-sm;
+  width: 100%;
+
+  .methodIcon {
+    color: $color-wine !important;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  strong {
+    color: $color-text-dark;
+    font-size: 0.92rem;
+  }
+
+  span {
+    font-size: 0.92rem;
+    color: $color-text-light;
+    font-weight: 400;
+  }
+}
+
+// CTA Enrollment bottom callout
+.ctaBox {
+  background-color: $color-deep-wine !important;
+  color: $color-cream !important;
+  text-align: center;
+  padding: 64px 40px;
+  border-radius: $radius-lg; // 24px
+  @include flex-center;
+  flex-direction: column;
+  border: 1px solid rgba($color-beige, 0.4);
+
+  h2 {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: $color-bg-white !important;
+    margin-bottom: 12px;
+
+    @include responsive(mobile) {
+      font-size: 1.6rem;
+    }
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: rgba($color-cream, 0.75) !important;
+    max-width: 600px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+}
+
+.enrollBtn {
+  background-color: $color-cream !important;
+  color: $color-deep-wine !important;
+  border: 1px solid $color-cream !important;
+  padding: 14px 36px;
+  border-radius: $radius-full;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: $shadow-soft;
+  @include flex-center;
+  gap: 8px;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: transparent !important;
+    color: $color-cream !important;
+    transform: translateY(-2px);
+    box-shadow: $shadow-hover;
+  }
+
+  @include responsive(mobile) {
+    width: 100%;
+    justify-content: center;
+  }
 }

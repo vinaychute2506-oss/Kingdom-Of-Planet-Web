@@ -146,7 +146,7 @@ const Navbar = ({ currentHash }) => {
                 className={styles.mobileEnrollBtn}
                 onClick={handleEnrollClick}
               >
-                Enroll Now 🚀
+                Admissions
               </motion.button>
             </div>
           </motion.div>

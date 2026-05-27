@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, Sparkles } from 'lucide-react';
+import { X, ZoomIn } from 'lucide-react';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './GalleryPage.module.scss';
 
@@ -10,7 +10,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=800",
     title: "Interactive Storytelling Library",
     category: "Campus",
-    color: "#6B1D2F",
     sizeClass: ""
   },
   {
@@ -18,7 +17,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800",
     title: "Outdoor Soft Slide Play",
     category: "Play",
-    color: "#D4AF37",
     sizeClass: "tall"
   },
   {
@@ -26,7 +24,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800",
     title: "Watercolor & Painting Workshop",
     category: "Play",
-    color: "#E67E22",
     sizeClass: ""
   },
   {
@@ -34,7 +31,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
     title: "STEM Experiential Science Setup",
     category: "Learn",
-    color: "#2980B9",
     sizeClass: "wide"
   },
   {
@@ -42,7 +38,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800",
     title: "Grand Annual Day Stage Choreography",
     category: "Events",
-    color: "#8E44AD",
     sizeClass: ""
   },
   {
@@ -50,7 +45,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800",
     title: "Early Alphabet Tracing Lessons",
     category: "Learn",
-    color: "#27AE60",
     sizeClass: "tall"
   },
   {
@@ -58,7 +52,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&q=80&w=800",
     title: "Creative Montessori Activity Desks",
     category: "Campus",
-    color: "#2980B9",
     sizeClass: ""
   },
   {
@@ -66,7 +59,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
     title: "Early Childhood Phonics Session",
     category: "Learn",
-    color: "#6B1D2F",
     sizeClass: ""
   },
   {
@@ -74,7 +66,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1486016006115-74a41448aea2?auto=format&fit=crop&q=80&w=800",
     title: "Junior Olympic Relay Races",
     category: "Events",
-    color: "#E67E22",
     sizeClass: "wide"
   },
   {
@@ -82,7 +73,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800",
     title: "Indoor Creative Blocks Assembly",
     category: "Play",
-    color: "#D4AF37",
     sizeClass: ""
   },
   {
@@ -90,7 +80,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=800",
     title: "Hands-on Fine Motor Clay Sculpting",
     category: "Play",
-    color: "#27AE60",
     sizeClass: "tall"
   },
   {
@@ -98,7 +87,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1596464601899-76506300a20e?auto=format&fit=crop&q=80&w=800",
     title: "Preschool Group Puzzles",
     category: "Learn",
-    color: "#8E44AD",
     sizeClass: ""
   },
   {
@@ -106,7 +94,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=800",
     title: "Teacher-Guided Storytelling Circles",
     category: "Learn",
-    color: "#6B1D2F",
     sizeClass: "wide"
   },
   {
@@ -114,7 +101,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800",
     title: "Sensory Sandbox & Garden Exploration",
     category: "Play",
-    color: "#27AE60",
     sizeClass: ""
   },
   {
@@ -122,7 +108,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=800",
     title: "Kids Phonics & Reading Sessions",
     category: "Learn",
-    color: "#D4AF37",
     sizeClass: ""
   },
   {
@@ -130,7 +115,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800",
     title: "Premium Child-safe Indoor Play Gym",
     category: "Campus",
-    color: "#2980B9",
     sizeClass: "tall"
   },
   {
@@ -138,7 +122,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=800",
     title: "Holiday Festival & Craft Celebrations",
     category: "Events",
-    color: "#8E44AD",
     sizeClass: ""
   },
   {
@@ -146,7 +129,6 @@ const galleryPhotos = [
     url: "https://images.unsplash.com/photo-1503676382389-1e09c800847b?auto=format&fit=crop&q=80&w=800",
     title: "Sensory Learning & Reading Corner",
     category: "Campus",
-    color: "#6B1D2F",
     sizeClass: ""
   }
 ];
@@ -178,10 +160,10 @@ const Gallery = () => {
     <div className={styles.galleryPage}>
       
       {/* Banner Header */}
-      <section className={styles.pageHeader} style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #D4AF37 100%)' }}>
+      <section className={styles.pageHeader}>
         <div className="container">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -229,13 +211,12 @@ const Gallery = () => {
                   className={`${styles.photoCard} ${photo.sizeClass === 'tall' ? styles.tallCard : photo.sizeClass === 'wide' ? styles.wideCard : ''}`}
                   key={photo.id}
                   onClick={() => setSelectedPhoto(photo)}
-                  style={{ '--accent-color': photo.color }}
                 >
                   <img src={photo.url} alt={photo.title} className={styles.image} loading="lazy" />
                   
                   {/* Overlay icon */}
                   <div className={styles.hoverOverlay}>
-                    <ZoomIn className={styles.zoomIcon} size={28} />
+                    <ZoomIn className={styles.zoomIcon} size={22} strokeWidth={1.5} />
                     <h4 className={styles.photoTitle}>{photo.title}</h4>
                     <span className={styles.photoTag}>{photo.category}</span>
                   </div>
@@ -258,15 +239,14 @@ const Gallery = () => {
             onClick={() => setSelectedPhoto(null)}
           >
             <button className={styles.closeBtn} onClick={() => setSelectedPhoto(null)} aria-label="Close Lightbox">
-              <X size={32} />
+              <X size={28} />
             </button>
 
             <motion.div 
               className={styles.lightboxCard}
-              initial={{ scale: 0.92, y: 15 }}
+              initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.92, y: 15 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              exit={{ scale: 0.95, y: 15 }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className={styles.lightboxImageContainer}>
@@ -274,7 +254,7 @@ const Gallery = () => {
               </div>
               <div className={styles.lightboxDetails}>
                 <h3>{selectedPhoto.title}</h3>
-                <span style={{ backgroundColor: selectedPhoto.color }} className={styles.lightboxTag}>
+                <span className={styles.lightboxTag}>
                   {selectedPhoto.category}
                 </span>
               </div>

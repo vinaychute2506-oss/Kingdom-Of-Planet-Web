@@ -22,10 +22,10 @@ const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center' })
       {tag && (
         <motion.span 
           className={styles.tag}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           {tag}
         </motion.span>
@@ -36,7 +36,7 @@ const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center' })
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.05 }}
       >
         {renderTitle()}
       </motion.h2>
@@ -47,18 +47,14 @@ const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center' })
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           {subtitle}
         </motion.p>
       )}
 
-      {/* Decorative colored bar */}
-      <div className={styles.decoratorLine}>
-        <span className={styles.dotYellow}></span>
-        <span className={styles.dotGreen}></span>
-        <span className={styles.dotPurple}></span>
-      </div>
+      {/* Editorial thin separator line */}
+      <div className={styles.decoratorLine} />
     </div>
   );
 };

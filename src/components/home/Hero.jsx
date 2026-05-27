@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, Star } from 'lucide-react';
+import { Sparkles, Calendar } from 'lucide-react';
 import styles from './Hero.module.scss';
 
 const containerVariants = {
@@ -8,18 +8,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2
+      staggerChildren: 0.1,
+      delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 15 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 18 }
+    transition: { type: "tween", duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }
   }
 };
 
@@ -34,14 +34,9 @@ const Hero = () => {
 
   return (
     <section className={styles.heroSection}>
-      {/* Absolute decorative background blobs */}
-      <div className={`${styles.blobBg} ${styles.blobYellow} animate-pulse-slow`} />
-      <div className={`${styles.blobBg} ${styles.blobPurple} animate-float`} />
-      <div className={`${styles.blobBg} ${styles.blobBlue} animate-pulse-slow`} />
-
       <div className={`container ${styles.heroGrid}`}>
         
-        {/* Left Content Column (With Staggered Variant Entrances) */}
+        {/* Left Content Column */}
         <motion.div 
           className={styles.heroContent}
           variants={containerVariants}
@@ -52,7 +47,7 @@ const Hero = () => {
             className={styles.welcomeTag}
             variants={itemVariants}
           >
-            <Sparkles size={16} className={styles.sparkleIcon} />
+            <Sparkles size={14} className={styles.sparkleIcon} />
             <span>A Kingdom Where Learning Comes Alive</span>
           </motion.div>
 
@@ -80,8 +75,8 @@ const Hero = () => {
               Explore Classes
             </button>
             <button className={styles.secondaryBtn} onClick={handleVisitClick}>
-              <Calendar size={18} />
-              <span>Book a Campus Tour</span>
+              <Calendar size={16} />
+              <span>Campus Tour</span>
             </button>
           </motion.div>
 
@@ -91,30 +86,40 @@ const Hero = () => {
             variants={itemVariants}
           >
             <div className={styles.metricCard}>
-              <h3 className={styles.number} style={{ color: '#D4AF37' }}>12+</h3>
-              <p className={styles.label}>Years of Legacy</p>
+              <h3 className={styles.number}>12+</h3>
+              <p className={styles.label}>Years Legacy</p>
             </div>
             <div className={styles.metricCard}>
-              <h3 className={styles.number} style={{ color: '#6B1D2F' }}>15+</h3>
+              <h3 className={styles.number}>15+</h3>
               <p className={styles.label}>Certified Guides</p>
             </div>
             <div className={styles.metricCard}>
-              <h3 className={styles.number} style={{ color: '#E67E22' }}>100%</h3>
-              <p className={styles.label}>Personal Attention</p>
+              <h3 className={styles.number}>100%</h3>
+              <p className={styles.label}>Attention</p>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Right Illustration Column (Collage of premium children photos) */}
+        {/* Right Illustration Column (Asymmetric Rounded Arches) */}
         <div className={styles.heroIllustration}>
+          {/* Custom Gold/Beige Botanical Leaf Branch Outline SVG */}
+          <div className={styles.botanicalStem}>
+            <svg viewBox="0 0 100 100" fill="none" stroke="#C8B39A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 95C50 80 48 55 52 40C54 30 58 10 58 10" />
+              <path d="M50 72C50 72 32 68 28 62C24 56 27 52 34 57C41 62 48 67 48 67" />
+              <path d="M51 57C51 57 66 52 70 45C74 38 69 35 63 42C57 49 52 54 52 54" />
+              <path d="M52 42C52 42 36 36 32 28C28 20 31 16 38 23C45 30 50 38 50 38" />
+              <path d="M52 28C52 28 64 21 66 13C68 5 63 4 58 11C53 18 52 24 52 24" />
+            </svg>
+          </div>
+
           <div className={styles.collageContainer}>
-            {/* Polaroid 1 (Left slightly staggered) */}
+            {/* Left Staggered Arch */}
             <motion.div 
               className={`${styles.collageCard} ${styles.photoLeft}`}
-              initial={{ opacity: 0, x: -20, y: -20 }}
-              animate={{ opacity: 1, x: 0, y: -10 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.03, y: -15, zIndex: 10 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: -20 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.8, 0.25, 1] }}
             >
               <div className={styles.photoImgWrapper}>
                 <img 
@@ -123,18 +128,17 @@ const Hero = () => {
                 />
               </div>
               <div className={styles.photoCaption}>
-                <h4>Creative Painting Circle</h4>
-                <p>Experiential Learn Hour, 2026</p>
+                <h4>Painting Circle</h4>
+                <p>Learn Hour, 2026</p>
               </div>
             </motion.div>
 
-            {/* Polaroid 2 (Right slightly staggered) */}
+            {/* Right Staggered Arch */}
             <motion.div 
               className={`${styles.collageCard} ${styles.photoRight}`}
-              initial={{ opacity: 0, x: 20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.03, y: 5, zIndex: 10 }}
+              initial={{ opacity: 0, y: 35 }}
+              animate={{ opacity: 1, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.8, 0.25, 1] }}
             >
               <div className={styles.photoImgWrapper}>
                 <img 
@@ -143,8 +147,8 @@ const Hero = () => {
                 />
               </div>
               <div className={styles.photoCaption}>
-                <h4>Storytelling & Reading Nest</h4>
-                <p>Nursery Fun Hours, 2026</p>
+                <h4>Storytelling Nest</h4>
+                <p>Nursery, 2026</p>
               </div>
             </motion.div>
           </div>

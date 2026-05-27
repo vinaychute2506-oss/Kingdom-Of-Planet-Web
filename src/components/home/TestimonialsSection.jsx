@@ -7,7 +7,7 @@ import styles from './TestimonialsSection.module.scss';
 
 const TestimonialsSection = () => {
   return (
-    <section className="section section-accent" id="home-testimonials">
+    <section className="section section-accent" id="home-testimonials" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px' }}>
       <div className="container">
         
         <SectionTitle 
@@ -24,22 +24,21 @@ const TestimonialsSection = () => {
               <motion.div 
                 className={styles.testimonialCard}
                 key={test.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -6 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 
                 {/* Floating quote bubble icon */}
                 <div className={styles.quoteIcon}>
-                  <Quote size={20} fill="#8A4FFF" color="#8A4FFF" />
+                  <Quote size={24} fill="currentColor" color="currentColor" />
                 </div>
 
-                {/* Stars Row */}
+                {/* Stars Row (monochromatic soft gold) */}
                 <div className={styles.starsRow}>
                   {[...Array(test.rating)].map((_, i) => (
-                    <Star key={i} size={16} fill="#FFC83B" color="#FFC83B" />
+                    <Star key={i} size={14} fill="currentColor" color="currentColor" />
                   ))}
                 </div>
 

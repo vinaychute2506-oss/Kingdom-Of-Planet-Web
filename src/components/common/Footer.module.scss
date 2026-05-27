@@ -1,8 +1,8 @@
 @import '../../styles/variables.scss';
 
 .footer {
-  background-color: $color-text-dark;
-  color: $color-text-light-35;
+  background-color: $color-deep-wine;
+  color: rgba($color-cream, 0.7);
   padding-top: 120px;
   position: relative;
   overflow: visible;
@@ -32,7 +32,7 @@
 }
 
 .wavePath {
-  fill: $color-text-dark;
+  fill: $color-deep-wine;
 }
 
 .footerGrid {
@@ -40,7 +40,7 @@
   grid-template-columns: 2.2fr 1fr 1.8fr 1.5fr;
   gap: 40px;
   padding-bottom: 60px;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  border-bottom: 1px dashed rgba($color-cream, 0.15);
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -72,14 +72,14 @@
   width: 44px;
   height: 44px;
   background-color: rgba($color-bg-white, 0.05);
-  border: 2px solid $color-gold;
+  border: 1.5px solid $color-gold;
   border-radius: 12px;
   @include flex-center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: $transition-smooth;
 
   &:hover {
-    transform: scale(1.05) rotate(-3deg);
+    transform: scale(1.03) rotate(-1.5deg);
   }
 }
 
@@ -92,14 +92,14 @@
   .wordPlanet {
     font-family: $font-heading;
     font-size: 1.35rem;
-    font-weight: 800;
+    font-weight: 500;
     color: $color-bg-white;
   }
 
   .wordSchool {
     font-family: $font-body;
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: $color-gold;
@@ -114,8 +114,8 @@
 .tagline {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: $color-text-light-20;
-  font-weight: 600;
+  color: rgba($color-cream, 0.6);
+  font-weight: 400;
 }
 
 .socials {
@@ -126,22 +126,23 @@
 .socialIcon {
   width: 42px;
   height: 42px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: $color-bg-white;
+  background-color: rgba($color-bg-white, 0.04);
+  color: $color-cream;
   border-radius: 50%;
   @include flex-center;
   transition: $transition-smooth;
 
   &:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    background-color: $color-wine;
+    color: $color-bg-white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 }
 
 .title {
   font-family: $font-heading;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: $color-bg-white;
   margin-bottom: 24px;
   position: relative;
@@ -152,10 +153,9 @@
     position: absolute;
     bottom: -6px;
     left: 0;
-    width: 35px;
-    height: 4px;
-    background-color: $color-yellow;
-    border-radius: 2px;
+    width: 30px;
+    height: 1px;
+    background-color: $color-gold;
   }
 }
 
@@ -168,17 +168,17 @@
   button {
     background: none;
     border: none;
-    color: $color-text-light-25;
+    color: rgba($color-cream, 0.65);
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 400;
     cursor: pointer;
     text-align: left;
     transition: $transition-smooth;
     padding: 0;
 
     &:hover {
-      color: $color-yellow;
-      padding-left: 6px;
+      color: $color-gold;
+      padding-left: 4px;
     }
   }
 }
@@ -194,25 +194,20 @@
     gap: 12px;
     align-items: flex-start;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.5;
 
     span {
-      color: $color-text-light-25;
+      color: rgba($color-cream, 0.65);
     }
 
     svg {
+      color: $color-gold;
       flex-shrink: 0;
       margin-top: 2px;
     }
   }
 }
-
-.iconYellow { color: $color-yellow; }
-.iconGreen { color: $color-green; }
-.iconPurple { color: $color-purple; }
-.iconOrange { color: $color-orange; }
-.iconBlue { color: $color-blue; }
 
 .hoursCol {
   display: flex;
@@ -223,34 +218,39 @@
   display: flex;
   gap: 14px;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba($color-bg-white, 0.02);
   padding: 12px 18px;
   border-radius: $radius-sm;
   margin-bottom: 12px;
-  border-left: 4px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid rgba($color-gold, 0.3);
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba($color-bg-white, 0.04);
+  }
+
+  svg {
+    color: $color-gold;
   }
 
   .days {
     font-size: 0.9rem;
-    font-weight: 800;
+    font-weight: 600;
     color: $color-bg-white;
   }
 
   .time {
     font-size: 0.85rem;
-    color: $color-text-light-15;
+    color: rgba($color-cream, 0.55);
   }
 }
 
 .bottomBar {
-  background-color: #202020;
+  background-color: rgba(0, 0, 0, 0.15);
   padding: 24px 0;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
+  color: rgba($color-cream, 0.5);
 }
 
 .bottomContainer {
@@ -266,7 +266,7 @@
 
 .credits {
   font-family: $font-heading;
-  font-size: 1rem;
-  color: $color-yellow;
+  font-size: 0.95rem;
+  color: $color-gold;
   letter-spacing: 1px;
 }

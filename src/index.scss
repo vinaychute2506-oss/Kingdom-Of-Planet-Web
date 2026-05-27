@@ -16,7 +16,7 @@ body {
   font-family: $font-body;
   background-color: $color-bg-beige;
   color: $color-text-dark;
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,15 +25,16 @@ body {
 // Headings
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-heading;
-  font-weight: 800;
-  line-height: 1.25;
+  font-weight: 600;            // Editorial titles feel lighter and more sophisticated at 600 weight
+  line-height: 1.2;
   color: $color-text-dark;
+  letter-spacing: -0.01em;
 }
 
 p {
   color: $color-text-light;
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.02rem;
+  font-weight: 400;            // Standard body weight at 400 for Latos clean readability
 }
 
 a {
@@ -51,6 +52,14 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  filter: saturate(0.92) brightness(1.02); // Elegant slightly desaturated luxury photo filter
+}
+
+.editorial-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba($color-beige, 0.4);
+  margin: 48px 0;
 }
 
 // Core Structural Classes

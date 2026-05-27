@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, HelpCircle, User, Phone, Mail, Award, CheckSquare, ClipboardList, AlertTriangle } from 'lucide-react';
+import { Send, CheckCircle, User, Phone, Mail, CheckSquare, ClipboardList, AlertTriangle } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import styles from './AdmissionsForm.module.scss';
 
@@ -58,28 +58,19 @@ const AdmissionsForm = () => {
   ];
 
   return (
-    <section className="section" id="admission-form">
+    <section className="section" id="admission-form" style={{ backgroundColor: '#FFFFFF' }}>
       <div className="container">
         
-        {/* Playful seat notice block */}
+        {/* Playful seat notice block rebranded to elegant brochure alert */}
         <motion.div 
           className={styles.alertNotice}
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ 
-            backgroundColor: '#FFFDD0', 
-            border: '2px dashed #D4AF37', 
-            borderRadius: '20px', 
-            padding: '16px 24px', 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '12px',
-            marginBottom: '40px'
-          }}
+          style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '40px', padding: '18px 24px' }}
         >
-          <AlertTriangle size={24} color="#6B1D2F" style={{ flexShrink: 0 }} />
-          <p style={{ color: '#6B1D2F', fontWeight: '800', fontSize: '1.05rem', margin: 0 }}>
+          <AlertTriangle size={20} style={{ flexShrink: 0 }} />
+          <p style={{ margin: 0, fontSize: '0.95rem' }}>
             <strong>Important Notice:</strong> Limited seats are available to ensure personal attention and quality learning for every child. Secure your slot today.
           </p>
         </motion.div>
@@ -87,28 +78,28 @@ const AdmissionsForm = () => {
         <div className={styles.formContainer}>
           
           {/* Left panel: admissions instructions */}
-          <div className={styles.infoCol} style={{ background: 'linear-gradient(135deg, #F5E6E8 0%, #FFFDD0 100%)' }}>
-            <span className={styles.tag} style={{ backgroundColor: '#6B1D2F', color: '#FFFFFF', borderColor: '#6B1D2F' }}>Admissions 2026-27</span>
+          <div className={styles.infoCol}>
+            <span className={styles.tag}>Admissions 2026-27</span>
             <h2 className={styles.heading}>
               Start Your Child's <br />
-              <span className={styles.highlight} style={{ color: '#6B1D2F' }}>Kingdom Journey</span>
+              <span className={styles.highlight}>Kingdom Journey</span>
             </h2>
             
             {/* Admissions steps timeline */}
-            <div className={styles.stepsTimeline} style={{ width: '100%', margin: '24px 0' }}>
-              <h4 style={{ fontFamily: 'Baloo 2', color: '#6B1D2F', marginBottom: '14px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ClipboardList size={18} />
-                <span>Admission Process:</span>
+            <div className={styles.stepsTimeline}>
+              <h4 style={{ fontFamily: 'Playfair Display', color: '#FFFFFF', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
+                <ClipboardList size={18} style={{ color: '#C8B39A' }} />
+                <span>Admission Process</span>
               </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {admissionSteps.map((step) => (
-                  <div key={step.num} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#6B1D2F', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: '800', flexShrink: 0 }}>
+                  <div key={step.num} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.15)', border: '1px solid rgba(255, 255, 255, 0.3)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.78rem', fontWeight: '700', flexShrink: 0 }}>
                       {step.num}
                     </div>
                     <div>
-                      <h5 style={{ fontFamily: 'Nunito', fontWeight: '800', color: '#2A2A2A', fontSize: '0.9rem', margin: 0 }}>{step.title}</h5>
-                      <p style={{ fontSize: '0.75rem', color: '#6A6A6A', margin: 0 }}>{step.desc}</p>
+                      <h5 style={{ fontFamily: 'Lato', fontWeight: '700', color: '#FFFFFF', fontSize: '0.92rem', margin: 0 }}>{step.title}</h5>
+                      <p style={{ fontSize: '0.78rem', color: 'rgba(246, 241, 233, 0.7)', margin: 0, marginTop: '2px' }}>{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -116,15 +107,15 @@ const AdmissionsForm = () => {
             </div>
 
             {/* Required Documents list */}
-            <div className={styles.docSection} style={{ width: '100%', marginTop: '10px' }}>
-              <h4 style={{ fontFamily: 'Baloo 2', color: '#D4AF37', marginBottom: '10px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className={styles.docSection}>
+              <h4 style={{ fontFamily: 'Playfair Display', color: '#C8B39A', marginBottom: '12px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
                 <CheckSquare size={18} />
-                <span>Required Documents:</span>
+                <span>Required Documents</span>
               </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {requiredDocuments.map((doc, i) => (
-                  <li key={i} style={{ display: 'flex', gap: '8px', alignItems: 'center', fontSize: '0.85rem', color: '#2A2A2A', fontWeight: '700' }}>
-                    <span style={{ color: '#D4AF37' }}>✔</span>
+                  <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '0.88rem', color: '#FFFFFF', fontWeight: '400' }}>
+                    <span style={{ color: '#C8B39A', fontSize: '1rem' }}>✓</span>
                     <span>{doc}</span>
                   </li>
                 ))}
@@ -143,7 +134,7 @@ const AdmissionsForm = () => {
                 <div className={styles.inputGroup}>
                   <label htmlFor="parentName">Parent's Name *</label>
                   <div className={styles.fieldWrapper}>
-                    <User size={16} className={styles.fieldIcon} />
+                    <User size={15} className={styles.fieldIcon} />
                     <input 
                       type="text" 
                       id="parentName" 
@@ -160,7 +151,7 @@ const AdmissionsForm = () => {
                 <div className={styles.inputGroup}>
                   <label htmlFor="phone">Phone Number *</label>
                   <div className={styles.fieldWrapper}>
-                    <Phone size={16} className={styles.fieldIcon} />
+                    <Phone size={15} className={styles.fieldIcon} />
                     <input 
                       type="tel" 
                       id="phone" 
@@ -177,7 +168,7 @@ const AdmissionsForm = () => {
                 <div className={styles.inputGroup}>
                   <label htmlFor="childName">Child's Name *</label>
                   <div className={styles.fieldWrapper}>
-                    <User size={16} className={styles.fieldIcon} />
+                    <User size={15} className={styles.fieldIcon} />
                     <input 
                       type="text" 
                       id="childName" 
@@ -231,7 +222,7 @@ const AdmissionsForm = () => {
                 <div className={styles.inputGroup}>
                   <label htmlFor="email">Email Address</label>
                   <div className={styles.fieldWrapper}>
-                    <Mail size={16} className={styles.fieldIcon} />
+                    <Mail size={15} className={styles.fieldIcon} />
                     <input 
                       type="email" 
                       id="email" 
@@ -248,11 +239,10 @@ const AdmissionsForm = () => {
               <motion.button 
                 type="submit" 
                 className={styles.submitBtn}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #4a121e 100%)', boxShadow: '0 8px 24px rgba(107, 29, 47, 0.15)' }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
               >
-                <Send size={18} />
+                <Send size={15} />
                 <span>Submit Admissions Inquiry</span>
               </motion.button>
 
@@ -274,22 +264,21 @@ const AdmissionsForm = () => {
           >
             <motion.div 
               className={styles.modalCard}
-              initial={{ scale: 0.9, y: 20 }}
+              initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              style={{ borderColor: '#6B1D2F' }}
+              exit={{ scale: 0.95, y: 15 }}
             >
-              <div className={styles.successIconBox} style={{ backgroundColor: '#FAF6EE', color: '#6B1D2F' }}>
-                <CheckCircle size={44} />
+              <div className={styles.successIconBox}>
+                <CheckCircle size={36} strokeWidth={1.5} />
               </div>
-              <h3 className={styles.modalTitle} style={{ color: '#6B1D2F' }}>Application Registered!</h3>
+              <h3 className={styles.modalTitle}>Application Registered</h3>
               <p className={styles.modalText}>
                 Dear <strong>{formData.parentName}</strong>, we have logged your inquiry for <strong>{formData.childName}</strong> (Program: {formData.grade}).
               </p>
               <p className={styles.modalSubtext}>
-                Our admissions guide will contact you at <strong>{formData.phone}</strong> or send details to <strong>admin@kingdomoflearning.com</strong> to plan your campus visit.
+                Our admissions guide will contact you at <strong>{formData.phone}</strong> or send details to your email shortly to plan your campus visit.
               </p>
-              <button className={styles.modalCloseBtn} onClick={handleCloseSuccess} style={{ backgroundColor: '#6B1D2F' }}>
+              <button className={styles.modalCloseBtn} onClick={handleCloseSuccess}>
                 Close Summary
               </button>
             </motion.div>

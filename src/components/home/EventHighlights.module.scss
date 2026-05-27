@@ -2,131 +2,138 @@
 
 .eventsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
-  margin-top: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 24px;
   }
 
   @include responsive(tablet) {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
 }
 
 .eventCard {
   background-color: $color-bg-white;
-  border-radius: $radius-lg;
+  border-radius: $radius-lg; // 24px
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-text-light, 0.05);
+  border: 1px solid rgba($color-beige, 0.6);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: $transition-smooth;
+  cursor: pointer;
 
   &:hover {
-    box-shadow: $shadow-medium;
-    
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
+
     .eventImage {
-      transform: scale(1.06);
+      transform: scale(1.04);
     }
   }
 }
 
 .imgWrapper {
   width: 100%;
-  height: 240px;
+  height: 200px;
   overflow: hidden;
   position: relative;
-
-  @include responsive(mobile) {
-    height: 180px;
-  }
 }
 
 .eventImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.6s ease;
 }
 
 .dateTag {
   position: absolute;
-  bottom: 16px;
-  left: 20px;
+  top: 16px;
+  left: 16px;
+  background-color: $color-wine !important;
   color: $color-bg-white;
-  font-weight: 800;
-  font-size: 0.85rem;
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: $radius-full;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  @include flex-center;
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
   gap: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .eventDetails {
-  padding: 32px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  @include responsive(mobile) {
-    padding: 20px;
-  }
+  text-align: left;
 }
 
 .eventTitle {
-  font-size: 1.5rem;
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 12px;
+  line-height: 1.3;
 }
 
 .metaRow {
   display: flex;
-  gap: 20px;
-  margin-bottom: 16px;
-
-  @include responsive(mobile) {
-    flex-direction: column;
-    gap: 8px;
-  }
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
 .metaItem {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: $color-text-light;
-  font-weight: 700;
-}
+  font-weight: 400;
 
-.metaIcon {
-  color: var(--accent-color);
+  .metaIcon {
+    color: $color-brown;
+  }
 }
 
 .eventDesc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: $color-text-light;
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
 
 .footerRow {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px dashed rgba($color-text-light, 0.15);
-  padding-top: 18px;
+  justify-content: flex-start;
+  margin-top: auto;
+  border-top: 1px solid rgba($color-beige, 0.4);
+  padding-top: 16px;
 }
 
 .themeBadge {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--accent-color);
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $color-brown;
+  background-color: rgba($color-beige, 0.2);
+  border: 1px solid rgba($color-beige, 0.7);
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }

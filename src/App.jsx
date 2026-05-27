@@ -86,11 +86,10 @@ function App() {
           top: 0, 
           left: 0, 
           width: `${scrollProgress}%`, 
-          height: '4px', 
-          background: 'linear-gradient(90deg, #6B1D2F 0%, #D4AF37 100%)', 
+          height: '3px', 
+          background: '#6B1E2E', 
           zIndex: 99999, 
-          transition: 'width 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)',
-          boxShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
+          transition: 'width 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)'
         }} 
       />
 

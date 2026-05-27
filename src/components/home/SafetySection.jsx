@@ -8,32 +8,28 @@ const safetyCards = [
   {
     icon: Eye,
     title: "CCTV Monitoring",
-    description: "100% round-the-clock video surveillance covering playground boundaries, classrooms, and cafeteria access pathways.",
-    color: "#29B6F6", // Blue
+    description: "100% round-the-clock video surveillance covering playground boundaries, classrooms, and cafeteria access pathways."
   },
   {
     icon: Home,
     title: "Eco-Friendly Safe Campus",
-    description: "Highly secure double-gated architecture with padded walls, rounded corner desks, and toddler-proof play enclosures.",
-    color: "#4CAF50", // Green
+    description: "Highly secure double-gated architecture with padded walls, rounded corner desks, and toddler-proof play enclosures."
   },
   {
     icon: HeartHandshake,
     title: "Certified Pedagogy & Staff",
-    description: "Educators and support caretakers undergo extensive child defense, early first-aid, and emotional development checks.",
-    color: "#8A4FFF", // Purple
+    description: "Educators and support caretakers undergo extensive child defense, early first-aid, and emotional development checks."
   },
   {
     icon: ShieldCheck,
     title: "Pure Hygienic Standard",
-    description: "Filtered drinking water dispensers, chemical-free sanitization, and daily strict classroom cleanup routines.",
-    color: "#FF7043", // Orange
+    description: "Filtered drinking water dispensers, chemical-free sanitization, and daily strict classroom cleanup routines."
   }
 ];
 
 const SafetySection = () => {
   return (
-    <section className="section section-accent" id="home-safety">
+    <section className="section section-accent" id="home-safety" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
       <div className="container">
         
         <SectionTitle 
@@ -52,15 +48,13 @@ const SafetySection = () => {
               <motion.div 
                 className={styles.safetyCard}
                 key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -6, boxShadow: "0 15px 35px rgba(76, 175, 80, 0.08)" }}
-                style={{ '--accent-color': card.color }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
               >
                 <div className={styles.iconBox}>
-                  <IconComponent size={28} />
+                  <IconComponent size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className={styles.cardTitle}>{card.title}</h3>
                 <p className={styles.cardDesc}>{card.description}</p>

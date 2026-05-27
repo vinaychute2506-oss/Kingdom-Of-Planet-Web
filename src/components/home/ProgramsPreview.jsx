@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Baby, Smile, BookOpen, ChevronRight } from 'lucide-react';
+import { Baby, Smile, BookOpen, ChevronRight, GraduationCap } from 'lucide-react';
 import { programsData } from '../../data/programs';
 import SectionTitle from '../common/SectionTitle';
 import styles from './ProgramsPreview.module.scss';
@@ -8,7 +8,8 @@ import styles from './ProgramsPreview.module.scss';
 const iconMap = {
   Baby: Baby,
   Smile: Smile,
-  BookOpen: BookOpen
+  BookOpen: BookOpen,
+  GraduationCap: GraduationCap
 };
 
 const ProgramsPreview = () => {
@@ -17,7 +18,7 @@ const ProgramsPreview = () => {
   };
 
   return (
-    <section className="section section-accent" id="home-programs">
+    <section className="section" id="home-programs" style={{ backgroundColor: '#FFFFFF' }}>
       <div className="container">
         
         <SectionTitle 
@@ -30,22 +31,17 @@ const ProgramsPreview = () => {
 
         <div className={styles.programsGrid}>
           {programsData.map((program, index) => {
-            const IconComponent = iconMap[program.icon] || Smile;
+            // Find correct icon component or fallback to GraduationCap
+            const IconComponent = iconMap[program.icon] || GraduationCap;
             
             return (
               <motion.div 
                 className={styles.programCard}
                 key={program.id}
-                initial={{ opacity: 0, y: 35 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                style={{ 
-                  '--accent-color': program.accentColor,
-                  '--shadow-color': program.shadowColor,
-                  background: program.gradient
-                }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 
                 {/* Age pill badge */}
@@ -53,19 +49,19 @@ const ProgramsPreview = () => {
                   {program.age}
                 </div>
 
-                {/* Floating graphic element icon */}
+                {/* Monochromatic outline icon circle */}
                 <div className={styles.iconCircle}>
-                  <IconComponent size={28} />
+                  <IconComponent size={22} strokeWidth={1.5} />
                 </div>
 
                 <h3 className={styles.programTitle}>{program.title}</h3>
                 <p className={styles.tagline}>{program.tagline}</p>
-                <p className={styles.description}>{program.description.slice(0, 120)}...</p>
+                <p className={styles.description}>{program.description.slice(0, 105)}...</p>
 
-                {/* Learn more interactive trigger */}
+                {/* Learn more trigger */}
                 <button className={styles.cardBtn} onClick={handleLearnMore}>
-                  <span>Learn More</span>
-                  <ChevronRight size={16} />
+                  <span>Explore Program</span>
+                  <ChevronRight size={14} />
                 </button>
 
               </motion.div>

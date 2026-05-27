@@ -5,34 +5,34 @@
 }
 
 .pageHeader {
-  background: linear-gradient(135deg, $color-purple 0%, $color-pink 100%);
-  color: $color-bg-white;
-  padding: 140px 0 60px 0;
+  background-color: $color-cream;
+  color: $color-text-dark;
+  padding: 150px 0 64px 0;
   text-align: center;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: $shadow-soft;
+  border-bottom: 1px solid rgba($color-beige, 0.6);
 
   h1 {
-    font-size: 3.5rem;
-    color: $color-bg-white;
-    margin-bottom: 12px;
+    font-size: 3.2rem;
+    color: $color-wine;
+    margin-bottom: 14px;
     font-family: $font-heading;
+    font-weight: 500;
 
     @include responsive(mobile) {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
   }
 
   p {
-    color: rgba($color-bg-white, 0.95);
-    font-size: 1.15rem;
+    color: $color-text-light;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
-    font-weight: 700;
+    font-weight: 400;
+    line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
@@ -54,36 +54,37 @@
 .filterBtn {
   background-color: $color-bg-white;
   color: $color-text-dark;
-  border: 2px solid rgba($color-text-light, 0.15);
-  padding: 10px 24px;
+  border: 1px solid rgba($color-beige, 0.8);
+  padding: 8px 24px;
   border-radius: $radius-full;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 600;
+  font-family: $font-body;
+  font-size: 0.92rem;
   cursor: pointer;
   box-shadow: $shadow-soft;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
 
   &:hover {
-    border-color: $color-purple;
-    color: $color-purple;
-    background-color: $color-purple-light-43;
+    border-color: $color-wine;
+    color: $color-wine;
+    background-color: rgba($color-wine, 0.04);
   }
 }
 
 .activeBtn {
-  background: linear-gradient(135deg, $color-purple 0%, $color-wine-dark-5 100%) !important;
+  background-color: $color-wine !important;
   color: $color-bg-white !important;
-  border-color: $color-purple !important;
-  box-shadow: 0 6px 15px rgba($color-purple, 0.25);
+  border-color: $color-wine !important;
+  box-shadow: 0 4px 12px rgba($color-wine, 0.15);
 }
 
-// Mosaic photo grids
+// Mosaic photo grids (Luxury masonry collage)
 .mosaicGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 160px;
+  grid-auto-rows: 170px;
   grid-auto-flow: dense;
-  gap: 24px;
+  gap: 28px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -94,7 +95,7 @@
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 180px;
-    gap: 20px;
+    gap: 24px;
   }
 }
 
@@ -102,26 +103,42 @@
   width: 100%;
   height: 100%;
   grid-row: span 2;
-  border-radius: $radius-md;
   overflow: hidden;
   position: relative;
   box-shadow: $shadow-soft;
-  border: 6px solid $color-bg-white;
+  border: 1px solid rgba($color-beige, 0.6);
   cursor: pointer;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
+
+  // Alternate Card Shapes dynamically for full editorial brochure feel
+  &:nth-child(3n + 1) {
+    border-radius: 120px 120px 24px 24px; // Arch frames
+  }
+
+  &:nth-child(3n + 2) {
+    border-radius: 24px; // standard rounded rectangles
+  }
+
+  &:nth-child(3n) {
+    border-radius: 24px 24px 120px 120px; // Inverted arches
+  }
 
   &:hover {
     box-shadow: $shadow-hover;
-    border-color: var(--accent-color);
-    transform: scale(1.02) translateY(-2px);
+    border-color: $color-brown;
+    transform: scale(1.02) translateY(-4px);
 
     .hoverOverlay {
       opacity: 1;
     }
+
+    .image {
+      transform: scale(1.04);
+    }
   }
 
   @include responsive(mobile) {
-    height: 250px !important;
+    height: 260px !important;
     grid-row: auto !important;
     grid-column: auto !important;
   }
@@ -144,6 +161,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
 .hoverOverlay {
@@ -152,7 +170,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, rgba(44, 62, 80, 0.9) 0%, rgba(44, 62, 80, 0.2) 100%);
+  background: linear-gradient(to top, rgba($color-deep-wine, 0.8) 0%, rgba($color-deep-wine, 0.15) 100%);
   opacity: 0;
   @include flex-center;
   flex-direction: column;
@@ -163,29 +181,32 @@
 .zoomIcon {
   color: $color-bg-white;
   margin-bottom: 12px;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 10px;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
 }
 
 .photoTitle {
   font-family: $font-heading;
   color: $color-bg-white;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 8px;
 }
 
 .photoTag {
-  color: $color-bg-white;
-  background-color: var(--accent-color);
-  font-size: 0.75rem;
-  font-weight: 800;
+  color: $color-wine;
+  background-color: $color-cream;
+  border: 1px solid rgba($color-wine, 0.2);
+  font-size: 0.72rem;
+  font-weight: 600;
   padding: 4px 12px;
   border-radius: $radius-full;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 // Lightbox Full-screen overlay Modal
@@ -195,8 +216,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(44, 62, 80, 0.85);
-  backdrop-filter: blur(6px);
+  background-color: rgba(58, 47, 43, 0.9);
+  backdrop-filter: blur(8px);
   z-index: 99999;
   @include flex-center;
   padding: 40px;
@@ -218,7 +239,7 @@
   z-index: 10;
 
   &:hover {
-    color: $color-yellow;
+    color: $color-gold;
     transform: rotate(90deg);
   }
 
@@ -234,15 +255,15 @@
   max-width: 800px;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-  border: 4px solid $color-bg-white;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba($color-beige, 0.6);
 }
 
 .lightboxImageContainer {
   width: 100%;
-  height: 500px;
+  height: 480px;
   overflow: hidden;
-  background-color: $color-bg-soft;
+  background-color: $color-cream;
 
   img {
     width: 100%;
@@ -251,18 +272,20 @@
   }
 
   @include responsive(mobile) {
-    height: 300px;
+    height: 280px;
   }
 }
 
 .lightboxDetails {
-  padding: 24px 32px;
+  padding: 20px 32px;
   @include flex-between;
   gap: 20px;
   background-color: $color-bg-white;
 
   h3 {
-    font-size: 1.4rem;
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    font-weight: 500;
     color: $color-text-dark;
   }
 
@@ -272,15 +295,18 @@
     padding: 16px;
     gap: 12px;
 
-    h3 { font-size: 1.15rem; }
+    h3 { font-size: 1.1rem; }
   }
 }
 
 .lightboxTag {
-  color: $color-bg-white;
-  font-size: 0.85rem;
-  font-weight: 800;
-  padding: 6px 16px;
+  color: $color-wine;
+  background-color: rgba($color-wine, 0.05);
+  border: 1px solid rgba($color-wine, 0.2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 14px;
   border-radius: $radius-full;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }

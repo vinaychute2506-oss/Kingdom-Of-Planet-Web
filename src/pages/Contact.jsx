@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Compass } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './Contact.module.scss';
 
@@ -41,7 +41,7 @@ const Contact = () => {
     <div className={styles.contactPage}>
       
       {/* Page Header */}
-      <section className={styles.pageHeader} style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #D4AF37 100%)' }}>
+      <section className={styles.pageHeader}>
         <div className="container">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
@@ -128,19 +128,18 @@ const Contact = () => {
                   className={styles.sendBtn}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #4a121e 100%)', boxShadow: '0 6px 20px rgba(107, 29, 47, 0.15)' }}
                 >
-                  <Send size={18} />
+                  <Send size={16} strokeWidth={1.5} />
                   <span>Send Direct Message</span>
                 </motion.button>
               </form>
             </div>
 
-            {/* Right Column: Contact Details & Mock Vector Maps */}
+            {/* Right Column: Contact Details & Real Google Map */}
             <div className={styles.detailsPanel}>
               
               {/* Real Google Maps embed centering on Shahpur Jat */}
-              <div className={styles.mapCard} style={{ borderColor: '#D4AF37', height: '300px', overflow: 'hidden' }}>
+              <div className={styles.mapCard}>
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14015.460458428588!2d77.2066373!3d28.5738096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd00318029c7%3A0x444d32a9a463a56!2sShahpur%20Jat%2C%20New%20Delhi%2C%20Delhi%20110049!5e0!3m2!1sen!2sin!4v1716482937512!5m2!1sen!2sin" 
                   width="100%" 
@@ -157,7 +156,9 @@ const Contact = () => {
               <div className={styles.detailsGrid}>
                 
                 <div className={styles.detailCard}>
-                  <MapPin className={styles.iconYellow} size={22} style={{ color: '#D4AF37' }} />
+                  <div className={styles.iconCircle}>
+                    <MapPin size={20} strokeWidth={1.5} />
+                  </div>
                   <div>
                     <h4>School Location</h4>
                     <p>190-A, G/F Shahpur Jat, New Delhi - 110049</p>
@@ -165,7 +166,9 @@ const Contact = () => {
                 </div>
 
                 <div className={styles.detailCard}>
-                  <Phone className={styles.iconGreen} size={22} style={{ color: '#6B1D2F' }} />
+                  <div className={styles.iconCircle}>
+                    <Phone size={20} strokeWidth={1.5} />
+                  </div>
                   <div>
                     <h4>Admissions Hotline</h4>
                     <p>+91 9667708285</p>
@@ -173,7 +176,9 @@ const Contact = () => {
                 </div>
 
                 <div className={styles.detailCard}>
-                  <Mail className={styles.iconPurple} size={22} style={{ color: '#E67E22' }} />
+                  <div className={styles.iconCircle}>
+                    <Mail size={20} strokeWidth={1.5} />
+                  </div>
                   <div>
                     <h4>Professional Email</h4>
                     <p>admin@kingdomoflearning.com<br />singh.komal.tvf@gmail.com</p>
@@ -181,7 +186,9 @@ const Contact = () => {
                 </div>
 
                 <div className={styles.detailCard}>
-                  <Clock className={styles.iconOrange} size={22} style={{ color: '#2980B9' }} />
+                  <div className={styles.iconCircle}>
+                    <Clock size={20} strokeWidth={1.5} />
+                  </div>
                   <div>
                     <h4>School Timings</h4>
                     <p><strong>Toddcare:</strong> Mon - Fri 9:00 AM - 12:00 PM<br /><strong>Nursery/KG:</strong> Mon - Fri 9:00 AM - 1:00 PM</p>
@@ -212,11 +219,10 @@ const Contact = () => {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              style={{ borderColor: '#6B1D2F' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={styles.modalSuccessBox} style={{ backgroundColor: '#FAF6EE', color: '#6B1D2F' }}>
-                <CheckCircle size={44} />
+              <div className={styles.modalSuccessBox}>
+                <CheckCircle size={40} strokeWidth={1.5} />
               </div>
               <h3 className={styles.mTitle}>Message Dispatched!</h3>
               <p className={styles.mText}>
@@ -225,7 +231,7 @@ const Contact = () => {
               <p className={styles.mSubtext}>
                 We will contact you at <strong>{formData.phone}</strong> or send details to <strong>singh.komal.tvf@gmail.com</strong> shortly.
               </p>
-              <button className={styles.mBtn} onClick={handleCloseModal} style={{ backgroundColor: '#6B1D2F' }}>
+              <button className={styles.mBtn} onClick={handleCloseModal}>
                 Dismiss Panel
               </button>
             </motion.div>

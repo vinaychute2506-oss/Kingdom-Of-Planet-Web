@@ -5,34 +5,34 @@
 }
 
 .pageHeader {
-  background: linear-gradient(135deg, $color-yellow 0%, $color-orange 100%);
-  color: $color-bg-white;
-  padding: 140px 0 60px 0;
+  background-color: $color-cream;
+  color: $color-text-dark;
+  padding: 150px 0 64px 0;
   text-align: center;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: $shadow-soft;
+  border-bottom: 1px solid rgba($color-beige, 0.6);
 
   h1 {
-    font-size: 3.5rem;
-    color: $color-bg-white;
-    margin-bottom: 12px;
+    font-size: 3.2rem;
+    color: $color-wine;
+    margin-bottom: 14px;
     font-family: $font-heading;
+    font-weight: 500;
 
     @include responsive(mobile) {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
   }
 
   p {
-    color: rgba($color-bg-white, 0.95);
-    font-size: 1.15rem;
+    color: $color-text-light;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
-    font-weight: 700;
+    font-weight: 400;
+    line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
@@ -54,27 +54,28 @@
 .filterBtn {
   background-color: $color-bg-white;
   color: $color-text-dark;
-  border: 2px solid rgba($color-text-light, 0.15);
-  padding: 10px 24px;
+  border: 1px solid rgba($color-beige, 0.8);
+  padding: 8px 24px;
   border-radius: $radius-full;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 600;
+  font-family: $font-body;
+  font-size: 0.92rem;
   cursor: pointer;
   box-shadow: $shadow-soft;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
 
   &:hover {
-    border-color: $color-purple;
-    color: $color-purple;
-    background-color: $color-purple-light-43;
+    border-color: $color-wine;
+    color: $color-wine;
+    background-color: rgba($color-wine, 0.04);
   }
 }
 
 .activeBtn {
-  background: linear-gradient(135deg, $color-purple 0%, $color-wine-dark-5 100%) !important;
+  background-color: $color-wine !important;
   color: $color-bg-white !important;
-  border-color: $color-purple !important;
-  box-shadow: 0 6px 15px rgba($color-purple, 0.25);
+  border-color: $color-wine !important;
+  box-shadow: 0 4px 12px rgba($color-wine, 0.15);
 }
 
 // Cards Grid layout
@@ -96,36 +97,36 @@
 
 .activityCard {
   background-color: $color-bg-white;
-  border-radius: $radius-lg;
+  border-radius: $radius-lg; // 24px
   box-shadow: $shadow-soft;
-  border: 2px solid transparent;
+  border: 1px solid rgba($color-beige, 0.6);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   transition: $transition-smooth;
   padding: 0;
   overflow: hidden;
+  cursor: pointer;
 
   &:hover {
-    border-color: rgba(var(--accent-color), 0.25);
-    box-shadow: $shadow-medium;
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
     transform: translateY(-6px);
 
     .iconCircle {
-      background-color: var(--accent-color);
-      color: $color-bg-white;
-      transform: scale(1.08) rotate(5deg);
+      background-color: rgba($color-wine, 0.08);
+      transform: scale(1.03);
     }
 
     .cardImage {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
   }
 }
 
 .cardImageWrapper {
   width: 100%;
-  height: 180px;
+  height: 190px;
   overflow: hidden;
   position: relative;
 
@@ -138,30 +139,33 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: $transition-smooth;
+  transition: transform 0.6s ease;
 }
 
 .categoryBadge {
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: rgba($color-bg-white, 0.95);
-  color: var(--accent-color);
-  font-size: 0.8rem;
-  font-weight: 800;
-  padding: 6px 14px;
+  background-color: $color-wine;
+  color: $color-bg-white;
+  font-size: 0.72rem;
+  font-family: $font-body;
+  font-weight: 600;
+  padding: 4px 12px;
   border-radius: $radius-full;
   text-transform: uppercase;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
 .cardContent {
-  padding: 28px 24px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
+  text-align: left;
 
   @include responsive(mobile) {
     padding: 20px 16px;
@@ -172,58 +176,61 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   width: 100%;
 }
 
 .iconCircle {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background-color: var(--bg-soft);
-  color: var(--accent-color);
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25);
+  border: 1px solid rgba($color-brown, 0.2);
+  color: $color-wine;
   @include flex-center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-  transition: $transition-bounce;
+  transition: $transition-smooth;
   flex-shrink: 0;
 }
 
 .cardTitle {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   color: $color-text-dark;
   font-family: $font-heading;
-  line-height: 1.2;
+  font-weight: 500;
+  line-height: 1.25;
 }
 
 .cardDesc {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--accent-color);
-  margin-bottom: 12px;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-brown;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
 .cardDetails {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: $color-text-light;
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.55;
+  margin-bottom: 20px;
   flex-grow: 1;
+  font-weight: 400;
 }
 
 .scheduleRow {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: $color-text-light;
-  font-weight: 800;
-  border-top: 1px dashed rgba($color-text-light, 0.15);
+  font-weight: 500;
+  border-top: 1px solid rgba($color-beige, 0.6);
   width: 100%;
-  padding-top: 16px;
+  padding-top: 14px;
   margin-top: auto;
 }
 
 .clockIcon {
-  color: var(--accent-color);
+  color: $color-gold;
 }

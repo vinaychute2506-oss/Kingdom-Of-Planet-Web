@@ -8,44 +8,37 @@ const methodologies = [
   {
     icon: Sparkles,
     title: "Play-Way Learning",
-    desc: "Nurturing early curiosity through structured child-directed toy play and interactive puzzles.",
-    color: "#6B1D2F" // Wine
+    desc: "Nurturing early curiosity through structured child-directed toy play and interactive puzzles."
   },
   {
     icon: Fingerprint,
     title: "Activity-Based Education",
-    desc: "Hands-on alphabet blocks, clay crafts, and counting setups to engage spatial thinking.",
-    color: "#D4AF37" // Gold
+    desc: "Hands-on alphabet blocks, clay crafts, and counting setups to engage spatial thinking."
   },
   {
     icon: Lightbulb,
     title: "Experiential Learning",
-    desc: "Fostering physical troubleshooting skills through seed growth and liquid science.",
-    color: "#E67E22" // Orange
+    desc: "Fostering physical troubleshooting skills through seed growth and liquid science."
   },
   {
     icon: BookOpen,
     title: "Storytelling & Rhymes",
-    desc: "Accelerating phonics retention and verbal vocabulary using classic picture books.",
-    color: "#2980B9" // Blue
+    desc: "Accelerating phonics retention and verbal vocabulary using classic picture books."
   },
   {
     icon: Music,
     title: "Music & Movement",
-    desc: "Unlocking physical coordination, rhythm alignment, and self-confidence through song.",
-    color: "#8E44AD" // Purple
+    desc: "Unlocking physical coordination, rhythm alignment, and self-confidence through song."
   },
   {
     icon: Users,
     title: "Collaborative Learning",
-    desc: "Teaching sharing values, polite conversational manners, and peer team behaviors.",
-    color: "#27AE60" // Green
+    desc: "Teaching sharing values, polite conversational manners, and peer team behaviors."
   },
   {
     icon: Compass,
     title: "Hands-on Exploration",
-    desc: "Outdoor walks, sandbox building, and nature tours that spark spatial curiosity.",
-    color: "#C0392B" // Red
+    desc: "Outdoor walks, sandbox building, and nature tours that spark spatial curiosity."
   }
 ];
 
@@ -70,15 +63,13 @@ const MethodologySection = () => {
               <motion.div 
                 className={styles.methodCard}
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                whileHover={{ y: -6 }}
-                style={{ '--accent-color': item.color }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <div className={styles.iconCircle}>
-                  <IconComponent size={24} />
+                  <IconComponent size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardDesc}>{item.desc}</p>

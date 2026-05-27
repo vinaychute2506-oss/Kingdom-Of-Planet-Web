@@ -5,39 +5,39 @@
 }
 
 .pageHeader {
-  background: linear-gradient(135deg, $color-purple 0%, $color-blue 100%);
-  color: $color-bg-white;
-  padding: 140px 0 60px 0;
+  background-color: $color-cream;
+  color: $color-text-dark;
+  padding: 150px 0 64px 0;
   text-align: center;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: $shadow-soft;
+  border-bottom: 1px solid rgba($color-beige, 0.6);
 
   h1 {
-    font-size: 3.5rem;
-    color: $color-bg-white;
-    margin-bottom: 12px;
+    font-size: 3.2rem;
+    color: $color-wine;
+    margin-bottom: 14px;
     font-family: $font-heading;
+    font-weight: 500;
 
     @include responsive(mobile) {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
   }
 
   p {
-    color: rgba($color-bg-white, 0.9);
-    font-size: 1.15rem;
+    color: $color-text-light;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
-    font-weight: 700;
+    font-weight: 400;
+    line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
 
-// 1. Principal message
+// 1. Principal Message
 .principalCard {
   background-color: $color-bg-white;
   border-radius: $radius-lg;
@@ -47,7 +47,7 @@
   grid-template-columns: 1fr 2.2fr;
   gap: 56px;
   align-items: center;
-  border: 1px solid rgba($color-text-light, 0.05);
+  border: 1px solid rgba($color-beige, 0.5);
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -69,55 +69,61 @@
 }
 
 .principalFrame {
-  width: 170px;
-  height: 170px;
-  border-radius: 40px;
-  background-color: $color-purple-light-43;
-  border: 4px dashed $color-purple;
-  padding: 12px;
+  width: 190px;
+  height: 250px;
+  border-radius: 100px 100px 16px 16px; // Luxury arch frame
+  background-color: rgba($color-beige, 0.2);
+  border: 1px solid rgba($color-brown, 0.4);
+  padding: 8px;
   overflow: hidden;
-  box-shadow: $shadow-medium;
+  box-shadow: $shadow-soft;
   margin-bottom: 20px;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 92px 92px 10px 10px;
   }
 }
 
 .principalName {
-  font-size: 1.4rem;
+  font-family: $font-heading;
+  font-size: 1.35rem;
+  font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 4px;
 }
 
 .principalRole {
-  font-size: 0.9rem;
-  color: $color-purple;
-  font-weight: 800;
+  font-size: 0.85rem;
+  color: $color-wine;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .messageCol {
   position: relative;
+  text-align: left;
 }
 
 .quoteMark {
   position: absolute;
-  top: -30px;
+  top: -36px;
   left: -20px;
   font-size: 6rem;
-  color: #EAC9D0;
+  color: rgba($color-wine, 0.06);
   font-family: Georgia, serif;
   line-height: 1;
   pointer-events: none;
 }
 
 .messageTitle {
+  font-family: $font-heading;
   font-size: 1.8rem;
-  color: $color-text-dark;
+  font-weight: 500;
+  color: $color-wine;
   margin-bottom: 18px;
   position: relative;
   z-index: 2;
@@ -128,28 +134,29 @@
 }
 
 .messageText {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: $color-text-light;
   margin-bottom: 16px;
+  font-weight: 400;
 }
 
 .signature {
   margin-top: 32px;
-  border-top: 1px dashed rgba($color-text-light, 0.15);
+  border-top: 1px solid rgba($color-beige, 0.6);
   padding-top: 16px;
 
   .sigName {
     font-family: $font-heading;
     font-size: 1.25rem;
-    font-weight: 800;
+    font-weight: 500;
     color: $color-text-dark;
   }
 
   .sigTitle {
     font-size: 0.85rem;
     color: $color-text-light;
-    font-weight: 700;
+    font-weight: 400;
   }
 }
 
@@ -167,28 +174,26 @@
 
 .visionCard {
   background-color: $color-bg-white;
-  padding: 48px;
+  padding: 40px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid rgba($color-text-light, 0.05);
-
-  .cardIcon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
+  text-align: left;
+  border: 1px solid rgba($color-beige, 0.6);
 
   h3 {
-    font-size: 1.8rem;
+    font-family: $font-heading;
+    font-size: 1.6rem;
+    font-weight: 500;
     color: $color-text-dark;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   p {
-    font-size: 1.05rem;
-    line-height: 1.7;
+    font-size: 0.98rem;
+    line-height: 1.6;
     color: $color-text-light;
   }
 
@@ -198,18 +203,63 @@
 }
 
 .cardPurple {
-  border-left: 6px solid $color-purple;
+  border-top: 3px solid $color-wine;
 }
 
 .cardGreen {
-  border-left: 6px solid $color-green;
+  border-top: 3px solid $color-brown;
 }
 
-// 3. Facilities Grid
+// 3. Central Dark Wine Stats Banner (moodboard central bar)
+.statsBanner {
+  background-color: $color-deep-wine;
+  color: $color-cream;
+  padding: 56px 0;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statVal {
+  font-family: $font-heading;
+  font-size: 2.6rem;
+  font-weight: 500;
+  color: $color-gold;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.statLbl {
+  font-size: 0.85rem;
+  color: rgba($color-cream, 0.7);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+// 4. Facilities Grid
 .facilitiesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
+  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -227,55 +277,58 @@
   padding: 36px 24px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-text-light, 0.04);
+  border: 1px solid rgba($color-beige, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   transition: $transition-smooth;
+  cursor: pointer;
 
   &:hover {
-    box-shadow: $shadow-medium;
-    transform: translateY(-5px);
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
 
     .facIconBox {
-      background-color: var(--accent-color);
-      color: $color-bg-white;
+      background-color: rgba($color-wine, 0.08);
+      transform: scale(1.03);
     }
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     color: $color-text-dark;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-family: $font-heading;
+    font-weight: 500;
   }
 
   p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: $color-text-light;
     line-height: 1.5;
   }
 }
 
 .facIconBox {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background-color: $color-bg-soft-1;
-  color: var(--accent-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25);
+  border: 1px solid rgba($color-brown, 0.2);
+  color: $color-wine;
   @include flex-center;
   margin-bottom: 20px;
-  border: 2px dashed var(--accent-color);
-  transition: $transition-bounce;
+  transition: $transition-smooth;
 }
 
-// 4. Polaroid Staff list
+// 5. Teachers Grid (Luxury profile cards)
 .teachersGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
-  margin-top: 12px;
+  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -284,66 +337,83 @@
 
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 28px;
   }
 }
 
 .teacherPolaroid {
   background-color: $color-bg-white;
-  padding: 16px;
-  padding-bottom: 28px;
-  border-radius: $radius-md;
-  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.06);
-  border: 1px solid rgba($color-text-light, 0.08);
+  padding: 10px;
+  padding-bottom: 24px;
+  border-radius: 100px 100px 24px 24px; // Consistent luxury profile arch frame
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-beige, 0.5);
   display: flex;
   flex-direction: column;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
   cursor: pointer;
+
+  &:hover {
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
+
+    .teacherImgBox img {
+      transform: scale(1.04);
+    }
+  }
 }
 
 .teacherImgBox {
   width: 100%;
-  height: 180px;
-  border-radius: $radius-sm;
-  background: linear-gradient(135deg, $color-purple-light-43 0%, $color-blue-light-40 100%);
+  height: 200px;
+  border-radius: 90px 90px 18px 18px;
   overflow: hidden;
-  @include flex-center;
   margin-bottom: 18px;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.6s ease;
+    border-radius: 90px 90px 18px 18px;
   }
 }
 
 .teacherDetails {
   text-align: center;
+  padding: 0 10px;
 }
 
 .tName {
-  font-size: 1.25rem;
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 4px;
 }
 
 .tRole {
-  font-size: 0.85rem;
-  color: $color-purple;
-  font-weight: 800;
+  font-size: 0.78rem;
+  color: $color-wine;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .tExp {
-  font-size: 0.8rem;
-  color: $color-green;
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-size: 0.72rem;
+  color: $color-brown;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
 .tBio {
   font-size: 0.85rem;
   color: $color-text-light;
   line-height: 1.5;
+  font-weight: 400;
 }

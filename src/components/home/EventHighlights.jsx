@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
+import { Calendar, Clock, MapPin } from 'lucide-react';
 import { eventsData } from '../../data/events';
 import SectionTitle from '../common/SectionTitle';
 import styles from './EventHighlights.module.scss';
 
 const EventHighlights = () => {
   return (
-    <section className="section" id="home-events">
+    <section className="section" id="home-events" style={{ backgroundColor: '#FAF6EE' }}>
       <div className="container">
         
         <SectionTitle 
@@ -24,19 +24,17 @@ const EventHighlights = () => {
               <motion.div 
                 className={styles.eventCard}
                 key={ev.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                style={{ '--accent-color': ev.color }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 
                 {/* Image panel */}
                 <div className={styles.imgWrapper}>
                   <img src={ev.image} alt={ev.title} className={styles.eventImage} />
-                  <div className={styles.dateTag} style={{ backgroundColor: ev.color }}>
-                    <Calendar size={14} />
+                  <div className={styles.dateTag}>
+                    <Calendar size={12} />
                     <span>{ev.date.split(',')[0]}</span>
                   </div>
                 </div>

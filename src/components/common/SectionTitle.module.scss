@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .container {
-  margin-bottom: 56px;
+  margin-bottom: 48px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -18,73 +18,55 @@
   }
 
   @include responsive(mobile) {
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
 }
 
 .tag {
-  background-color: $color-purple-light-43;
-  color: $color-purple;
-  padding: 6px 18px;
+  background-color: rgba($color-beige, 0.25);
+  color: $color-wine;
+  padding: 6px 16px;
   border-radius: $radius-full;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 12px;
   display: inline-block;
-  border: 1px solid #CCA4AE;
+  border: 1px solid rgba($color-brown, 0.25);
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
+  font-family: $font-heading;
+  font-weight: 500;
   color: $color-text-dark;
   max-width: 750px;
   margin-bottom: 12px;
+  line-height: 1.25;
 
   @include responsive(mobile) {
-    font-size: 2rem;
+    font-size: 1.85rem;
   }
 }
 
 .highlight {
-  color: $color-purple;
-  position: relative;
-  display: inline-block;
-  padding: 0 4px;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background-color: rgba($color-yellow, 0.4);
-    z-index: -1;
-    border-radius: 4px;
-  }
+  color: $color-wine;
+  font-style: italic;
+  font-weight: 500;
 }
 
 .subtitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   max-width: 600px;
   color: $color-text-light;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 .decoratorLine {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-
-  span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-  .dotYellow { background-color: $color-yellow; }
-  .dotGreen { background-color: $color-green; }
-  .dotPurple { background-color: $color-purple; }
+  width: 40px;
+  height: 1px;
+  background-color: $color-brown;
+  margin-top: 18px;
 }

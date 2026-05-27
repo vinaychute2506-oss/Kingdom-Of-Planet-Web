@@ -13,10 +13,10 @@
 
   &.scrolled {
     height: 80px;
-    background-color: rgba($color-bg-white, 0.95);
+    background-color: rgba($color-cream, 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba($color-wine, 0.05);
-    border-bottom: 2px dashed rgba($color-gold, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba($color-beige, 0.5);
   }
 
   @include responsive(mobile) {
@@ -38,17 +38,17 @@
 }
 
 .logoCrest {
-  width: 46px;
-  height: 46px;
-  background-color: rgba($color-cream, 0.5);
-  border: 2px solid $color-gold;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  background-color: rgba($color-bg-white, 0.6);
+  border: 1.5px solid $color-brown;
+  border-radius: 12px;
   @include flex-center;
-  box-shadow: 0 4px 10px rgba($color-wine, 0.04);
+  box-shadow: 0 4px 10px rgba($color-wine, 0.03);
   transition: $transition-smooth;
 
   &:hover {
-    transform: scale(1.05) rotate(-3deg);
+    transform: scale(1.03) rotate(-1.5deg);
   }
 }
 
@@ -60,17 +60,17 @@
   .wordPlanet {
     font-family: $font-heading;
     font-size: 1.35rem;
-    font-weight: 800;
+    font-weight: 600;
     color: $color-wine;
   }
 
   .wordSchool {
     font-family: $font-body;
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: $color-gold;
+    color: $color-brown;
   }
 
   @include responsive(mobile) {
@@ -90,8 +90,8 @@
 
 .navLink {
   position: relative;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: $color-text-dark;
   padding: 8px 4px;
   transition: $transition-smooth;
@@ -110,9 +110,9 @@
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 2px;
   background-color: $color-wine;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .headerActions {
@@ -122,22 +122,23 @@
 }
 
 .enrollBtn {
-  background: linear-gradient(135deg, $color-gold 0%, #AE8C23 100%);
+  background: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 24px;
   border-radius: $radius-full;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba($color-gold, 0.25);
+  box-shadow: 0 4px 12px rgba($color-wine, 0.1);
   @include flex-center;
   gap: 8px;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
 
   &:hover {
+    background-color: $color-deep-wine;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba($color-gold, 0.35);
+    box-shadow: 0 6px 16px rgba($color-wine, 0.15);
   }
 
   @include responsive(mobile) {
@@ -163,10 +164,11 @@
   top: 76px;
   left: 0;
   width: 100%;
-  background-color: $color-bg-white;
+  background-color: rgba($color-cream, 0.98);
+  backdrop-filter: blur(15px);
   z-index: 999;
-  border-bottom: 4px dashed $color-gold;
-  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
+  border-bottom: 1px solid rgba($color-beige, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
 .mobileNavContainer {
@@ -178,11 +180,11 @@
 
 .mobileNavLink {
   font-family: $font-heading;
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 500;
   color: $color-text-dark;
   padding: 8px 0;
-  border-bottom: 1px solid $color-text-light-35;
+  border-bottom: 1px solid rgba($color-beige, 0.4);
   transition: $transition-smooth;
 
   &:active {
@@ -196,14 +198,14 @@
 }
 
 .mobileEnrollBtn {
-  background: linear-gradient(135deg, $color-wine 0%, $color-wine-dark-5 100%);
+  background: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 16px;
-  border-radius: $radius-md;
-  font-size: 1.2rem;
-  font-weight: 800;
+  padding: 14px;
+  border-radius: $radius-full;
+  font-size: 1.05rem;
+  font-weight: 600;
   margin-top: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba($color-wine, 0.3);
+  box-shadow: 0 4px 12px rgba($color-wine, 0.15);
 }

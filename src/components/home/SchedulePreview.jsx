@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Users, Coffee, Sparkles, Bike, Heart, Calendar } from 'lucide-react';
+import { Sun, Users, Coffee, Sparkles, Bike, Heart } from 'lucide-react';
 import { routineData } from '../../data/routine';
 import SectionTitle from '../common/SectionTitle';
 import styles from './SchedulePreview.module.scss';
@@ -16,11 +16,11 @@ const iconMap = {
 
 const SchedulePreview = () => {
   return (
-    <section className="section">
+    <section className="section" style={{ backgroundColor: '#FAF6EE' }}>
       <div className="container">
         
         <SectionTitle 
-          tag="A Day At Kingdom Of Planet"
+          tag="A Day At Our Pre School"
           title="Playful Schedules Designed for Daily Discoveries"
           highlightWord="Schedules"
           align="center"
@@ -35,30 +35,23 @@ const SchedulePreview = () => {
               <motion.div 
                 className={styles.routineCard} 
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -6, boxShadow: "0 15px 35px rgba(44, 62, 80, 0.08)" }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
               >
-                {/* Visual Icon Header with custom accent color */}
-                <div 
-                  className={styles.iconCircle}
-                  style={{ backgroundColor: `${item.color}15`, color: item.color }}
-                >
-                  <IconComponent size={24} />
+                {/* Visual Icon Header with monochromatic wine circle */}
+                <div className={styles.iconCircle}>
+                  <IconComponent size={22} strokeWidth={1.5} />
                 </div>
 
                 {/* Content details */}
-                <div className={styles.timeTag} style={{ backgroundColor: item.color }}>
+                <div className={styles.timeTag}>
                   {item.time}
                 </div>
 
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardDesc}>{item.description}</p>
-                
-                {/* Playful corner dot decorator */}
-                <span className={styles.cornerDecor} style={{ backgroundColor: item.color }} />
               </motion.div>
             );
           })}
@@ -67,7 +60,7 @@ const SchedulePreview = () => {
         {/* Dynamic bottom CTA badge */}
         <div className={styles.bottomCallout}>
           <p>
-            🎒 Interested in experiencing it live? <a href="#contact" className={styles.visitLink}><strong>Book a personal campus tour</strong></a> with our principal today!
+            Interested in experiencing it live? <a href="#contact" className={styles.visitLink}><strong>Book a personal campus tour</strong></a> with our principal today.
           </p>
         </div>
 

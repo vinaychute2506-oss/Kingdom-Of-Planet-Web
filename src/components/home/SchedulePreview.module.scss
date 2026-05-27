@@ -3,8 +3,8 @@
 .timelineGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 24px;
+  gap: 32px;
+  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -12,100 +12,102 @@
   }
 
   @include responsive(tablet) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 28px;
   }
 }
 
 .routineCard {
   background-color: $color-bg-white;
-  padding: 32px;
+  padding: 32px 28px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-text-light, 0.06);
-  position: relative;
-  overflow: hidden;
+  border: 1px solid rgba($color-beige, 0.5);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
   transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
+    border-color: $color-brown;
+  }
 }
 
 .iconCircle {
-  width: 56px;
-  height: 56px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25) !important;
+  border: 1px solid rgba($color-brown, 0.2) !important;
+  color: $color-wine !important;
   @include flex-center;
   margin-bottom: 20px;
 }
 
 .timeTag {
-  color: $color-bg-white;
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-family: $font-body;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: $color-wine !important;
+  background-color: rgba($color-wine, 0.05) !important;
+  border: 1px solid rgba($color-wine, 0.2);
   padding: 4px 14px;
   border-radius: $radius-full;
   margin-bottom: 16px;
   display: inline-block;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .cardTitle {
-  font-size: 1.4rem;
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: $color-text-dark;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .cardDesc {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: $color-text-light;
-  line-height: 1.6;
-}
-
-// Visual layout corner dot
-.cornerDecor {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  opacity: 0.8;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 .bottomCallout {
   margin-top: 56px;
   text-align: center;
-  background-color: #D98F9F;
-  border: 2px dashed #C3929D;
+  background-color: rgba($color-beige, 0.2);
+  border: 1px solid rgba($color-beige, 0.6);
   padding: 18px 24px;
   border-radius: $radius-md;
   display: inline-block;
   width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 
   p {
-    color: $color-purple;
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1rem;
+    color: $color-text-dark;
+    font-weight: 400;
   }
 }
 
 .visitLink {
-  color: #390F19;
-  position: relative;
-  display: inline-block;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: currentColor;
-  }
+  color: $color-wine;
+  text-decoration: none;
+  border-bottom: 1px solid $color-wine;
+  padding-bottom: 1px;
+  transition: $transition-smooth;
 
   &:hover {
-    color: $color-orange;
+    color: $color-deep-wine;
+    border-bottom-color: $color-deep-wine;
   }
 }

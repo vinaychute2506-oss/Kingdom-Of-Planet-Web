@@ -74,15 +74,15 @@ const Footer = () => {
           <h3 className={styles.title}>Get In Touch</h3>
           <ul className={styles.contactList}>
             <li>
-              <MapPin className={styles.iconGreen} size={20} />
+              <MapPin size={20} />
               <span>190-A, G/F Shahpur Jat, New Delhi - 110049</span>
             </li>
             <li>
-              <Phone className={styles.iconYellow} size={20} />
+              <Phone size={20} />
               <span>+91 9667708285</span>
             </li>
             <li>
-              <Mail className={styles.iconPurple} size={20} />
+              <Mail size={20} />
               <span>admin@kingdomoflearning.com</span>
             </li>
           </ul>
@@ -92,14 +92,14 @@ const Footer = () => {
         <div className={styles.hoursCol}>
           <h3 className={styles.title}>School Timings</h3>
           <div className={styles.hoursBox}>
-            <Clock className={styles.iconOrange} size={20} />
+            <Clock size={20} />
             <div>
               <p className={styles.days}>Toddcare Hours</p>
               <p className={styles.time}>Mon - Fri: 09:00 AM - 12:00 PM</p>
             </div>
           </div>
           <div className={styles.hoursBox}>
-            <Compass className={styles.iconBlue} size={20} />
+            <Compass size={20} />
             <div>
               <p className={styles.days}>Nursery & KG Hours</p>
               <p className={styles.time}>Mon - Fri: 09:00 AM - 01:00 PM</p>

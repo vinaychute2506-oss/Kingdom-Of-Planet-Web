@@ -10,26 +10,22 @@ const facilitiesList = [
   {
     icon: Sparkles,
     title: "Sensory Playground",
-    desc: "Rubber-padded turf with swings, sensory bins, sandpits, and child-safe climbing structures.",
-    color: "#D4AF37"
+    desc: "Rubber-padded turf with swings, sensory bins, sandpits, and child-safe climbing structures."
   },
   {
     icon: BookOpen,
     title: "Story Library Nest",
-    desc: "A warm, circular reading lounge loaded with interactive picture books and storytelling puppets.",
-    color: "#6B1D2F"
+    desc: "A warm, circular reading lounge loaded with interactive picture books and storytelling puppets."
   },
   {
     icon: Music,
     title: "Creative Art Studio",
-    desc: "Dedicated workshop with child-safe watercolor tables, clay blocks, and keyboards.",
-    color: "#E67E22"
+    desc: "Dedicated workshop with child-safe watercolor tables, clay blocks, and keyboards."
   },
   {
     icon: Shield,
     title: "CCTV Enabled Transit",
-    desc: "Air-conditioned school vans with live GPS systems, caring matrons, and seat belts.",
-    color: "#2980B9"
+    desc: "Air-conditioned school vans with live GPS systems, caring matrons, and seat belts."
   }
 ];
 
@@ -38,10 +34,10 @@ const About = () => {
     <div className={styles.aboutPage}>
       
       {/* Page Header */}
-      <section className={styles.pageHeader} style={{ background: 'linear-gradient(135deg, #6B1D2F 0%, #D4AF37 100%)' }}>
+      <section className={styles.pageHeader}>
         <div className="container">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -52,20 +48,20 @@ const About = () => {
       </section>
 
       {/* 1. Principal Message */}
-      <section className="section">
+      <section className="section" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="container">
-          <div className={styles.principalCard} style={{ borderColor: '#D4AF37' }}>
+          <div className={styles.principalCard}>
             <div className={styles.principalAvatarCol}>
-              <div className={styles.principalFrame} style={{ borderColor: '#6B1D2F', backgroundColor: '#FAF6EE' }}>
+              <div className={styles.principalFrame}>
                 <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Komal Singh" />
               </div>
               <h3 className={styles.principalName}>Mrs. Komal Singh</h3>
-              <p className={styles.principalRole} style={{ color: '#6B1D2F' }}>Founder & Principal</p>
+              <p className={styles.principalRole}>Founder & Principal</p>
             </div>
             
             <div className={styles.messageCol}>
-              <span className={styles.quoteMark} style={{ color: 'rgba(107, 29, 47, 0.1)' }}>“</span>
-              <h3 className={styles.messageTitle} style={{ color: '#6B1D2F' }}>A Warm Welcome to Our Learning Kingdom</h3>
+              <span className={styles.quoteMark}>“</span>
+              <h3 className={styles.messageTitle}>A Warm Welcome to Our Learning Kingdom</h3>
               <p className={styles.messageText}>
                 At <strong>Kingdom of Learning Pre School</strong>, we believe every child is a unique explorer. Our modern early childhood learning center is dedicated to providing a safe, joyful, and engaging environment for young learners.
               </p>
@@ -85,19 +81,17 @@ const About = () => {
       </section>
 
       {/* 2. Vision & Mission Cards */}
-      <section className="section section-accent">
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
         <div className="container">
           <div className={styles.visionGrid}>
             <motion.div 
               className={`${styles.visionCard} ${styles.cardPurple}`}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ borderLeftColor: '#6B1D2F' }}
             >
-              <span className={styles.cardIcon}>🪐</span>
-              <h3 style={{ color: '#6B1D2F' }}>Our Vision</h3>
+              <h3>Our Vision</h3>
               <p>
                 To provide high-quality early childhood education that inspires young minds to discover the world, develop lifelong values, and build a strong foundation for the future.
               </p>
@@ -105,14 +99,12 @@ const About = () => {
 
             <motion.div 
               className={`${styles.visionCard} ${styles.cardGreen}`}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ borderLeftColor: '#D4AF37' }}
+              transition={{ duration: 0.6, delay: 0.05 }}
             >
-              <span className={styles.cardIcon}>🚀</span>
-              <h3 style={{ color: '#D4AF37' }}>Our Mission</h3>
+              <h3>Our Mission</h3>
               <p>
                 To provide a safe, nurturing, and joyful learning environment where every child is encouraged to explore, learn, create, and grow with confidence.
               </p>
@@ -121,11 +113,35 @@ const About = () => {
         </div>
       </section>
 
-      {/* 3. Reusable Methodology Section */}
+      {/* 3. Central Dark Wine Stats Banner (moodboard central bar) */}
+      <section className={styles.statsBanner}>
+        <div className="container">
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <h3 className={styles.statVal}>15+</h3>
+              <p className={styles.statLbl}>Years Excellence</p>
+            </div>
+            <div className={styles.statItem}>
+              <h3 className={styles.statVal}>25+</h3>
+              <p className={styles.statLbl}>Certified Staff</p>
+            </div>
+            <div className={styles.statItem}>
+              <h3 className={styles.statVal}>300+</h3>
+              <p className={styles.statLbl}>Happy Students</p>
+            </div>
+            <div className={styles.statItem}>
+              <h3 className={styles.statVal}>10:1</h3>
+              <p className={styles.statLbl}>Teacher Ratio</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Reusable Methodology Section */}
       <MethodologySection />
 
-      {/* 4. Facilities Grid */}
-      <section className="section">
+      {/* 5. Facilities Grid */}
+      <section className="section" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="container">
           <SectionTitle 
             tag="Our Facilities"
@@ -142,15 +158,13 @@ const About = () => {
                 <motion.div 
                   className={styles.facilityCard}
                   key={idx}
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -6 }}
-                  style={{ '--accent-color': facility.color }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
                 >
                   <div className={styles.facIconBox}>
-                    <IconComp size={24} />
+                    <IconComp size={22} strokeWidth={1.5} />
                   </div>
                   <h3>{facility.title}</h3>
                   <p>{facility.desc}</p>
@@ -161,8 +175,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* 5. Teachers polaroids grid */}
-      <section className="section section-accent">
+      {/* 6. Teachers list */}
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
         <div className="container">
           <SectionTitle 
             tag="Our Caregivers"
@@ -178,19 +192,18 @@ const About = () => {
                 <motion.div 
                   className={styles.teacherPolaroid}
                   key={teacher.id}
-                  initial={{ opacity: 0, rotate: index % 2 === 0 ? -3 : 3 }}
-                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  whileHover={{ scale: 1.03, rotate: 0, boxShadow: "0 20px 40px rgba(107,29,47,0.1)" }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <div className={styles.teacherImgBox} style={{ background: 'linear-gradient(135deg, #FFFDD0 0%, #FAF6EE 100%)' }}>
+                  <div className={styles.teacherImgBox}>
                     <img src={teacher.avatar} alt={teacher.name} />
                   </div>
                   <div className={styles.teacherDetails}>
                     <h3 className={styles.tName}>{teacher.name}</h3>
-                    <p className={styles.tRole} style={{ color: '#6B1D2F' }}>{teacher.role}</p>
-                    <p className={styles.tExp} style={{ color: '#D4AF37' }}>{teacher.experience}</p>
+                    <p className={styles.tRole}>{teacher.role}</p>
+                    <p className={styles.tExp}>{teacher.experience}</p>
                     <p className={styles.tBio}>{teacher.bio}</p>
                   </div>
                 </motion.div>

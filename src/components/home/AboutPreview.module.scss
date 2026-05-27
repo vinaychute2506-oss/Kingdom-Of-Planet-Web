@@ -17,33 +17,120 @@
   }
 }
 
-// Visual Polaroid Framing
+// 4-Column Horizontal Features Section
+.featuresStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba($color-beige, 0.6);
+  margin-bottom: 60px;
+  width: 100%;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    margin-bottom: 40px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+
+  // Add thin vertical separators between features (non-mobile/desktop only)
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -12px;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background-color: rgba($color-beige, 0.5);
+
+    @include responsive(mobile) {
+      display: none;
+    }
+    @include responsive(tablet) {
+      display: none;
+    }
+  }
+
+  @include responsive(mobile) {
+    padding: 0;
+  }
+}
+
+.featureIconWrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25);
+  border: 1px solid rgba($color-brown, 0.25);
+  color: $color-wine;
+  @include flex-center;
+  margin-bottom: 18px;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: rgba($color-wine, 0.05);
+    transform: translateY(-2px);
+  }
+}
+
+.featureTitle {
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: $color-text-dark;
+  margin-bottom: 6px;
+}
+
+.featureDesc {
+  font-size: 0.85rem;
+  color: $color-text-light;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+// Visual Arch Image Framing
 .visualCol {
   position: relative;
   @include flex-center;
   width: 100%;
 }
 
-.polaroidFrame {
+.archFrame {
   background-color: $color-bg-white;
-  padding: 16px;
-  padding-bottom: 24px;
-  border-radius: $radius-md;
-  box-shadow: 0 15px 40px rgba(44, 62, 80, 0.08);
-  border: 1px solid rgba($color-text-light, 0.1);
+  padding: 10px;
+  padding-bottom: 16px;
+  border-radius: 200px 200px 24px 24px;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-beige, 0.4);
   width: 100%;
   max-width: 380px;
   transition: $transition-smooth;
 
   &:hover {
-    transform: rotate(0deg) scale(1.02);
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px) scale(1.02);
   }
 }
 
-.polaroidImageWrapper {
+.archImageWrapper {
   width: 100%;
-  height: 280px;
-  border-radius: $radius-sm;
+  height: 380px;
+  border-radius: 190px 190px 20px 20px;
   overflow: hidden;
 
   img {
@@ -51,65 +138,119 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.6s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
   }
 
   @include responsive(mobile) {
-    height: 220px;
+    height: 280px;
   }
 }
 
-.polaroidCaption {
-  margin-top: 18px;
+.archCaption {
+  margin-top: 14px;
   text-align: center;
 
   h4 {
     font-family: $font-heading;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: $color-text-dark;
   }
 
   p {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     color: $color-text-light;
     margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 }
 
-.badgeFloating {
-  position: absolute;
-  padding: 8px 16px;
-  border-radius: $radius-full;
-  font-weight: 800;
-  font-size: 0.9rem;
-  box-shadow: $shadow-soft;
-  border: 2px solid $color-bg-white;
-  z-index: 3;
-}
-
-.badgeGreen {
-  background-color: $color-green;
-  color: $color-bg-white;
-  bottom: 10px;
-  right: 15%;
-}
-
-// Text column styling
+// Text Column Styling
 .textCol {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .description {
-  margin-bottom: 28px;
-  font-size: 1.1rem;
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: $color-text-light;
+  font-weight: 400;
+}
+
+.coreBlocks {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+  width: 100%;
+
+  @include responsive(mobile) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.missionBox {
+  flex: 1;
+  padding: 18px;
+  background-color: $color-bg-white;
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-beige, 0.6);
+  border-left: 3px solid $color-wine;
+  box-shadow: $shadow-soft;
+
+  h5 {
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: $color-wine;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: $color-text-light;
+  }
+}
+
+.visionBox {
+  flex: 1;
+  padding: 18px;
+  background-color: $color-bg-white;
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-beige, 0.6);
+  border-left: 3px solid $color-brown;
+  box-shadow: $shadow-soft;
+
+  h5 {
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: $color-brown;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: $color-text-light;
+  }
 }
 
 .benefitsList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 36px;
   width: 100%;
 
@@ -117,34 +258,35 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 0.98rem;
+    font-weight: 500;
     color: $color-text-dark;
   }
 }
 
 .checkIcon {
-  color: $color-green;
+  color: $color-wine;
   flex-shrink: 0;
 }
 
 .learnBtn {
-  background: linear-gradient(135deg, $color-purple 0%, $color-wine-dark-5 100%);
+  background-color: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 14px 30px;
+  padding: 12px 30px;
   border-radius: $radius-full;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba($color-purple, 0.25);
+  box-shadow: 0 4px 12px rgba($color-wine, 0.1);
   @include flex-center;
-  gap: 10px;
-  transition: $transition-bounce;
+  gap: 8px;
+  transition: $transition-smooth;
 
   &:hover {
+    background-color: $color-deep-wine;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba($color-purple, 0.35);
+    box-shadow: 0 6px 16px rgba($color-wine, 0.15);
   }
 
   @include responsive(mobile) {

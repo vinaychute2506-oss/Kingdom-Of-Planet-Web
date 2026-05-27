@@ -2,66 +2,68 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-top: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
   }
 
   @include responsive(tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
 }
 
 .featureCard {
   background-color: $color-bg-white;
-  padding: 36px 24px;
+  padding: 32px 28px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  border: 2px solid transparent;
+  border: 1px solid rgba($color-beige, 0.6);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   transition: $transition-smooth;
 
   &:hover {
-    border-color: rgba(var(--accent-color), 0.2);
-    box-shadow: $shadow-medium;
-    transform: translateY(-5px);
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
+    transform: translateY(-4px);
 
     .iconCircle {
-      background-color: var(--accent-color);
-      color: $color-bg-white;
-      transform: rotate(10deg);
+      background-color: rgba($color-wine, 0.08);
+      transform: scale(1.03);
     }
   }
 }
 
 .iconCircle {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background-color: $color-bg-soft-1;
-  color: var(--accent-color);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25);
+  border: 1px solid rgba($color-brown, 0.2);
+  color: $color-wine;
   @include flex-center;
-  margin-bottom: 24px;
-  border: 2px dashed var(--accent-color);
-  transition: $transition-bounce;
+  margin-bottom: 20px;
+  transition: $transition-smooth;
 }
 
 .featureTitle {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: $color-text-dark;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: $font-heading;
+  font-weight: 500;
 }
 
 .featureDesc {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: $color-text-light;
-  line-height: 1.6;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: left;
 }

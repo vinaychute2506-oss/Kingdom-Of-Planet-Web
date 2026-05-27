@@ -2,7 +2,7 @@
 
 .gridContainer {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1fr 2.3fr;
   gap: 56px;
   align-items: center;
 
@@ -22,43 +22,35 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .tag {
-  color: $color-green;
-  background-color: #E2F5E3;
-  border: 1px solid #B0E4B3;
-  padding: 6px 18px;
+  background-color: rgba($color-beige, 0.25);
+  color: $color-wine;
+  padding: 6px 16px;
   border-radius: $radius-full;
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 16px;
+  display: inline-block;
+  border: 1px solid rgba($color-brown, 0.25);
 }
 
 .heading {
-  font-size: 3.2rem;
+  font-size: 3rem;
+  font-family: $font-heading;
+  font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 16px;
-  line-height: 1.15;
+  line-height: 1.2;
 
   .highlight {
-    color: $color-green;
-    position: relative;
-    display: inline-block;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background-color: rgba($color-yellow, 0.4);
-      z-index: -1;
-      border-radius: 4px;
-    }
+    color: $color-wine;
+    font-style: italic;
+    font-weight: 500;
   }
 
   @include responsive(mobile) {
@@ -67,28 +59,31 @@
 }
 
 .subtext {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: $color-text-light;
   margin-bottom: 32px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 .viewBtn {
-  background: linear-gradient(135deg, $color-green 0%, #3E8E41 100%);
+  background-color: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 14px 30px;
+  padding: 12px 30px;
   border-radius: $radius-full;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba($color-green, 0.25);
+  box-shadow: 0 4px 12px rgba($color-wine, 0.1);
   @include flex-center;
   gap: 8px;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
 
   &:hover {
+    background-color: $color-deep-wine;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba($color-green, 0.35);
+    box-shadow: 0 6px 16px rgba($color-wine, 0.15);
   }
 
   @include responsive(mobile) {
@@ -101,7 +96,7 @@
 .rightCol {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 24px;
 
   @include responsive(mobile) {
     grid-template-columns: repeat(2, 1fr);
@@ -110,75 +105,45 @@
 
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 24px;
   }
 }
 
 .activityCard {
   background-color: $color-bg-white;
-  border-radius: $radius-lg;
-  padding: 24px 16px;
+  border-radius: $radius-lg; // 24px
+  padding: 32px 20px;
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-text-light, 0.05);
+  border: 1px solid rgba($color-beige, 0.6);
   text-align: center;
   @include flex-center;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  transition: $transition-bounce;
+  transition: $transition-smooth;
+  cursor: pointer;
 
   &:hover {
-    box-shadow: 0 15px 35px rgba($color-text-dark, 0.06);
+    border-color: $color-brown;
+    box-shadow: $shadow-hover;
+    transform: translateY(-6px);
 
-    .visualBox {
-      background-color: var(--accent-color);
-      transform: scale(1.05) translateY(-2px);
-    }
-
-    .iconOverlay {
-      background-color: $color-bg-white;
-      color: var(--accent-color);
-    }
-
-    .indicatorBar {
-      width: 100%;
+    .iconCircle {
+      background-color: rgba($color-wine, 0.08);
+      transform: scale(1.03);
     }
   }
 }
 
-.visualBox {
-  width: 110px;
-  height: 110px;
-  border-radius: $radius-md;
-  background-color: var(--bg-soft);
+.iconCircle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba($color-beige, 0.25);
+  border: 1px solid rgba($color-brown, 0.2);
+  color: $color-wine;
   @include flex-center;
   margin-bottom: 20px;
-  position: relative;
-  transition: $transition-bounce;
-
-  .emoji {
-    font-size: 3.2rem;
-  }
-
-  @include responsive(mobile) {
-    width: 90px;
-    height: 90px;
-    .emoji { font-size: 2.5rem; }
-  }
-}
-
-.iconOverlay {
-  position: absolute;
-  bottom: -6px;
-  right: -6px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: $color-bg-white;
-  @include flex-center;
-  border: 3px solid $color-bg-white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: $transition-smooth;
 }
 
@@ -187,24 +152,16 @@
 }
 
 .cardTitle {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: $color-text-dark;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-family: $font-heading;
 }
 
 .cardTags {
   font-size: 0.85rem;
   color: $color-text-light;
-  font-weight: 700;
-}
-
-.indicatorBar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 6px;
-  background-color: var(--accent-color);
-  transition: $transition-smooth;
+  font-weight: 400;
+  line-height: 1.4;
 }

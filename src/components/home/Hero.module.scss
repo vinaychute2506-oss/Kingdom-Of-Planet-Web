@@ -1,67 +1,34 @@
 @import '../../styles/variables.scss';
 
 .heroSection {
-  padding-top: 170px;
-  padding-bottom: 96px;
+  padding-top: 160px;
+  padding-bottom: 110px;
   position: relative;
   overflow: hidden;
-  background-color: $color-bg-soft;
+  background-color: $color-cream;
 
   @include responsive(mobile) {
-    padding-top: 120px;
+    padding-top: 110px;
     padding-bottom: 60px;
   }
-}
-
-// Background Blobs
-.blobBg {
-  position: absolute;
-  filter: blur(80px);
-  border-radius: 50%;
-  opacity: 0.25;
-  z-index: 1;
-}
-
-.blobYellow {
-  width: 300px;
-  height: 300px;
-  background-color: $color-yellow;
-  top: -50px;
-  right: 10%;
-}
-
-.blobPurple {
-  width: 400px;
-  height: 400px;
-  background-color: #A64B5E;
-  bottom: -100px;
-  left: -50px;
-}
-
-.blobBlue {
-  width: 250px;
-  height: 250px;
-  background-color: $color-blue;
-  top: 40%;
-  left: 30%;
 }
 
 .heroGrid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
+  gap: 60px;
   align-items: center;
   position: relative;
   z-index: 2;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 40px;
   }
 
   @include responsive(tablet) {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
   }
 }
 
@@ -69,62 +36,56 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .welcomeTag {
-  background-color: #F8EDCB;
-  color: #8C6F12;
-  padding: 8px 18px;
+  background-color: rgba($color-beige, 0.25);
+  color: $color-wine;
+  padding: 6px 18px;
   border-radius: $radius-full;
-  font-size: 0.9rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: $font-body;
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 20px;
-  border: 1px solid #ECD79C;
+  margin-bottom: 24px;
+  border: 1px solid rgba($color-brown, 0.3);
 
   .sparkleIcon {
-    color: $color-yellow;
+    color: $color-brown;
   }
 }
 
 .heading {
-  font-size: 4rem;
+  font-size: 3.6rem;
   font-family: $font-heading;
+  font-weight: 500;
   color: $color-text-dark;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   line-height: 1.15;
 
   .highlight {
-    color: $color-purple;
+    color: $color-wine;
+    font-style: italic;
+    font-weight: 500;
     position: relative;
     display: inline-block;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 0;
-      width: 100%;
-      height: 12px;
-      background-color: rgba($color-yellow, 0.4);
-      z-index: -1;
-      border-radius: 6px;
-    }
   }
 
   @include responsive(mobile) {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 }
 
 .tagline {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: $color-text-light;
-  margin-bottom: 36px;
-  max-width: 540px;
-  font-weight: 600;
+  margin-bottom: 40px;
+  max-width: 500px;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .actions {
@@ -141,20 +102,21 @@
 }
 
 .primaryBtn {
-  background: linear-gradient(135deg, $color-green 0%, #3E8E41 100%);
+  background-color: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 16px 36px;
+  padding: 14px 32px;
   border-radius: $radius-full;
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba($color-green, 0.25);
-  transition: $transition-bounce;
+  box-shadow: 0 4px 12px rgba($color-wine, 0.1);
+  transition: $transition-smooth;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba($color-green, 0.4);
+    background-color: $color-deep-wine;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba($color-wine, 0.15);
   }
 
   @include responsive(mobile) {
@@ -164,13 +126,13 @@
 }
 
 .secondaryBtn {
-  background-color: $color-bg-white;
-  color: $color-text-dark;
-  border: 2px dashed $color-text-light-20;
-  padding: 16px 36px;
+  background-color: transparent;
+  color: $color-wine;
+  border: 1px solid rgba($color-wine, 0.5);
+  padding: 14px 32px;
   border-radius: $radius-full;
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -178,9 +140,9 @@
   transition: $transition-smooth;
 
   &:hover {
-    border-color: $color-purple;
-    color: $color-purple;
-    background-color: $color-purple-light-43;
+    background-color: rgba($color-wine, 0.05);
+    border-color: $color-wine;
+    transform: translateY(-2px);
   }
 
   @include responsive(mobile) {
@@ -191,11 +153,13 @@
 
 .metricsGrid {
   display: flex;
-  gap: 36px;
+  gap: 40px;
+  border-top: 1px solid rgba($color-beige, 0.6);
+  padding-top: 32px;
+  width: 100%;
 
   @include responsive(mobile) {
-    gap: 18px;
-    width: 100%;
+    gap: 16px;
     justify-content: space-between;
   }
 }
@@ -203,99 +167,134 @@
 .metricCard {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 
   .number {
     font-family: $font-heading;
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 500;
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    color: $color-wine;
   }
 
   .label {
     font-size: 0.85rem;
     color: $color-text-light;
-    font-weight: 700;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 }
 
 // Right Side Graphic Layout
 .heroIllustration {
-  @include flex-center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   width: 100%;
 }
 
-// Staggered side-by-side Polaroid Cards Grid
-.collageContainer {
-  display: flex;
-  gap: 24px;
-  width: 100%;
-  max-width: 560px;
-  justify-content: center;
-  align-items: center;
+.botanicalStem {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  bottom: -40px;
+  left: -20px;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
 
   @include responsive(mobile) {
-    flex-direction: column;
-    gap: 20px;
+    display: none;
+  }
+}
+
+// Asymmetric Dual-Arch Container
+.collageContainer {
+  display: flex;
+  gap: 28px;
+  width: 100%;
+  max-width: 520px;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+
+  @include responsive(mobile) {
+    gap: 16px;
   }
 }
 
 .collageCard {
   position: relative;
   background-color: $color-bg-white;
-  padding: 14px;
-  padding-bottom: 22px;
-  border-radius: $radius-md;
+  padding: 10px;
+  padding-bottom: 16px;
+  border-radius: 120px 120px 24px 24px;
   box-shadow: $shadow-soft;
-  border: 4px solid $color-bg-white;
-  width: 230px;
-  transition: $transition-bounce;
+  border: 1px solid rgba($color-beige, 0.4);
+  transition: $transition-smooth;
   cursor: pointer;
 
   &:hover {
     box-shadow: $shadow-hover;
-    transform: scale(1.03) translateY(-4px) !important;
-  }
-
-  @include responsive(mobile) {
-    width: 260px;
-    padding: 12px;
-    padding-bottom: 18px;
+    transform: translateY(-4px) scale(1.02) !important;
   }
 }
 
 .photoLeft {
-  border-color: #FAF6EE;
-  transform: translateY(-10px);
+  width: 210px;
+  transform: translateY(-20px);
+  border-radius: 120px 120px 24px 24px;
+
+  .photoImgWrapper {
+    border-radius: 110px 110px 20px 20px;
+    height: 270px;
+  }
 
   @include responsive(mobile) {
+    width: 160px;
     transform: none;
+    .photoImgWrapper {
+      height: 200px;
+    }
   }
 }
 
 .photoRight {
-  border-color: #FCF9F4;
-  transform: translateY(10px);
+  width: 210px;
+  transform: translateY(20px);
+  border-radius: 120px 120px 24px 24px;
+
+  .photoImgWrapper {
+    border-radius: 110px 110px 20px 20px;
+    height: 220px;
+  }
 
   @include responsive(mobile) {
+    width: 160px;
     transform: none;
+    .photoImgWrapper {
+      height: 160px;
+    }
   }
 }
 
 .photoImgWrapper {
   width: 100%;
-  height: 180px;
-  border-radius: $radius-sm;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.6s ease;
   }
 
-  @include responsive(mobile) {
-    height: 120px;
+  &:hover img {
+    transform: scale(1.05);
   }
 }
 
@@ -305,21 +304,23 @@
 
   h4 {
     font-family: $font-heading;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     color: $color-text-dark;
   }
 
   p {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: $color-text-light;
     margin-top: 2px;
-    font-weight: 700;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   @include responsive(mobile) {
-    margin-top: 6px;
+    margin-top: 8px;
     h4 { font-size: 0.85rem; }
-    p { font-size: 0.65rem; }
+    p { font-size: 0.6rem; }
   }
 }
-

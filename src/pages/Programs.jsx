@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Baby, Smile, BookOpen, Check, Target, Compass, Sparkles } from 'lucide-react';
+import { Baby, Smile, BookOpen, Check, Target, Compass, ArrowRight } from 'lucide-react';
 import { programsData } from '../data/programs';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './Programs.module.scss';
@@ -26,7 +26,7 @@ const Programs = () => {
       <section className={styles.pageHeader}>
         <div className="container">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -42,16 +42,14 @@ const Programs = () => {
           
           <div className={styles.programDetailsList}>
             {programsData.map((prog, idx) => {
-              const IconComp = iconMap[prog.icon] || Smile;
               const isEven = idx % 2 === 0;
 
               return (
                 <div 
                   className={`${styles.progBlock} ${isEven ? '' : styles.reverseBlock}`} 
                   key={prog.id}
-                  style={{ '--accent-color': prog.accentColor, '--bg-soft': prog.lightBg }}
                 >
-                  {/* Left Column: Visual summary badge */}
+                  {/* Left Column: Visual summary badge (arch image) */}
                   <motion.div 
                     className={styles.visualCol}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -59,7 +57,7 @@ const Programs = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                   >
-                    <div className={styles.illustrationCard} style={{ overflow: 'hidden', padding: 0, position: 'relative' }}>
+                    <div className={styles.illustrationCard}>
                       <img 
                         src={programImages[prog.id]} 
                         alt={prog.title} 
@@ -67,7 +65,7 @@ const Programs = () => {
                         loading="lazy"
                       />
                       <div className={styles.imageOverlayContainer}>
-                        <div className={styles.agePill} style={{ backgroundColor: prog.accentColor, position: 'static', marginBottom: '8px' }}>
+                        <div className={styles.agePill}>
                           {prog.age}
                         </div>
                         <h3 className={styles.imageOverlayTitle}>{prog.title}</h3>
@@ -78,10 +76,10 @@ const Programs = () => {
                   {/* Right Column: Full description and features checklist */}
                   <motion.div 
                     className={styles.textCol}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.05 }}
                   >
                     <h2 className={styles.title}>{prog.title} Curriculum</h2>
                     <h4 className={styles.tagline}>{prog.tagline}</h4>
@@ -94,7 +92,7 @@ const Programs = () => {
                         <ul className={styles.checkList}>
                           {prog.features.map((feat, i) => (
                             <li key={i}>
-                              <Check className={styles.checkIcon} size={16} />
+                              <Check className={styles.checkIcon} size={14} />
                               <span>{feat}</span>
                             </li>
                           ))}
@@ -107,7 +105,7 @@ const Programs = () => {
                         <ul className={styles.checkList}>
                           {prog.activities.map((act, i) => (
                             <li key={i}>
-                              <span className={styles.bulletDot} style={{ backgroundColor: prog.accentColor }} />
+                              <span className={styles.bulletDot} />
                               <span>{act}</span>
                             </li>
                           ))}
@@ -117,7 +115,7 @@ const Programs = () => {
 
                     {/* Methodology highlight */}
                     <div className={styles.methodologyBox}>
-                      <Target className={styles.methodIcon} size={22} />
+                      <Target className={styles.methodIcon} size={18} strokeWidth={1.5} />
                       <div>
                         <strong>Learning Method: </strong>
                         <span>{prog.learningMethod}</span>
@@ -134,7 +132,7 @@ const Programs = () => {
       </section>
 
       {/* Bottom enrollment callout */}
-      <section className="section section-accent">
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
         <div className="container">
           <div className={styles.ctaBox}>
             <h2>Ready to Shape Your Child's Future?</h2>
@@ -142,11 +140,11 @@ const Programs = () => {
             <motion.button 
               className={styles.enrollBtn}
               onClick={() => window.location.hash = '#contact'}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <span>Apply for Admissions</span>
-              <Sparkles size={16} />
+              <ArrowRight size={16} />
             </motion.button>
           </div>
         </div>

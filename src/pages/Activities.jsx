@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Clock, Star } from 'lucide-react';
+import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Clock } from 'lucide-react';
 import { activitiesData } from '../data/activities';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './ActivitiesPage.module.scss';
@@ -43,7 +43,7 @@ const Activities = () => {
       <section className={styles.pageHeader}>
         <div className="container">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -87,13 +87,12 @@ const Activities = () => {
                 return (
                   <motion.div 
                     layout
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
                     className={styles.activityCard}
                     key={act.id}
-                    style={{ '--accent-color': act.color, '--bg-soft': act.bgSoft }}
                   >
                     
                     {/* Top Image Banner */}
@@ -111,15 +110,15 @@ const Activities = () => {
                     <div className={styles.cardContent}>
                       <div className={styles.titleRow}>
                         <div className={styles.iconCircle}>
-                          <IconComponent size={18} />
+                          <IconComponent size={20} strokeWidth={1.5} />
                         </div>
                         <h3 className={styles.cardTitle}>{act.title}</h3>
                       </div>
-                      <p className={styles.cardDesc}>{act.description}</p>
-                      <p className={styles.cardDetails}>{act.details}</p>
+                      <p className={styles.cardDesc}>{act.tags}</p>
+                      <p className={styles.cardDetails}>{act.description}</p>
 
                       <div className={styles.scheduleRow}>
-                        <Clock size={16} className={styles.clockIcon} />
+                        <Clock size={14} className={styles.clockIcon} />
                         <span>{act.schedule}</span>
                       </div>
                     </div>
