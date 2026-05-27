@@ -59,7 +59,7 @@ img {
   width: 100%;
   height: 1px;
   background-color: rgba($color-beige, 0.4);
-  margin: 48px 0;
+  margin: 32px 0;
 }
 
 // Core Structural Classes
@@ -71,12 +71,12 @@ img {
 }
 
 .section {
-  padding: 96px 0;
+  padding: 72px 0;
   position: relative;
   overflow: hidden;
 
   @include responsive(mobile) {
-    padding: 60px 0;
+    padding: 44px 0;
   }
 }
 

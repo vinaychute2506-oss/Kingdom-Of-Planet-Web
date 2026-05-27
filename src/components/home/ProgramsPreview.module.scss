@@ -3,23 +3,23 @@
 .programsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-top: 40px;
+  gap: 20px;
+  margin-top: 36px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 24px;
   }
 }
 
 .programCard {
   background-color: $color-bg-white !important;
-  padding: 36px 28px;
+  padding: 28px 20px;
   border-radius: $radius-lg; // 24px rounded corners
   box-shadow: $shadow-soft;
   border: 1px solid rgba($color-beige, 0.6);
