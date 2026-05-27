@@ -34,6 +34,17 @@ const Hero = () => {
 
   return (
     <section className={styles.heroSection}>
+      {/* Cinematic Luxury Background Video */}
+      <video 
+        className={styles.bgVideo} 
+        src="/hero-video.mp4" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+      />
+      <div className={styles.videoOverlay} />
+
       <div className={`container ${styles.heroGrid}`}>
         
         {/* Left Content Column */}
