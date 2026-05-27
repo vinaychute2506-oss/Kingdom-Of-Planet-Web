@@ -43,6 +43,7 @@
   justify-content: flex-start;
   text-align: left;
   color: rgba($color-cream, 0.85);
+  @include luxury-grain;
 
   @include responsive(mobile) {
     padding: 32px 24px;

@@ -52,7 +52,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  filter: saturate(0.92) brightness(1.02); // Elegant slightly desaturated luxury photo filter
+  filter: saturate(0.92) contrast(1.02) brightness(1.01); // Elegant slightly desaturated luxury photo filter
 }
 
 .editorial-divider {

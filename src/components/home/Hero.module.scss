@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   background-color: $color-cream;
+  @include luxury-grain;
 
   @include responsive(mobile) {
     padding-top: 110px;

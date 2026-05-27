@@ -1,5 +1,4 @@
 // Design Tokens for Kingdom of Learning Pre School (Luxury Editorial Redesign)
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 // Luxury Preschool Color Palette
 $color-wine: #6B1E2E;         // Primary elegant wine red
@@ -79,5 +78,22 @@ $breakpoint-wide: 1200px;
     @media (min-width: #{$breakpoint-wide}) { @content; }
   } @else {
     @media (min-width: #{$breakpoint}) { @content; }
+  }
+}
+
+// Subtle luxury editorial print grain texture mixin
+@mixin luxury-grain {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.018'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
   }
 }

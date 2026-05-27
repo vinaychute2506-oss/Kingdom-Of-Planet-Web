@@ -53,7 +53,7 @@ const About = () => {
           <div className={styles.principalCard}>
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Komal Singh" />
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Komal Singh" loading="lazy" />
               </div>
               <h3 className={styles.principalName}>Mrs. Komal Singh</h3>
               <p className={styles.principalRole}>Founder & Principal</p>
@@ -198,7 +198,7 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
                   <div className={styles.teacherImgBox}>
-                    <img src={teacher.avatar} alt={teacher.name} />
+                    <img src={teacher.avatar} alt={teacher.name} loading="lazy" />
                   </div>
                   <div className={styles.teacherDetails}>
                     <h3 className={styles.tName}>{teacher.name}</h3>
