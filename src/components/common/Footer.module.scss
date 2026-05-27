@@ -63,51 +63,19 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   cursor: pointer;
   margin-bottom: 8px;
 }
 
-.logoCrest {
-  width: 44px;
-  height: 44px;
-  background-color: rgba($color-bg-white, 0.05);
-  border: 1.5px solid $color-gold;
-  border-radius: 12px;
-  @include flex-center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.logoImg {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.9);
   transition: $transition-smooth;
 
   &:hover {
-    transform: scale(1.03) rotate(-1.5deg);
-  }
-}
-
-.logoText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-  text-align: left;
-
-  .wordPlanet {
-    font-family: $font-heading;
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: $color-bg-white;
-  }
-
-  .wordSchool {
-    font-family: $font-body;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: $color-gold;
-  }
-
-  @include responsive(mobile) {
-    .wordPlanet { font-size: 1.15rem; }
-    .wordSchool { font-size: 0.8rem; }
+    filter: brightness(0) invert(1) opacity(1);
   }
 }
 

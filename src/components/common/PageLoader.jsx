@@ -8,37 +8,35 @@ const PageLoader = () => {
       className={styles.loaderOverlay}
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 0.8, delay: 1.5, ease: "easeInOut" }}
+      transition={{ duration: 0.8, delay: 2.2, ease: "easeInOut" }}
       onAnimationComplete={() => {
         document.body.style.overflow = "unset";
       }}
     >
       <div className={styles.loaderContent}>
-        {/* Animated Planets & School Mascot Ring */}
-        <div className={styles.logoContainer}>
-          <motion.div 
-            className={styles.mascotRing}
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          />
-          <motion.div 
-            className={styles.mascotDot}
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          >
-            🏫
-          </motion.div>
-        </div>
-
-        {/* Text Fade and Bounce */}
-        <motion.h2 
-          className={styles.title}
-          animate={{ y: [0, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+        {/* Soft elegant shimmer fade logo container */}
+        <motion.div 
+          className={styles.logoWrapper}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ 
+            opacity: [0, 0.7, 0.9, 1],
+            scale: [0.95, 1, 0.99, 1] 
+          }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
         >
-          Kingdom Of Planet School
-        </motion.h2>
-        <p className={styles.subtitle}>Where Learning Feels Like Play...</p>
+          <img src="/logo.png" alt="Kingdom of Learning Pre School Crest" className={styles.logoImg} />
+        </motion.div>
+
+        {/* Elegant typography, matching Serif style */}
+        <motion.div
+          className={styles.textWrapper}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 1.0, ease: "easeOut" }}
+        >
+          <div className={styles.divider} />
+          <p className={styles.tagline}>A Kingdom Where Learning Comes Alive</p>
+        </motion.div>
       </div>
     </motion.div>
   );

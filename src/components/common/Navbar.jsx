@@ -43,23 +43,9 @@ const Navbar = ({ currentHash }) => {
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={`container ${styles.navbarContainer}`}>
           
-          {/* Custom Crown + Book + Star Crest Logo */}
+          {/* Custom Royal Crest Logo */}
           <a href="#home" className={styles.logo}>
-            <div className={styles.logoCrest}>
-              <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Open Book in Wine */}
-                <path d="M15 70C25 70 35 65 50 72C65 65 75 70 85 70V28C75 28 65 24 50 30C35 24 25 28 15 28V70Z" fill="#6B1D2F" stroke="#D4AF37" strokeWidth="3" />
-                <path d="M50 30V72" stroke="#D4AF37" strokeWidth="3" />
-                {/* Elegant Crown in Gold */}
-                <path d="M30 52L40 56L50 44L60 56L70 52L66 64H34L30 52Z" fill="#D4AF37" stroke="#6B1D2F" strokeWidth="1.5" />
-                {/* Sparkling Star in Gold */}
-                <path d="M50 10L53 18L61 18L55 23L57 31L50 26L43 31L45 23L39 18L47 18L50 10Z" fill="#D4AF37" />
-              </svg>
-            </div>
-            <div className={styles.logoText}>
-              <span className={styles.wordPlanet}>Kingdom of Learning</span>
-              <span className={styles.wordSchool}>Pre School</span>
-            </div>
+            <img src="/logo.png" alt="Kingdom of Learning Pre School" className={styles.logoImg} />
           </a>
 
           {/* Desktop Links */}

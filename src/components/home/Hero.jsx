@@ -44,6 +44,13 @@ const Hero = () => {
           animate="visible"
         >
           <motion.div 
+            className={styles.heroLogoBranding}
+            variants={itemVariants}
+          >
+            <img src="/logo.png" alt="Kingdom of Learning Crest" className={styles.heroLogoImg} />
+          </motion.div>
+
+          <motion.div 
             className={styles.welcomeTag}
             variants={itemVariants}
           >

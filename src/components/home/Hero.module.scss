@@ -39,6 +39,21 @@
   text-align: left;
 }
 
+.heroLogoBranding {
+  margin-bottom: 20px;
+}
+
+.heroLogoImg {
+  height: 96px;
+  width: auto;
+  object-fit: contain;
+  filter: saturate(1.05);
+
+  @include responsive(mobile) {
+    height: 72px;
+  }
+}
+
 .welcomeTag {
   background-color: rgba($color-beige, 0.25);
   color: $color-wine;
