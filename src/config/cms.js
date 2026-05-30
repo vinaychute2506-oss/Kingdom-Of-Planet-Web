@@ -20,9 +20,12 @@ export const FALLBACK_IMAGES = {
   gallery: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800'
 };
 
+// Toggle branding watermarks overlay dynamically on all Cloudinary assets (Asset protection)
+export const ENABLE_GALLERY_WATERMARK = false;
+
 /**
- * Optimizes Cloudinary image links by injecting smart compression (q_auto) and 
- * modern auto-format selection (f_auto) dynamically.
+ * Optimizes Cloudinary image links by injecting smart compression (q_auto), 
+ * modern auto-format selection (f_auto), and optional branded typography watermarks dynamically.
  * 
  * @param {string} url - The original image URL 
  * @returns {string} - The optimized Cloudinary CDN URL, or original if not hosted on Cloudinary
@@ -47,8 +50,13 @@ export const optimizeCloudinaryUrl = (url) => {
     return url;
   }
   
-  // Inject /f_auto,q_auto/ right after /upload/
+  // Inject /f_auto,q_auto/ transformations
   try {
+    if (ENABLE_GALLERY_WATERMARK) {
+      // Overlays a premium light white Playfair Display text watermark at the bottom right corner
+      const watermarkTransformation = 'f_auto,q_auto/l_text:Playfair%20Display_15_bold_italic:Kingdom%20of%20Learning,co_rgb:ffffff,o_30,g_south_east,y_15,x_15/';
+      return url.replace('/upload/', `/upload/${watermarkTransformation}`);
+    }
     return url.replace('/upload/', '/upload/f_auto,q_auto/');
   } catch (e) {
     return url;
