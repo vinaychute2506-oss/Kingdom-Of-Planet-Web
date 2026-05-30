@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, User, Phone, Mail, CheckSquare, ClipboardList, AlertTriangle } from 'lucide-react';
+import { Send, CheckCircle, User, Phone, Mail, CheckSquare, ClipboardList, AlertTriangle, Loader2 } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
+import { submitForm } from '../../services/api';
 import SectionTitle from '../common/SectionTitle';
 import styles from './AdmissionsForm.module.scss';
 
 const AdmissionsForm = () => {
+  const { schoolInfo, admissions } = useCMS();
+
+  // Dynamic timelines and checklists filtered straight from Google Sheets rows!
+  const admissionSteps = admissions
+    .filter(item => item.type === 'step' || item.Type === 'step')
+    .map((item, idx) => ({
+      num: (idx + 1).toString(),
+      title: item.itemTitle || item.ItemTitle,
+      desc: item.itemDescription || item.ItemDescription
+    }));
+
+  const requiredDocuments = admissions
+    .filter(item => item.type === 'document' || item.Type === 'document')
+    .map(item => item.itemTitle || item.ItemTitle);
+
   const [formData, setFormData] = useState({
     parentName: '',
     childName: '',
@@ -12,21 +29,76 @@ const AdmissionsForm = () => {
     age: '',
     grade: '',
     email: '',
+    honeypot: '', // bot protection honeypot
   });
   
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
+  const [cooldownSeconds, setCooldownSeconds] = useState(0);
+
+  // Rate-limiting countdown timer loop
+  useEffect(() => {
+    let interval = null;
+    if (cooldown && cooldownSeconds > 0) {
+      interval = setInterval(() => {
+        setCooldownSeconds((prev) => prev - 1);
+      }, 1000);
+    } else if (cooldownSeconds === 0) {
+      setCooldown(false);
+    }
+    return () => clearInterval(interval);
+  }, [cooldown, cooldownSeconds]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.parentName || !formData.childName || !formData.phone) {
+
+    if (cooldown) {
+      alert(`Rate-limiting: Please wait ${cooldownSeconds}s before submitting again!`);
+      return;
+    }
+
+    // Bot detection filter (honeypot triggered if hidden field is filled out)
+    if (formData.honeypot) {
+      console.warn("Spam-bot trigger intercepted!");
+      setShowSuccess(true);
+      return;
+    }
+
+    if (!formData.parentName || !formData.childName || !formData.phone || !formData.grade) {
       alert("Please fill in all required fields to submit!");
       return;
     }
-    setShowSuccess(true);
+
+    setSubmitting(true);
+    try {
+      const response = await submitForm({
+        formType: 'admission',
+        parentName: formData.parentName,
+        childName: formData.childName,
+        phone: formData.phone,
+        email: formData.email,
+        grade: formData.grade,
+        message: `Child Age: ${formData.age || 'Not specified'}`
+      });
+
+      if (response && response.status === 'success') {
+        setShowSuccess(true);
+        setCooldown(true);
+        setCooldownSeconds(10); // 10-second spam protection lock
+      } else {
+        throw new Error(response?.message || 'Server error.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Submission connection error. We have preserved your inputs. Please check your network and submit again!");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleCloseSuccess = () => {
@@ -38,24 +110,9 @@ const AdmissionsForm = () => {
       age: '',
       grade: '',
       email: '',
+      honeypot: '',
     });
   };
-
-  const admissionSteps = [
-    { num: "1", title: "Enquiry & Campus Visit", desc: "Visit our secure campus in Shahpur Jat." },
-    { num: "2", title: "Admission Interaction", desc: "Friendly discussion with Principal Mrs. Komal Singh." },
-    { num: "3", title: "Form Submission", desc: "Submit physical document copies." },
-    { num: "4", title: "Document Verification", desc: "Verification check of Aadhaar, Birth certs, etc." },
-    { num: "5", title: "Admission Confirmation", desc: "Official confirmation and slot locking." }
-  ];
-
-  const requiredDocuments = [
-    "Birth Certificate",
-    "Child's Passport Photos",
-    "Child & Parents Aadhaar Copies",
-    "Address Proof (Utility Bill/Rent)",
-    "Previous School Records (If any)"
-  ];
 
   return (
     <section className="section" id="admission-form" style={{ backgroundColor: '#FFFFFF' }}>
@@ -71,7 +128,7 @@ const AdmissionsForm = () => {
         >
           <AlertTriangle size={20} style={{ flexShrink: 0 }} />
           <p style={{ margin: 0, fontSize: '0.95rem' }}>
-            <strong>Important Notice:</strong> Limited seats are available to ensure personal attention and quality learning for every child. Secure your slot today.
+            <strong>Important Notice:</strong> {schoolInfo.admissionsNotice}
           </p>
         </motion.div>
 
@@ -79,48 +136,52 @@ const AdmissionsForm = () => {
           
           {/* Left panel: admissions instructions */}
           <div className={styles.infoCol}>
-            <span className={styles.tag}>Admissions 2026-27</span>
+            <span className={styles.tag}>Admissions Open</span>
             <h2 className={styles.heading}>
               Start Your Child's <br />
               <span className={styles.highlight}>Kingdom Journey</span>
             </h2>
             
             {/* Admissions steps timeline */}
-            <div className={styles.stepsTimeline}>
-              <h4 style={{ fontFamily: 'Playfair Display', color: '#FFFFFF', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
-                <ClipboardList size={18} style={{ color: '#C8B39A' }} />
-                <span>Admission Process</span>
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {admissionSteps.map((step) => (
-                  <div key={step.num} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.15)', border: '1px solid rgba(255, 255, 255, 0.3)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.78rem', fontWeight: '700', flexShrink: 0 }}>
-                      {step.num}
+            {admissionSteps.length > 0 && (
+              <div className={styles.stepsTimeline}>
+                <h4 style={{ fontFamily: 'Playfair Display', color: '#FFFFFF', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
+                  <ClipboardList size={18} style={{ color: '#C8B39A' }} />
+                  <span>Admission Process</span>
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  {admissionSteps.map((step) => (
+                    <div key={step.num} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                      <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.15)', border: '1px solid rgba(255, 255, 255, 0.3)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.78rem', fontWeight: '700', flexShrink: 0 }}>
+                        {step.num}
+                      </div>
+                      <div>
+                        <h5 style={{ fontFamily: 'Lato', fontWeight: '700', color: '#FFFFFF', fontSize: '0.92rem', margin: 0 }}>{step.title}</h5>
+                        <p style={{ fontSize: '0.78rem', color: 'rgba(246, 241, 233, 0.7)', margin: 0, marginTop: '2px' }}>{step.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h5 style={{ fontFamily: 'Lato', fontWeight: '700', color: '#FFFFFF', fontSize: '0.92rem', margin: 0 }}>{step.title}</h5>
-                      <p style={{ fontSize: '0.78rem', color: 'rgba(246, 241, 233, 0.7)', margin: 0, marginTop: '2px' }}>{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Required Documents list */}
-            <div className={styles.docSection}>
-              <h4 style={{ fontFamily: 'Playfair Display', color: '#C8B39A', marginBottom: '12px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
-                <CheckSquare size={18} />
-                <span>Required Documents</span>
-              </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {requiredDocuments.map((doc, i) => (
-                  <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '0.88rem', color: '#FFFFFF', fontWeight: '400' }}>
-                    <span style={{ color: '#C8B39A', fontSize: '1rem' }}>✓</span>
-                    <span>{doc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {requiredDocuments.length > 0 && (
+              <div className={styles.docSection}>
+                <h4 style={{ fontFamily: 'Playfair Display', color: '#C8B39A', marginBottom: '12px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
+                  <CheckSquare size={18} />
+                  <span>Required Documents</span>
+                </h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {requiredDocuments.map((doc, i) => (
+                    <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '0.88rem', color: '#FFFFFF', fontWeight: '400' }}>
+                      <span style={{ color: '#C8B39A', fontSize: '1rem' }}>✓</span>
+                      <span>{doc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
           </div>
 
@@ -128,6 +189,17 @@ const AdmissionsForm = () => {
           <div className={styles.formCol}>
             <form onSubmit={handleSubmit} className={styles.realForm}>
               
+              {/* Bot-protection Honeypot field (hidden from user view) */}
+              <input 
+                type="text" 
+                name="honeypot" 
+                value={formData.honeypot} 
+                onChange={handleChange} 
+                style={{ display: 'none' }} 
+                tabIndex="-1" 
+                autoComplete="off" 
+              />
+
               <div className={styles.formGrid}>
                 
                 {/* Parent's Name */}
@@ -239,11 +311,22 @@ const AdmissionsForm = () => {
               <motion.button 
                 type="submit" 
                 className={styles.submitBtn}
+                disabled={submitting || cooldown}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
               >
-                <Send size={15} />
-                <span>Submit Admissions Inquiry</span>
+                {submitting ? (
+                  <Loader2 size={15} className="animate-spin" />
+                ) : (
+                  <Send size={15} />
+                )}
+                <span>
+                  {submitting 
+                    ? "Dispatching Inquiry..." 
+                    : cooldown 
+                      ? `Locked (${cooldownSeconds}s)` 
+                      : "Submit Admissions Inquiry"}
+                </span>
               </motion.button>
 
             </form>
@@ -291,3 +374,4 @@ const AdmissionsForm = () => {
 };
 
 export default AdmissionsForm;
+

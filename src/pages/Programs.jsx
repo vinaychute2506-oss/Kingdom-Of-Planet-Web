@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Baby, Smile, BookOpen, Check, Target, Compass, ArrowRight } from 'lucide-react';
-import { programsData } from '../data/programs';
+import { useCMS } from '../context/CMSContext';
+import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './Programs.module.scss';
 
@@ -11,14 +12,9 @@ const iconMap = {
   BookOpen: BookOpen
 };
 
-const programImages = {
-  toddcare: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600",
-  nursery: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600",
-  "junior-kg": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600",
-  "senior-kg": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600"
-};
-
 const Programs = () => {
+  const { programs } = useCMS();
+
   return (
     <div className={styles.programsPage}>
       
@@ -41,7 +37,7 @@ const Programs = () => {
         <div className="container">
           
           <div className={styles.programDetailsList}>
-            {programsData.map((prog, idx) => {
+            {programs.map((prog, idx) => {
               const isEven = idx % 2 === 0;
 
               return (
@@ -59,9 +55,10 @@ const Programs = () => {
                   >
                     <div className={styles.illustrationCard}>
                       <img 
-                        src={programImages[prog.id]} 
+                        src={prog.image} 
                         alt={prog.title} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        onError={(e) => { e.target.src = FALLBACK_IMAGES.program; }}
                         loading="lazy"
                       />
                       <div className={styles.imageOverlayContainer}>
@@ -90,7 +87,7 @@ const Programs = () => {
                       <div className={styles.featuresSection}>
                         <h4>Key Focus Milestones:</h4>
                         <ul className={styles.checkList}>
-                          {prog.features.map((feat, i) => (
+                          {prog.features && prog.features.map((feat, i) => (
                             <li key={i}>
                               <Check className={styles.checkIcon} size={14} />
                               <span>{feat}</span>
@@ -103,7 +100,7 @@ const Programs = () => {
                       <div className={styles.activitiesSection}>
                         <h4>Specialized Activities:</h4>
                         <ul className={styles.checkList}>
-                          {prog.activities.map((act, i) => (
+                          {prog.activities && prog.activities.map((act, i) => (
                             <li key={i}>
                               <span className={styles.bulletDot} />
                               <span>{act}</span>
@@ -155,3 +152,4 @@ const Programs = () => {
 };
 
 export default Programs;
+

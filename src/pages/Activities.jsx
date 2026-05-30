@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Clock } from 'lucide-react';
-import { activitiesData } from '../data/activities';
+import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Users, Heart, Sun, Clock, BookOpen } from 'lucide-react';
+import { useCMS } from '../context/CMSContext';
+import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './ActivitiesPage.module.scss';
 
@@ -11,30 +12,23 @@ const iconMap = {
   Activity: Activity,
   Cpu: Cpu,
   Sparkles: Sparkles,
-  Calendar: Calendar
-};
-
-const activityImages = {
-  "art-craft": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=500",
-  "music-dance": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=500",
-  "storytelling-rhymes": "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=500",
-  "indoor-outdoor-games": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=500",
-  "sensory-activities": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=500",
-  "festival-celebrations": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=500",
-  "personality-development": "https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=500",
-  "creative-learning": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=500",
-  "motor-skill-development": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=500",
-  "fun-learning-activities": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=500"
+  Calendar: Calendar,
+  Users: Users,
+  Heart: Heart,
+  Sun: Sun,
+  Clock: Clock,
+  BookOpen: BookOpen
 };
 
 const filterCategories = ["All", "Creative", "Physical", "Cognitive", "Social"];
 
 const Activities = () => {
+  const { activities } = useCMS();
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredActivities = activeFilter === "All"
-    ? activitiesData
-    : activitiesData.filter(act => act.category === activeFilter);
+    ? activities
+    : activities.filter(act => act.category === activeFilter);
 
   return (
     <div className={styles.activitiesPage}>
@@ -98,9 +92,10 @@ const Activities = () => {
                     {/* Top Image Banner */}
                     <div className={styles.cardImageWrapper}>
                       <img 
-                        src={activityImages[act.id]} 
+                        src={FALLBACK_IMAGES.activity} 
                         alt={act.title} 
                         className={styles.cardImage} 
+                        onError={(e) => { e.target.src = FALLBACK_IMAGES.activity; }}
                         loading="lazy" 
                       />
                       <span className={styles.categoryBadge}>{act.category}</span>
@@ -114,8 +109,8 @@ const Activities = () => {
                         </div>
                         <h3 className={styles.cardTitle}>{act.title}</h3>
                       </div>
-                      <p className={styles.cardDesc}>{act.tags}</p>
-                      <p className={styles.cardDetails}>{act.description}</p>
+                      <p className={styles.cardDesc}>{act.description}</p>
+                      <p className={styles.cardDetails}>{act.details}</p>
 
                       <div className={styles.scheduleRow}>
                         <Clock size={14} className={styles.clockIcon} />
@@ -137,3 +132,4 @@ const Activities = () => {
 };
 
 export default Activities;
+

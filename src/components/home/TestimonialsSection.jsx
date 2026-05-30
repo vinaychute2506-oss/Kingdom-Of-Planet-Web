@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
-import { testimonialsData } from '../../data/testimonials';
+import { useCMS } from '../../context/CMSContext';
+import { FALLBACK_IMAGES } from '../../config/cms';
 import SectionTitle from '../common/SectionTitle';
 import styles from './TestimonialsSection.module.scss';
 
 const TestimonialsSection = () => {
+  const { testimonials } = useCMS();
+
   return (
     <section className="section section-accent" id="home-testimonials" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px' }}>
       <div className="container">
@@ -19,7 +22,7 @@ const TestimonialsSection = () => {
         />
 
         <div className={styles.testimonialsGrid}>
-          {testimonialsData.map((test, index) => {
+          {testimonials.map((test, index) => {
             return (
               <motion.div 
                 className={styles.testimonialCard}
@@ -37,7 +40,7 @@ const TestimonialsSection = () => {
 
                 {/* Stars Row (monochromatic soft gold) */}
                 <div className={styles.starsRow}>
-                  {[...Array(test.rating)].map((_, i) => (
+                  {[...Array(test.rating || 5)].map((_, i) => (
                     <Star key={i} size={14} fill="currentColor" color="currentColor" />
                   ))}
                 </div>
@@ -47,7 +50,12 @@ const TestimonialsSection = () => {
                 {/* Author Card Info */}
                 <div className={styles.authorSection}>
                   <div className={styles.avatarBox}>
-                    <img src={test.avatar} alt={test.author} className={styles.avatarImg} />
+                    <img 
+                      src={test.avatar} 
+                      alt={test.author} 
+                      className={styles.avatarImg} 
+                      onError={(e) => { e.target.src = FALLBACK_IMAGES.testimonial; }}
+                    />
                   </div>
                   <div className={styles.authorInfo}>
                     <h4 className={styles.authorName}>{test.author}</h4>
@@ -66,3 +74,4 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
+

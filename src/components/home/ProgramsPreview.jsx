@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Baby, Smile, BookOpen, ChevronRight, GraduationCap } from 'lucide-react';
-import { programsData } from '../../data/programs';
+import { useCMS } from '../../context/CMSContext';
 import SectionTitle from '../common/SectionTitle';
 import styles from './ProgramsPreview.module.scss';
 
@@ -13,6 +13,7 @@ const iconMap = {
 };
 
 const ProgramsPreview = () => {
+  const { programs } = useCMS();
   const handleLearnMore = () => {
     window.location.hash = '#programs';
   };
@@ -30,7 +31,7 @@ const ProgramsPreview = () => {
         />
 
         <div className={styles.programsGrid}>
-          {programsData.map((program, index) => {
+          {programs.map((program, index) => {
             // Find correct icon component or fallback to GraduationCap
             const IconComponent = iconMap[program.icon] || GraduationCap;
             
@@ -75,3 +76,4 @@ const ProgramsPreview = () => {
 };
 
 export default ProgramsPreview;
+

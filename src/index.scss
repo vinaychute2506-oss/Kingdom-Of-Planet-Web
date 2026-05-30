@@ -139,3 +139,24 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background-color: $color-wine;
 }
+
+// Warm Beige Editorial Shimmer Skeleton Loader
+@keyframes luxury-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.luxury-skeleton {
+  background: linear-gradient(90deg, #EADFCF 25%, #F6F1E9 50%, #EADFCF 75%);
+  background-size: 200% 100%;
+  animation: luxury-shimmer 2s infinite linear;
+  border-radius: 16px;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid rgba(234, 223, 207, 0.4);
+}
+

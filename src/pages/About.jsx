@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Sparkles, BookOpen, Music, Users, Compass } from 'lucide-react';
-import { teachersData } from '../data/teachers';
+import { useCMS } from '../context/CMSContext';
+import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
 import MethodologySection from '../components/common/MethodologySection';
 import styles from './About.module.scss';
@@ -30,6 +31,8 @@ const facilitiesList = [
 ];
 
 const About = () => {
+  const { schoolInfo, teachers } = useCMS();
+
   return (
     <div className={styles.aboutPage}>
       
@@ -53,9 +56,14 @@ const About = () => {
           <div className={styles.principalCard}>
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Komal Singh" loading="lazy" />
+                <img 
+                  src={FALLBACK_IMAGES.teacher} 
+                  alt={schoolInfo.principalName} 
+                  onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
+                  loading="lazy" 
+                />
               </div>
-              <h3 className={styles.principalName}>Mrs. Komal Singh</h3>
+              <h3 className={styles.principalName}>{schoolInfo.principalName}</h3>
               <p className={styles.principalRole}>Founder & Principal</p>
             </div>
             
@@ -63,17 +71,17 @@ const About = () => {
               <span className={styles.quoteMark}>“</span>
               <h3 className={styles.messageTitle}>A Warm Welcome to Our Learning Kingdom</h3>
               <p className={styles.messageText}>
-                At <strong>Kingdom of Learning Pre School</strong>, we believe every child is a unique explorer. Our modern early childhood learning center is dedicated to providing a safe, joyful, and engaging environment for young learners.
+                At <strong>{schoolInfo.schoolName}</strong>, we believe every child is a unique explorer. Our modern early childhood learning center is dedicated to providing a safe, joyful, and engaging environment for young learners.
               </p>
               <p className={styles.messageText}>
-                Through activity-based and play-way learning methods, we focus on the overall development of every child — nurturing creativity, confidence, communication, social skills, emotional growth, and cognitive abilities. 
+                {schoolInfo.principalBio}
               </p>
               <p className={styles.messageText}>
                 We maintain an exceptionally low student-to-teacher ratio to confirm every child receives focused diagnostic guidance. I invite you to visit our secure campus in Shahpur Jat, New Delhi and experience how we make learning come alive!
               </p>
               <div className={styles.signature}>
-                <p className={styles.sigName}>Mrs. Komal Singh</p>
-                <p className={styles.sigTitle}>Founder & Principal, Kingdom of Learning Pre School</p>
+                <p className={styles.sigName}>{schoolInfo.principalName}</p>
+                <p className={styles.sigTitle}>Founder & Principal, {schoolInfo.schoolName}</p>
               </div>
             </div>
           </div>
@@ -187,7 +195,7 @@ const About = () => {
           />
 
           <div className={styles.teachersGrid}>
-            {teachersData.map((teacher, index) => {
+            {teachers.map((teacher, index) => {
               return (
                 <motion.div 
                   className={styles.teacherPolaroid}
@@ -198,7 +206,12 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
                   <div className={styles.teacherImgBox}>
-                    <img src={teacher.avatar} alt={teacher.name} loading="lazy" />
+                    <img 
+                      src={teacher.avatar} 
+                      alt={teacher.name} 
+                      onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
+                      loading="lazy" 
+                    />
                   </div>
                   <div className={styles.teacherDetails}>
                     <h3 className={styles.tName}>{teacher.name}</h3>
@@ -218,3 +231,4 @@ const About = () => {
 };
 
 export default About;
+

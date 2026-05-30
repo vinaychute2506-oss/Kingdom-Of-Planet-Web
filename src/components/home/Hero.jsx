@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Calendar } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
+import { FALLBACK_IMAGES } from '../../config/cms';
 import styles from './Hero.module.scss';
 
 const containerVariants = {
@@ -24,6 +26,8 @@ const itemVariants = {
 };
 
 const Hero = () => {
+  const { schoolInfo } = useCMS();
+
   const handleProgramsClick = () => {
     window.location.hash = '#programs';
   };
@@ -37,7 +41,7 @@ const Hero = () => {
       {/* Cinematic Luxury Background Video */}
       <video 
         className={styles.bgVideo} 
-        src="/hero-video.mp4" 
+        src={FALLBACK_IMAGES.heroVideo} 
         autoPlay 
         loop 
         muted 
@@ -58,7 +62,12 @@ const Hero = () => {
             className={styles.heroLogoBranding}
             variants={itemVariants}
           >
-            <img src="/logo.png" alt="Kingdom of Learning Crest" className={styles.heroLogoImg} />
+            <img 
+              src={FALLBACK_IMAGES.logo} 
+              alt={schoolInfo.schoolName} 
+              className={styles.heroLogoImg} 
+              onError={(e) => { e.target.src = FALLBACK_IMAGES.logo; }}
+            />
           </motion.div>
 
           <motion.div 
@@ -141,13 +150,14 @@ const Hero = () => {
             >
               <div className={styles.photoImgWrapper}>
                 <img 
-                  src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=500" 
+                  src={FALLBACK_IMAGES.activity} 
                   alt="Creative watercolors painting" 
+                  onError={(e) => { e.target.src = FALLBACK_IMAGES.activity; }}
                 />
               </div>
               <div className={styles.photoCaption}>
                 <h4>Painting Circle</h4>
-                <p>Learn Hour, 2026</p>
+                <p>Learn Hour</p>
               </div>
             </motion.div>
 
@@ -160,13 +170,14 @@ const Hero = () => {
             >
               <div className={styles.photoImgWrapper}>
                 <img 
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=500" 
+                  src={FALLBACK_IMAGES.classroom} 
                   alt="Phonics story library time" 
+                  onError={(e) => { e.target.src = FALLBACK_IMAGES.classroom; }}
                 />
               </div>
               <div className={styles.photoCaption}>
                 <h4>Storytelling Nest</h4>
-                <p>Nursery, 2026</p>
+                <p>Nursery Nest</p>
               </div>
             </motion.div>
           </div>
@@ -178,3 +189,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

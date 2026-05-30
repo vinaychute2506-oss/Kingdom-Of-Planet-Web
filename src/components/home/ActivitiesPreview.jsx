@@ -1,39 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Palette, Activity, Music, Cpu, ArrowRight } from 'lucide-react';
+import { Palette, Activity, Music, Cpu, Sparkles, Calendar, Users, Heart, Sun, Clock, BookOpen, ArrowRight } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
 import styles from './ActivitiesPreview.module.scss';
 
-const activitiesList = [
-  {
-    id: "creative-arts",
-    title: "Creative Arts",
-    icon: Palette,
-    tags: "Drawing, Painting, Craft"
-  },
-  {
-    id: "sports-fitness",
-    title: "Sports & Fitness",
-    icon: Activity,
-    tags: "Football, Yoga, Athletics"
-  },
-  {
-    id: "music-dance",
-    title: "Music & Dance",
-    icon: Music,
-    tags: "Vocal, Guitar, Choreography"
-  },
-  {
-    id: "smart-learning",
-    title: "Smart Learning",
-    icon: Cpu,
-    tags: "STEM, Coding, Robotics"
-  }
-];
+const iconMap = {
+  Palette,
+  Activity,
+  Music,
+  Cpu,
+  Sparkles,
+  Calendar,
+  Users,
+  Heart,
+  Sun,
+  Clock,
+  BookOpen
+};
 
 const ActivitiesPreview = () => {
+  const { activities } = useCMS();
   const handleViewAll = () => {
     window.location.hash = '#activities';
   };
+
+  // Slice first 4 activities to match layout structure
+  const previewList = activities.slice(0, 4);
 
   return (
     <section className="section" id="home-activities" style={{ backgroundColor: '#FFFFFF' }}>
@@ -62,8 +54,8 @@ const ActivitiesPreview = () => {
 
         {/* Right Side: The 4 Columns cards */}
         <div className={styles.rightCol}>
-          {activitiesList.map((act, index) => {
-            const IconComponent = act.icon;
+          {previewList.map((act, index) => {
+            const IconComponent = iconMap[act.icon] || Sparkles;
             
             return (
               <motion.div 
@@ -81,7 +73,7 @@ const ActivitiesPreview = () => {
 
                 <div className={styles.cardContent}>
                   <h3 className={styles.cardTitle}>{act.title}</h3>
-                  <p className={styles.cardTags}>{act.tags}</p>
+                  <p className={styles.cardTags}>{act.description}</p>
                 </div>
 
               </motion.div>
@@ -95,3 +87,4 @@ const ActivitiesPreview = () => {
 };
 
 export default ActivitiesPreview;
+

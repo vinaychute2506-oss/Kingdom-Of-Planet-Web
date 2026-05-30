@@ -1,8 +1,11 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Clock, Compass } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
+import { FALLBACK_IMAGES } from '../../config/cms';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
+  const { schoolInfo } = useCMS();
   const currentYear = new Date().getFullYear();
 
   const handleQuickLink = (hash) => {
@@ -24,19 +27,24 @@ const Footer = () => {
         {/* Info Column */}
         <div className={styles.infoCol}>
           <a href="#home" className={styles.logo}>
-            <img src="/logo.png" alt="Kingdom of Learning Pre School" className={styles.logoImg} />
+            <img 
+              src={FALLBACK_IMAGES.logo} 
+              alt={schoolInfo.schoolName} 
+              className={styles.logoImg} 
+              onError={(e) => { e.target.src = FALLBACK_IMAGES.logo; }}
+            />
           </a>
           <p className={styles.tagline}>
             A premium early childhood learning center in New Delhi dedicated to providing safe, activity-based play-way education for young minds.
           </p>
           <div className={styles.socials}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#3b5998' }}>
+            <a href={schoolInfo.facebookUrl || "https://facebook.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#3b5998' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#e1306c' }}>
+            <a href={schoolInfo.instagramUrl || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#e1306c' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#ff0000' }}>
+            <a href={schoolInfo.youtubeUrl || "https://youtube.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#ff0000' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.54a29 29 0 0 0 .46 5.12 2.78 2.78 0 0 0 1.95 1.96c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96 29 29 0 0 0 .46-5.12 29 29 0 0 0-.46-5.12z"/><polyline points="9.75 15.02 15.5 11.54 9.75 8.06 9.75 15.02"/></svg>
             </a>
           </div>
@@ -61,15 +69,15 @@ const Footer = () => {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={20} />
-              <span>190-A, G/F Shahpur Jat, New Delhi - 110049</span>
+              <span>{schoolInfo.address}</span>
             </li>
             <li>
               <Phone size={20} />
-              <span>+91 9667708285</span>
+              <span>{schoolInfo.phone}</span>
             </li>
             <li>
               <Mail size={20} />
-              <span>admin@kingdomoflearning.com</span>
+              <span>{schoolInfo.email}</span>
             </li>
           </ul>
         </div>
@@ -81,14 +89,14 @@ const Footer = () => {
             <Clock size={20} />
             <div>
               <p className={styles.days}>Toddcare Hours</p>
-              <p className={styles.time}>Mon - Fri: 09:00 AM - 12:00 PM</p>
+              <p className={styles.time}>{schoolInfo.toddcareTimings}</p>
             </div>
           </div>
           <div className={styles.hoursBox}>
             <Compass size={20} />
             <div>
               <p className={styles.days}>Nursery & KG Hours</p>
-              <p className={styles.time}>Mon - Fri: 09:00 AM - 01:00 PM</p>
+              <p className={styles.time}>{schoolInfo.nurseryKGTimings}</p>
             </div>
           </div>
         </div>
@@ -97,8 +105,8 @@ const Footer = () => {
 
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <p>© {currentYear} Kingdom of Learning Pre School. All Rights Reserved. Client Presentation Demo.</p>
-          <p className={styles.credits}>Warmth • Creativity • Trust</p>
+          <p>© {currentYear} {schoolInfo.schoolName}. All Rights Reserved. Client Presentation Demo.</p>
+          <p className={styles.credits}>{schoolInfo.tagline}</p>
         </div>
       </div>
 
@@ -107,3 +115,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

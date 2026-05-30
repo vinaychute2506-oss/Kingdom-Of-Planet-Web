@@ -1,30 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { useCMS } from '../context/CMSContext';
+import { submitForm } from '../services/api';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './Contact.module.scss';
 
 const Contact = () => {
+  const { schoolInfo } = useCMS();
+
   const [formData, setFormData] = useState({
     parentName: '',
     phone: '',
     email: '',
-    message: ''
+    message: '',
+    honeypot: '', // bot protection honeypot
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
+  const [cooldownSeconds, setCooldownSeconds] = useState(0);
+
+  // Cooldown countdown loop
+  useEffect(() => {
+    let interval = null;
+    if (cooldown && cooldownSeconds > 0) {
+      interval = setInterval(() => {
+        setCooldownSeconds((prev) => prev - 1);
+      }, 1000);
+    } else if (cooldownSeconds === 0) {
+      setCooldown(false);
+    }
+    return () => clearInterval(interval);
+  }, [cooldown, cooldownSeconds]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.parentName || !formData.phone) {
-      alert("Please fill in Parent Name and Phone number to submit message!");
+
+    if (cooldown) {
+      alert(`Rate-limiting: Please wait ${cooldownSeconds}s before sending another message.`);
       return;
     }
-    setShowModal(true);
+
+    // Bot detection honey trap
+    if (formData.honeypot) {
+      console.warn("Spam-bot trigger intercepted!");
+      setShowModal(true);
+      return;
+    }
+
+    if (!formData.parentName || !formData.phone || !formData.message) {
+      alert("Please fill in all required fields to submit message!");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const response = await submitForm({
+        formType: 'contact',
+        parentName: formData.parentName,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message
+      });
+
+      if (response && response.status === 'success') {
+        setShowModal(true);
+        setCooldown(true);
+        setCooldownSeconds(10); // 10-second spam protection lock
+      } else {
+        throw new Error(response?.message || 'Server error.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Message dispatch failed due to connection error. We preserved your inputs. Please check your network and try again!");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleCloseModal = () => {
@@ -33,7 +90,8 @@ const Contact = () => {
       parentName: '',
       phone: '',
       email: '',
-      message: ''
+      message: '',
+      honeypot: '',
     });
   };
 
@@ -71,6 +129,18 @@ const Contact = () => {
               />
 
               <form onSubmit={handleSubmit} className={styles.contactForm}>
+                
+                {/* Bot-protection Honeypot field (hidden from view) */}
+                <input 
+                  type="text" 
+                  name="honeypot" 
+                  value={formData.honeypot} 
+                  onChange={handleChange} 
+                  style={{ display: 'none' }} 
+                  tabIndex="-1" 
+                  autoComplete="off" 
+                />
+
                 <div className={styles.formGroup}>
                   <label htmlFor="parentName">Parent's Full Name *</label>
                   <input 
@@ -126,11 +196,22 @@ const Contact = () => {
                 <motion.button 
                   type="submit" 
                   className={styles.sendBtn}
+                  disabled={submitting || cooldown}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Send size={16} strokeWidth={1.5} />
-                  <span>Send Direct Message</span>
+                  {submitting ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : (
+                    <Send size={16} strokeWidth={1.5} />
+                  )}
+                  <span>
+                    {submitting 
+                      ? "Dispatching Message..." 
+                      : cooldown 
+                        ? `Locked (${cooldownSeconds}s)` 
+                        : "Send Direct Message"}
+                  </span>
                 </motion.button>
               </form>
             </div>
@@ -141,7 +222,7 @@ const Contact = () => {
               {/* Real Google Maps embed centering on Shahpur Jat */}
               <div className={styles.mapCard}>
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14015.460458428588!2d77.2066373!3d28.5738096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd00318029c7%3A0x444d32a9a463a56!2sShahpur%20Jat%2C%20New%20Delhi%2C%20Delhi%20110049!5e0!3m2!1sen!2sin!4v1716482937512!5m2!1sen!2sin" 
+                  src={schoolInfo.mapEmbedUrl} 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
@@ -161,7 +242,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4>School Location</h4>
-                    <p>190-A, G/F Shahpur Jat, New Delhi - 110049</p>
+                    <p>{schoolInfo.address}</p>
                   </div>
                 </div>
 
@@ -171,7 +252,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4>Admissions Hotline</h4>
-                    <p>+91 9667708285</p>
+                    <p>{schoolInfo.phone}</p>
                   </div>
                 </div>
 
@@ -181,7 +262,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4>Professional Email</h4>
-                    <p>admin@kingdomoflearning.com<br />singh.komal.tvf@gmail.com</p>
+                    <p>{schoolInfo.email}<br />{schoolInfo.altEmail}</p>
                   </div>
                 </div>
 
@@ -191,7 +272,10 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4>School Timings</h4>
-                    <p><strong>Toddcare:</strong> Mon - Fri 9:00 AM - 12:00 PM<br /><strong>Nursery/KG:</strong> Mon - Fri 9:00 AM - 1:00 PM</p>
+                    <p>
+                      <strong>Toddcare:</strong> {schoolInfo.toddcareTimings}<br />
+                      <strong>Nursery/KG:</strong> {schoolInfo.nurseryKGTimings}
+                    </p>
                   </div>
                 </div>
 
@@ -229,7 +313,7 @@ const Contact = () => {
                 Dear <strong>{formData.parentName}</strong>, your message was successfully sent.
               </p>
               <p className={styles.mSubtext}>
-                We will contact you at <strong>{formData.phone}</strong> or send details to <strong>singh.komal.tvf@gmail.com</strong> shortly.
+                We will contact you at <strong>{formData.phone}</strong> or send details to <strong>{schoolInfo.altEmail}</strong> shortly.
               </p>
               <button className={styles.mBtn} onClick={handleCloseModal}>
                 Dismiss Panel
