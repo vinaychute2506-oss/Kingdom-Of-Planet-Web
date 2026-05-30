@@ -1,5 +1,5 @@
 /**
- * KINGDOM OF LEARNING PRE SCHOOL — NO-BACKEND DYNAMIC CMS API
+ * KINGDOM OF LEARNING PRE SCHOOL — NO-BACKEND DYNAMIC CMS API & ANALYTICS PLATFORM
  * 
  * INSTRUCTIONS FOR DEPLOYMENT:
  * 1. Open Google Sheets (create a sheet with SchoolInfo, Programs, Activities, Testimonials, Gallery, Admissions, Teachers, Routine, AdmissionsForm, ContactForm tabs).
@@ -7,11 +7,12 @@
  * 3. Delete any code in the editor, paste this entire script, and click save.
  * 4. Click "Deploy" (top right) -> "New deployment".
  * 5. Under select type, click the Gear icon and choose "Web app".
- * 6. Set Description: "KOL Preschool CMS API"
+ * 6. Set Description: "KOL Preschool CMS API with Analytics"
  * 7. Set "Execute as": "Me (your-email@gmail.com)"
  * 8. Set "Who has access": "Anyone"
  * 9. Click "Deploy". Authorize any requested permissions.
  * 10. Copy the generated "Web app URL" and paste it in your React project's .env file as VITE_CMS_API.
+ * 11. Optional Daily Backup setup: In Apps Script, click the Triggers icon (clock on the left), click "Add Trigger", set function to run: "createDailyBackup", type: "Time-driven", timer: "Daily timer", time: "Midnight to 1 AM".
  */
 
 function doGet(e) {
@@ -22,8 +23,8 @@ function doGet(e) {
   for (var i = 0; i < sheets.length; i++) {
     var sheetName = sheets[i].getName();
     
-    // Skip lead storage sheets from GET reading
-    if (sheetName === "AdmissionsForm" || sheetName === "ContactForm") {
+    // Skip lead storage and analytics sheets from GET reading
+    if (sheetName === "AdmissionsForm" || sheetName === "ContactForm" || sheetName === "AnalyticsDashboard" || sheetName.indexOf("Backup_") === 0) {
       continue;
     }
     
@@ -52,10 +53,56 @@ function doPost(e) {
       params = e.parameter;
     }
     
-    var formType = params.formType || "contact"; // "admission" or "contact"
-    var targetSheetName = formType === "admission" ? "AdmissionsForm" : "ContactForm";
-    
+    var formType = params.formType || "contact"; // "admission", "contact", or "analytics"
     var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    
+    // ==========================================
+    // BRANDED WEB ENGAGEMENT ANALYTICS TRACKING
+    // ==========================================
+    if (formType === "analytics") {
+      var metricName = params.metric || "WhatsAppClick";
+      var dashboardSheet = spreadsheet.getSheetByName("AnalyticsDashboard");
+      
+      // Auto initialize Analytics sheet if not present
+      if (!dashboardSheet) {
+        dashboardSheet = spreadsheet.insertSheet("AnalyticsDashboard");
+        dashboardSheet.appendRow(["Metric Name", "Value", "Description", "Last Updated"]);
+        dashboardSheet.appendRow(["Total Admissions Inquiries", "=COUNTA(AdmissionsForm!A:A)-1", "Formula counting AdmissionsForm rows", new Date()]);
+        dashboardSheet.appendRow(["Total Contact Messages", "=COUNTA(ContactForm!A:A)-1", "Formula counting ContactForm rows", new Date()]);
+        dashboardSheet.appendRow(["Total WhatsApp Clicks", 0, "Counter logging direct clicks on WhatsApp", new Date()]);
+        dashboardSheet.getRange("A1:D1").setFontWeight("bold").setBackground("#6B1E2E").setFontColor("#FFFFFF");
+        dashboardSheet.setColumnWidth(1, 240);
+        dashboardSheet.setColumnWidth(2, 100);
+        dashboardSheet.setColumnWidth(3, 300);
+        dashboardSheet.setColumnWidth(4, 180);
+      }
+      
+      // Find and increment target metric (e.g. WhatsApp clicks)
+      var dashboardData = dashboardSheet.getDataRange().getValues();
+      var found = false;
+      for (var idx = 1; idx < dashboardData.length; idx++) {
+        if (dashboardData[idx][0] === "Total WhatsApp Clicks" && metricName === "WhatsAppClick") {
+          var currentVal = Number(dashboardData[idx][1]) || 0;
+          dashboardSheet.getRange(idx + 1, 2).setValue(currentVal + 1);
+          dashboardSheet.getRange(idx + 1, 4).setValue(new Date());
+          found = true;
+          break;
+        }
+      }
+      
+      if (!found && metricName === "WhatsAppClick") {
+        dashboardSheet.appendRow(["Total WhatsApp Clicks", 1, "Counter logging direct clicks on WhatsApp", new Date()]);
+      }
+      
+      return ContentService.createTextOutput(JSON.stringify({ status: "success", message: "Metric tracked" }))
+        .setMimeType(ContentService.MimeType.JSON)
+        .setHeader("Access-Control-Allow-Origin", "*");
+    }
+    
+    // ==========================================
+    // LEAD CAPTURE SYSTEM (Admissions & Contacts)
+    // ==========================================
+    var targetSheetName = formType === "admission" ? "AdmissionsForm" : "ContactForm";
     var sheet = spreadsheet.getSheetByName(targetSheetName);
     
     // Create tab dynamically if not exists
@@ -65,6 +112,7 @@ function doPost(e) {
         ? ["Timestamp", "Parent Name", "Child Name", "Phone", "Email", "Program/Grade", "Message"]
         : ["Timestamp", "Parent Name", "Phone", "Email", "Message"];
       sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#6B1E2E").setFontColor("#FFFFFF");
     }
     
     var row = [];
@@ -93,7 +141,7 @@ function doPost(e) {
     sheet.appendRow(row);
     
     // ==========================================
-    // SUCCESS EMAIL AUTOMATION (Apps Script Trigger)
+    // PREMIUM EMAIL AUTOMATION (Branded & HTML-Styled)
     // ==========================================
     try {
       // 1. Fetch school emails from SchoolInfo sheet if available
@@ -112,43 +160,108 @@ function doPost(e) {
       }
 
       var subject = formType === "admission"
-        ? "Admission Inquiry: " + (params.childName || "New Child") + " (" + (params.grade || "Preschool") + ")"
-        : "Admissions Direct Message from " + (params.parentName || "Parent");
+        ? "⭐ Admission Inquiry: " + (params.childName || "New Child") + " (" + (params.grade || "Preschool") + ")"
+        : "✉️ Admissions Direct Message from " + (params.parentName || "Parent");
 
-      var adminBody = "Dear Principal Mrs. Komal Singh,\n\n" +
-        "A new parent inquiry has been registered on the website:\n\n" +
-        "----------------------------------------\n" +
-        "Form Type: " + (formType === "admission" ? "Admissions Enrollment Form" : "Contact Message Form") + "\n" +
-        "Parent Name: " + (params.parentName || params.name || "N/A") + "\n" +
-        (formType === "admission" ? "Child Name: " + (params.childName || "N/A") + "\n" : "") +
-        "Phone Number: " + (params.phone || "N/A") + "\n" +
-        "Email Address: " + (params.email || "N/A") + "\n" +
-        (formType === "admission" ? "Class Program: " + (params.grade || "N/A") + "\n" : "") +
-        "Message/Notes: " + (params.message || "None") + "\n" +
-        "Timestamp: " + timestamp + "\n" +
-        "----------------------------------------\n\n" +
-        "Check your Google Sheet 'Kingdom of Learning Admissions' under the log tab '" + targetSheetName + "' to view full entries.\n\n" +
-        "Warm regards,\n" +
-        "KOL Digital System Auto-Mailer";
+      var sheetUrl = spreadsheet.getUrl();
+
+      // HTML Notice for Principal Mrs. Komal Singh
+      var adminHtml = '<div style="background-color: #FAF6EE; padding: 40px 20px; font-family: \'Georgia\', serif; color: #3A2F2B;">' +
+        '<div style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF; border-radius: 20px; box-shadow: 0 10px 30px rgba(58, 47, 43, 0.05); overflow: hidden; border: 1px solid #EADFCF;">' +
+        '<div style="background-color: #6B1E2E; padding: 30px; text-align: center; border-bottom: 3px solid #C8B39A;">' +
+        '<h1 style="color: #FFFFFF; font-size: 22px; margin: 0; font-family: \'Playfair Display\', \'Georgia\', serif; font-weight: normal; letter-spacing: 1px;">New Parent Inquiry Registered</h1>' +
+        '</div>' +
+        '<div style="padding: 35px 30px; font-family: \'Helvetica Neue\', \'Arial\', sans-serif; font-size: 15px; line-height: 1.6;">' +
+        '<p>Dear Principal Mrs. Komal Singh,</p>' +
+        '<p>A new visitor has submitted an inquiry on the <strong>Kingdom of Learning Pre School</strong> platform. Here are the logged details:</p>' +
+        '<div style="background-color: #F6F1E9; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #EADFCF;">' +
+        '<table style="width: 100%; border-collapse: collapse; font-size: 14px;">' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05); width: 40%;"><strong>Form Source:</strong></td><td style="padding: 8px 0; color: #6B1E2E; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>' + (formType === "admission" ? "Admissions Enrollment Form" : "Contact Message Form") + '</strong></td></tr>' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Parent Name:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.parentName || params.name || "N/A") + '</td></tr>' +
+        (formType === "admission" ? '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Child Name:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.childName || "N/A") + '</td></tr>' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Class Program:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.grade || "N/A") + '</td></tr>' : '') +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Phone Number:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.phone || "N/A") + '</td></tr>' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Email Address:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.email || "N/A") + '</td></tr>' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; vertical-align: top;"><strong>Message/Notes:</strong></td><td style="padding: 8px 0; color: #3A2F2B; white-space: pre-wrap;">' + (params.message || "None") + '</td></tr>' +
+        '</table>' +
+        '</div>' +
+        '<p style="font-size: 13px; color: #7E6F6A;">The entry has been successfully logged inside your Google Sheet under the log tab <strong>' + targetSheetName + '</strong> with timestamp <strong>' + timestamp + '</strong>.</p>' +
+        '<div style="text-align: center; margin: 35px 0 10px 0;">' +
+        '<a href="' + sheetUrl + '" style="background-color: #6B1E2E; color: #FFFFFF; text-decoration: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(107,30,46,0.1);">Open Google Sheet Logs</a>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 
       // Dispatch notice email to School Admin/Principal
-      MailApp.sendEmail(adminEmail, subject, adminBody);
+      MailApp.sendEmail({
+        to: adminEmail,
+        subject: subject,
+        htmlBody: adminHtml
+      });
 
-      // 2. Dispatch receipt email to Parent
+      // 2. Dispatch gorgeous, styled, trustworthy HTML receipt email to Parent
       if (params.email) {
         var parentSubject = "We have received your enrollment inquiry! — Kingdom of Learning";
-        var parentBody = "Dear " + (params.parentName || "Parent") + ",\n\n" +
-          "Thank you for contacting Kingdom of Learning Pre School. We are thrilled to welcome you to our learning family!\n\n" +
-          "We have successfully registered your inquiry:\n" +
-          "- Child Name: " + (params.childName || "Your child") + "\n" +
-          "- Requested Program: " + (params.grade || "Preschool stage") + "\n\n" +
-          "Our admissions coordinator is reviewing your details and will call you at " + (params.phone || "your contact number") + " shortly to answer your questions and arrange a secure campus visit to Shahpur Jat.\n\n" +
-          "Warm regards,\n" +
-          "Admissions Office\n" +
-          "Kingdom of Learning Pre School\n" +
-          "Delhi Sanctuary: Warmth • Creativity • Trust";
+        
+        var parentHtml = '<div style="background-color: #F6F1E9; padding: 40px 20px; font-family: \'Georgia\', serif; color: #3A2F2B;">' +
+          '<div style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF; border-radius: 20px; box-shadow: 0 10px 30px rgba(58, 47, 43, 0.05); overflow: hidden; border: 1px solid #EADFCF;">' +
+          
+          '<!-- Header Banner -->' +
+          '<div style="background-color: #6B1E2E; padding: 40px 20px; text-align: center; border-bottom: 3px solid #C8B39A;">' +
+          '<h1 style="color: #FFFFFF; font-size: 24px; margin: 0 0 10px 0; font-family: \'Playfair Display\', \'Georgia\', serif; font-weight: normal; letter-spacing: 1px;">Kingdom of Learning</h1>' +
+          '<p style="color: #C8B39A; font-size: 13px; margin: 0; text-transform: uppercase; letter-spacing: 2px;">Warmth &bull; Creativity &bull; Trust</p>' +
+          '</div>' +
+          
+          '<!-- Body Content -->' +
+          '<div style="padding: 40px 30px; font-family: \'Helvetica Neue\', \'Arial\', sans-serif; font-size: 15px; line-height: 1.6; color: #3A2F2B;">' +
+          '<h2 style="font-family: \'Playfair Display\', \'Georgia\', serif; color: #6B1E2E; font-size: 20px; font-weight: normal; margin-top: 0; margin-bottom: 20px;">Welcome to Our Learning Family!</h2>' +
+          '<p>Dear ' + (params.parentName || "Parent") + ',</p>' +
+          '<p>Thank you for contacting <strong>Kingdom of Learning Pre School</strong>. We are absolutely thrilled at the prospect of welcoming your child into our warm, nurturing, and activity-based learning sanctuary!</p>' +
+          
+          '<!-- Inquiry Card -->' +
+          '<div style="background-color: #FAF6EE; border-left: 4px solid #6B1E2E; padding: 20px; margin: 30px 0; border-radius: 6px; border-top: 1px solid #EADFCF; border-right: 1px solid #EADFCF; border-bottom: 1px solid #EADFCF;">' +
+          '<h3 style="font-family: \'Playfair Display\', \'Georgia\', serif; color: #6B1E2E; font-size: 15px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(107, 30, 46, 0.1); padding-bottom: 5px;">Your Registered Inquiry Details</h3>' +
+          '<table style="width: 100%; border-collapse: collapse; font-size: 14px;">' +
+          '<tr><td style="padding: 6px 0; color: #7E6F6A; width: 40%;"><strong>Parent Name:</strong></td><td style="padding: 6px 0; color: #3A2F2B;">' + (params.parentName || params.name || "N/A") + '</td></tr>' +
+          (formType === "admission" ? '<tr><td style="padding: 6px 0; color: #7E6F6A;"><strong>Child\'s Name:</strong></td><td style="padding: 6px 0; color: #3A2F2B;">' + (params.childName || "Your child") + '</td></tr>' +
+          '<tr><td style="padding: 6px 0; color: #7E6F6A;"><strong>Requested Program:</strong></td><td style="padding: 6px 0; color: #3A2F2B;">' + (params.grade || "Preschool stage") + '</td></tr>' : '') +
+          '<tr><td style="padding: 6px 0; color: #7E6F6A;"><strong>Contact Hotline:</strong></td><td style="padding: 6px 0; color: #3A2F2B;">' + (params.phone || "your phone") + '</td></tr>' +
+          '</table>' +
+          '</div>' +
+          
+          '<p>Our admissions coordinator is reviewing your details and will call you at <strong>' + (params.phone || "your number") + '</strong> shortly to answer your questions, outline fee structures, and arrange a secure, private campus visit to Shahpur Jat, Delhi.</p>' +
+          
+          '<div style="text-align: center; margin: 35px 0 25px 0;">' +
+          '<a href="https://wa.me/919667708285?text=Hello!%20I%20just%20submitted%20my%20preschool%20enrollment%20inquiry%20form." style="background-color: #6B1E2E; color: #FFFFFF; text-decoration: none; padding: 14px 35px; border-radius: 30px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(107,30,46,0.15);">Speak Directly on WhatsApp</a>' +
+          '</div>' +
+          
+          '<hr style="border: 0; border-top: 1px solid #EADFCF; margin: 35px 0 20px 0;" />' +
+          
+          '<!-- Principal Message -->' +
+          '<table style="width: 100%; border-collapse: collapse; margin-top: 15px;">' +
+          '<tr><td style="vertical-align: top;">' +
+          '<p style="margin: 0; font-family: \'Playfair Display\', \'Georgia\', serif; font-size: 16px; color: #6B1E2E; font-style: italic; line-height: 1.5;">"Every child is born a learner. Our mission is to protect that spark with soft care, structured play, and a rich, beautiful environment."</p>' +
+          '<p style="margin: 12px 0 0 0; font-size: 13px; color: #7E6F6A;"><strong>Mrs. Komal Singh</strong><br/>Principal & Founder, Kingdom of Learning</p>' +
+          '</td></tr>' +
+          '</table>' +
+          '</div>' +
+          
+          '<!-- Footer -->' +
+          '<div style="background-color: #521320; padding: 30px; text-align: center; font-size: 12px; color: #C8B39A; font-family: \'Helvetica Neue\', \'Arial\', sans-serif;">' +
+          '<p style="margin: 0 0 8px 0; color: #FFFFFF; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Delhi Sanctuary Location</p>' +
+          '<p style="margin: 0 0 20px 0; line-height: 1.4;">190-A, Ground Floor, Shahpur Jat, New Delhi - 110049<br/>Hotline: +91 9667708285 | Email: admin@kingdomoflearning.com</p>' +
+          '<p style="margin: 0; border-top: 1px solid rgba(200, 179, 154, 0.2); padding-top: 15px; font-size: 11px;">&copy; 2026 Kingdom of Learning Pre School. All rights reserved.</p>' +
+          '</div>' +
+          
+          '</div>' +
+          '</div>';
 
-        MailApp.sendEmail(params.email, parentSubject, parentBody);
+        MailApp.sendEmail({
+          to: params.email,
+          subject: parentSubject,
+          htmlBody: parentHtml
+        });
       }
     } catch (emailErr) {
       Logger.log("Auto-Mailer failed: " + emailErr.toString());
@@ -164,7 +277,6 @@ function doPost(e) {
       .setHeader("Access-Control-Allow-Origin", "*");
   }
 }
-
 
 // Fetch row data into structured JSON objects
 function getSheetData(sheet) {
@@ -191,4 +303,39 @@ function getSheetData(sheet) {
     }
   }
   return rows;
+}
+
+/**
+ * ==========================================
+ * DAILY TIME-TRIGGERED AUTO BACKUP SYSTEM
+ * ==========================================
+ * Creates daily timestamped backups of the AdmissionsForm and ContactForm tabs
+ * inside the active spreadsheet to prevent accidental data loss.
+ */
+function createDailyBackup() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var dateStr = Utilities.formatDate(new Date(), "Asia/Kolkata", "yyyy_MM_dd");
+  
+  var forms = ["AdmissionsForm", "ContactForm"];
+  for (var i = 0; i < forms.length; i++) {
+    var sourceSheet = spreadsheet.getSheetByName(forms[i]);
+    if (sourceSheet) {
+      var backupName = "Backup_" + forms[i] + "_" + dateStr;
+      
+      // If backup sheet for today already exists, delete it first to avoid duplicates
+      var oldBackup = spreadsheet.getSheetByName(backupName);
+      if (oldBackup) {
+        spreadsheet.deleteSheet(oldBackup);
+      }
+      
+      // Clone sheet rows
+      var backupSheet = sourceSheet.copyTo(spreadsheet);
+      backupSheet.setName(backupName);
+      
+      // Hide backup sheet to keep client layout extremely clean and uncluttered
+      backupSheet.hideSheet();
+      
+      Logger.log("Created backup sheet: " + backupName);
+    }
+  }
 }

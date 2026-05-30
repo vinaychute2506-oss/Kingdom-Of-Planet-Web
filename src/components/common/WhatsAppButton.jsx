@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
 import { trackEvent } from '../../services/analytics';
+import { submitForm } from '../../services/api';
 import styles from './WhatsAppButton.module.scss';
 
 const WhatsAppButton = () => {
@@ -16,8 +17,13 @@ const WhatsAppButton = () => {
     // Log click conversion in Google Analytics
     trackEvent('click', 'WhatsApp', 'Floating Action Widget');
     
+    // Asynchronously log micro-conversion inside the Google Sheet
+    submitForm({ formType: 'analytics', metric: 'WhatsAppClick' })
+      .catch((err) => console.warn('[Analytics] WhatsApp click sheet logging failed:', err));
+    
     window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admissions%20at%20Kingdom%20of%20Learning%20Pre%20School.`, "_blank");
   };
+
 
   return (
     <motion.button 

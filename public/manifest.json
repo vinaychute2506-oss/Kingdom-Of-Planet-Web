@@ -1,0 +1,22 @@
+{
+  "short_name": "KOL Preschool",
+  "name": "Kingdom of Learning Pre School",
+  "description": "Premium luxury boutique early education sanctuary in New Delhi.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F6F1E9",
+  "theme_color": "#6B1E2E",
+  "display": "standalone",
+  "orientation": "portrait"
+}
