@@ -280,3 +280,47 @@
     box-shadow: 0 4px 12px rgba($color-wine, 0.2);
   }
 }
+
+.errorNotice {
+  background: linear-gradient(135deg, rgba(#FF3B30, 0.05) 0%, rgba(#FF3B30, 0.02) 100%);
+  border: 1px solid rgba(#FF3B30, 0.2);
+  border-radius: $radius-md;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 20px;
+  position: relative;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: #3A2F2B;
+  box-shadow: 0 4px 12px rgba(#FF3B30, 0.02);
+  width: 100%;
+
+  .errorIcon {
+    color: #FF3B30;
+    flex-shrink: 0;
+  }
+
+  span {
+    flex-grow: 1;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .errorClose {
+    background: none;
+    border: none;
+    color: $color-text-light;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: $transition-smooth;
+
+    &:hover {
+      color: #FF3B30;
+    }
+  }
+}

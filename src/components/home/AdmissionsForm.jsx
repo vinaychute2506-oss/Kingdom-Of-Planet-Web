@@ -38,6 +38,7 @@ const AdmissionsForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [cooldown, setCooldown] = useState(false);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   // Rate-limiting countdown timer loop
   useEffect(() => {
@@ -58,9 +59,10 @@ const AdmissionsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg(null); // Clear previous errors
 
     if (cooldown) {
-      alert(`Rate-limiting: Please wait ${cooldownSeconds}s before submitting again!`);
+      setErrorMsg(`Rate-limiting protection: Please wait ${cooldownSeconds}s before submitting another application request.`);
       return;
     }
 
@@ -72,7 +74,7 @@ const AdmissionsForm = () => {
     }
 
     if (!formData.parentName || !formData.childName || !formData.phone || !formData.grade) {
-      alert("Please fill in all required fields to submit!");
+      setErrorMsg("Required enrollment details missing! Please enter parent name, child name, program selection, and contact number.");
       return;
     }
 
@@ -94,11 +96,16 @@ const AdmissionsForm = () => {
         setCooldown(true);
         setCooldownSeconds(10); // 10-second spam protection lock
       } else {
-        throw new Error(response?.message || 'Server error.');
+        throw new Error(response?.message || 'Server responded with an unexpected error status.');
       }
     } catch (err) {
-      console.error(err);
-      alert("Submission connection error. We have preserved your inputs. Please check your network and submit again!");
+      // Enhanced diagnostic logging for network/CORS failures
+      console.error('[Admissions Dispatch Failure] Diagnostics Details:', {
+        exception: err.message,
+        payloadPreserved: formData,
+        apiUrlTargeted: import.meta.env.VITE_CMS_API
+      });
+      setErrorMsg("Admissions enrollment submission failed due to an API connection error. We have preserved your inputs. Please check your network and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -106,6 +113,7 @@ const AdmissionsForm = () => {
 
   const handleCloseSuccess = () => {
     setShowSuccess(false);
+    setErrorMsg(null);
     setFormData({
       parentName: '',
       childName: '',
@@ -202,6 +210,22 @@ const AdmissionsForm = () => {
                 tabIndex="-1" 
                 autoComplete="off" 
               />
+
+              <AnimatePresence>
+                {errorMsg && (
+                  <motion.div 
+                    className={styles.errorNotice}
+                    initial={{ opacity: 0, height: 0, y: -10 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <AlertTriangle size={18} className={styles.errorIcon} />
+                    <span>{errorMsg}</span>
+                    <button type="button" className={styles.errorClose} onClick={() => setErrorMsg(null)}>×</button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <div className={styles.formGrid}>
                 

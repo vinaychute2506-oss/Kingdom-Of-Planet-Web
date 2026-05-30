@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2, AlertTriangle } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { submitForm } from '../services/api';
 import { trackEvent } from '../services/analytics';
@@ -22,6 +22,7 @@ const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
   const [cooldown, setCooldown] = useState(false);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   // Cooldown countdown loop
   useEffect(() => {
@@ -42,9 +43,10 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg(null); // Clear previous errors
 
     if (cooldown) {
-      alert(`Rate-limiting: Please wait ${cooldownSeconds}s before sending another message.`);
+      setErrorMsg(`Rate-limiting protection: Please wait ${cooldownSeconds}s before sending another message.`);
       return;
     }
 
@@ -56,7 +58,7 @@ const Contact = () => {
     }
 
     if (!formData.parentName || !formData.phone || !formData.message) {
-      alert("Please fill in all required fields to submit message!");
+      setErrorMsg("Required inputs missing! Please fill in your name, contact phone number, and message context.");
       return;
     }
 
@@ -76,11 +78,16 @@ const Contact = () => {
         setCooldown(true);
         setCooldownSeconds(10); // 10-second spam protection lock
       } else {
-        throw new Error(response?.message || 'Server error.');
+        throw new Error(response?.message || 'Server responded with an unexpected error status.');
       }
     } catch (err) {
-      console.error(err);
-      alert("Message dispatch failed due to connection error. We preserved your inputs. Please check your network and try again!");
+      // Enhanced diagnostic logging for network/CORS failures
+      console.error('[Forms Dispatch Failure] Diagnostics Details:', {
+        exception: err.message,
+        payloadPreserved: formData,
+        apiUrlTargeted: import.meta.env.VITE_CMS_API
+      });
+      setErrorMsg("Message dispatch failed due to an API connection error. We have preserved your inputs. Please check your network and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -88,6 +95,7 @@ const Contact = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setErrorMsg(null);
     setFormData({
       parentName: '',
       phone: '',
@@ -142,6 +150,22 @@ const Contact = () => {
                   tabIndex="-1" 
                   autoComplete="off" 
                 />
+
+                <AnimatePresence>
+                  {errorMsg && (
+                    <motion.div 
+                      className={styles.errorNotice}
+                      initial={{ opacity: 0, height: 0, y: -10 }}
+                      animate={{ opacity: 1, height: 'auto', y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <AlertTriangle size={18} className={styles.errorIcon} />
+                      <span>{errorMsg}</span>
+                      <button type="button" className={styles.errorClose} onClick={() => setErrorMsg(null)}>×</button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="parentName">Parent's Full Name *</label>
