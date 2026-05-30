@@ -1,5 +1,5 @@
 /**
- * KINGDOM OF LEARNING PRE SCHOOL — NO-BACKEND DYNAMIC CMS API & ANALYTICS PLATFORM
+ * KINGDOM OF LEARNING PRE SCHOOL — NO-BACKEND DYNAMIC CMS API, ANALYTICS & DIAGNOSTICS PLATFORM
  * 
  * INSTRUCTIONS FOR DEPLOYMENT:
  * 1. Open Google Sheets (create a sheet with SchoolInfo, Programs, Activities, Testimonials, Gallery, Admissions, Teachers, Routine, AdmissionsForm, ContactForm tabs).
@@ -7,7 +7,7 @@
  * 3. Delete any code in the editor, paste this entire script, and click save.
  * 4. Click "Deploy" (top right) -> "New deployment".
  * 5. Under select type, click the Gear icon and choose "Web app".
- * 6. Set Description: "KOL Preschool CMS API with Analytics"
+ * 6. Set Description: "KOL Preschool CMS API with Analytics & Diagnostics"
  * 7. Set "Execute as": "Me (your-email@gmail.com)"
  * 8. Set "Who has access": "Anyone"
  * 9. Click "Deploy". Authorize any requested permissions.
@@ -17,13 +17,63 @@
 
 function doGet(e) {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  var result = {};
   
+  // ==========================================
+  // LIGHTWEIGHT HEARTBEAT & DIAGNOSTICS MONITOR
+  // ==========================================
+  if (e && e.parameter && e.parameter.action === "status") {
+    var diagnostic = {
+      status: "healthy",
+      timestamp: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
+      apiVersion: "2.0.0-Diagnostics",
+      spreadsheetName: spreadsheet.getName(),
+      sheets: [],
+      totals: {
+        admissionsCount: 0,
+        contactsCount: 0,
+        whatsappClicks: 0
+      },
+      lastBackupDate: "No Backup Triggered"
+    };
+
+    var allSheets = spreadsheet.getSheets();
+    for (var idx = 0; idx < allSheets.length; idx++) {
+      var sName = allSheets[idx].getName();
+      diagnostic.sheets.push(sName);
+      
+      if (sName === "AdmissionsForm") {
+        diagnostic.totals.admissionsCount = Math.max(0, allSheets[idx].getLastRow() - 1);
+      } else if (sName === "ContactForm") {
+        diagnostic.totals.contactsCount = Math.max(0, allSheets[idx].getLastRow() - 1);
+      } else if (sName === "AnalyticsDashboard") {
+        var dashData = allSheets[idx].getDataRange().getValues();
+        for (var rIdx = 1; rIdx < dashData.length; rIdx++) {
+          if (dashData[rIdx][0] === "Total WhatsApp Clicks") {
+            diagnostic.totals.whatsappClicks = Number(dashData[rIdx][1]) || 0;
+            break;
+          }
+        }
+      } else if (sName.indexOf("Backup_") === 0) {
+        // Extract date from name e.g., Backup_AdmissionsForm_2026_05_30
+        var parts = sName.split("_");
+        if (parts.length >= 4) {
+          diagnostic.lastBackupDate = parts.slice(-3).join("-");
+        }
+      }
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ status: "success", diagnostics: diagnostic }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*");
+  }
+
+  // Standard CMS Content retrieval
+  var result = {};
   var sheets = spreadsheet.getSheets();
   for (var i = 0; i < sheets.length; i++) {
     var sheetName = sheets[i].getName();
     
-    // Skip lead storage and analytics sheets from GET reading
+    // Skip lead storage, diagnostics and analytics sheets from GET reading
     if (sheetName === "AdmissionsForm" || sheetName === "ContactForm" || sheetName === "AnalyticsDashboard" || sheetName.indexOf("Backup_") === 0) {
       continue;
     }
@@ -31,7 +81,6 @@ function doGet(e) {
     result[sheetName] = getSheetData(sheets[i]);
   }
   
-  // Format as JSON and allow cross-origin requests
   return ContentService.createTextOutput(JSON.stringify({ status: "success", data: result }))
     .setMimeType(ContentService.MimeType.JSON)
     .setHeader("Access-Control-Allow-Origin", "*");
@@ -100,27 +149,43 @@ function doPost(e) {
     }
     
     // ==========================================
-    // LEAD CAPTURE SYSTEM (Admissions & Contacts)
+    // LEAD CAPTURE SYSTEM & INQUIRY CLASSIFICATION
     // ==========================================
     var targetSheetName = formType === "admission" ? "AdmissionsForm" : "ContactForm";
     var sheet = spreadsheet.getSheetByName(targetSheetName);
     
-    // Create tab dynamically if not exists
+    // Create tab dynamically if not exists (including operational Priority column)
     if (!sheet) {
       sheet = spreadsheet.insertSheet(targetSheetName);
       var headers = formType === "admission"
-        ? ["Timestamp", "Parent Name", "Child Name", "Phone", "Email", "Program/Grade", "Message"]
-        : ["Timestamp", "Parent Name", "Phone", "Email", "Message"];
+        ? ["Timestamp", "Priority", "Parent Name", "Child Name", "Phone", "Email", "Program/Grade", "Message"]
+        : ["Timestamp", "Priority", "Parent Name", "Phone", "Email", "Message"];
       sheet.appendRow(headers);
       sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#6B1E2E").setFontColor("#FFFFFF");
     }
     
+    // Dynamic Inquiry Priority Classification Engine
+    var priority = "MEDIUM";
+    var urgentKeywords = ["urgent", "asap", "emergency", "call back", "callback", "immediate", "soon", "important", "critical", "contact me", "fee structure", "admission fee"];
+    var msg = (params.message || "").toLowerCase();
+    
+    if (formType === "admission") {
+      priority = "HIGH (Enrollment)";
+    }
+    for (var kIdx = 0; kIdx < urgentKeywords.length; kIdx++) {
+      if (msg.indexOf(urgentKeywords[kIdx]) !== -1) {
+        priority = "URGENT (Callback Request)";
+        break;
+      }
+    }
+
     var row = [];
     var timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
     
     if (formType === "admission") {
       row = [
         timestamp,
+        priority,
         params.parentName || "",
         params.childName || "",
         "'" + (params.phone || ""), // Prefix with ' to force spreadsheet text formatting (prevents losing leading 0)
@@ -131,6 +196,7 @@ function doPost(e) {
     } else {
       row = [
         timestamp,
+        priority,
         params.parentName || params.name || "",
         "'" + (params.phone || ""),
         params.email || "",
@@ -144,7 +210,6 @@ function doPost(e) {
     // PREMIUM EMAIL AUTOMATION (Branded & HTML-Styled)
     // ==========================================
     try {
-      // 1. Fetch school emails from SchoolInfo sheet if available
       var adminEmail = "singh.komal.tvf@gmail.com"; // Principal's fallback email
       var schoolInfoSheet = spreadsheet.getSheetByName("SchoolInfo");
       if (schoolInfoSheet) {
@@ -160,8 +225,8 @@ function doPost(e) {
       }
 
       var subject = formType === "admission"
-        ? "⭐ Admission Inquiry: " + (params.childName || "New Child") + " (" + (params.grade || "Preschool") + ")"
-        : "✉️ Admissions Direct Message from " + (params.parentName || "Parent");
+        ? "[" + priority + "] ⭐ Admission Inquiry: " + (params.childName || "New Child") + " (" + (params.grade || "Preschool") + ")"
+        : "[" + priority + "] ✉️ Admissions Direct Message from " + (params.parentName || "Parent");
 
       var sheetUrl = spreadsheet.getUrl();
 
@@ -177,6 +242,7 @@ function doPost(e) {
         '<div style="background-color: #F6F1E9; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #EADFCF;">' +
         '<table style="width: 100%; border-collapse: collapse; font-size: 14px;">' +
         '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05); width: 40%;"><strong>Form Source:</strong></td><td style="padding: 8px 0; color: #6B1E2E; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>' + (formType === "admission" ? "Admissions Enrollment Form" : "Contact Message Form") + '</strong></td></tr>' +
+        '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Operational Priority:</strong></td><td style="padding: 8px 0; color: ' + (priority.indexOf("URGENT") === 0 ? "#FF3B30" : "#6B1E2E") + '; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>' + priority + '</strong></td></tr>' +
         '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Parent Name:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.parentName || params.name || "N/A") + '</td></tr>' +
         (formType === "admission" ? '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Child Name:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.childName || "N/A") + '</td></tr>' +
         '<tr><td style="padding: 8px 0; color: #7E6F6A; border-bottom: 1px solid rgba(58,47,43,0.05);"><strong>Class Program:</strong></td><td style="padding: 8px 0; color: #3A2F2B; border-bottom: 1px solid rgba(58,47,43,0.05);">' + (params.grade || "N/A") + '</td></tr>' : '') +
