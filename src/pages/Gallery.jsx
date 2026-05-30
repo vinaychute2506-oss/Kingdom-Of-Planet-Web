@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
+import { trackEvent } from '../services/analytics';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './GalleryPage.module.scss';
 
@@ -27,9 +28,15 @@ const Gallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedPhoto]);
 
+  // Track user gallery tab filters conversion
+  useEffect(() => {
+    trackEvent('filter', 'Gallery', activeTab);
+  }, [activeTab]);
+
   const filteredPhotos = activeTab === "All"
     ? gallery
     : gallery.filter(photo => photo.category === activeTab);
+
 
   return (
     <div className={styles.galleryPage}>

@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, User, Phone, Mail, CheckSquare, ClipboardList, AlertTriangle, Loader2 } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
 import { submitForm } from '../../services/api';
+import { trackEvent } from '../../services/analytics';
 import SectionTitle from '../common/SectionTitle';
 import styles from './AdmissionsForm.module.scss';
+
 
 const AdmissionsForm = () => {
   const { schoolInfo, admissions } = useCMS();
@@ -87,6 +89,7 @@ const AdmissionsForm = () => {
       });
 
       if (response && response.status === 'success') {
+        trackEvent('submit', 'Inquiry', 'Admissions Form Success');
         setShowSuccess(true);
         setCooldown(true);
         setCooldownSeconds(10); // 10-second spam protection lock

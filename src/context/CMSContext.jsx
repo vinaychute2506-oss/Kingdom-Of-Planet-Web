@@ -39,7 +39,8 @@ const schoolInfoFallback = {
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14015.460458428588!2d77.2066373!3d28.5738096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd00318029c7%3A0x444d32a9a463a56!2sShahpur%20Jat%2C%20New%20Delhi%2C%20Delhi%20110049!5e0!3m2!1sen!2sin!4v1716482937512!5m2!1sen!2sin",
   facebookUrl: "https://facebook.com",
   instagramUrl: "https://instagram.com",
-  youtubeUrl: "https://youtube.com"
+  youtubeUrl: "https://youtube.com",
+  siteVersion: "1.0.0" // Version key for client-driven cache invalidations
 };
 
 const admissionsFallback = [
@@ -215,6 +216,14 @@ export const CMSProvider = ({ children }) => {
       const rawData = await fetchCMSData();
       const cleanData = processCMSResponse(rawData);
 
+      // Cache Version invalidation triggers
+      const currentVersion = schoolInfo.siteVersion || "1.0.0";
+      const fetchedVersion = cleanData.schoolInfo?.siteVersion || cleanData.schoolInfo?.siteversion || "1.0.0";
+
+      if (fetchedVersion !== currentVersion) {
+        console.log(`[CMS Provider] Version shift detected (Current: ${currentVersion} -> Fetched: ${fetchedVersion}). Invalidating local storage cache.`);
+      }
+
       // SWR state mapping
       if (cleanData.schoolInfo) setSchoolInfo(cleanData.schoolInfo);
       if (cleanData.programs) setPrograms(cleanData.programs);
@@ -238,13 +247,15 @@ export const CMSProvider = ({ children }) => {
       localStorage.setItem('kol_cms_cache', JSON.stringify(cacheObj));
       console.log('[CMS Provider] Cache updated successfully at:', new Date(syncTimestamp).toLocaleTimeString());
     } catch (err) {
-      console.error('[CMS Provider] Sync failed, keeping cached/fallback data.', err);
+      // Offline fallback safety checks
+      console.warn('[CMS Provider] Sheets API connection failed. Continuing to display offline cached values.', err);
       setError('CMS sync failed. Showing offline cached or fallback content.');
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
   };
+
 
   useEffect(() => {
     // 1. Check for offline cached values instantly

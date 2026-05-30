@@ -1,12 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
+import { trackEvent } from '../../services/analytics';
 import styles from './WhatsAppButton.module.scss';
 
 const WhatsAppButton = () => {
+  const { schoolInfo } = useCMS();
+  
   const handleClick = () => {
-    // Standard mock WhatsApp redirect for preschool inquiry
-    window.open("https://wa.me/1234567890?text=Hello!%20I%20am%20interested%20in%20admissions%20at%20Kingdom%20Of%20Planet%20School.", "_blank");
+    const rawPhone = schoolInfo.whatsapp || '+919667708285';
+    // Sanitize number by stripping any space, plus, or dashes
+    const cleanPhone = rawPhone.replace(/\D/g, '');
+    
+    // Log click conversion in Google Analytics
+    trackEvent('click', 'WhatsApp', 'Floating Action Widget');
+    
+    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admissions%20at%20Kingdom%20of%20Learning%20Pre%20School.`, "_blank");
   };
 
   return (
@@ -28,3 +38,4 @@ const WhatsAppButton = () => {
 };
 
 export default WhatsAppButton;
+

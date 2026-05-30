@@ -5,8 +5,9 @@ import { FALLBACK_IMAGES } from '../../config/cms';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
-  const { schoolInfo } = useCMS();
+  const { schoolInfo, refreshing, forceRefresh } = useCMS();
   const currentYear = new Date().getFullYear();
+
 
   const handleQuickLink = (hash) => {
     window.location.hash = hash;
@@ -105,10 +106,32 @@ const Footer = () => {
 
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <p>© {currentYear} {schoolInfo.schoolName}. All Rights Reserved. Client Presentation Demo.</p>
+          <p>
+            © {currentYear} {schoolInfo.schoolName}. All Rights Reserved. Client Presentation Demo.
+            <button 
+              onClick={forceRefresh} 
+              disabled={refreshing}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                color: '#C8B39A', 
+                marginLeft: '12px', 
+                textDecoration: 'underline', 
+                cursor: 'pointer', 
+                fontSize: '0.8rem',
+                fontFamily: 'Lato',
+                transition: 'opacity 0.2s'
+              }}
+              onMouseEnter={(e) => { e.target.style.opacity = '0.8'; }}
+              onMouseLeave={(e) => { e.target.style.opacity = '1'; }}
+            >
+              {refreshing ? "Syncing..." : "Sync CMS Data"}
+            </button>
+          </p>
           <p className={styles.credits}>{schoolInfo.tagline}</p>
         </div>
       </div>
+
 
     </footer>
   );

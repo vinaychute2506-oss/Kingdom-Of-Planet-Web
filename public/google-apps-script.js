@@ -92,6 +92,68 @@ function doPost(e) {
     
     sheet.appendRow(row);
     
+    // ==========================================
+    // SUCCESS EMAIL AUTOMATION (Apps Script Trigger)
+    // ==========================================
+    try {
+      // 1. Fetch school emails from SchoolInfo sheet if available
+      var adminEmail = "singh.komal.tvf@gmail.com"; // Principal's fallback email
+      var schoolInfoSheet = spreadsheet.getSheetByName("SchoolInfo");
+      if (schoolInfoSheet) {
+        var infoData = schoolInfoSheet.getDataRange().getValues();
+        for (var idx = 1; idx < infoData.length; idx++) {
+          var k = infoData[idx][0];
+          var v = infoData[idx][1];
+          if (k === "altEmail" || k === "email") {
+            adminEmail = v;
+            break;
+          }
+        }
+      }
+
+      var subject = formType === "admission"
+        ? "Admission Inquiry: " + (params.childName || "New Child") + " (" + (params.grade || "Preschool") + ")"
+        : "Admissions Direct Message from " + (params.parentName || "Parent");
+
+      var adminBody = "Dear Principal Mrs. Komal Singh,\n\n" +
+        "A new parent inquiry has been registered on the website:\n\n" +
+        "----------------------------------------\n" +
+        "Form Type: " + (formType === "admission" ? "Admissions Enrollment Form" : "Contact Message Form") + "\n" +
+        "Parent Name: " + (params.parentName || params.name || "N/A") + "\n" +
+        (formType === "admission" ? "Child Name: " + (params.childName || "N/A") + "\n" : "") +
+        "Phone Number: " + (params.phone || "N/A") + "\n" +
+        "Email Address: " + (params.email || "N/A") + "\n" +
+        (formType === "admission" ? "Class Program: " + (params.grade || "N/A") + "\n" : "") +
+        "Message/Notes: " + (params.message || "None") + "\n" +
+        "Timestamp: " + timestamp + "\n" +
+        "----------------------------------------\n\n" +
+        "Check your Google Sheet 'Kingdom of Learning Admissions' under the log tab '" + targetSheetName + "' to view full entries.\n\n" +
+        "Warm regards,\n" +
+        "KOL Digital System Auto-Mailer";
+
+      // Dispatch notice email to School Admin/Principal
+      MailApp.sendEmail(adminEmail, subject, adminBody);
+
+      // 2. Dispatch receipt email to Parent
+      if (params.email) {
+        var parentSubject = "We have received your enrollment inquiry! — Kingdom of Learning";
+        var parentBody = "Dear " + (params.parentName || "Parent") + ",\n\n" +
+          "Thank you for contacting Kingdom of Learning Pre School. We are thrilled to welcome you to our learning family!\n\n" +
+          "We have successfully registered your inquiry:\n" +
+          "- Child Name: " + (params.childName || "Your child") + "\n" +
+          "- Requested Program: " + (params.grade || "Preschool stage") + "\n\n" +
+          "Our admissions coordinator is reviewing your details and will call you at " + (params.phone || "your contact number") + " shortly to answer your questions and arrange a secure campus visit to Shahpur Jat.\n\n" +
+          "Warm regards,\n" +
+          "Admissions Office\n" +
+          "Kingdom of Learning Pre School\n" +
+          "Delhi Sanctuary: Warmth • Creativity • Trust";
+
+        MailApp.sendEmail(params.email, parentSubject, parentBody);
+      }
+    } catch (emailErr) {
+      Logger.log("Auto-Mailer failed: " + emailErr.toString());
+    }
+    
     return ContentService.createTextOutput(JSON.stringify({ status: "success", message: "Form recorded successfully" }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*")
@@ -102,6 +164,7 @@ function doPost(e) {
       .setHeader("Access-Control-Allow-Origin", "*");
   }
 }
+
 
 // Fetch row data into structured JSON objects
 function getSheetData(sheet) {

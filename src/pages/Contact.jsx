@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { submitForm } from '../services/api';
+import { trackEvent } from '../services/analytics';
 import SectionTitle from '../components/common/SectionTitle';
 import styles from './Contact.module.scss';
 
@@ -70,6 +71,7 @@ const Contact = () => {
       });
 
       if (response && response.status === 'success') {
+        trackEvent('submit', 'Inquiry', 'Contact Form Success');
         setShowModal(true);
         setCooldown(true);
         setCooldownSeconds(10); // 10-second spam protection lock
