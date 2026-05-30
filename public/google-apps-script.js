@@ -63,8 +63,7 @@ function doGet(e) {
     }
 
     return ContentService.createTextOutput(JSON.stringify({ status: "success", diagnostics: diagnostic }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   }
 
   // Standard CMS Content retrieval
@@ -82,16 +81,14 @@ function doGet(e) {
   }
   
   return ContentService.createTextOutput(JSON.stringify({ status: "success", data: result }))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader("Access-Control-Allow-Origin", "*");
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {
   // Handle CORS preflight options gracefully
   if (e === undefined) {
     return ContentService.createTextOutput(JSON.stringify({ status: "preflight" }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   try {
@@ -144,8 +141,7 @@ function doPost(e) {
       }
       
       return ContentService.createTextOutput(JSON.stringify({ status: "success", message: "Metric tracked" }))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader("Access-Control-Allow-Origin", "*");
+        .setMimeType(ContentService.MimeType.JSON);
     }
     
     // ==========================================
@@ -336,13 +332,10 @@ function doPost(e) {
     }
     
     return ContentService.createTextOutput(JSON.stringify({ status: "success", message: "Form recorded successfully" }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*")
-      .setHeader("Access-Control-Allow-Headers", "Content-Type");
+      .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
