@@ -99,6 +99,16 @@ To activate the daily midnight backup utility:
 6.  Set "Select hour interval": `Midnight to 1 AM`.
 7.  Click **Save**. Your sheet will now back up itself daily and store the hidden sheets automatically.
 
+### 3. Time-Triggered Automated Monthly Analytics Digests
+To schedule the monthly analytics report automatically emailed to your inbox:
+1.  Click **Add Trigger** (bottom right).
+2.  Set "Choose function to run": `sendMonthlyReport`.
+3.  Set "Select event source": `Time-driven`.
+4.  Set "Select type of time based trigger": `Month timer`.
+5.  Set "Select day of month": `1st`.
+6.  Set "Select time of day": `Midnight to 1 AM`.
+7.  Click **Save**. On the first of every month, you will receive a gorgeous branded HTML email detailing total registered inquiries, messages, and WhatsApp micro-conversions!
+
 ---
 
 ## 🛜 5. Offline Shell & PWA Mobile Installation
