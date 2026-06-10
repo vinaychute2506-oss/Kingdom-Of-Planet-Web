@@ -49,7 +49,7 @@ const ActivitiesPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1000')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1000')`,
           opacity: 0.12
         }} 
       />
@@ -87,14 +87,14 @@ const ActivitiesPreview = () => {
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame2}`}>
               <img 
-                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600" 
-                alt="Smiling child painting" 
+                src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600" 
+                alt="Smiling children playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame3}`}>
               <img 
-                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" 
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" 
                 alt="Teacher explaining reading book" 
                 loading="lazy"
               />

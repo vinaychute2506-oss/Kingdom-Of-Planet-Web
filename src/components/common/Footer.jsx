@@ -19,19 +19,19 @@ const Footer = () => {
       {/* Mini Gallery Strip */}
       <div className={styles.miniGalleryStrip}>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=200" alt="Laughing baby" />
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=200" alt="Singing child" />
         </div>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=200" alt="Nursery classroom" />
+          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=200" alt="Building blocks" />
         </div>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=200" alt="Storytelling" />
+          <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=200" alt="Sandbox play" />
         </div>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=200" alt="Creative play" />
+          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=200" alt="Clay craft" />
         </div>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=200" alt="Collaborative learning" />
+          <img src="https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=200" alt="Safe play" />
         </div>
       </div>
 

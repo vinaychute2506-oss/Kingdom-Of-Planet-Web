@@ -52,7 +52,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  filter: saturate(0.92) contrast(1.02) brightness(1.01); // Elegant slightly desaturated luxury photo filter
+  filter: saturate(1.02) contrast(1.02) brightness(1.07); // Warm, sunlight-filled premium editorial grade
 }
 
 .editorial-divider {
@@ -171,7 +171,7 @@ img {
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
-  filter: saturate(0.92) brightness(1.02) contrast(1.01) sepia(0.04);
+  filter: saturate(1.02) brightness(1.07) contrast(1.02) sepia(0.04);
   transition: opacity 0.5s ease;
 }
 

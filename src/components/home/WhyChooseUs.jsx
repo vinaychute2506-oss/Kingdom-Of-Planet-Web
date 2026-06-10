@@ -6,8 +6,8 @@ import styles from './WhyChooseUs.module.scss';
 
 const rowData = [
   {
-    image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600",
-    imageAlt: "Child milestones and achievements",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600",
+    imageAlt: "Safe preschool playground sandbox",
     features: [
       {
         icon: ShieldAlert,
@@ -22,8 +22,8 @@ const rowData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600",
-    imageAlt: "Classroom interaction and cooperative play",
+    image: "https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=600",
+    imageAlt: "Teacher child studying guidance",
     features: [
       {
         icon: Sparkles,
@@ -38,8 +38,8 @@ const rowData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600",
-    imageAlt: "Confidence building and creative expression",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600",
+    imageAlt: "Music and singing class",
     features: [
       {
         icon: Star,
@@ -62,7 +62,7 @@ const WhyChooseUs = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1000')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=1000')`,
           opacity: 0.11
         }} 
       />

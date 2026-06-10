@@ -24,7 +24,7 @@ const ProgramsPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=800')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800')`,
           opacity: 0.10
         }} 
       />

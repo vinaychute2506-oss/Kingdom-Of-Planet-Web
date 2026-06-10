@@ -6,8 +6,8 @@ import styles from './MethodologySection.module.scss';
 
 const methodologyRows = [
   {
-    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=500",
-    imageAlt: "Play-Way and Activity-Based Learning",
+    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=500",
+    imageAlt: "Play-Way and Activity-Based Learning blocks",
     items: [
       {
         icon: Sparkles,
@@ -22,8 +22,8 @@ const methodologyRows = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=500",
-    imageAlt: "Experiential Learning & Storytelling",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=500",
+    imageAlt: "Experiential learning germination science",
     items: [
       {
         icon: Lightbulb,
@@ -39,7 +39,7 @@ const methodologyRows = [
   },
   {
     image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=500",
-    imageAlt: "Music, Movement and Social Dev",
+    imageAlt: "Music movement and rhythm class",
     items: [
       {
         icon: Music,
@@ -54,8 +54,8 @@ const methodologyRows = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=500",
-    imageAlt: "Hands-on Nature Exploration",
+    image: "https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=500",
+    imageAlt: "Hands-on nature sandbox building",
     items: [
       {
         icon: Compass,
@@ -73,7 +73,7 @@ const MethodologySection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1000')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1000')`,
           opacity: 0.12
         }} 
       />

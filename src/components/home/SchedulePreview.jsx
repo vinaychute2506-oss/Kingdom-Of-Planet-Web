@@ -21,7 +21,7 @@ const SchedulePreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800')`,
           opacity: 0.11
         }} 
       />

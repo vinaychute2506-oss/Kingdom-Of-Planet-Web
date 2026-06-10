@@ -12,7 +12,7 @@ const EventHighlights = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&q=80&w=800')`,
           opacity: 0.10
         }} 
       />

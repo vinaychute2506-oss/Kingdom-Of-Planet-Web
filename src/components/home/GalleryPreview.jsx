@@ -48,7 +48,7 @@ const GalleryPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800')`,
           opacity: 0.10
         }} 
       />
