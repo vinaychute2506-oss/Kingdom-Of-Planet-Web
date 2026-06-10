@@ -1,109 +1,143 @@
 @import '../../styles/variables.scss';
 
-.safetyGrid {
+.safetySplitGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 56px;
   margin-top: 40px;
+  align-items: center;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
   }
 
   @include responsive(tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 40px;
   }
 }
 
-.safetyCard {
-  background-color: $color-bg-white;
-  padding: 32px 24px;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-soft;
+.imageCol {
+  width: 100%;
+  @include flex-center;
+}
+
+.safetyArch {
+  width: 100%;
+  max-width: 380px;
+  height: 480px;
+  border-radius: 190px 190px 24px 24px; // Beautiful Arch Frame
+  overflow: hidden;
+  box-shadow: $shadow-medium;
   border: 1px solid rgba($color-beige, 0.6);
   position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: transform 0.35s ease-out, border-color 0.35s ease-out, box-shadow 0.35s ease-out;
+  transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 
   &:hover {
-    border-color: $color-brown;
     box-shadow: $shadow-hover;
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    img {
+      transform: scale(1.05);
+    }
+  }
+
+  @include responsive(mobile) {
+    height: 340px;
+    max-width: 260px;
+  }
+}
+
+.archOverlay {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+  @include flex-center;
+}
+
+.archBadge {
+  background-color: $color-wine;
+  color: $color-bg-white;
+  padding: 8px 18px;
+  border-radius: $radius-full;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 12px rgba($color-wine, 0.25);
+}
+
+.listCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.safetyListItem {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba($color-beige, 0.8);
+  transition: transform 0.35s ease-out;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    transform: translateX(6px);
 
     .iconBox {
       background-color: rgba($color-wine, 0.08);
-      transform: scale(1.03);
-    }
-
-    .cardBgImage {
-      transform: scale(1.08);
-      opacity: 0.08;
+      color: $color-wine;
+      transform: scale(1.05);
     }
   }
 }
 
-.cardBgImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.04;
-  filter: blur(1px);
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
-  z-index: 1;
-}
-
-.cardBgOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color-bg-white, 0.94);
-  z-index: 1;
-}
-
-.cardContentWrapper {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+.itemHeader {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
 }
 
 .iconBox {
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background-color: rgba($color-beige, 0.25);
   border: 1px solid rgba($color-brown, 0.2);
   color: $color-wine;
   @include flex-center;
-  margin-bottom: 20px;
+  flex-shrink: 0;
   transition: transform 0.35s ease-out, background-color 0.35s ease-out;
 }
 
-.cardTitle {
-  font-size: 1.25rem;
+.itemTitle {
+  font-size: 1.2rem;
   color: $color-text-dark;
-  margin-bottom: 10px;
   font-family: $font-heading;
   font-weight: 500;
 }
 
-.cardDesc {
+.itemDesc {
   font-size: 0.92rem;
   color: $color-text-light;
-  line-height: 1.5;
+  line-height: 1.55;
   font-weight: 400;
+  padding-left: 54px; // aligned with the title text
   text-align: left;
+
+  @include responsive(mobile) {
+    padding-left: 0;
+    margin-top: 4px;
+  }
 }

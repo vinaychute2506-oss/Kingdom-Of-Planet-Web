@@ -43,8 +43,17 @@ const getSafetyImage = (title) => {
 
 const SafetySection = () => {
   return (
-    <section className="section section-accent" id="home-safety" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
-      <div className="container">
+    <section className="section section-accent" id="home-safety" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800')`,
+          opacity: 0.025,
+          borderRadius: '32px'
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         <SectionTitle 
           tag="Safety First"
@@ -54,36 +63,50 @@ const SafetySection = () => {
           subtitle="We prioritize physical security and hygiene above all, giving parents complete mental comfort while their kids explore."
         />
 
-        <div className={styles.safetyGrid}>
-          {safetyCards.map((card, idx) => {
-            const IconComponent = card.icon;
-            
-            return (
-              <motion.div 
-                className={styles.safetyCard}
-                key={idx}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
-              >
-                {/* Subtle blurred/faded background visual storytelling */}
-                <div 
-                  className={styles.cardBgImage}
-                  style={{ backgroundImage: `url(${getSafetyImage(card.title)})` }}
-                />
-                <div className={styles.cardBgOverlay} />
+        <div className={styles.safetySplitGrid}>
+          {/* Left Column: Tall Editorial Arch Image */}
+          <motion.div 
+            className={styles.imageCol}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <div className={styles.safetyArch}>
+              <img 
+                src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=600" 
+                alt="Preschool supervised safe environment" 
+                loading="lazy" 
+              />
+              <div className={styles.archOverlay}>
+                <span className={styles.archBadge}>Zero Compromise Safety</span>
+              </div>
+            </div>
+          </motion.div>
 
-                <div className={styles.cardContentWrapper}>
-                  <div className={styles.iconBox}>
-                    <IconComponent size={22} strokeWidth={1.5} />
+          {/* Right Column: Flat list of standards with divider lines */}
+          <motion.div 
+            className={styles.listCol}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          >
+            {safetyCards.map((card, idx) => {
+              const IconComponent = card.icon;
+              return (
+                <div className={styles.safetyListItem} key={idx}>
+                  <div className={styles.itemHeader}>
+                    <div className={styles.iconBox}>
+                      <IconComponent size={20} strokeWidth={1.5} />
+                    </div>
+                    <h3 className={styles.itemTitle}>{card.title}</h3>
                   </div>
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
-                  <p className={styles.cardDesc}>{card.description}</p>
+                  <p className={styles.itemDesc}>{card.description}</p>
                 </div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </motion.div>
         </div>
 
       </div>

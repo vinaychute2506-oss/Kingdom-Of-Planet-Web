@@ -41,6 +41,44 @@
   pointer-events: none;
 }
 
+.sunFlare {
+  position: absolute;
+  top: 5%;
+  right: 12%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba($color-brown, 0.22) 0%, rgba($color-cream, 0) 70%);
+  filter: blur(50px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floatingContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.goldParticle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba($color-brown, 0.35);
+  filter: blur(1px);
+}
+
+.floatingLeaf, .floatingBook {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 .heroGrid {
   display: grid;
   grid-template-columns: 1.25fr 1fr;

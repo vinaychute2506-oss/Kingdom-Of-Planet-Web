@@ -16,11 +16,52 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       
+      {/* Mini Gallery Strip */}
+      <div className={styles.miniGalleryStrip}>
+        <div className={styles.miniGalleryItem}>
+          <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=200" alt="Laughing baby" />
+        </div>
+        <div className={styles.miniGalleryItem}>
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=200" alt="Nursery classroom" />
+        </div>
+        <div className={styles.miniGalleryItem}>
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=200" alt="Storytelling" />
+        </div>
+        <div className={styles.miniGalleryItem}>
+          <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=200" alt="Creative play" />
+        </div>
+        <div className={styles.miniGalleryItem}>
+          <img src="https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=200" alt="Collaborative learning" />
+        </div>
+      </div>
+
       {/* Wave Separator SVG */}
       <div className={styles.waveContainer}>
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className={styles.wavePath}></path>
         </svg>
+      </div>
+
+      {/* Parent Trust Row */}
+      <div className={styles.trustRow}>
+        <div className={`container ${styles.trustGrid}`}>
+          <div className={styles.trustItem}>
+            <span className={styles.trustTitle}>Safe Campus</span>
+            <span className={styles.trustSub}>100% CCTV & Secure Campus</span>
+          </div>
+          <div className={styles.trustItem}>
+            <span className={styles.trustTitle}>Qualified Educators</span>
+            <span className={styles.trustSub}>Early Child Certification</span>
+          </div>
+          <div className={styles.trustItem}>
+            <span className={styles.trustTitle}>Small Batch Learning</span>
+            <span className={styles.trustSub}>Focused Diagnostic Care</span>
+          </div>
+          <div className={styles.trustItem}>
+            <span className={styles.trustTitle}>Creative Growth</span>
+            <span className={styles.trustSub}>Brochure-Level Philosophy</span>
+          </div>
+        </div>
       </div>
 
       <div className={`container ${styles.footerGrid}`}>
