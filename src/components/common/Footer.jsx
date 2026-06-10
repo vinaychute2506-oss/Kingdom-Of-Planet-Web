@@ -16,25 +16,6 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       
-      {/* Mini Gallery Strip */}
-      <div className={styles.miniGalleryStrip}>
-        <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=200" alt="Singing child" />
-        </div>
-        <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=200" alt="Building blocks" />
-        </div>
-        <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=200" alt="Sandbox play" />
-        </div>
-        <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=200" alt="Clay craft" />
-        </div>
-        <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&q=80&w=200" alt="Safe play" />
-        </div>
-      </div>
-
       {/* Wave Separator SVG */}
       <div className={styles.waveContainer}>
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
