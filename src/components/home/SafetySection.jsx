@@ -48,8 +48,8 @@ const SafetySection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800')`,
-          opacity: 0.025,
+          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1000')`,
+          opacity: 0.13,
           borderRadius: '32px'
         }} 
       />
@@ -96,12 +96,10 @@ const SafetySection = () => {
               const IconComponent = card.icon;
               return (
                 <div className={styles.safetyListItem} key={idx}>
-                  <div className={styles.itemHeader}>
-                    <div className={styles.iconBox}>
-                      <IconComponent size={20} strokeWidth={1.5} />
-                    </div>
-                    <h3 className={styles.itemTitle}>{card.title}</h3>
+                  <div className={styles.iconBox}>
+                    <IconComponent size={20} strokeWidth={1.5} />
                   </div>
+                  <h3 className={styles.itemTitle}>{card.title}</h3>
                   <p className={styles.itemDesc}>{card.description}</p>
                 </div>
               );

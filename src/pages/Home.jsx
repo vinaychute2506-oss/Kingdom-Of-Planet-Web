@@ -11,6 +11,7 @@ import EventHighlights from '../components/home/EventHighlights';
 import GalleryPreview from '../components/home/GalleryPreview';
 import TestimonialsSection from '../components/home/TestimonialsSection';
 import AdmissionsForm from '../components/home/AdmissionsForm';
+import SectionDivider from '../components/common/SectionDivider';
 
 const Home = () => {
   return (
@@ -18,14 +19,26 @@ const Home = () => {
       <Hero />
       <AboutPreview />
       <SchedulePreview />
+      
+      {/* Transition: Cream (#FAF6EE) to White (#FFFFFF) */}
+      <SectionDivider type="wave" bgColor="#FAF6EE" fillColor="#FFFFFF" height="56px" />
+      
       <ProgramsPreview />
       <ActivitiesPreview />
       <SafetySection />
       <WhyChooseUs />
+      
+      {/* Transition: White (#FFFFFF) to Cream (#FAF6EE) */}
+      <SectionDivider type="organic" bgColor="#FFFFFF" fillColor="#FAF6EE" height="56px" />
+      
       <MethodologySection />
       <EventHighlights />
       <GalleryPreview />
       <TestimonialsSection />
+      
+      {/* Transition: Cream (#FAF6EE) to White (#FFFFFF) */}
+      <SectionDivider type="dip" bgColor="#FAF6EE" fillColor="#FFFFFF" height="48px" />
+      
       <AdmissionsForm />
     </>
   );

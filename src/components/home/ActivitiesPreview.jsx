@@ -49,8 +49,8 @@ const ActivitiesPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800')`,
-          opacity: 0.03
+          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1000')`,
+          opacity: 0.12
         }} 
       />
       <div className={`container ${styles.gridContainer}`}>
@@ -75,27 +75,27 @@ const ActivitiesPreview = () => {
             <span>View All Activities</span>
             <ArrowRight size={16} />
           </motion.button>
-
+ 
           {/* Branded layered child-storytelling collage */}
           <div className={styles.storytellingCollage}>
             <div className={`${styles.collageItem} ${styles.archFrame1}`}>
               <img 
-                src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=400" 
-                alt="Preschool children learning and painting" 
+                src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600" 
+                alt="Smiling toddler playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame2}`}>
               <img 
-                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400" 
-                alt="Preschool child laughing and playing" 
+                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600" 
+                alt="Smiling child painting" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame3}`}>
               <img 
-                src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=400" 
-                alt="Preschool child reading a book" 
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" 
+                alt="Teacher explaining reading book" 
                 loading="lazy"
               />
             </div>

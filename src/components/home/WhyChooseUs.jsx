@@ -57,8 +57,16 @@ const rowData = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="section" id="home-why-choose-us" style={{ backgroundColor: '#FFFFFF' }}>
-      <div className="container">
+    <section className="section" id="home-why-choose-us" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1000')`,
+          opacity: 0.11
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         <SectionTitle 
           tag="Why Parents Choose Us"

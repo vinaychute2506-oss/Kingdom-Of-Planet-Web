@@ -43,8 +43,16 @@ const GalleryPreview = () => {
   };
 
   return (
-    <section className="section" id="home-gallery-preview" style={{ backgroundColor: '#FAF6EE' }}>
-      <div className={`container ${styles.gridContainer}`}>
+    <section className="section" id="home-gallery-preview" style={{ backgroundColor: '#FAF6EE', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800')`,
+          opacity: 0.10
+        }} 
+      />
+      <div className={`container ${styles.gridContainer}`} style={{ position: 'relative', zIndex: 1 }}>
         
         {/* Left Side: Callout text and button */}
         <div className={styles.leftCol}>

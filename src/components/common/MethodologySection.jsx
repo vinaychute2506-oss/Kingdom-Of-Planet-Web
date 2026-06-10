@@ -73,8 +73,8 @@ const MethodologySection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800')`,
-          opacity: 0.025
+          backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1000')`,
+          opacity: 0.12
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>

@@ -16,8 +16,16 @@ const iconMap = {
 
 const SchedulePreview = () => {
   return (
-    <section className="section" style={{ backgroundColor: '#FAF6EE' }}>
-      <div className="container">
+    <section className="section" style={{ backgroundColor: '#FAF6EE', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800')`,
+          opacity: 0.11
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         <SectionTitle 
           tag="A Day At Our Pre School"

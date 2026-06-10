@@ -171,7 +171,7 @@ img {
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
-  filter: grayscale(0.3) blur(2px);
+  filter: saturate(0.85) contrast(1.01);
   transition: opacity 0.5s ease;
 }
 

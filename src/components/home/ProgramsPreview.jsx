@@ -19,8 +19,16 @@ const ProgramsPreview = () => {
   };
 
   return (
-    <section className="section" id="home-programs" style={{ backgroundColor: '#FFFFFF' }}>
-      <div className="container">
+    <section className="section" id="home-programs" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=800')`,
+          opacity: 0.10
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         <SectionTitle 
           tag="Our Foundations"
