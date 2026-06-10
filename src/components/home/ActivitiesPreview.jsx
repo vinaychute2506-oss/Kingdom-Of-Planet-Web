@@ -49,8 +49,8 @@ const ActivitiesPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1000')`,
-          opacity: 0.12
+          backgroundImage: `url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.42
         }} 
       />
       <div className={`container ${styles.gridContainer}`}>

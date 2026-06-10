@@ -10,8 +10,17 @@ const TestimonialsSection = () => {
   const { testimonials } = useCMS();
 
   return (
-    <section className="section section-accent" id="home-testimonials" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px' }}>
-      <div className="container">
+    <section className="section section-accent" id="home-testimonials" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.40,
+          borderRadius: '32px'
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         <SectionTitle 
           tag="Happy Parents"

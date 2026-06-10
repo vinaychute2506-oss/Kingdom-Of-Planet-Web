@@ -62,8 +62,8 @@ const WhyChooseUs = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=1000')`,
-          opacity: 0.11
+          backgroundImage: `url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.40
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>

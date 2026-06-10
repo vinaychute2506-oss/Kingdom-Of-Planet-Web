@@ -48,8 +48,8 @@ const GalleryPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800')`,
-          opacity: 0.10
+          backgroundImage: `url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.40
         }} 
       />
       <div className={`container ${styles.gridContainer}`} style={{ position: 'relative', zIndex: 1 }}>

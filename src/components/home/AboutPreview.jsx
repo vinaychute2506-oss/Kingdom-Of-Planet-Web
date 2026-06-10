@@ -40,8 +40,17 @@ const AboutPreview = () => {
   ];
 
   return (
-    <section className="section section-accent" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px' }}>
-      <div className="container">
+    <section className="section section-accent" style={{ backgroundColor: '#FFFFFF', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.40,
+          borderRadius: '32px'
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         {/* 1. 4-Column Horizontal Features Section (Direct reference replication) */}
         <div className={styles.featuresStrip}>

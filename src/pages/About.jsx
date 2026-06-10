@@ -38,7 +38,15 @@ const About = () => {
       
       {/* Page Header */}
       <section className={styles.pageHeader}>
-        <div className="container">
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1453749024858-4bda89bd9ed7?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -51,8 +59,16 @@ const About = () => {
       </section>
 
       {/* 1. Principal Message */}
-      <section className="section" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="container">
+      <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className={styles.principalCard}>
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
@@ -89,8 +105,17 @@ const About = () => {
       </section>
 
       {/* 2. Vision & Mission Cards */}
-      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
-        <div className="container">
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40,
+            borderRadius: '32px'
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className={styles.visionGrid}>
             <motion.div 
               className={`${styles.visionCard} ${styles.cardPurple}`}
@@ -122,8 +147,16 @@ const About = () => {
       </section>
 
       {/* 3. Central Dark Wine Stats Banner (moodboard central bar) */}
-      <section className={styles.statsBanner}>
-        <div className="container">
+      <section className={styles.statsBanner} style={{ position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.20
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
               <h3 className={styles.statVal}>15+</h3>
@@ -149,8 +182,16 @@ const About = () => {
       <MethodologySection />
 
       {/* 5. Facilities Grid */}
-      <section className="section" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="container">
+      <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <SectionTitle 
             tag="Our Facilities"
             title="Premium Secure Preschool Environment"
@@ -184,8 +225,17 @@ const About = () => {
       </section>
 
       {/* 6. Teachers list */}
-      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
-        <div className="container">
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40,
+            borderRadius: '32px'
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <SectionTitle 
             tag="Our Caregivers"
             title="Meet Our Certified, Loving Staff"

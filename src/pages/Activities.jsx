@@ -51,7 +51,15 @@ const Activities = () => {
       
       {/* Header Banner */}
       <section className={styles.pageHeader}>
-        <div className="container">
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,8 +72,16 @@ const Activities = () => {
       </section>
 
       {/* Main filter list and Grid */}
-      <section className="section">
-        <div className="container">
+      <section className="section" style={{ position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
           <SectionTitle 
             tag="Active Learning"

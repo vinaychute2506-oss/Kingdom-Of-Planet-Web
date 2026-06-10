@@ -20,7 +20,15 @@ const Programs = () => {
       
       {/* Page Header */}
       <section className={styles.pageHeader}>
-        <div className="container">
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1519068737630-e5db30e12e42?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,8 +41,16 @@ const Programs = () => {
       </section>
 
       {/* Main expanded program details section */}
-      <section className="section">
-        <div className="container">
+      <section className="section" style={{ position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
           <div className={styles.programDetailsList}>
             {programs.map((prog, idx) => {
@@ -129,8 +145,17 @@ const Programs = () => {
       </section>
 
       {/* Bottom enrollment callout */}
-      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
-        <div className="container">
+      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40,
+            borderRadius: '32px'
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className={styles.ctaBox}>
             <h2>Ready to Shape Your Child's Future?</h2>
             <p>Admissions are officially open for the current academic session 2026-27. Book a campus tour today!</p>

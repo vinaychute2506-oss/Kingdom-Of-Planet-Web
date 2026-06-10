@@ -43,7 +43,15 @@ const Gallery = () => {
       
       {/* Banner Header */}
       <section className={styles.pageHeader}>
-        <div className="container">
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,8 +64,16 @@ const Gallery = () => {
       </section>
 
       {/* Main mosaic list */}
-      <section className="section">
-        <div className="container">
+      <section className="section" style={{ position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
           <SectionTitle 
             tag="Capturing Memories"

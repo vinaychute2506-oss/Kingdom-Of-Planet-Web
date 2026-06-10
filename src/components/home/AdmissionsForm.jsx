@@ -126,8 +126,16 @@ const AdmissionsForm = () => {
   };
 
   return (
-    <section className="section" id="admission-form" style={{ backgroundColor: '#FFFFFF' }}>
-      <div className="container">
+    <section className="section" id="admission-form" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+      {/* Subtle background texture watermark */}
+      <div 
+        className="section-bg-watermark" 
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.40
+        }} 
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         {/* Playful seat notice block rebranded to elegant brochure alert */}
         <motion.div 

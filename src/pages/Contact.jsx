@@ -110,7 +110,15 @@ const Contact = () => {
       
       {/* Page Header */}
       <section className={styles.pageHeader}>
-        <div className="container">
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -123,8 +131,16 @@ const Contact = () => {
       </section>
 
       {/* Main split grid */}
-      <section className="section">
-        <div className="container">
+      <section className="section" style={{ position: 'relative' }}>
+        {/* Subtle background texture watermark */}
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.40
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
           <div className={styles.splitGrid}>
             
