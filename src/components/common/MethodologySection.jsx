@@ -42,6 +42,26 @@ const methodologies = [
   }
 ];
 
+const getMethodologyImage = (title) => {
+  const cleanTitle = String(title).toLowerCase();
+  if (cleanTitle.includes('play')) {
+    return 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('activity')) {
+    return 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('experiential')) {
+    return 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('storytelling') || cleanTitle.includes('rhymes')) {
+    return 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('music') || cleanTitle.includes('movement')) {
+    return 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('collaborative')) {
+    return 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('hands-on') || cleanTitle.includes('exploration')) {
+    return 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400';
+  }
+  return 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400';
+};
+
 const MethodologySection = () => {
   return (
     <section className="section" id="teaching-methodology" style={{ backgroundColor: '#FAF6EE' }}>
@@ -54,6 +74,34 @@ const MethodologySection = () => {
           align="center"
           subtitle="At Kingdom of Learning, we move past static rote lectures. We apply a soft, luxury childhood framework designed to make learning come alive."
         />
+
+        {/* Editorial visual methodology collage strip */}
+        <div className={styles.imageStrip}>
+          <div className={styles.stripItem}>
+            <div className={styles.stripArch}>
+              <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=300" alt="Play Way Learning" />
+            </div>
+            <span className={styles.stripLabel}>Play Way</span>
+          </div>
+          <div className={styles.stripItem}>
+            <div className={styles.stripArch}>
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=300" alt="Experiential Science" />
+            </div>
+            <span className={styles.stripLabel}>Experiential</span>
+          </div>
+          <div className={styles.stripItem}>
+            <div className={styles.stripArch}>
+              <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=300" alt="Storytelling Corner" />
+            </div>
+            <span className={styles.stripLabel}>Storytelling</span>
+          </div>
+          <div className={styles.stripItem}>
+            <div className={styles.stripArch}>
+              <img src="https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=300" alt="Social Interaction" />
+            </div>
+            <span className={styles.stripLabel}>Social Growth</span>
+          </div>
+        </div>
 
         <div className={styles.methodGrid}>
           {methodologies.map((item, index) => {
@@ -68,11 +116,20 @@ const MethodologySection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
               >
-                <div className={styles.iconCircle}>
-                  <IconComponent size={22} strokeWidth={1.5} />
+                {/* Subtle blurred/faded background visual storytelling */}
+                <div 
+                  className={styles.cardBgImage}
+                  style={{ backgroundImage: `url(${getMethodologyImage(item.title)})` }}
+                />
+                <div className={styles.cardBgOverlay} />
+
+                <div className={styles.cardContentWrapper}>
+                  <div className={styles.iconCircle}>
+                    <IconComponent size={22} strokeWidth={1.5} />
+                  </div>
+                  <h3 className={styles.cardTitle}>{item.title}</h3>
+                  <p className={styles.cardDesc}>{item.desc}</p>
                 </div>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDesc}>{item.desc}</p>
               </motion.div>
             );
           })}

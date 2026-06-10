@@ -22,6 +22,22 @@ const iconMap = {
 
 const filterCategories = ["All", "Creative", "Physical", "Cognitive", "Social"];
 
+const getActivityImage = (id) => {
+  const mapping = {
+    'art-craft': 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600',
+    'music-dance': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600',
+    'storytelling-rhymes': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600',
+    'indoor-outdoor-games': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600',
+    'sensory-activities': 'https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=600',
+    'festival-celebrations': 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=600',
+    'personality-development': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
+    'creative-learning': 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=600',
+    'motor-skill-development': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600',
+    'fun-learning-activities': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600'
+  };
+  return mapping[id] || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600';
+};
+
 const Activities = () => {
   const { activities } = useCMS();
   const [activeFilter, setActiveFilter] = useState("All");
@@ -92,7 +108,7 @@ const Activities = () => {
                     {/* Top Image Banner */}
                     <div className={styles.cardImageWrapper}>
                       <img 
-                        src={FALLBACK_IMAGES.activity} 
+                        src={getActivityImage(act.id)} 
                         alt={act.title} 
                         className={styles.cardImage} 
                         onError={(e) => { e.target.src = FALLBACK_IMAGES.activity; }}

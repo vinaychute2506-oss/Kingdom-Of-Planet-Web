@@ -5,7 +5,7 @@ export const activitiesData = [
     category: "Creative",
     description: "Developing creativity and color logic using finger painting, paper origami, and soft clay sculpting.",
     icon: "Palette",
-    color: "#6B1D2F", // Wine
+    color: "#541221", // Wine
     bgSoft: "#F5E6E8",
     details: "Our art workshop is stocked with non-toxic, child-safe paints, clay models, and recycled materials. We focus on fine-motor control, texturing, and three-dimensional spatial analysis.",
     schedule: "Every Monday & Wednesday, 10:00 AM - 11:30 AM"

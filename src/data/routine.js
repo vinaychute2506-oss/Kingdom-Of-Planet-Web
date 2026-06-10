@@ -3,7 +3,7 @@ export const routineData = [
     time: "09:00 AM - 09:30 AM",
     title: "Welcome & Morning Circle",
     description: "Children arrive at our warm, secure campus, greet their peers, and participate in a morning circle singing theme songs and stating active calendar updates.",
-    color: "#6B1D2F", // Wine
+    color: "#541221", // Wine
     icon: "Sun"
   },
   {

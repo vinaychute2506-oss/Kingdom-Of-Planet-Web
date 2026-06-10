@@ -27,6 +27,20 @@ const safetyCards = [
   }
 ];
 
+const getSafetyImage = (title) => {
+  const cleanTitle = String(title).toLowerCase();
+  if (cleanTitle.includes('cctv') || cleanTitle.includes('monitoring')) {
+    return 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('eco') || cleanTitle.includes('campus') || cleanTitle.includes('friendly')) {
+    return 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('certified') || cleanTitle.includes('pedagogy') || cleanTitle.includes('staff')) {
+    return 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=400';
+  } else if (cleanTitle.includes('hygiene') || cleanTitle.includes('hygienic') || cleanTitle.includes('standard')) {
+    return 'https://images.unsplash.com/photo-1608220179579-3994e0780289?auto=format&fit=crop&q=80&w=400';
+  }
+  return 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=400';
+};
+
 const SafetySection = () => {
   return (
     <section className="section section-accent" id="home-safety" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px' }}>
@@ -53,11 +67,20 @@ const SafetySection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
               >
-                <div className={styles.iconBox}>
-                  <IconComponent size={22} strokeWidth={1.5} />
+                {/* Subtle blurred/faded background visual storytelling */}
+                <div 
+                  className={styles.cardBgImage}
+                  style={{ backgroundImage: `url(${getSafetyImage(card.title)})` }}
+                />
+                <div className={styles.cardBgOverlay} />
+
+                <div className={styles.cardContentWrapper}>
+                  <div className={styles.iconBox}>
+                    <IconComponent size={22} strokeWidth={1.5} />
+                  </div>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <p className={styles.cardDesc}>{card.description}</p>
                 </div>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardDesc}>{card.description}</p>
               </motion.div>
             );
           })}

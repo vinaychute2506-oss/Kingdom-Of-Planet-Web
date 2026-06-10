@@ -22,6 +22,20 @@ const galleryFallbackPhotos = [
   { id: 8, url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800", title: "Early Childhood Phonics Session", category: "Learn", sizeClass: "" }
 ];
 
+const getProgramFallbackImage = (id) => {
+  const cleanId = String(id).toLowerCase();
+  if (cleanId.includes('todd') || cleanId.includes('play')) {
+    return 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800';
+  } else if (cleanId.includes('nursery')) {
+    return 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800';
+  } else if (cleanId.includes('junior') || cleanId.includes('lkg') || cleanId.includes('kg')) {
+    return 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800';
+  } else if (cleanId.includes('senior') || cleanId.includes('ukg')) {
+    return 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800';
+  }
+  return FALLBACK_IMAGES.program;
+};
+
 const schoolInfoFallback = {
   schoolName: "Kingdom of Learning Pre School",
   tagline: "Warmth • Creativity • Trust",
@@ -104,9 +118,9 @@ export const CMSProvider = ({ children }) => {
           age: row.age || row.Age,
           tagline: row.tagline || row.Tagline || '',
           description: row.description || row.Description || '',
-          accentColor: row.accentColor || row.AccentColor || '#6B1E2E',
+          accentColor: row.accentColor || row.AccentColor || '#541221',
           lightBg: row.lightBg || row.LightBg || '#F6F1E9',
-          image: optimizeCloudinaryUrl(row.image || row.Image || FALLBACK_IMAGES.program),
+          image: optimizeCloudinaryUrl(row.image || row.Image || getProgramFallbackImage(row.id || row.Id || `prog-${idx}`)),
           learningMethod: row.learningMethod || row.LearningMethod || '',
           features: typeof feats === 'string' 
             ? feats.split(';').map(f => f.trim()).filter(Boolean)
@@ -126,7 +140,7 @@ export const CMSProvider = ({ children }) => {
         category: row.category || row.Category || 'General',
         description: row.description || row.Description || '',
         icon: row.icon || row.Icon || 'Sparkles',
-        color: row.color || row.Color || '#6B1E2E',
+        color: row.color || row.Color || '#541221',
         bgSoft: row.bgSoft || row.BgSoft || '#F6F1E9',
         details: row.details || row.Details || '',
         schedule: row.schedule || row.Schedule || ''
@@ -183,7 +197,7 @@ export const CMSProvider = ({ children }) => {
         time: row.time || row.Time || '',
         title: row.title || row.Title || '',
         description: row.description || row.Description || '',
-        color: row.color || row.Color || '#6B1E2E',
+        color: row.color || row.Color || '#541221',
         icon: row.icon || row.Icon || 'Clock'
       }));
     }

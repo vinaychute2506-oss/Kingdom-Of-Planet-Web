@@ -1,8 +1,8 @@
 // Design Tokens for Kingdom of Learning Pre School (Luxury Editorial Redesign)
 
 // Luxury Preschool Color Palette
-$color-wine: #6B1E2E;         // Primary elegant wine red
-$color-deep-wine: #521320;    // Deep wine backdrop for stats and footer
+$color-wine: #541221;         // Primary elegant wine red
+$color-deep-wine: #3E0812;    // Deep wine backdrop for stats and footer
 $color-beige: #EADFCF;        // Soft editorial beige for cards and outline borders
 $color-cream: #F6F1E9;        // Warm cream main page backdrop
 $color-bg-white: #FFFFFF;     // Clean white backgrounds
@@ -15,11 +15,11 @@ $color-yellow: #C8B39A;       // Map yellow to soft brown accent
 $color-gold: #C8B39A;         // Map gold to soft brown accent
 $color-bg-beige: #F6F1E9;     // Alias to main cream backdrop
 $color-bg-soft: #F6F1E9;      // Alias to main cream backdrop
-$color-green: #6B1E2E;        // Map green accent to clean brand wine
-$color-purple: #6B1E2E;       // Map purple accent to clean brand wine
+$color-green: #541221;        // Map green accent to clean brand wine
+$color-purple: #541221;       // Map purple accent to clean brand wine
 $color-orange: #C8B39A;       // Map orange accent to soft brown
 $color-blue: #C8B39A;         // Map blue accent to soft brown
-$color-pink: #521320;         // Map pink accent to deep wine
+$color-pink: #3E0812;         // Map pink accent to deep wine
 
 // Pre-computed color tokens to resolve Sass color compilation and retain compatibility
 $color-text-light-15: rgba(126, 111, 106, 0.15);
@@ -27,8 +27,8 @@ $color-text-light-20: rgba(126, 111, 106, 0.2);
 $color-text-light-25: rgba(126, 111, 106, 0.25);
 $color-text-light-35: rgba(126, 111, 106, 0.35);
 $color-bg-soft-1: #FAF6EE;
-$color-wine-dark-5: #521320;
-$color-purple-light-43: rgba(107, 30, 46, 0.4);
+$color-wine-dark-5: #3E0812;
+$color-purple-light-43: rgba(84, 18, 33, 0.4);
 $color-blue-light-40: rgba(200, 179, 154, 0.3);
 
 // Fonts (Editorial Serif Headings & Clean Lato/Poppins Body)

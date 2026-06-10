@@ -71,12 +71,12 @@ img {
 }
 
 .section {
-  padding: 72px 0;
+  padding: 60px 0;
   position: relative;
   overflow: hidden;
 
   @include responsive(mobile) {
-    padding: 44px 0;
+    padding: 36px 0;
   }
 }
 
@@ -131,7 +131,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #8C2D43;
+  background-color: $color-wine;
   border-radius: 10px;
   border: 3px solid $color-bg-beige;
 }

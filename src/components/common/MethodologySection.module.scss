@@ -1,5 +1,65 @@
 @import '../../styles/variables.scss';
 
+.imageStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+  width: 100%;
+
+  @include responsive(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.stripItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.stripArch {
+  width: 100%;
+  max-width: 160px;
+  height: 120px;
+  border-radius: 80px 80px 12px 12px; // Beautiful miniature arch
+  overflow: hidden;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-beige, 0.6);
+  transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+    transform: translateY(-3px);
+    img {
+      transform: scale(1.06);
+    }
+  }
+
+  @include responsive(mobile) {
+    height: 90px;
+  }
+}
+
+.stripLabel {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: $color-text-dark;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .methodGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -27,17 +87,24 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: $transition-smooth;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease-out, border-color 0.35s ease-out, box-shadow 0.35s ease-out;
   cursor: pointer;
 
   &:hover {
     border-color: $color-brown;
     box-shadow: $shadow-hover;
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 
     .iconCircle {
       background-color: rgba($color-wine, 0.08);
       transform: scale(1.03);
+    }
+
+    .cardBgImage {
+      transform: scale(1.08);
+      opacity: 0.08;
     }
   }
 
@@ -45,17 +112,53 @@
   &:nth-child(7):last-child {
     @media (min-width: 1024px) {
       grid-column: span 2;
-      flex-direction: row;
-      text-align: left;
-      align-items: center;
-      gap: 24px;
       padding: 32px 48px;
+
+      .cardContentWrapper {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 24px;
+      }
 
       .iconCircle {
         margin-bottom: 0;
       }
     }
   }
+}
+
+.cardBgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.04;
+  filter: blur(1px);
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
+  z-index: 1;
+}
+
+.cardBgOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-bg-white, 0.94);
+  z-index: 1;
+}
+
+.cardContentWrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .iconCircle {
@@ -67,7 +170,7 @@
   color: $color-wine;
   @include flex-center;
   margin-bottom: 20px;
-  transition: $transition-smooth;
+  transition: transform 0.35s ease-out, background-color 0.35s ease-out;
 }
 
 .cardTitle {

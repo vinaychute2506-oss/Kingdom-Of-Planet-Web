@@ -87,7 +87,7 @@ function App() {
           left: 0, 
           width: `${scrollProgress}%`, 
           height: '3px', 
-          background: '#6B1E2E', 
+          background: '#541221', 
           zIndex: 99999, 
           transition: 'width 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)'
         }} 
