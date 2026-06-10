@@ -46,7 +46,7 @@ const AboutPreview = () => {
         className="section-bg-watermark" 
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.40,
+          opacity: 0.26,
           borderRadius: '32px'
         }} 
       />

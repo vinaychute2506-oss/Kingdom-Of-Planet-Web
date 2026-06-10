@@ -39,14 +39,13 @@ const Hero = () => {
   return (
     <section className={styles.heroSection}>
       {/* Cinematic Luxury Background Video */}
-      <div 
+      <video 
         className={styles.bgVideo} 
-        style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1600')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }} 
+        src={FALLBACK_IMAGES.heroVideo} 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
       />
       <div className={styles.videoOverlay} />
       

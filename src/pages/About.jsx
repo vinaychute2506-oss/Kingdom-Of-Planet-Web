@@ -43,7 +43,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1453749024858-4bda89bd9ed7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -65,7 +65,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -111,7 +111,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40,
+            opacity: 0.26,
             borderRadius: '32px'
           }} 
         />
@@ -153,7 +153,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.20
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -188,7 +188,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -231,7 +231,7 @@ const About = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40,
+            opacity: 0.26,
             borderRadius: '32px'
           }} 
         />

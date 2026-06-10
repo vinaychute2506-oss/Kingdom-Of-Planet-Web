@@ -17,23 +17,31 @@ const Home = () => {
   return (
     <>
       <Hero />
+      <SectionDivider type="line" bgColor="#FAF6EE" />
       <AboutPreview />
+      <SectionDivider type="line" bgColor="#FAF6EE" />
       <SchedulePreview />
       
       {/* Transition: Cream (#FAF6EE) to White (#FFFFFF) */}
       <SectionDivider type="wave" bgColor="#FAF6EE" fillColor="#FFFFFF" height="56px" />
       
       <ProgramsPreview />
+      <SectionDivider type="line" bgColor="#FFFFFF" />
       <ActivitiesPreview />
+      <SectionDivider type="line" bgColor="#FFFFFF" />
       <SafetySection />
+      <SectionDivider type="line" bgColor="#FFFFFF" />
       <WhyChooseUs />
       
       {/* Transition: White (#FFFFFF) to Cream (#FAF6EE) */}
       <SectionDivider type="organic" bgColor="#FFFFFF" fillColor="#FAF6EE" height="56px" />
       
       <MethodologySection />
+      <SectionDivider type="line" bgColor="#FAF6EE" />
       <EventHighlights />
+      <SectionDivider type="line" bgColor="#FAF6EE" />
       <GalleryPreview />
+      <SectionDivider type="line" bgColor="#FAF6EE" />
       <TestimonialsSection />
       
       {/* Transition: Cream (#FAF6EE) to White (#FFFFFF) */}

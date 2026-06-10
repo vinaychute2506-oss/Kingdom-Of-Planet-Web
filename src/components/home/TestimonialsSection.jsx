@@ -16,7 +16,7 @@ const TestimonialsSection = () => {
         className="section-bg-watermark" 
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.40,
+          opacity: 0.26,
           borderRadius: '32px'
         }} 
       />

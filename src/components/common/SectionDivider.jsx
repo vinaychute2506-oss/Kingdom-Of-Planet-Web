@@ -13,6 +13,33 @@ const SectionDivider = ({
 }) => {
   const transform = flipped ? 'scaleY(-1)' : 'none';
 
+  if (type === 'line') {
+    return (
+      <div 
+        className="section-divider-line-container"
+        style={{ 
+          backgroundColor: bgColor, 
+          width: '100%', 
+          padding: '32px 0',
+          position: 'relative',
+          zIndex: 2,
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, rgba(84, 18, 33, 0) 0%, rgba(84, 18, 33, 0.12) 50%, rgba(84, 18, 33, 0.12) 100%)' }} />
+          <div style={{ margin: '0 20px', color: 'rgba(84, 18, 33, 0.2)', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+            </svg>
+          </div>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, rgba(84, 18, 33, 0) 0%, rgba(84, 18, 33, 0.12) 50%, rgba(84, 18, 33, 0.12) 100%)' }} />
+        </div>
+      </div>
+    );
+  }
+
   const renderPath = () => {
     switch (type) {
       case 'curve':

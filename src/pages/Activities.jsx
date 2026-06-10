@@ -56,7 +56,7 @@ const Activities = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -78,7 +78,7 @@ const Activities = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

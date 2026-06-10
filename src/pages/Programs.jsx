@@ -25,7 +25,7 @@ const Programs = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1519068737630-e5db30e12e42?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -47,7 +47,7 @@ const Programs = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -151,7 +151,7 @@ const Programs = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40,
+            opacity: 0.26,
             borderRadius: '32px'
           }} 
         />

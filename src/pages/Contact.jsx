@@ -115,7 +115,7 @@ const Contact = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -137,7 +137,7 @@ const Contact = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

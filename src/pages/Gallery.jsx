@@ -48,7 +48,7 @@ const Gallery = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -70,7 +70,7 @@ const Gallery = () => {
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.40
+            opacity: 0.26
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

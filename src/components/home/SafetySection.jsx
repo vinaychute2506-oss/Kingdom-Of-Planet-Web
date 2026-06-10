@@ -49,7 +49,7 @@ const SafetySection = () => {
         className="section-bg-watermark" 
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.43,
+          opacity: 0.28,
           borderRadius: '32px'
         }} 
       />
