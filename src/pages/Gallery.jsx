@@ -5,6 +5,7 @@ import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
 import { trackEvent } from '../services/analytics';
 import SectionTitle from '../components/common/SectionTitle';
+import SectionDivider from '../components/common/SectionDivider';
 import styles from './GalleryPage.module.scss';
 
 const Gallery = () => {
@@ -47,7 +48,7 @@ const Gallery = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=1600')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1600')`,
             opacity: 0.26
           }} 
         />
@@ -62,6 +63,8 @@ const Gallery = () => {
           <p>Peek inside our colorful campus, active assemblies, scientific workshops, and playground memories.</p>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* Main mosaic list */}
       <section className="section" style={{ position: 'relative' }}>

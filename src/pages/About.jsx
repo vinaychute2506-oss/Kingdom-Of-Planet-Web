@@ -5,6 +5,7 @@ import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
 import MethodologySection from '../components/common/MethodologySection';
+import SectionDivider from '../components/common/SectionDivider';
 import styles from './About.module.scss';
 
 const facilitiesList = [
@@ -42,7 +43,7 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1453749024858-4bda89bd9ed7?auto=format&fit=crop&q=80&w=1600')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=1600')`,
             opacity: 0.26
           }} 
         />
@@ -57,6 +58,8 @@ const About = () => {
           <p>A Kingdom Where Learning Comes Alive - Explore our vision, values, principal message, and certified staff.</p>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* 1. Principal Message */}
       <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
@@ -104,6 +107,8 @@ const About = () => {
         </div>
       </section>
 
+      <SectionDivider type="line" bgColor="#FFFFFF" />
+
       {/* 2. Vision & Mission Cards */}
       <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
         {/* Subtle background texture watermark */}
@@ -129,7 +134,7 @@ const About = () => {
                 To provide high-quality early childhood education that inspires young minds to discover the world, develop lifelong values, and build a strong foundation for the future.
               </p>
             </motion.div>
-
+ 
             <motion.div 
               className={`${styles.visionCard} ${styles.cardGreen}`}
               initial={{ opacity: 0, y: 15 }}
@@ -145,7 +150,9 @@ const About = () => {
           </div>
         </div>
       </section>
-
+ 
+      <SectionDivider type="wave" bgColor="#FFFFFF" fillColor="#541221" height="48px" />
+ 
       {/* 3. Central Dark Wine Stats Banner (moodboard central bar) */}
       <section className={styles.statsBanner} style={{ position: 'relative' }}>
         {/* Subtle background texture watermark */}
@@ -177,9 +184,13 @@ const About = () => {
           </div>
         </div>
       </section>
-
+ 
+      <SectionDivider type="organic" bgColor="#541221" fillColor="#FAF6EE" height="48px" />
+ 
       {/* 4. Reusable Methodology Section */}
       <MethodologySection />
+ 
+      <SectionDivider type="wave" bgColor="#FAF6EE" fillColor="#FFFFFF" height="48px" />
 
       {/* 5. Facilities Grid */}
       <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
@@ -223,6 +234,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* 6. Teachers list */}
       <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>

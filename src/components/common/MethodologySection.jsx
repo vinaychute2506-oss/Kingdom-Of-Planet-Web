@@ -54,7 +54,7 @@ const methodologyRows = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=500",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=500",
     imageAlt: "Hands-on nature sandbox building",
     items: [
       {

@@ -5,6 +5,7 @@ import { useCMS } from '../context/CMSContext';
 import { submitForm } from '../services/api';
 import { trackEvent } from '../services/analytics';
 import SectionTitle from '../components/common/SectionTitle';
+import SectionDivider from '../components/common/SectionDivider';
 import styles from './Contact.module.scss';
 
 const Contact = () => {
@@ -83,9 +84,9 @@ const Contact = () => {
     } catch (err) {
       // Enhanced diagnostic logging for network/CORS failures
       console.error('[Forms Dispatch Failure] Diagnostics Details:', {
-        exception: err.message,
-        payloadPreserved: formData,
-        apiUrlTargeted: import.meta.env.VITE_CMS_API
+         exception: err.message,
+         payloadPreserved: formData,
+         apiUrlTargeted: import.meta.env.VITE_CMS_API
       });
       setErrorMsg("Message dispatch failed due to an API connection error. We have preserved your inputs. Please check your network and try again.");
     } finally {
@@ -129,6 +130,8 @@ const Contact = () => {
           <p>Get in touch with Mrs. Komal Singh and our administrative team to schedule your visitation.</p>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* Main split grid */}
       <section className="section" style={{ position: 'relative' }}>

@@ -4,6 +4,7 @@ import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Users, Heart, Sun, C
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
+import SectionDivider from '../components/common/SectionDivider';
 import styles from './ActivitiesPage.module.scss';
 
 const iconMap = {
@@ -28,7 +29,7 @@ const getActivityImage = (id) => {
     'music-dance': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600',
     'storytelling-rhymes': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600',
     'indoor-outdoor-games': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600',
-    'sensory-activities': 'https://images.unsplash.com/photo-1537655780520-1e392edd816a?auto=format&fit=crop&q=80&w=600',
+    'sensory-activities': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600',
     'festival-celebrations': 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=600',
     'personality-development': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
     'creative-learning': 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=600',
@@ -70,6 +71,8 @@ const Activities = () => {
           <p>Discover our wide array of cognitive workshops, sports schedules, music training, and seasonal camps.</p>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* Main filter list and Grid */}
       <section className="section" style={{ position: 'relative' }}>

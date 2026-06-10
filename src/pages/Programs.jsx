@@ -4,6 +4,7 @@ import { Baby, Smile, BookOpen, Check, Target, Compass, ArrowRight } from 'lucid
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
 import SectionTitle from '../components/common/SectionTitle';
+import SectionDivider from '../components/common/SectionDivider';
 import styles from './Programs.module.scss';
 
 const iconMap = {
@@ -39,6 +40,8 @@ const Programs = () => {
           <p>Explore our carefully designed age-appropriate curriculum for Nursery, Kindergarten, and Primary classes.</p>
         </div>
       </section>
+
+      <SectionDivider type="line" bgColor="#FFFFFF" />
 
       {/* Main expanded program details section */}
       <section className="section" style={{ position: 'relative' }}>
@@ -144,13 +147,15 @@ const Programs = () => {
         </div>
       </section>
 
+      <SectionDivider type="line" bgColor="#FFFFFF" />
+
       {/* Bottom enrollment callout */}
       <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
         {/* Subtle background texture watermark */}
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1600')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1600')`,
             opacity: 0.26,
             borderRadius: '32px'
           }} 

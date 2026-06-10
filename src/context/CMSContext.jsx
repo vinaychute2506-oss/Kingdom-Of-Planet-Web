@@ -238,16 +238,56 @@ export const CMSProvider = ({ children }) => {
         console.log(`[CMS Provider] Version shift detected (Current: ${currentVersion} -> Fetched: ${fetchedVersion}). Invalidating local storage cache.`);
       }
 
-      // SWR state mapping
+      // SWR state mapping with robust empty check fallbacks
       if (cleanData.schoolInfo) setSchoolInfo(cleanData.schoolInfo);
-      if (cleanData.programs) setPrograms(cleanData.programs);
-      if (cleanData.activities) setActivities(cleanData.activities);
-      if (cleanData.testimonials) setTestimonials(cleanData.testimonials);
-      if (cleanData.gallery) setGallery(cleanData.gallery);
-      if (cleanData.admissions) setAdmissions(cleanData.admissions);
-      if (cleanData.teachers) setTeachers(cleanData.teachers);
-      if (cleanData.routine) setRoutine(cleanData.routine);
-      if (cleanData.events) setEvents(cleanData.events);
+      
+      if (cleanData.programs && cleanData.programs.length > 0) {
+        setPrograms(cleanData.programs);
+      } else {
+        setPrograms(programsData);
+      }
+
+      if (cleanData.activities && cleanData.activities.length > 0) {
+        setActivities(cleanData.activities);
+      } else {
+        setActivities(activitiesData);
+      }
+
+      if (cleanData.testimonials && cleanData.testimonials.length > 0) {
+        setTestimonials(cleanData.testimonials);
+      } else {
+        setTestimonials(testimonialsData);
+      }
+
+      if (cleanData.gallery && cleanData.gallery.length > 0) {
+        setGallery(cleanData.gallery);
+      } else {
+        setGallery(galleryFallbackPhotos);
+      }
+
+      if (cleanData.admissions && cleanData.admissions.length > 0) {
+        setAdmissions(cleanData.admissions);
+      } else {
+        setAdmissions(admissionsFallback);
+      }
+
+      if (cleanData.teachers && cleanData.teachers.length > 0) {
+        setTeachers(cleanData.teachers);
+      } else {
+        setTeachers(teachersData);
+      }
+
+      if (cleanData.routine && cleanData.routine.length > 0) {
+        setRoutine(cleanData.routine);
+      } else {
+        setRoutine(routineData);
+      }
+
+      if (cleanData.events && cleanData.events.length > 0) {
+        setEvents(cleanData.events);
+      } else {
+        setEvents(eventsData);
+      }
 
       const syncTimestamp = Date.now();
       setLastUpdated(syncTimestamp);
@@ -284,14 +324,54 @@ export const CMSProvider = ({ children }) => {
           console.log('[CMS Provider] Offline cache found, painting view immediately.');
           
           if (cache.data.schoolInfo) setSchoolInfo(cache.data.schoolInfo);
-          if (cache.data.programs) setPrograms(cache.data.programs);
-          if (cache.data.activities) setActivities(cache.data.activities);
-          if (cache.data.testimonials) setTestimonials(cache.data.testimonials);
-          if (cache.data.gallery) setGallery(cache.data.gallery);
-          if (cache.data.admissions) setAdmissions(cache.data.admissions);
-          if (cache.data.teachers) setTeachers(cache.data.teachers);
-          if (cache.data.routine) setRoutine(cache.data.routine);
-          if (cache.data.events) setEvents(cache.data.events);
+          
+          if (cache.data.programs && cache.data.programs.length > 0) {
+            setPrograms(cache.data.programs);
+          } else {
+            setPrograms(programsData);
+          }
+
+          if (cache.data.activities && cache.data.activities.length > 0) {
+            setActivities(cache.data.activities);
+          } else {
+            setActivities(activitiesData);
+          }
+
+          if (cache.data.testimonials && cache.data.testimonials.length > 0) {
+            setTestimonials(cache.data.testimonials);
+          } else {
+            setTestimonials(testimonialsData);
+          }
+
+          if (cache.data.gallery && cache.data.gallery.length > 0) {
+            setGallery(cache.data.gallery);
+          } else {
+            setGallery(galleryFallbackPhotos);
+          }
+
+          if (cache.data.admissions && cache.data.admissions.length > 0) {
+            setAdmissions(cache.data.admissions);
+          } else {
+            setAdmissions(admissionsFallback);
+          }
+
+          if (cache.data.teachers && cache.data.teachers.length > 0) {
+            setTeachers(cache.data.teachers);
+          } else {
+            setTeachers(teachersData);
+          }
+
+          if (cache.data.routine && cache.data.routine.length > 0) {
+            setRoutine(cache.data.routine);
+          } else {
+            setRoutine(routineData);
+          }
+
+          if (cache.data.events && cache.data.events.length > 0) {
+            setEvents(cache.data.events);
+          } else {
+            setEvents(eventsData);
+          }
 
           cacheTime = cache.timestamp;
           setLastUpdated(cacheTime);

@@ -31,7 +31,7 @@ const Footer = () => {
           <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=200" alt="Clay craft" />
         </div>
         <div className={styles.miniGalleryItem}>
-          <img src="https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=200" alt="Safe play" />
+          <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&q=80&w=200" alt="Safe play" />
         </div>
       </div>
 
