@@ -11,7 +11,7 @@ const Navbar = ({ currentHash }) => {
   useEffect(() => {
     setIsOpen(false);
   }, [currentHash]);
-
+ 
   // Handle header background transition on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +25,18 @@ const Navbar = ({ currentHash }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile overlay menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+ 
   const navLinks = [
     { name: 'Home', hash: '#home' },
     { name: 'About Us', hash: '#about' },
@@ -33,11 +45,11 @@ const Navbar = ({ currentHash }) => {
     { name: 'Gallery', hash: '#gallery' },
     { name: 'Contact', hash: '#contact' },
   ];
-
+ 
   const handleEnrollClick = () => {
     window.location.hash = '#contact';
   };
-
+ 
   return (
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
@@ -47,7 +59,7 @@ const Navbar = ({ currentHash }) => {
           <a href="#home" className={styles.logo}>
             <img src="/logo.png" alt="Kingdom of Learning Pre School" className={styles.logoImg} />
           </a>
-
+ 
           {/* Desktop Links */}
           <nav className={styles.desktopNav}>
             {navLinks.map((link) => {
@@ -70,7 +82,7 @@ const Navbar = ({ currentHash }) => {
               );
             })}
           </nav>
-
+ 
           {/* Action CTA Enrollment */}
           <div className={styles.headerActions}>
             <motion.button 
@@ -82,7 +94,7 @@ const Navbar = ({ currentHash }) => {
               <GraduationCap size={18} />
               <span>Admissions</span>
             </motion.button>
-
+ 
             {/* Mobile hamburger */}
             <button 
               className={styles.mobileMenuToggle} 
@@ -92,15 +104,15 @@ const Navbar = ({ currentHash }) => {
               {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
-
+ 
         </div>
       </header>
-
+ 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className={styles.mobileOverlay}
+            className={`${styles.mobileOverlay} ${scrolled ? styles.scrolled : ''}`}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -119,7 +131,6 @@ const Navbar = ({ currentHash }) => {
                     href={link.hash}
                     className={`${styles.mobileNavLink} ${isActive ? styles.mobileActiveLink : ''}`}
                   >
-                    {navLinks.name}
                     {link.name}
                   </motion.a>
                 );

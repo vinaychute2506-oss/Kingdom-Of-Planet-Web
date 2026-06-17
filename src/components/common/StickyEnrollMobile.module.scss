@@ -20,18 +20,23 @@
 
 .ctaButton {
   width: 100%;
-  background: linear-gradient(135deg, $color-orange 0%, #D35400 100%);
+  background: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 14px;
-  border-radius: $radius-md;
+  padding: 14px 24px;
+  border-radius: $radius-full;
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
   @include flex-center;
   gap: 8px;
-  box-shadow: 0 4px 15px rgba($color-orange, 0.3);
+  box-shadow: 0 4px 15px rgba($color-wine, 0.2);
   transition: $transition-smooth;
+
+  &:hover {
+    background-color: $color-deep-wine;
+    box-shadow: 0 6px 20px rgba($color-wine, 0.3);
+  }
 
   &:active {
     transform: scale(0.98);

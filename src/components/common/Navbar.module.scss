@@ -134,7 +134,7 @@
 // Mobile Full screen menu
 .mobileOverlay {
   position: fixed;
-  top: 76px;
+  top: 80px;
   left: 0;
   width: 100%;
   background-color: rgba($color-cream, 0.98);
@@ -142,6 +142,18 @@
   z-index: 999;
   border-bottom: 1px solid rgba($color-beige, 0.8);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: top 0.35s ease, background-color 0.35s ease;
+
+  &.scrolled {
+    top: 68px;
+  }
+
+  @include responsive(mobile) {
+    top: 64px;
+    &.scrolled {
+      top: 56px;
+    }
+  }
 }
 
 .mobileNavContainer {
