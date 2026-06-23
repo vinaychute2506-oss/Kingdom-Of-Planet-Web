@@ -38,8 +38,8 @@ const SafetySection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.22
+          backgroundImage: `url('/classroom-bg.png')`,
+          opacity: 0.12
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -93,7 +93,7 @@ const SafetySection = () => {
           >
             <div className={styles.safetyImageCard}>
               <img 
-                src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=600" 
+                src="/safety-kids.png" 
                 alt="Teacher helping children build blocks in classroom" 
                 loading="lazy" 
               />

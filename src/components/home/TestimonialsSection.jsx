@@ -18,8 +18,8 @@ const TestimonialsSection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.35
+          backgroundImage: `url('/classroom-bg.png')`,
+          opacity: 0.16
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
