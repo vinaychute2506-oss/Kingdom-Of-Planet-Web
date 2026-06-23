@@ -6,7 +6,7 @@ import styles from './WhyChooseUs.module.scss';
 
 const rowData = [
   {
-    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600",
+    image: "/why-choose-1.png",
     imageAlt: "Safe preschool playground sandbox",
     features: [
       {
@@ -22,7 +22,7 @@ const rowData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?auto=format&fit=crop&q=80&w=600",
+    image: "/why-choose-2.png",
     imageAlt: "Teacher child studying guidance",
     features: [
       {
@@ -38,7 +38,7 @@ const rowData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600",
+    image: "/why-choose-3.png",
     imageAlt: "Music and singing class",
     features: [
       {
@@ -62,7 +62,7 @@ const WhyChooseUs = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=1600')`,
+          backgroundImage: `url('/classroom-bg.png')`,
           opacity: 0.26
         }} 
       />

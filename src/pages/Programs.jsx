@@ -53,8 +53,8 @@ const Programs = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1519068737630-e5db30e12e42?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.15
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -173,8 +173,8 @@ const Programs = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.15
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>

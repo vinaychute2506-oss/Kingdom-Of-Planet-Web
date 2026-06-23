@@ -20,18 +20,18 @@ const iconMap = {
 
 const getBgImage = (id) => {
   const mapping = {
-    'art-craft': 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=400',
-    'music-dance': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400',
-    'storytelling-rhymes': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400',
-    'indoor-outdoor-games': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=400',
-    'sensory-activities': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=400',
-    'festival-celebrations': 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=400',
-    'personality-development': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
-    'creative-learning': 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=400',
-    'motor-skill-development': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400',
-    'fun-learning-activities': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400'
+    'art-craft': '/activity-art.png',
+    'music-dance': '/activity-music.png',
+    'storytelling-rhymes': '/activity-storytelling.png',
+    'indoor-outdoor-games': '/activity-games.png',
+    'sensory-activities': '/activity-sensory.png',
+    'festival-celebrations': '/activity-festivals.png',
+    'personality-development': '/activity-personality.png',
+    'creative-learning': '/activity-creative.png',
+    'motor-skill-development': '/activity-motor.png',
+    'fun-learning-activities': '/classroom-kids.png'
   };
-  return mapping[id] || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400';
+  return mapping[id] || '/activity-art.png';
 };
 
 const ActivitiesPreview = () => {
@@ -49,7 +49,7 @@ const ActivitiesPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1600')`,
+          backgroundImage: `url('/classroom-bg.png')`,
           opacity: 0.28
         }} 
       />
@@ -80,21 +80,21 @@ const ActivitiesPreview = () => {
           <div className={styles.storytellingCollage}>
             <div className={`${styles.collageItem} ${styles.archFrame1}`}>
               <img 
-                src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600" 
+                src="/collage-1.png" 
                 alt="Smiling toddler playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame2}`}>
               <img 
-                src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600" 
+                src="/collage-2.png" 
                 alt="Smiling children playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame3}`}>
               <img 
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" 
+                src="/collage-3.png" 
                 alt="Teacher explaining reading book" 
                 loading="lazy"
               />

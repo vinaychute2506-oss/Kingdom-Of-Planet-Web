@@ -12,26 +12,26 @@ import { eventsData } from '../data/events';
 
 // In-line gallery fallback images mapping
 const galleryFallbackPhotos = [
-  { id: 1, url: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=800", title: "Interactive Storytelling Library", category: "Campus", sizeClass: "" },
-  { id: 2, url: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800", title: "Outdoor Soft Slide Play", category: "Play", sizeClass: "tall" },
-  { id: 3, url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800", title: "Watercolor & Painting Workshop", category: "Play", sizeClass: "" },
-  { id: 4, url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800", title: "STEM Experiential Science Setup", category: "Learn", sizeClass: "wide" },
-  { id: 5, url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800", title: "Grand Annual Day Stage Choreography", category: "Events", sizeClass: "" },
-  { id: 6, url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800", title: "Early Alphabet Tracing Lessons", category: "Learn", sizeClass: "tall" },
-  { id: 7, url: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&q=80&w=800", title: "Creative Montessori Activity Desks", category: "Campus", sizeClass: "" },
-  { id: 8, url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800", title: "Early Childhood Phonics Session", category: "Learn", sizeClass: "" }
+  { id: 1, url: "/gallery-1.png", title: "Interactive Storytelling Library", category: "Campus", sizeClass: "" },
+  { id: 2, url: "/gallery-2.png", title: "Outdoor Soft Slide Play", category: "Play", sizeClass: "tall" },
+  { id: 3, url: "/gallery-3.png", title: "Watercolor & Painting Workshop", category: "Play", sizeClass: "" },
+  { id: 4, url: "/gallery-4.png", title: "STEM Experiential Science Setup", category: "Learn", sizeClass: "wide" },
+  { id: 5, url: "/gallery-5.png", title: "Grand Annual Day Stage Choreography", category: "Events", sizeClass: "" },
+  { id: 6, url: "/gallery-6.png", title: "Early Alphabet Tracing Lessons", category: "Learn", sizeClass: "tall" },
+  { id: 7, url: "/gallery-7.png", title: "Creative Montessori Activity Desks", category: "Campus", sizeClass: "" },
+  { id: 8, url: "/gallery-8.png", title: "Early Childhood Phonics Session", category: "Learn", sizeClass: "" }
 ];
 
 const getProgramFallbackImage = (id) => {
   const cleanId = String(id).toLowerCase();
   if (cleanId.includes('todd') || cleanId.includes('play')) {
-    return 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800';
+    return '/toddcare.png';
   } else if (cleanId.includes('nursery')) {
-    return 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800';
+    return '/nursery.png';
   } else if (cleanId.includes('junior') || cleanId.includes('lkg') || cleanId.includes('kg')) {
-    return 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800';
+    return '/junior-kg.png';
   } else if (cleanId.includes('senior') || cleanId.includes('ukg')) {
-    return 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800';
+    return '/senior-kg.png';
   }
   return FALLBACK_IMAGES.program;
 };

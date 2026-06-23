@@ -8,7 +8,7 @@ export const programsData = [
     gradient: "linear-gradient(135deg, #FDF6F7 0%, #F8E3E7 100%)",
     shadowColor: "rgba(224, 90, 109, 0.15)",
     icon: "Baby",
-    image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800",
+    image: "/toddcare.png",
     tagline: "Sensory Development & Playful Beginnings",
     description: "Our Toddcare program is specifically structured to offer a warm, safe, and sensory-rich home away from home..",
     features: [
@@ -37,7 +37,7 @@ export const programsData = [
     gradient: "linear-gradient(135deg, #FEF9F5 0%, #F5CBA7 100%)",
     shadowColor: "rgba(230, 126, 34, 0.15)",
     icon: "Smile",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+    image: "/nursery.png",
     tagline: "Unleashing Imagination & Storytelling",
     description: "The Nursery curriculum focuses on early literacy, vocabulary, phonics, and creative expression. Children interact with picture books, clay crafts, and social sharing circles.",
     features: [
@@ -66,7 +66,7 @@ export const programsData = [
     gradient: "linear-gradient(135deg, #F4FAF6 0%, #E8F8F5 100%)",
     shadowColor: "rgba(39, 174, 96, 0.15)",
     icon: "BookOpen",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
+    image: "/junior-kg.png",
     tagline: "Foundational Literacy & Active Discovery",
     description: "LKG guides kids through structured letter tracing, sentence construction, early science logic, and digital board blocks, preparing them for advanced logical inquiry.",
     features: [
@@ -95,7 +95,7 @@ export const programsData = [
     gradient: "linear-gradient(135deg, #FFFDF5 0%, #FEF9E7 100%)",
     shadowColor: "rgba(212, 175, 55, 0.15)",
     icon: "GraduationCap",
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800",
+    image: "/senior-kg.png",
     tagline: "Advanced School Readiness & Problem Solving",
     description: "UKG refines speech fluency, social collaboration, math counting logic, and independent problem-solving skills to build self-confidence for a smooth transition to formal primary schooling.",
     features: [

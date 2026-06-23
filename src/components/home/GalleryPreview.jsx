@@ -6,32 +6,32 @@ import styles from './GalleryPreview.module.scss';
 
 const previewImages = [
   {
-    url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-1.png",
     title: "Classroom Learning",
     category: "Academic"
   },
   {
-    url: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-2.png",
     title: "Outdoor Playground",
     category: "Playtime"
   },
   {
-    url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-3.png",
     title: "Creative Art Class",
     category: "Creativity"
   },
   {
-    url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-4.png",
     title: "Science Experiments",
     category: "Explore"
   },
   {
-    url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-5.png",
     title: "Annual Stage Dance",
     category: "Events"
   },
   {
-    url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=500",
+    url: "/gallery-6.png",
     title: "Early Reading Club",
     category: "Cognitive"
   }
@@ -48,7 +48,7 @@ const GalleryPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1600')`,
+          backgroundImage: `url('/classroom-bg.png')`,
           opacity: 0.26
         }} 
       />

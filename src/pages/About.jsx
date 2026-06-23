@@ -61,8 +61,8 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.15
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -158,8 +158,8 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.15
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -191,7 +191,7 @@ const About = () => {
             >
               <div className={styles.methodArch}>
                 <img 
-                  src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=600" 
+                  src="/play-way-method.png" 
                   alt="Play-Way learning blocks" 
                   loading="lazy"
                 />
@@ -236,7 +236,7 @@ const About = () => {
             >
               <div className={styles.methodArch}>
                 <img 
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" 
+                  src="/storytelling-method.png" 
                   alt="Activity classroom learning" 
                   loading="lazy"
                 />
@@ -308,8 +308,8 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.12
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.08
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

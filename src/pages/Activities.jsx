@@ -69,8 +69,8 @@ const Activities = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.15
+            backgroundImage: `url('/classroom-bg.png')`,
+            opacity: 0.12
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
