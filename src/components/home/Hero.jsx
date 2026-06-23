@@ -182,37 +182,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Illustration Column: Single Landscape Image with Rounded Corners */}
-        <div className={styles.heroIllustration}>
-          <div className={styles.botanicalStem}>
-            <svg viewBox="0 0 100 100" fill="none" stroke="#C8B39A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 95C50 80 48 55 52 40C54 30 58 10 58 10" />
-              <path d="M50 72C50 72 32 68 28 62C24 56 27 52 34 57C41 62 48 67 48 67" />
-              <path d="M51 57C51 57 66 52 70 45C74 38 69 35 63 42C57 49 52 54 52 54" />
-              <path d="M52 42C52 42 36 36 32 28C28 20 31 16 38 23C45 30 50 38 50 38" />
-              <path d="M52 28C52 28 64 21 66 13C68 5 63 4 58 11C53 18 52 24 52 24" />
-            </svg>
-          </div>
 
-          <div className={styles.imageCardContainer}>
-            <motion.div 
-              className={styles.heroImageCard}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.8, 0.25, 1] }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800" 
-                alt="Preschool teacher guiding child learning activity" 
-                onError={(e) => { e.target.src = FALLBACK_IMAGES.classroom; }}
-                loading="lazy"
-              />
-              <div className={styles.decorHeart}>
-                <Heart size={14} fill="#E05A6D" stroke="none" />
-              </div>
-            </motion.div>
-          </div>
-        </div>
 
       </div>
     </section>
