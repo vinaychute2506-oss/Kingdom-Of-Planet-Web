@@ -41,7 +41,6 @@
     .ageBadge { color: #E05A6D; background-color: rgba(#E05A6D, 0.08); border-color: rgba(#E05A6D, 0.2); }
     .iconCircle { color: #E05A6D; background-color: rgba(#E05A6D, 0.08); border-color: rgba(#E05A6D, 0.2); }
     .tagline { color: #E05A6D; }
-    .cardBtn { color: $color-text-dark; .btnArrowCircle { background-color: #E05A6D; } }
   }
 
   &.theme-nursery {
@@ -51,7 +50,6 @@
     .ageBadge { color: #E67E22; background-color: rgba(#E67E22, 0.08); border-color: rgba(#E67E22, 0.2); }
     .iconCircle { color: #E67E22; background-color: rgba(#E67E22, 0.08); border-color: rgba(#E67E22, 0.2); }
     .tagline { color: #E67E22; }
-    .cardBtn { color: $color-text-dark; .btnArrowCircle { background-color: #E67E22; } }
   }
 
   &.theme-junior-kg {
@@ -61,7 +59,6 @@
     .ageBadge { color: #27AE60; background-color: rgba(#27AE60, 0.08); border-color: rgba(#27AE60, 0.2); }
     .iconCircle { color: #27AE60; background-color: rgba(#27AE60, 0.08); border-color: rgba(#27AE60, 0.2); }
     .tagline { color: #27AE60; }
-    .cardBtn { color: $color-text-dark; .btnArrowCircle { background-color: #27AE60; } }
   }
 
   &.theme-senior-kg {
@@ -71,7 +68,6 @@
     .ageBadge { color: #D4AF37; background-color: rgba(#D4AF37, 0.08); border-color: rgba(#D4AF37, 0.2); }
     .iconCircle { color: #D4AF37; background-color: rgba(#D4AF37, 0.08); border-color: rgba(#D4AF37, 0.2); }
     .tagline { color: #D4AF37; }
-    .cardBtn { color: $color-text-dark; .btnArrowCircle { background-color: #D4AF37; } }
   }
 }
 
@@ -124,18 +120,21 @@
   background: none;
   border: none;
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
   padding: 0;
   margin-top: auto;
+  color: $color-wine !important;
   transition: $transition-smooth;
 
   &:hover {
     .btnArrowCircle {
-      transform: translateX(4px);
+      transform: scale(1.08);
+      background-color: lighten($color-wine, 5%) !important;
     }
   }
 }
@@ -144,6 +143,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
+  background-color: $color-wine !important;
+  color: $color-bg-white;
   @include flex-center;
   transition: $transition-smooth;
 }

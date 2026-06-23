@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Eye, Leaf, Award, Heart, Users, HelpCircle } from 'lucide-react';
+import { Camera, Leaf, Award, Heart, Users } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import styles from './SafetySection.module.scss';
 
 const safetyCards = [
   {
     id: "cctv",
-    icon: Eye,
+    icon: Camera,
     title: "CCTV Monitoring",
     description: "24x7 round-the-clock surveillance across classrooms & play areas.",
     bottomIcon: Heart,
@@ -33,13 +33,13 @@ const safetyCards = [
 
 const SafetySection = () => {
   return (
-    <section className="section" id="home-safety" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
+    <section className="section" id="home-safety" style={{ backgroundColor: '#FAF6EE', position: 'relative' }}>
       {/* Subtle background texture watermark */}
       <div 
         className="section-bg-watermark" 
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.35
+          opacity: 0.22
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -53,6 +53,7 @@ const SafetySection = () => {
               highlightWord="Trusted"
               align="left"
               subtitle="We prioritize physical security and hygiene above all, giving parents complete peace of mind while their kids explore."
+              hasHeartDivider={true}
             />
 
             <div className={styles.cardsRow}>
@@ -73,8 +74,8 @@ const SafetySection = () => {
                     </div>
                     <h3 className={styles.cardTitle}>{card.title}</h3>
                     <p className={styles.cardDesc}>{card.description}</p>
-                    <div className={styles.bottomBadge}>
-                      <BottomIconComponent size={16} strokeWidth={1.5} />
+                    <div className={styles.cardFooterBar}>
+                      <BottomIconComponent size={14} strokeWidth={1.5} />
                     </div>
                   </motion.div>
                 );
@@ -82,7 +83,7 @@ const SafetySection = () => {
             </div>
           </div>
 
-          {/* Right Column: Arched image */}
+          {/* Right Column: Rounded image card */}
           <motion.div 
             className={styles.imageCol}
             initial={{ opacity: 0, x: 20 }}
@@ -90,7 +91,7 @@ const SafetySection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
-            <div className={styles.safetyArch}>
+            <div className={styles.safetyImageCard}>
               <img 
                 src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=600" 
                 alt="Teacher helping children build blocks in classroom" 

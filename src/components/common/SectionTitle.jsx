@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Heart } from 'lucide-react';
 import styles from './SectionTitle.module.scss';
 
-const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center' }) => {
+const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center', hasHeartDivider = false }) => {
   // Render title with the highlighted word styled differently
   const renderTitle = () => {
     if (!highlightWord) return title;
@@ -53,8 +54,15 @@ const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center' })
         </motion.p>
       )}
 
-      {/* Editorial thin separator line */}
-      <div className={styles.decoratorLine} />
+      {hasHeartDivider ? (
+        <div className={styles.heartDivider}>
+          <div className={styles.dividerLineSide} />
+          <Heart size={14} className={styles.heartIcon} fill="#E05A6D" stroke="#E05A6D" />
+          <div className={styles.dividerLineSide} />
+        </div>
+      ) : (
+        <div className={styles.decoratorLine} />
+      )}
     </div>
   );
 };

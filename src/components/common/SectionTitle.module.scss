@@ -51,9 +51,18 @@
 }
 
 .highlight {
+  font-family: 'Dancing Script', cursive;
   color: $color-wine;
-  font-style: italic;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 3.2rem;
+  display: inline-block;
+  transform: translateY(4px);
+  margin-right: 4px;
+
+  @include responsive(mobile) {
+    font-size: 2.3rem;
+    transform: translateY(2px);
+  }
 }
 
 .subtitle {
@@ -69,4 +78,25 @@
   height: 1px;
   background-color: $color-brown;
   margin-top: 18px;
+}
+
+.heartDivider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  width: 140px;
+  justify-content: center;
+}
+
+.dividerLineSide {
+  height: 1px;
+  flex-grow: 1;
+  background-color: rgba($color-brown, 0.4);
+}
+
+.heartIcon {
+  color: #E05A6D;
+  flex-shrink: 0;
+  display: block;
 }

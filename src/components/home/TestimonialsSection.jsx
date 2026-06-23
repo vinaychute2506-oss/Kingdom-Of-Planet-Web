@@ -30,6 +30,7 @@ const TestimonialsSection = () => {
           highlightWord="Parents"
           align="center"
           subtitle="Real stories from families who have experienced our caring environment and joyful learning."
+          hasHeartDivider={true}
         />
 
         <div className={styles.testimonialsGrid}>

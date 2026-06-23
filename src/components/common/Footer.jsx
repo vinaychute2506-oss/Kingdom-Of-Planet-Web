@@ -28,19 +28,19 @@ const Footer = () => {
         <div className={`container ${styles.trustGrid}`}>
           <div className={styles.trustItem}>
             <span className={styles.trustTitle}>Safe Campus</span>
-            <span className={styles.trustSub}>100% CCTV & Secure Campus</span>
+            <span className={styles.trustSub}>100% CCTV & Secure Premises</span>
           </div>
           <div className={styles.trustItem}>
             <span className={styles.trustTitle}>Qualified Educators</span>
-            <span className={styles.trustSub}>Early Child Certification</span>
+            <span className={styles.trustSub}>Early Childhood Certified</span>
           </div>
           <div className={styles.trustItem}>
             <span className={styles.trustTitle}>Small Batch Learning</span>
-            <span className={styles.trustSub}>Focused Diagnostic Care</span>
+            <span className={styles.trustSub}>Personalized Attention</span>
           </div>
           <div className={styles.trustItem}>
             <span className={styles.trustTitle}>Creative Growth</span>
-            <span className={styles.trustSub}>Brochure-Level Philosophy</span>
+            <span className={styles.trustSub}>Explore. Imagine. Grow.</span>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@ const Footer = () => {
             />
           </a>
           <p className={styles.tagline}>
-            A premium early childhood learning center in New Delhi dedicated to providing safe, activity-based play-way education for young minds.
+            A premium early childhood learning center in New Delhi dedicated to providing safe, nurturing and activity-based environment that prepares every child for a bright future.
           </p>
           <div className={styles.socials}>
             <a href={schoolInfo.facebookUrl || "https://facebook.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#3b5998' }}>
@@ -79,10 +79,10 @@ const Footer = () => {
           <ul className={styles.linksList}>
             <li><button onClick={() => handleQuickLink('#home')}>Home</button></li>
             <li><button onClick={() => handleQuickLink('#about')}>About Us</button></li>
-            <li><button onClick={() => handleQuickLink('#programs')}>Our Programs</button></li>
+            <li><button onClick={() => handleQuickLink('#programs')}>Programs</button></li>
             <li><button onClick={() => handleQuickLink('#activities')}>Activities</button></li>
-            <li><button onClick={() => handleQuickLink('#gallery')}>Photo Gallery</button></li>
-            <li><button onClick={() => handleQuickLink('#contact')}>Enrollments</button></li>
+            <li><button onClick={() => handleQuickLink('#gallery')}>Gallery</button></li>
+            <li><button onClick={() => handleQuickLink('#contact')}>Contact</button></li>
           </ul>
         </div>
 
@@ -92,15 +92,15 @@ const Footer = () => {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={20} />
-              <span>{schoolInfo.address}</span>
+              <span>190-A, GF, Shastri Ji Rd, <br />New Delhi - 110052</span>
             </li>
             <li>
               <Phone size={20} />
-              <span>{schoolInfo.whatsapp || "+91 9667708285"}</span>
+              <span>+91 98707 92328</span>
             </li>
             <li>
               <Mail size={20} />
-              <span>{schoolInfo.email}</span>
+              <span>admissions@kingdomlearning.com</span>
             </li>
           </ul>
         </div>
@@ -111,15 +111,15 @@ const Footer = () => {
           <div className={styles.hoursBox}>
             <Clock size={20} />
             <div>
-              <p className={styles.days}>Toddcare Hours</p>
-              <p className={styles.time}>{schoolInfo.toddcareTimings}</p>
+              <p className={styles.days}>Toddlers Hours</p>
+              <p className={styles.time}>Mon – Fri: 09:00 AM – 12:00 PM</p>
             </div>
           </div>
           <div className={styles.hoursBox}>
             <Compass size={20} />
             <div>
               <p className={styles.days}>Nursery & KG Hours</p>
-              <p className={styles.time}>{schoolInfo.nurseryKGTimings}</p>
+              <p className={styles.time}>Mon – Fri: 09:00 AM – 01:00 PM</p>
             </div>
           </div>
         </div>
@@ -128,33 +128,10 @@ const Footer = () => {
 
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <p>
-            © {currentYear} {schoolInfo.schoolName}. All Rights Reserved. Client Presentation Demo.
-            <button 
-              onClick={forceRefresh} 
-              disabled={refreshing}
-              style={{ 
-                background: 'none', 
-                border: 'none', 
-                color: '#C8B39A', 
-                marginLeft: '12px', 
-                textDecoration: 'underline', 
-                cursor: 'pointer', 
-                fontSize: '0.8rem',
-                fontFamily: 'Lato',
-                transition: 'opacity 0.2s'
-              }}
-              onMouseEnter={(e) => { e.target.style.opacity = '0.8'; }}
-              onMouseLeave={(e) => { e.target.style.opacity = '1'; }}
-            >
-              {refreshing ? "Syncing..." : "Sync CMS Data"}
-            </button>
-          </p>
-          <p className={styles.credits}>{schoolInfo.tagline}</p>
+          <p>© {currentYear} Kingdom of Learning Pre School. All Rights Reserved.</p>
+          <p className={styles.credits}>Warmth • Creativity • Trust</p>
         </div>
       </div>
-
-
     </footer>
   );
 };

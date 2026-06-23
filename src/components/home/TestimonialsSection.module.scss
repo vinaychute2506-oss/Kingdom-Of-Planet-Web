@@ -60,20 +60,20 @@
 
   // Themes
   &.theme-0 {
-    border-color: rgba(#E05A6D, 0.25);
-    .cornerDecoration { background-color: #E05A6D; }
+    border-color: rgba(#E05A6D, 0.2);
+    .cornerDecoration { background-color: rgba(#E05A6D, 0.08); color: #E05A6D; }
     .quoteIcon { color: #E05A6D; }
   }
 
   &.theme-1 {
-    border-color: rgba(#27AE60, 0.25);
-    .cornerDecoration { background-color: #27AE60; }
+    border-color: rgba(#27AE60, 0.2);
+    .cornerDecoration { background-color: rgba(#27AE60, 0.08); color: #27AE60; }
     .quoteIcon { color: #27AE60; }
   }
 
   &.theme-2 {
-    border-color: rgba(#E67E22, 0.25);
-    .cornerDecoration { background-color: #E67E22; }
+    border-color: rgba(#E67E22, 0.2);
+    .cornerDecoration { background-color: rgba(#E67E22, 0.08); color: #E67E22; }
     .quoteIcon { color: #E67E22; }
   }
 }

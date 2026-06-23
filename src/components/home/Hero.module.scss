@@ -5,8 +5,9 @@
   min-height: 700px;
   position: relative;
   overflow: hidden;
-  background-color: $color-cream;
-  @include luxury-grain;
+  background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=1600');
+  background-size: cover;
+  background-position: center right;
   display: flex;
   align-items: center;
 
@@ -15,39 +16,43 @@
     min-height: auto;
     padding-top: 110px;
     padding-bottom: 56px;
+    background-position: 30% center; // Align image focus on mobile
+  }
+
+  @include responsive(tablet) {
+    height: auto;
+    min-height: 650px;
+    padding-top: 120px;
+    padding-bottom: 60px;
   }
 }
 
-.bgVideo {
+.heroOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: linear-gradient(to right, #FAF6EE 0%, rgba(250, 246, 238, 0.96) 35%, rgba(250, 246, 238, 0.75) 55%, rgba(250, 246, 238, 0) 100%);
   z-index: 1;
   pointer-events: none;
-  opacity: 0.55; // Gentle ambient opacity
-}
 
-.videoOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba($color-cream, 0.3) 0%, rgba($color-cream, 0.6) 100%);
-  z-index: 1;
-  pointer-events: none;
+  @include responsive(mobile) {
+    background: linear-gradient(to bottom, rgba(#FAF6EE, 0.95) 0%, rgba(#FAF6EE, 0.88) 100%);
+  }
+
+  @include responsive(tablet) {
+    background: linear-gradient(to right, #FAF6EE 0%, rgba(250, 246, 238, 0.95) 45%, rgba(250, 246, 238, 0.8) 70%, rgba(250, 246, 238, 0.3) 100%);
+  }
 }
 
 .sunFlare {
   position: absolute;
   top: 5%;
-  right: 12%;
+  left: 10%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba($color-brown, 0.22) 0%, rgba($color-cream, 0) 70%);
+  background: radial-gradient(circle, rgba($color-brown, 0.15) 0%, rgba($color-cream, 0) 70%);
   filter: blur(50px);
   z-index: 1;
   pointer-events: none;
@@ -67,32 +72,24 @@
 .goldParticle {
   position: absolute;
   border-radius: 50%;
-  background-color: rgba($color-brown, 0.35);
-  filter: blur(1px);
-}
-
-.floatingLeaf, .floatingBook {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  background-color: rgba($color-brown, 0.25);
 }
 
 .heroGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  max-width: 800px;
+  grid-template-columns: 1.15fr 1fr;
   gap: 48px;
   align-items: center;
   position: relative;
   z-index: 2;
 
   @include responsive(mobile) {
+    grid-template-columns: 1fr;
     gap: 32px;
   }
 
   @include responsive(tablet) {
+    grid-template-columns: 1.3fr 1fr;
     gap: 36px;
   }
 }
@@ -105,64 +102,114 @@
 }
 
 .welcomeTag {
-  background-color: rgba($color-wine, 0.05);
-  color: $color-wine;
-  padding: 6px 16px;
-  border-radius: $radius-full;
-  font-size: 0.78rem;
-  font-weight: 700;
-  font-family: $font-body;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 18px;
-  border: 1px solid rgba($color-wine, 0.1);
+  padding: 6px 16px;
+  background-color: rgba($color-wine, 0.05);
+  border: 1px solid rgba($color-wine, 0.12);
+  border-radius: $radius-full;
+  margin-bottom: 24px;
 
   .sparkleIcon {
     color: $color-wine;
   }
+
+  span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: $color-wine;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
 }
 
 .heading {
-  font-size: 3.2rem;
   font-family: $font-heading;
+  font-size: 3.6rem;
   font-weight: 500;
   color: $color-text-dark;
-  margin-bottom: 16px;
   line-height: 1.15;
-
-  .highlight {
-    color: $color-wine;
-    font-style: italic;
-    font-weight: 500;
-    position: relative;
-    display: inline-block;
-  }
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
 
   @include responsive(mobile) {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+
+  @include responsive(tablet) {
+    font-size: 3.0rem;
+  }
+}
+
+.underlineRelative {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.brushUnderline {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  z-index: -1;
+  opacity: 0.85;
+
+  path {
+    stroke: $color-brown;
+  }
+}
+
+.highlight {
+  font-family: 'Dancing Script', cursive;
+  color: $color-wine;
+  font-size: 4.2rem;
+  font-weight: 700;
+  display: inline-block;
+  transform: translateY(4px);
+  margin-left: 4px;
+
+  @include responsive(mobile) {
+    font-size: 2.6rem;
+    transform: translateY(2px);
+  }
+
+  @include responsive(tablet) {
+    font-size: 3.6rem;
   }
 }
 
 .tagline {
+  font-family: $font-body;
   font-size: 1.05rem;
   color: $color-text-light;
-  margin-bottom: 28px;
-  max-width: 480px;
+  line-height: 1.6;
   font-weight: 400;
-  line-height: 1.55;
+  margin-top: 0;
+  margin-bottom: 36px;
+  max-width: 520px;
+
+  @include responsive(mobile) {
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+  }
 }
 
 .actions {
   display: flex;
-  gap: 14px;
-  margin-bottom: 32px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  width: 100%;
 
   @include responsive(mobile) {
-    width: 100%;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
 }
 
@@ -170,32 +217,37 @@
   background-color: $color-wine;
   color: $color-bg-white;
   border: none;
-  padding: 14px 32px;
+  padding: 15px 32px;
   border-radius: $radius-full;
+  font-family: $font-body;
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba($color-wine, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   transition: $transition-smooth;
+  box-shadow: 0 4px 14px rgba($color-wine, 0.2);
 
   &:hover {
-    background-color: $color-deep-wine;
+    background-color: lighten($color-wine, 5%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba($color-wine, 0.25);
+    box-shadow: 0 6px 20px rgba($color-wine, 0.3);
   }
 
   @include responsive(mobile) {
     width: 100%;
-    text-align: center;
   }
 }
 
 .secondaryBtn {
   background-color: transparent;
-  color: $color-wine;
-  border: 1px solid rgba($color-wine, 0.5);
+  color: $color-brown;
+  border: 1px solid rgba($color-brown, 0.4);
   padding: 14px 32px;
   border-radius: $radius-full;
+  font-family: $font-body;
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
@@ -206,14 +258,13 @@
   transition: $transition-smooth;
 
   &:hover {
-    background-color: rgba($color-wine, 0.05);
-    border-color: $color-wine;
+    background-color: rgba($color-brown, 0.04);
+    border-color: $color-brown;
     transform: translateY(-2px);
   }
 
   @include responsive(mobile) {
     width: 100%;
-    justify-content: center;
   }
 }
 
@@ -269,80 +320,4 @@
     letter-spacing: 0.5px;
     margin: 2px 0 0 0;
   }
-}
-
-// Right Side Graphic Layout
-.heroIllustration {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-}
-
-.botanicalStem {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  bottom: -40px;
-  left: -20px;
-  opacity: 0.45;
-  z-index: 1;
-  pointer-events: none;
-
-  @include responsive(mobile) {
-    display: none;
-  }
-}
-
-// Single rounded landscape image container
-.imageCardContainer {
-  width: 100%;
-  max-width: 480px;
-  position: relative;
-  z-index: 2;
-
-  @include responsive(mobile) {
-    max-width: 320px;
-  }
-}
-
-.heroImageCard {
-  background-color: $color-bg-white;
-  padding: 8px;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-medium;
-  border: 1px solid rgba($color-beige, 0.5);
-  position: relative;
-  overflow: visible;
-
-  img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: $radius-md;
-    display: block;
-    transition: transform 0.6s ease;
-
-    &:hover {
-      transform: scale(1.02);
-    }
-  }
-}
-
-.decorHeart {
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: $color-bg-white;
-  padding: 5px;
-  border-radius: 50%;
-  border: 1px solid rgba($color-beige, 0.6);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
 }
