@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar } from 'lucide-react';
+import { Sparkles, Calendar, Users, GraduationCap, Heart } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
 import { FALLBACK_IMAGES } from '../../config/cms';
 import styles from './Hero.module.scss';
@@ -51,7 +51,7 @@ const Hero = () => {
       
       {/* Subtle sun flare glow */}
       <div className={styles.sunFlare} />
-
+      
       {/* Elegant floating outlines & particles */}
       <div className={styles.floatingContainer}>
         {/* Particle 1 */}
@@ -109,23 +109,11 @@ const Hero = () => {
           animate="visible"
         >
           <motion.div 
-            className={styles.heroLogoBranding}
-            variants={itemVariants}
-          >
-            <img 
-              src={FALLBACK_IMAGES.logo} 
-              alt={schoolInfo.schoolName} 
-              className={styles.heroLogoImg} 
-              onError={(e) => { e.target.src = FALLBACK_IMAGES.logo; }}
-            />
-          </motion.div>
-
-          <motion.div 
             className={styles.welcomeTag}
             variants={itemVariants}
           >
             <Sparkles size={14} className={styles.sparkleIcon} />
-            <span>A Kingdom Where Learning Comes Alive</span>
+            <span>A KINGDOM WHERE LEARNING COMES ALIVE</span>
           </motion.div>
 
           <motion.h1 
@@ -163,23 +151,39 @@ const Hero = () => {
             variants={itemVariants}
           >
             <div className={styles.metricCard}>
-              <h3 className={styles.number}>12+</h3>
-              <p className={styles.label}>Years Legacy</p>
+              <div className={styles.metricIconBox}>
+                <Users size={20} />
+              </div>
+              <div className={styles.metricText}>
+                <h3 className={styles.number}>12+</h3>
+                <p className={styles.label}>Years Legacy</p>
+              </div>
             </div>
+
             <div className={styles.metricCard}>
-              <h3 className={styles.number}>15+</h3>
-              <p className={styles.label}>Certified Guides</p>
+              <div className={styles.metricIconBox}>
+                <GraduationCap size={20} />
+              </div>
+              <div className={styles.metricText}>
+                <h3 className={styles.number}>15+</h3>
+                <p className={styles.label}>Certified Guides</p>
+              </div>
             </div>
+
             <div className={styles.metricCard}>
-              <h3 className={styles.number}>100%</h3>
-              <p className={styles.label}>Attention</p>
+              <div className={styles.metricIconBox}>
+                <Heart size={20} />
+              </div>
+              <div className={styles.metricText}>
+                <h3 className={styles.number}>100%</h3>
+                <p className={styles.label}>Attention</p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Right Illustration Column (Asymmetric Rounded Arches) */}
+        {/* Right Illustration Column: Single Landscape Image with Rounded Corners */}
         <div className={styles.heroIllustration}>
-          {/* Custom Gold/Beige Botanical Leaf Branch Outline SVG */}
           <div className={styles.botanicalStem}>
             <svg viewBox="0 0 100 100" fill="none" stroke="#C8B39A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
               <path d="M50 95C50 80 48 55 52 40C54 30 58 10 58 10" />
@@ -190,44 +194,21 @@ const Hero = () => {
             </svg>
           </div>
 
-          <div className={styles.collageContainer}>
-            {/* Left Staggered Arch */}
+          <div className={styles.imageCardContainer}>
             <motion.div 
-              className={`${styles.collageCard} ${styles.photoLeft}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: -20 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.8, 0.25, 1] }}
+              className={styles.heroImageCard}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.8, 0.25, 1] }}
             >
-              <div className={styles.photoImgWrapper}>
-                <img 
-                  src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400" 
-                  alt="Creative child laughing and painting" 
-                  onError={(e) => { e.target.src = FALLBACK_IMAGES.activity; }}
-                />
-              </div>
-              <div className={styles.photoCaption}>
-                <h4>Laughing Circle</h4>
-                <p>Play Hour</p>
-              </div>
-            </motion.div>
-
-            {/* Right Staggered Arch */}
-            <motion.div 
-              className={`${styles.collageCard} ${styles.photoRight}`}
-              initial={{ opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.8, 0.25, 1] }}
-            >
-              <div className={styles.photoImgWrapper}>
-                <img 
-                  src="https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=400" 
-                  alt="Classroom reading and peer interaction" 
-                  onError={(e) => { e.target.src = FALLBACK_IMAGES.classroom; }}
-                />
-              </div>
-              <div className={styles.photoCaption}>
-                <h4>Creative Nest</h4>
-                <p>Learning Moment</p>
+              <img 
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800" 
+                alt="Preschool teacher guiding child learning activity" 
+                onError={(e) => { e.target.src = FALLBACK_IMAGES.classroom; }}
+                loading="lazy"
+              />
+              <div className={styles.decorHeart}>
+                <Heart size={14} fill="#E05A6D" stroke="none" />
               </div>
             </motion.div>
           </div>
@@ -239,4 +220,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

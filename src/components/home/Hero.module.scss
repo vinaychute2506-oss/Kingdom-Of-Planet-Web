@@ -82,7 +82,7 @@
 .heroGrid {
   display: grid;
   grid-template-columns: 1.25fr 1fr;
-  gap: 40px;
+  gap: 48px;
   align-items: center;
   position: relative;
   z-index: 2;
@@ -105,46 +105,31 @@
   text-align: left;
 }
 
-.heroLogoBranding {
-  margin-bottom: 14px;
-}
-
-.heroLogoImg {
-  height: 84px;
-  width: auto;
-  object-fit: contain;
-  filter: saturate(1.05);
-
-  @include responsive(mobile) {
-    height: 64px;
-  }
-}
-
 .welcomeTag {
-  background-color: rgba($color-beige, 0.25);
+  background-color: rgba($color-wine, 0.05);
   color: $color-wine;
   padding: 6px 16px;
   border-radius: $radius-full;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
   font-family: $font-body;
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 18px;
-  border: 1px solid rgba($color-brown, 0.3);
+  border: 1px solid rgba($color-wine, 0.1);
 
   .sparkleIcon {
-    color: $color-brown;
+    color: $color-wine;
   }
 }
 
 .heading {
-  font-size: 3.4rem;
+  font-size: 3.2rem;
   font-family: $font-heading;
   font-weight: 500;
   color: $color-text-dark;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   line-height: 1.15;
 
   .highlight {
@@ -161,7 +146,7 @@
 }
 
 .tagline {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: $color-text-light;
   margin-bottom: 28px;
   max-width: 480px;
@@ -172,13 +157,13 @@
 .actions {
   display: flex;
   gap: 14px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 
   @include responsive(mobile) {
     width: 100%;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
 }
 
@@ -188,16 +173,16 @@
   border: none;
   padding: 14px 32px;
   border-radius: $radius-full;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba($color-wine, 0.1);
+  box-shadow: 0 4px 12px rgba($color-wine, 0.15);
   transition: $transition-smooth;
 
   &:hover {
     background-color: $color-deep-wine;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba($color-wine, 0.15);
+    box-shadow: 0 6px 16px rgba($color-wine, 0.25);
   }
 
   @include responsive(mobile) {
@@ -212,11 +197,12 @@
   border: 1px solid rgba($color-wine, 0.5);
   padding: 14px 32px;
   border-radius: $radius-full;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   transition: $transition-smooth;
 
@@ -234,37 +220,55 @@
 
 .metricsGrid {
   display: flex;
-  gap: 40px;
+  gap: 32px;
   border-top: 1px solid rgba($color-beige, 0.6);
-  padding-top: 32px;
+  padding-top: 24px;
   width: 100%;
 
   @include responsive(mobile) {
+    flex-direction: column;
     gap: 16px;
-    justify-content: space-between;
   }
 }
 
 .metricCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metricIconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba($color-wine, 0.05);
+  color: $color-wine;
+  @include flex-center;
+  flex-shrink: 0;
+  border: 1px solid rgba($color-brown, 0.15);
+}
+
+.metricText {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
   .number {
     font-family: $font-heading;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
-    margin-bottom: 6px;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0;
     color: $color-wine;
   }
 
   .label {
-    font-size: 0.85rem;
+    font-size: 0.74rem;
     color: $color-text-light;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    margin: 2px 0 0 0;
   }
 }
 
@@ -279,11 +283,11 @@
 
 .botanicalStem {
   position: absolute;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   bottom: -40px;
   left: -20px;
-  opacity: 0.6;
+  opacity: 0.45;
   z-index: 1;
   pointer-events: none;
 
@@ -292,14 +296,10 @@
   }
 }
 
-// Asymmetric Dual-Arch Container (Intentionally Overlapping & Scaled Larger)
-.collageContainer {
-  display: flex;
-  gap: 0; // We use negative margin overlap instead
+// Single rounded landscape image container
+.imageCardContainer {
   width: 100%;
-  max-width: 580px;
-  justify-content: center;
-  align-items: flex-end;
+  max-width: 480px;
   position: relative;
   z-index: 2;
 
@@ -308,106 +308,42 @@
   }
 }
 
-.collageCard {
-  position: relative;
+.heroImageCard {
   background-color: $color-bg-white;
-  padding: 10px;
-  padding-bottom: 16px;
-  border-radius: 120px 120px 24px 24px;
-  box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-beige, 0.4);
-  transition: $transition-smooth;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: $shadow-hover;
-    transform: translateY(-4px) scale(1.02) !important;
-  }
-}
-
-.photoLeft {
-  width: 240px;
-  transform: translateY(-24px);
-  border-radius: 120px 120px 24px 24px;
+  padding: 8px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba($color-beige, 0.5);
   position: relative;
-  z-index: 2;
-
-  .photoImgWrapper {
-    border-radius: 110px 110px 20px 20px;
-    height: 290px;
-  }
-
-  @include responsive(mobile) {
-    width: 140px;
-    transform: translateY(-10px);
-    .photoImgWrapper {
-      height: 190px;
-    }
-  }
-}
-
-.photoRight {
-  width: 240px;
-  transform: translateY(24px);
-  border-radius: 120px 120px 24px 24px;
-  margin-left: -44px; // Beautiful overlapping layout density
-  position: relative;
-  z-index: 1;
-
-  .photoImgWrapper {
-    border-radius: 110px 110px 20px 20px;
-    height: 230px;
-  }
-
-  @include responsive(mobile) {
-    width: 140px;
-    transform: translateY(10px);
-    margin-left: -24px;
-    .photoImgWrapper {
-      height: 150px;
-    }
-  }
-}
-
-.photoImgWrapper {
-  width: 100%;
-  overflow: hidden;
+  overflow: visible;
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+    border-radius: $radius-md;
+    display: block;
     transition: transform 0.6s ease;
-  }
 
-  &:hover img {
-    transform: scale(1.05);
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 }
 
-.photoCaption {
-  margin-top: 12px;
-  text-align: center;
-
-  h4 {
-    font-family: $font-heading;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: $color-text-dark;
-  }
-
-  p {
-    font-size: 0.72rem;
-    color: $color-text-light;
-    margin-top: 2px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  @include responsive(mobile) {
-    margin-top: 8px;
-    h4 { font-size: 0.85rem; }
-    p { font-size: 0.6rem; }
-  }
+.decorHeart {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $color-bg-white;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba($color-beige, 0.6);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
