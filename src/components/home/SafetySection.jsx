@@ -1,109 +1,102 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Eye, HeartHandshake, Home } from 'lucide-react';
+import { Eye, Leaf, Award, Heart, Users, HelpCircle } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import styles from './SafetySection.module.scss';
 
 const safetyCards = [
   {
+    id: "cctv",
     icon: Eye,
     title: "CCTV Monitoring",
-    description: "100% round-the-clock video surveillance covering playground boundaries, classrooms, and cafeteria access pathways."
+    description: "24x7 round-the-clock surveillance across classrooms & play areas.",
+    bottomIcon: Heart,
+    themeClass: "theme-cctv"
   },
   {
-    icon: Home,
+    id: "eco",
+    icon: Leaf,
     title: "Eco-Friendly Safe Campus",
-    description: "Highly secure double-gated architecture with padded walls, rounded corner desks, and toddler-proof play enclosures."
+    description: "Child-safe infrastructure with clean, green, and sustainable practices.",
+    bottomIcon: Leaf,
+    themeClass: "theme-eco"
   },
   {
-    icon: HeartHandshake,
+    id: "certified",
+    icon: Award,
     title: "Certified Pedagogy & Staff",
-    description: "Educators and support caretakers undergo extensive child defense, early first-aid, and emotional development checks."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Pure Hygienic Standard",
-    description: "Filtered drinking water dispensers, chemical-free sanitization, and daily strict classroom cleanup routines."
+    description: "Trained educators and age-appropriate pedagogy for holistic development.",
+    bottomIcon: Users,
+    themeClass: "theme-certified"
   }
 ];
 
-const getSafetyImage = (title) => {
-  const cleanTitle = String(title).toLowerCase();
-  if (cleanTitle.includes('cctv') || cleanTitle.includes('monitoring')) {
-    return 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=400';
-  } else if (cleanTitle.includes('eco') || cleanTitle.includes('campus') || cleanTitle.includes('friendly')) {
-    return 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=400';
-  } else if (cleanTitle.includes('certified') || cleanTitle.includes('pedagogy') || cleanTitle.includes('staff')) {
-    return 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=400';
-  } else if (cleanTitle.includes('hygiene') || cleanTitle.includes('hygienic') || cleanTitle.includes('standard')) {
-    return 'https://images.unsplash.com/photo-1608220179579-3994e0780289?auto=format&fit=crop&q=80&w=400';
-  }
-  return 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=400';
-};
-
 const SafetySection = () => {
   return (
-    <section className="section section-accent" id="home-safety" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
+    <section className="section" id="home-safety" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
       {/* Subtle background texture watermark */}
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.28,
-          borderRadius: '32px'
+          backgroundImage: `url('https://images.unsplash.com/photo-1472162072142-d544e77ade5e?auto=format&fit=crop&q=80&w=1600')`,
+          opacity: 0.35
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
-        <SectionTitle 
-          tag="Safety First"
-          title="Nurturing Your Child in a Safe & Trusted Nest"
-          highlightWord="Trusted"
-          align="center"
-          subtitle="We prioritize physical security and hygiene above all, giving parents complete mental comfort while their kids explore."
-        />
-
         <div className={styles.safetySplitGrid}>
-          {/* Left Column: Tall Editorial Arch Image */}
+          {/* Left Column: Heading, Subtitle, and 3 Cards */}
+          <div className={styles.contentCol}>
+            <SectionTitle 
+              tag="Safety First"
+              title="Nurturing Your Child in a Safe & Trusted Nest"
+              highlightWord="Trusted"
+              align="left"
+              subtitle="We prioritize physical security and hygiene above all, giving parents complete peace of mind while their kids explore."
+            />
+
+            <div className={styles.cardsRow}>
+              {safetyCards.map((card, idx) => {
+                const IconComponent = card.icon;
+                const BottomIconComponent = card.bottomIcon;
+                return (
+                  <motion.div 
+                    className={`${styles.safetyCard} ${styles[card.themeClass]}`}
+                    key={card.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  >
+                    <div className={styles.iconBox}>
+                      <IconComponent size={20} strokeWidth={1.5} />
+                    </div>
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                    <p className={styles.cardDesc}>{card.description}</p>
+                    <div className={styles.bottomBadge}>
+                      <BottomIconComponent size={16} strokeWidth={1.5} />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Arched image */}
           <motion.div 
             className={styles.imageCol}
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
             <div className={styles.safetyArch}>
               <img 
                 src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=600" 
-                alt="Preschool supervised safe environment" 
+                alt="Teacher helping children build blocks in classroom" 
                 loading="lazy" 
               />
-              <div className={styles.archOverlay}>
-                <span className={styles.archBadge}>Zero Compromise Safety</span>
-              </div>
             </div>
-          </motion.div>
-
-          {/* Right Column: Flat list of standards with divider lines */}
-          <motion.div 
-            className={styles.listCol}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          >
-            {safetyCards.map((card, idx) => {
-              const IconComponent = card.icon;
-              return (
-                <div className={styles.safetyListItem} key={idx}>
-                  <div className={styles.iconBox}>
-                    <IconComponent size={20} strokeWidth={1.5} />
-                  </div>
-                  <h3 className={styles.itemTitle}>{card.title}</h3>
-                  <p className={styles.itemDesc}>{card.description}</p>
-                </div>
-              );
-            })}
           </motion.div>
         </div>
 

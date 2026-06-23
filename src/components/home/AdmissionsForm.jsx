@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, User, Phone, Mail, CheckSquare, ClipboardList, AlertTriangle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, User, Phone, Mail, Award, Shield, Users, Target, FileText, Calendar, Bell, AlertTriangle, Loader2, Lock } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
 import { submitForm } from '../../services/api';
 import { trackEvent } from '../../services/analytics';
-import SectionTitle from '../common/SectionTitle';
 import styles from './AdmissionsForm.module.scss';
 
+const benefitList = [
+  { icon: FileText, text: "Easy & Simple Admission Process" },
+  { icon: Award, text: "Age-Appropriate Learning Programs" },
+  { icon: Shield, text: "Safe, Secure & Hygienic Campus" },
+  { icon: Users, text: "Nurturing & Experienced Educators" },
+  { icon: Target, text: "Focus on Holistic Child Development" }
+];
 
 const AdmissionsForm = () => {
-  const { schoolInfo, admissions } = useCMS();
-
-  // Dynamic timelines and checklists filtered straight from Google Sheets rows!
-  const admissionSteps = admissions
-    .filter(item => item.type === 'step' || item.Type === 'step')
-    .map((item, idx) => ({
-      num: (idx + 1).toString(),
-      title: item.itemTitle || item.ItemTitle,
-      desc: item.itemDescription || item.ItemDescription
-    }));
-
-  const requiredDocuments = admissions
-    .filter(item => item.type === 'document' || item.Type === 'document')
-    .map(item => item.itemTitle || item.ItemTitle);
+  const { schoolInfo } = useCMS();
 
   const [formData, setFormData] = useState({
     parentName: '',
@@ -59,22 +52,20 @@ const AdmissionsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg(null); // Clear previous errors
+    setErrorMsg(null);
 
     if (cooldown) {
-      setErrorMsg(`Rate-limiting protection: Please wait ${cooldownSeconds}s before submitting another application request.`);
+      setErrorMsg(`Please wait ${cooldownSeconds}s before submitting another inquiry.`);
       return;
     }
 
-    // Bot detection filter (honeypot triggered if hidden field is filled out)
     if (formData.honeypot) {
-      console.warn("Spam-bot trigger intercepted!");
       setShowSuccess(true);
       return;
     }
 
-    if (!formData.parentName || !formData.childName || !formData.phone || !formData.grade) {
-      setErrorMsg("Required enrollment details missing! Please enter parent name, child name, program selection, and contact number.");
+    if (!formData.parentName || !formData.childName || !formData.phone || !formData.grade || !formData.email) {
+      setErrorMsg("Please fill in all required fields marked with *.");
       return;
     }
 
@@ -96,16 +87,11 @@ const AdmissionsForm = () => {
         setCooldown(true);
         setCooldownSeconds(10); // 10-second spam protection lock
       } else {
-        throw new Error(response?.message || 'Server responded with an unexpected error status.');
+        throw new Error(response?.message || 'Server error occurred.');
       }
     } catch (err) {
-      // Enhanced diagnostic logging for network/CORS failures
-      console.error('[Admissions Dispatch Failure] Diagnostics Details:', {
-        exception: err.message,
-        payloadPreserved: formData,
-        apiUrlTargeted: import.meta.env.VITE_CMS_API
-      });
-      setErrorMsg("Admissions enrollment submission failed due to an API connection error. We have preserved your inputs. Please check your network and try again.");
+      console.error('[Admissions Dispatch Failure]', err);
+      setErrorMsg("Admissions inquiry submission failed. Please check your network connection and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -132,22 +118,22 @@ const AdmissionsForm = () => {
         className="section-bg-watermark" 
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=1600')`,
-          opacity: 0.26
+          opacity: 0.35
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
-        {/* Playful seat notice block rebranded to elegant brochure alert */}
+        {/* Seat Notice Alert Banner */}
         <motion.div 
           className={styles.alertNotice}
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '40px', padding: '18px 24px' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', padding: '14px 20px', borderRadius: '40px' }}
         >
-          <AlertTriangle size={20} style={{ flexShrink: 0 }} />
-          <p style={{ margin: 0, fontSize: '0.95rem' }}>
-            <strong>Important Notice:</strong> {schoolInfo.admissionsNotice}
+          <Bell size={18} style={{ flexShrink: 0, color: '#E05A6D' }} />
+          <p style={{ margin: 0, fontSize: '0.9rem', color: '#541221', fontWeight: 500 }}>
+            Limited seats for this academic year! Admissions are on a first-come, first-served basis.
           </p>
         </motion.div>
 
@@ -155,60 +141,56 @@ const AdmissionsForm = () => {
           
           {/* Left panel: admissions instructions */}
           <div className={styles.infoCol}>
-            <span className={styles.tag}>Admissions Open</span>
+            <span className={styles.tag}>
+              <Award size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} />
+              <span>Admissions Open</span>
+            </span>
             <h2 className={styles.heading}>
               Start Your Child's <br />
               <span className={styles.highlight}>Kingdom Journey</span>
             </h2>
             
-            {/* Admissions steps timeline */}
-            {admissionSteps.length > 0 && (
-              <div className={styles.stepsTimeline}>
-                <h4 style={{ fontFamily: 'Playfair Display', color: '#FFFFFF', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
-                  <ClipboardList size={18} style={{ color: '#C8B39A' }} />
-                  <span>Admission Process</span>
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {admissionSteps.map((step) => (
-                    <div key={step.num} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
-                      <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.15)', border: '1px solid rgba(255, 255, 255, 0.3)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.78rem', fontWeight: '700', flexShrink: 0 }}>
-                        {step.num}
-                      </div>
-                      <div>
-                        <h5 style={{ fontFamily: 'Lato', fontWeight: '700', color: '#FFFFFF', fontSize: '0.92rem', margin: 0 }}>{step.title}</h5>
-                        <p style={{ fontSize: '0.78rem', color: 'rgba(246, 241, 233, 0.7)', margin: 0, marginTop: '2px' }}>{step.desc}</p>
-                      </div>
+            {/* Divider */}
+            <div className={styles.formDivider}>
+              <div className={styles.divLine}></div>
+              <Heart size={14} fill="currentColor" className={styles.divHeart} />
+              <div className={styles.divLine}></div>
+            </div>
+
+            <p className={styles.infoTagline}>Begin a beautiful journey of learning, growth and discovery.</p>
+
+            {/* List of benefits */}
+            <div className={styles.benefitList}>
+              {benefitList.map((item, idx) => {
+                const IconComp = item.icon;
+                return (
+                  <div key={idx} className={styles.benefitItem}>
+                    <div className={styles.benefitIconBox}>
+                      <IconComp size={14} strokeWidth={2} />
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Required Documents list */}
-            {requiredDocuments.length > 0 && (
-              <div className={styles.docSection}>
-                <h4 style={{ fontFamily: 'Playfair Display', color: '#C8B39A', marginBottom: '12px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 500 }}>
-                  <CheckSquare size={18} />
-                  <span>Required Documents</span>
-                </h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {requiredDocuments.map((doc, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '0.88rem', color: '#FFFFFF', fontWeight: '400' }}>
-                      <span style={{ color: '#C8B39A', fontSize: '1rem' }}>✓</span>
-                      <span>{doc}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
+                    <span>{item.text}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Right panel: Application Form */}
           <div className={styles.formCol}>
+            <div className={styles.formHeader}>
+              <h3 className={styles.formTitle}>Enquiry & Admission Form</h3>
+              
+              {/* Divider */}
+              <div className={styles.formDivider} style={{ margin: '12px 0 24px 0' }}>
+                <div className={styles.divLine} style={{ backgroundColor: '#EADFCF' }}></div>
+                <Heart size={12} fill="currentColor" style={{ color: '#541221' }} />
+                <div className={styles.divLine} style={{ backgroundColor: '#EADFCF' }}></div>
+              </div>
+            </div>
+
             <form onSubmit={handleSubmit} className={styles.realForm}>
               
-              {/* Bot-protection Honeypot field (hidden from user view) */}
+              {/* Bot-protection Honeypot */}
               <input 
                 type="text" 
                 name="honeypot" 
@@ -290,17 +272,17 @@ const AdmissionsForm = () => {
 
                 {/* Child's Age */}
                 <div className={styles.inputGroup}>
-                  <label htmlFor="age">Child's Age</label>
+                  <label htmlFor="age">Child's Age *</label>
                   <div className={styles.fieldWrapper}>
+                    <Calendar size={15} className={styles.fieldIcon} />
                     <input 
-                      type="number" 
+                      type="text" 
                       id="age" 
                       name="age" 
-                      placeholder="e.g. 3" 
-                      min="1" 
-                      max="6"
+                      placeholder="e.g., 3.5 years" 
                       value={formData.age}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -327,7 +309,7 @@ const AdmissionsForm = () => {
 
                 {/* Email Address */}
                 <div className={styles.inputGroup}>
-                  <label htmlFor="email">Email Address</label>
+                  <label htmlFor="email">Email Address *</label>
                   <div className={styles.fieldWrapper}>
                     <Mail size={15} className={styles.fieldIcon} />
                     <input 
@@ -337,6 +319,7 @@ const AdmissionsForm = () => {
                       placeholder="parent@email.com"
                       value={formData.email}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -357,12 +340,17 @@ const AdmissionsForm = () => {
                 )}
                 <span>
                   {submitting 
-                    ? "Dispatching Inquiry..." 
+                    ? "Submitting Enquiry..." 
                     : cooldown 
                       ? `Locked (${cooldownSeconds}s)` 
-                      : "Submit Admissions Inquiry"}
+                      : "Submit Admission Enquiry"}
                 </span>
               </motion.button>
+
+              <div className={styles.lockNotice} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '16px', fontSize: '0.82rem', color: '#7E6F6A' }}>
+                <Lock size={12} />
+                <span>Your information is safe and secure with us.</span>
+              </div>
 
             </form>
           </div>
@@ -409,4 +397,3 @@ const AdmissionsForm = () => {
 };
 
 export default AdmissionsForm;
-

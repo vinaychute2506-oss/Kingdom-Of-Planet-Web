@@ -81,14 +81,87 @@
   }
 }
 
-.stepsTimeline {
+.formDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   width: 100%;
-  margin: 16px 0;
+  margin: 18px 0;
+}
+
+.divLine {
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba($color-cream, 0.2);
+}
+
+.divHeart {
+  color: $color-gold;
+  flex-shrink: 0;
+}
+
+.infoTagline {
+  font-size: 1.05rem;
+  color: rgba($color-cream, 0.85);
+  margin-bottom: 28px;
+  text-align: left;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.benefitList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
   text-align: left;
 }
 
-.docSection {
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: $font-body;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.benefitIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.formHeader {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formTitle {
+  font-family: $font-heading;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: $color-text-dark;
+  margin: 0;
+  text-align: center;
+}
+
+.lockNotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: $color-text-light;
 }
 
 // Right Form Column

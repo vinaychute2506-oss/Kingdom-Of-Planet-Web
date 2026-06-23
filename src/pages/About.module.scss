@@ -1,24 +1,76 @@
 @import '../styles/variables.scss';
 
 .aboutPage {
-  padding-bottom: 60px;
+  padding-bottom: 0px; // Stats banner is at the bottom flush to footer
+  background-color: $color-bg-white;
 }
 
+// Global Header decorations
+.headerDecor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+
+  .decorStar {
+    color: $color-gold;
+    font-size: 0.9rem;
+  }
+  .decorCrown {
+    font-size: 1.2rem;
+  }
+}
+
+.heartLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 20px 0;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background-color: rgba($color-gold, 0.4);
+  }
+  &::before { right: 50%; margin-right: 16px; }
+  &::after { left: 50%; margin-left: 16px; }
+
+  .heartIcon {
+    color: #E05A6D;
+    fill: #E05A6D;
+  }
+}
+
+.italicHighlight {
+  font-family: $font-heading;
+  font-style: italic;
+  font-weight: 400;
+  color: $color-wine;
+}
+
+// Page Header
 .pageHeader {
   background-color: $color-cream;
   color: $color-text-dark;
-  padding: 96px 0 32px 0;
+  padding: 110px 0 40px 0;
   text-align: center;
   border-bottom: 1px solid rgba($color-beige, 0.6);
   position: relative;
   overflow: hidden;
 
   h1 {
-    font-size: 3.2rem;
+    font-size: 3rem;
     color: $color-wine;
-    margin-bottom: 14px;
+    margin-bottom: 4px;
     font-family: $font-heading;
     font-weight: 500;
+    letter-spacing: -0.5px;
 
     @include responsive(mobile) {
       font-size: 2.2rem;
@@ -27,29 +79,32 @@
 
   p {
     color: $color-text-light;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
     line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      padding: 0 16px;
     }
   }
 }
 
-// 1. Principal Message
-.principalCard {
+// 1. Welcome Section & Benefit Cards
+.welcomeBox {
   background-color: $color-bg-white;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  padding: 56px;
+  padding: 48px;
   display: grid;
-  grid-template-columns: 1fr 2.2fr;
-  gap: 56px;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
   align-items: center;
   border: 1px solid rgba($color-beige, 0.5);
+  position: relative;
+  margin-bottom: 56px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -68,37 +123,54 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
 }
 
 .principalFrame {
-  width: 190px;
-  height: 250px;
-  border-radius: 100px 100px 16px 16px; // Luxury arch frame
+  width: 170px;
+  height: 220px;
+  border-radius: 90px 90px 16px 16px; // Luxury arch frame
   background-color: rgba($color-beige, 0.2);
-  border: 1px solid rgba($color-brown, 0.4);
-  padding: 8px;
+  border: 1px solid rgba($color-brown, 0.5);
+  padding: 6px;
   overflow: hidden;
   box-shadow: $shadow-soft;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 92px 92px 10px 10px;
+    border-radius: 84px 84px 10px 10px;
   }
+}
+
+.frameDecorHeart {
+  position: absolute;
+  bottom: -6px;
+  z-index: 3;
+  background: $color-bg-white;
+  padding: 6px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid rgba($color-beige, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .principalName {
   font-family: $font-heading;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 4px;
 }
 
 .principalRole {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: $color-wine;
   font-weight: 700;
   text-transform: uppercase;
@@ -112,10 +184,10 @@
 
 .quoteMark {
   position: absolute;
-  top: -36px;
+  top: -40px;
   left: -20px;
-  font-size: 6rem;
-  color: rgba($color-wine, 0.06);
+  font-size: 6.5rem;
+  color: rgba($color-wine, 0.05);
   font-family: Georgia, serif;
   line-height: 1;
   pointer-events: none;
@@ -123,146 +195,60 @@
 
 .messageTitle {
   font-family: $font-heading;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: $color-wine;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   position: relative;
   z-index: 2;
 
   @include responsive(mobile) {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 }
 
 .messageText {
-  font-size: 0.98rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: $color-text-light;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 400;
 }
 
 .signature {
-  margin-top: 32px;
-  border-top: 1px solid rgba($color-beige, 0.6);
+  margin-top: 24px;
+  border-top: 1px solid rgba($color-beige, 0.5);
   padding-top: 16px;
 
+  .sigCursive {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: $color-gold;
+    margin-bottom: -4px;
+    line-height: 1;
+    font-weight: 600;
+  }
+
   .sigName {
-    font-family: $font-heading;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-family: $font-body;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: $color-text-dark;
+    margin-bottom: 2px;
   }
 
   .sigTitle {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: $color-text-light;
     font-weight: 400;
   }
 }
 
-// 2. Vision Mission Cards
-.visionGrid {
+// Three Benefit Cards
+.benefitsRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-
-  @include responsive(mobile) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-}
-
-.visionCard {
-  background-color: $color-bg-white;
-  padding: 40px;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-soft;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  border: 1px solid rgba($color-beige, 0.6);
-
-  h3 {
-    font-family: $font-heading;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: $color-text-dark;
-    margin-bottom: 12px;
-  }
-
-  p {
-    font-size: 0.98rem;
-    line-height: 1.6;
-    color: $color-text-light;
-  }
-
-  @include responsive(mobile) {
-    padding: 32px 20px;
-  }
-}
-
-.cardPurple {
-  border-top: 3px solid $color-wine;
-}
-
-.cardGreen {
-  border-top: 3px solid $color-brown;
-}
-
-// 3. Central Dark Wine Stats Banner (moodboard central bar)
-.statsBanner {
-  background-color: $color-deep-wine;
-  color: $color-cream;
-  padding: 56px 0;
-  text-align: center;
-  position: relative;
-  width: 100%;
-  @include luxury-grain;
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-
-  @include responsive(mobile) {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-}
-
-.statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.statVal {
-  font-family: $font-heading;
-  font-size: 2.6rem;
-  font-weight: 500;
-  color: $color-gold;
-  margin-bottom: 6px;
-  line-height: 1;
-}
-
-.statLbl {
-  font-size: 0.85rem;
-  color: rgba($color-cream, 0.7);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-// 4. Facilities Grid
-.facilitiesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-top: 40px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
@@ -270,91 +256,303 @@
   }
 
   @include responsive(tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
   }
 }
 
-.facilityCard {
+.benefitCard {
   background-color: $color-bg-white;
-  padding: 36px 24px;
+  padding: 32px 24px;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-beige, 0.6);
+  border: 1px solid rgba($color-beige, 0.5);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   transition: $transition-smooth;
-  cursor: pointer;
-
-  &:hover {
-    border-color: $color-brown;
-    box-shadow: $shadow-hover;
-    transform: translateY(-4px);
-
-    .facIconBox {
-      background-color: rgba($color-wine, 0.08);
-      transform: scale(1.03);
-    }
-  }
 
   h3 {
+    font-family: $font-heading;
     font-size: 1.25rem;
+    font-weight: 500;
     color: $color-text-dark;
     margin-bottom: 10px;
-    font-family: $font-heading;
-    font-weight: 500;
   }
 
   p {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
     color: $color-text-light;
-    line-height: 1.5;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
   }
 }
 
-.facIconBox {
-  width: 50px;
-  height: 50px;
+.benefitIconBox {
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background-color: rgba($color-beige, 0.25);
-  border: 1px solid rgba($color-brown, 0.2);
-  color: $color-wine;
-  @include flex-center;
-  margin-bottom: 20px;
-  transition: $transition-smooth;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: transform 0.3s ease;
 }
 
-// 5. Teachers Grid (Luxury profile cards)
+// Colors for benefit icon boxes
+.benefitRose {
+  border-bottom: 3px solid #E05A6D;
+  .benefitIconBox {
+    background-color: #FDF6F7;
+    color: #E05A6D;
+  }
+}
+.benefitGreen {
+  border-bottom: 3px solid #27AE60;
+  .benefitIconBox {
+    background-color: #F4FAF6;
+    color: #27AE60;
+  }
+}
+.benefitOrange {
+  border-bottom: 3px solid #E67E22;
+  .benefitIconBox {
+    background-color: #FEF9F5;
+    color: #E67E22;
+  }
+}
+
+// 2. Methodology Layout (3 columns)
+.methodologyHeader {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 2.5rem;
+    font-family: $font-heading;
+    color: $color-wine;
+    font-weight: 500;
+    margin-top: 4px;
+
+    @include responsive(mobile) {
+      font-size: 1.9rem;
+    }
+  }
+
+  .methodologySubtitle {
+    color: $color-text-light;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+
+    @include responsive(mobile) {
+      font-size: 0.92rem;
+      padding: 0 16px;
+    }
+  }
+}
+
+.methodologyShowcase {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr 1fr;
+  gap: 32px;
+  align-items: center;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1.2fr 2fr 1.2fr;
+    gap: 20px;
+  }
+}
+
+.methodArchCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  @include responsive(mobile) {
+    max-width: 280px;
+    margin: 0 auto;
+    // Hide one arch on mobile to keep page short and beautiful
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+.methodArch {
+  width: 100%;
+  height: 310px;
+  border-radius: 120px 120px 20px 20px;
+  overflow: hidden;
+  border: 1px solid rgba($color-beige, 0.7);
+  box-shadow: $shadow-medium;
+  background-color: $color-bg-white;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.archHeartDecor {
+  position: absolute;
+  bottom: -6px;
+  z-index: 3;
+  background: $color-bg-white;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba($color-beige, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.methodGridCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @include responsive(tablet) {
+    gap: 16px;
+  }
+}
+
+.methodCard {
+  background-color: $color-bg-white;
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-beige, 0.4);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: $transition-smooth;
+
+  &:hover {
+    border-color: $color-gold;
+    box-shadow: $shadow-soft;
+    transform: translateY(-2px);
+  }
+
+  @include responsive(tablet) {
+    padding: 16px;
+  }
+}
+
+.methodIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba($color-wine, 0.05);
+  color: $color-wine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.methodText {
+  h3 {
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: $color-text-dark;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: $color-text-light;
+  }
+}
+
+// 3. Caregivers
+.teachersHeader {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .teacherTag {
+    font-size: 0.8rem;
+    color: $color-wine;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-family: $font-heading;
+    color: $color-text-dark;
+    font-weight: 500;
+
+    @include responsive(mobile) {
+      font-size: 1.9rem;
+    }
+  }
+
+  p {
+    color: $color-text-light;
+    font-size: 1.02rem;
+    max-width: 600px;
+    margin: 8px auto 0 auto;
+    line-height: 1.5;
+
+    @include responsive(mobile) {
+      font-size: 0.92rem;
+    }
+  }
+}
+
 .teachersGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-top: 40px;
+  gap: 24px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
     gap: 24px;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   @include responsive(tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 }
 
 .teacherPolaroid {
   background-color: $color-bg-white;
   padding: 10px;
-  padding-bottom: 24px;
-  border-radius: 100px 100px 24px 24px; // Consistent luxury profile arch frame
+  padding-bottom: 20px;
+  border-radius: 90px 90px 20px 20px; // Consistent luxury profile arch frame
   box-shadow: $shadow-soft;
   border: 1px solid rgba($color-beige, 0.5);
   display: flex;
   flex-direction: column;
   transition: $transition-smooth;
-  cursor: pointer;
+  position: relative;
 
   &:hover {
     border-color: $color-brown;
@@ -362,7 +560,7 @@
     transform: translateY(-4px);
 
     .teacherImgBox img {
-      transform: scale(1.04);
+      transform: scale(1.05);
     }
   }
 }
@@ -370,22 +568,25 @@
 .teacherImgBox {
   width: 100%;
   height: 200px;
-  border-radius: 90px 90px 18px 18px;
+  border-radius: 80px 80px 14px 14px;
   overflow: hidden;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-    border-radius: 90px 90px 18px 18px;
+    border-radius: 80px 80px 14px 14px;
   }
 }
 
 .teacherDetails {
   text-align: center;
-  padding: 0 10px;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .tName {
@@ -397,26 +598,114 @@
 }
 
 .tRole {
-  font-size: 0.78rem;
-  color: $color-wine;
+  font-size: 0.75rem;
+  color: $color-gold;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.tExp {
-  font-size: 0.72rem;
-  color: $color-brown;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
+.tDivider {
+  color: rgba($color-beige, 0.8);
+  font-size: 1rem;
+  margin: 2px 0 8px 0;
 }
 
 .tBio {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: $color-text-light;
   line-height: 1.5;
   font-weight: 400;
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.linkedinBox {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.linkedinBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba($color-wine, 0.05);
+  color: $color-wine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: $color-wine;
+    color: $color-bg-white;
+    transform: scale(1.1);
+  }
+}
+
+// 4. Wine Stats Banner
+.statsBanner {
+  background-color: $color-deep-wine;
+  color: $color-cream;
+  padding: 56px 0;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  @include luxury-grain;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statIconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba($color-cream, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  color: $color-gold;
+  background-color: rgba($color-bg-white, 0.02);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: $color-gold;
+  }
+}
+
+.statVal {
+  font-family: $font-heading;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: $color-gold;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.statLbl {
+  font-size: 0.8rem;
+  color: rgba($color-cream, 0.7);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }

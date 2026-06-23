@@ -40,12 +40,12 @@ const ProgramsPreview = () => {
 
         <div className={styles.programsGrid}>
           {programs.map((program, index) => {
-            // Find correct icon component or fallback to GraduationCap
             const IconComponent = iconMap[program.icon] || GraduationCap;
+            const themeClass = styles[`theme-${program.id}`] || '';
             
             return (
               <motion.div 
-                className={styles.programCard}
+                className={`${styles.programCard} ${themeClass}`}
                 key={program.id}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -65,12 +65,14 @@ const ProgramsPreview = () => {
 
                 <h3 className={styles.programTitle}>{program.title}</h3>
                 <p className={styles.tagline}>{program.tagline}</p>
-                <p className={styles.description}>{program.description.slice(0, 105)}...</p>
+                <p className={styles.description}>{program.description}</p>
 
                 {/* Learn more trigger */}
                 <button className={styles.cardBtn} onClick={handleLearnMore}>
                   <span>Explore Program</span>
-                  <ChevronRight size={14} />
+                  <div className={styles.btnArrowCircle}>
+                    <ChevronRight size={14} color="#FFFFFF" />
+                  </div>
                 </button>
 
               </motion.div>

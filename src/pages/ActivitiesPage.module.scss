@@ -1,24 +1,77 @@
 @import '../styles/variables.scss';
 
 .activitiesPage {
-  padding-bottom: 60px;
+  background-color: $color-bg-white;
 }
 
+.headerDecor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+
+  .decorStar {
+    color: $color-gold;
+    font-size: 0.9rem;
+  }
+  .decorCrown {
+    font-size: 1.2rem;
+  }
+}
+
+.upperTag {
+  font-size: 0.8rem;
+  color: $color-wine;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.heartLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 20px 0;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background-color: rgba($color-gold, 0.4);
+  }
+  &::before { right: 50%; margin-right: 16px; }
+  &::after { left: 50%; margin-left: 16px; }
+
+  .heartIcon {
+    color: #E05A6D;
+    fill: #E05A6D;
+  }
+}
+
+// Page Header
 .pageHeader {
   background-color: $color-cream;
   color: $color-text-dark;
-  padding: 96px 0 32px 0;
+  padding: 110px 0 40px 0;
   text-align: center;
   border-bottom: 1px solid rgba($color-beige, 0.6);
   position: relative;
   overflow: hidden;
 
   h1 {
-    font-size: 3.2rem;
+    font-size: 3rem;
     color: $color-wine;
-    margin-bottom: 14px;
+    margin-bottom: 4px;
     font-family: $font-heading;
     font-weight: 500;
+    letter-spacing: -0.5px;
 
     @include responsive(mobile) {
       font-size: 2.2rem;
@@ -27,24 +80,51 @@
 
   p {
     color: $color-text-light;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
     line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      padding: 0 16px;
     }
   }
 }
 
-// Filters Bar
+// Section Header
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 2.2rem;
+    font-family: $font-heading;
+    color: $color-wine;
+    font-weight: 500;
+    margin-bottom: 8px;
+
+    @include responsive(mobile) {
+      font-size: 1.6rem;
+    }
+  }
+
+  p {
+    color: $color-text-light;
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+}
+
+// Filter Bar
 .filterBar {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 48px;
 
   @include responsive(mobile) {
@@ -57,11 +137,11 @@
   background-color: $color-bg-white;
   color: $color-text-dark;
   border: 1px solid rgba($color-beige, 0.8);
-  padding: 8px 24px;
+  padding: 8px 22px;
   border-radius: $radius-full;
   font-weight: 600;
   font-family: $font-body;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   cursor: pointer;
   box-shadow: $shadow-soft;
   transition: $transition-smooth;
@@ -80,159 +160,183 @@
   box-shadow: 0 4px 12px rgba($color-wine, 0.15);
 }
 
-// Cards Grid layout
+// Horizontal 3x3 Grid
 .activitiesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 24px;
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   @include responsive(tablet) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 20px;
   }
 }
 
 .activityCard {
   background-color: $color-bg-white;
-  border-radius: $radius-lg; // 24px
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-beige, 0.5);
   box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-beige, 0.6);
+  padding: 16px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 16px;
   transition: $transition-smooth;
-  padding: 0;
-  overflow: hidden;
   cursor: pointer;
 
   &:hover {
     border-color: $color-brown;
     box-shadow: $shadow-hover;
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 
     .iconCircle {
-      background-color: rgba($color-wine, 0.08);
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
-    .cardImage {
-      transform: scale(1.04);
+    .cardImageCol img {
+      transform: scale(1.06);
     }
   }
-}
-
-.cardImageWrapper {
-  width: 100%;
-  height: 190px;
-  overflow: hidden;
-  position: relative;
 
   @include responsive(mobile) {
-    height: 140px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
   }
 }
 
-.cardImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.categoryBadge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background-color: $color-wine;
-  color: $color-bg-white;
-  font-size: 0.72rem;
-  font-family: $font-body;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: $radius-full;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  z-index: 2;
-}
-
-.cardContent {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-  text-align: left;
+.cardIconCol {
+  flex-shrink: 0;
 
   @include responsive(mobile) {
-    padding: 20px 16px;
+    margin-bottom: 4px;
   }
-}
-
-.titleRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-  width: 100%;
 }
 
 .iconCircle {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background-color: rgba($color-beige, 0.25);
-  border: 1px solid rgba($color-brown, 0.2);
-  color: $color-wine;
-  @include flex-center;
-  transition: $transition-smooth;
-  flex-shrink: 0;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.cardContentCol {
+  flex-grow: 1;
+  text-align: left;
+
+  @include responsive(mobile) {
+    text-align: center;
+  }
 }
 
 .cardTitle {
-  font-size: 1.25rem;
-  color: $color-text-dark;
   font-family: $font-heading;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: 1.15rem;
+  color: $color-text-dark;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 .cardDesc {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: $color-brown;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
-}
-
-.cardDetails {
-  font-size: 0.92rem;
   color: $color-text-light;
-  line-height: 1.55;
-  margin-bottom: 20px;
-  flex-grow: 1;
-  font-weight: 400;
+  line-height: 1.4;
 }
 
-.scheduleRow {
+.cardImageCol {
+  flex-shrink: 0;
+  width: 100px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba($color-beige, 0.4);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  @include responsive(mobile) {
+    width: 100%;
+    height: 150px;
+    margin-top: 8px;
+  }
+}
+
+// 6-Block Trust Strip
+.trustStripSection {
+  background-color: $color-deep-wine;
+  color: $color-cream;
+  padding: 56px 0;
+  text-align: center;
+  border-top: 1px solid rgba($color-beige, 0.2);
+  @include luxury-grain;
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 8px;
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $color-gold;
+    margin: 12px 0 6px 0;
+  }
+
+  p {
+    font-size: 0.78rem;
+    color: rgba($color-cream, 0.75);
+    line-height: 1.4;
+  }
+}
+
+.trustIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba($color-cream, 0.25);
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: $color-text-light;
-  font-weight: 500;
-  border-top: 1px solid rgba($color-beige, 0.6);
-  width: 100%;
-  padding-top: 14px;
-  margin-top: auto;
-}
-
-.clockIcon {
+  justify-content: center;
   color: $color-gold;
+  background-color: rgba($color-bg-white, 0.02);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: $color-gold;
+  }
 }

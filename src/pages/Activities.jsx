@@ -1,43 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Palette, Music, Activity, Cpu, Sparkles, Calendar, Users, Heart, Sun, Clock, BookOpen } from 'lucide-react';
+import { Palette, Music, BookOpen, Activity, Fingerprint, Sparkles, Smile, Lightbulb, Compass, Shield, GraduationCap, Users, Heart, MessageSquare } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
-import SectionTitle from '../components/common/SectionTitle';
 import SectionDivider from '../components/common/SectionDivider';
 import styles from './ActivitiesPage.module.scss';
 
 const iconMap = {
   Palette: Palette,
   Music: Music,
+  BookOpen: BookOpen,
   Activity: Activity,
-  Cpu: Cpu,
+  Fingerprint: Fingerprint,
   Sparkles: Sparkles,
-  Calendar: Calendar,
-  Users: Users,
-  Heart: Heart,
-  Sun: Sun,
-  Clock: Clock,
-  BookOpen: BookOpen
+  Smile: Smile,
+  Lightbulb: Lightbulb,
+  Compass: Compass
 };
 
 const filterCategories = ["All", "Creative", "Physical", "Cognitive", "Social"];
-
-const getActivityImage = (id) => {
-  const mapping = {
-    'art-craft': 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600',
-    'music-dance': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600',
-    'storytelling-rhymes': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600',
-    'indoor-outdoor-games': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600',
-    'sensory-activities': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600',
-    'festival-celebrations': 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=600',
-    'personality-development': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
-    'creative-learning': 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=600',
-    'motor-skill-development': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600',
-    'fun-learning-activities': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600'
-  };
-  return mapping[id] || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600';
-};
 
 const Activities = () => {
   const { activities } = useCMS();
@@ -47,20 +28,58 @@ const Activities = () => {
     ? activities
     : activities.filter(act => act.category === activeFilter);
 
+  const trustStripItems = [
+    {
+      icon: Shield,
+      title: "Safe & Secure Campus",
+      desc: "A nurturing environment where safety always comes first."
+    },
+    {
+      icon: GraduationCap,
+      title: "Qualified Educators",
+      desc: "Experienced, caring teachers who inspire young minds."
+    },
+    {
+      icon: Users,
+      title: "Playful Learning",
+      desc: "Activity-based learning that makes every day joyful."
+    },
+    {
+      icon: Heart,
+      title: "Nurturing Care",
+      desc: "We care with warmth, patience and individual attention."
+    },
+    {
+      icon: Palette,
+      title: "Creative Growth",
+      desc: "Encouraging imagination, curiosity and self-expression."
+    },
+    {
+      icon: MessageSquare,
+      title: "Open Communication",
+      desc: "Strong parent partnership for every child's success."
+    }
+  ];
+
   return (
     <div className={styles.activitiesPage}>
       
-      {/* Header Banner */}
+      {/* Page Header */}
       <section className={styles.pageHeader}>
-        {/* Subtle background texture watermark */}
         <div 
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
+            opacity: 0.15
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className={styles.headerDecor}>
+            <span className={styles.decorStar}>✦</span>
+            <span className={styles.decorCrown}>👑</span>
+            <span className={styles.decorStar}>✦</span>
+          </div>
+          <span className={styles.upperTag}>ACTIVE LEARNING</span>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,33 +87,23 @@ const Activities = () => {
           >
             School Activities
           </motion.h1>
-          <p>Discover our wide array of cognitive workshops, sports schedules, music training, and seasonal camps.</p>
+          <div className={styles.heartLine}>
+            <Heart size={14} className={styles.heartIcon} />
+          </div>
+          <p>Discover our wide array of co-curricular activities and workshops that foster creativity, confidence, and holistic growth.</p>
         </div>
       </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* Main filter list and Grid */}
-      <section className="section" style={{ position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      {/* Co-Curricular & Workshops Section */}
+      <section className="section" style={{ backgroundColor: '#FFFFFF', paddingTop: '56px', paddingBottom: '64px' }}>
+        <div className="container">
           
-          <SectionTitle 
-            tag="Active Learning"
-            title="Co-Curricular Activities & Workshops"
-            highlightWord="Activities"
-            align="center"
-            subtitle="Choose a category below to explore active classes designed to foster balance, logical capability, and visual arts."
-          />
+          <div className={styles.sectionHeader}>
+            <h2>Co-Curricular Activities & Workshops</h2>
+            <p>Choose a category below to explore activities designed for holistic development.</p>
+          </div>
 
-          {/* Tag filters list */}
+          {/* Category Filter Bar */}
           <div className={styles.filterBar}>
             {filterCategories.map((cat) => (
               <button 
@@ -107,7 +116,7 @@ const Activities = () => {
             ))}
           </div>
 
-          {/* Cards Grid */}
+          {/* Horizontal Layout 9 Cards Grid */}
           <motion.div layout className={styles.activitiesGrid}>
             <AnimatePresence mode="popLayout">
               {filteredActivities.map((act) => {
@@ -116,41 +125,35 @@ const Activities = () => {
                 return (
                   <motion.div 
                     layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
                     className={styles.activityCard}
                     key={act.id}
                   >
                     
-                    {/* Top Image Banner */}
-                    <div className={styles.cardImageWrapper}>
+                    {/* Left: Icon Badge */}
+                    <div className={styles.cardIconCol}>
+                      <div className={styles.iconCircle} style={{ borderColor: `${act.color}33`, color: act.color, backgroundColor: `${act.color}0a` }}>
+                        <IconComponent size={20} strokeWidth={1.8} />
+                      </div>
+                    </div>
+
+                    {/* Middle: Text Details */}
+                    <div className={styles.cardContentCol}>
+                      <h3 className={styles.cardTitle}>{act.title}</h3>
+                      <p className={styles.cardDesc}>{act.description}</p>
+                    </div>
+
+                    {/* Right: Landscape Image */}
+                    <div className={styles.cardImageCol}>
                       <img 
-                        src={getActivityImage(act.id)} 
+                        src={act.image} 
                         alt={act.title} 
-                        className={styles.cardImage} 
                         onError={(e) => { e.target.src = FALLBACK_IMAGES.activity; }}
                         loading="lazy" 
                       />
-                      <span className={styles.categoryBadge}>{act.category}</span>
-                    </div>
-
-                    {/* Content Wrapper */}
-                    <div className={styles.cardContent}>
-                      <div className={styles.titleRow}>
-                        <div className={styles.iconCircle}>
-                          <IconComponent size={20} strokeWidth={1.5} />
-                        </div>
-                        <h3 className={styles.cardTitle}>{act.title}</h3>
-                      </div>
-                      <p className={styles.cardDesc}>{act.description}</p>
-                      <p className={styles.cardDetails}>{act.details}</p>
-
-                      <div className={styles.scheduleRow}>
-                        <Clock size={14} className={styles.clockIcon} />
-                        <span>{act.schedule}</span>
-                      </div>
                     </div>
 
                   </motion.div>
@@ -162,9 +165,28 @@ const Activities = () => {
         </div>
       </section>
 
+      {/* 6-Block Trust Strip (Above Footer) */}
+      <section className={styles.trustStripSection}>
+        <div className="container">
+          <div className={styles.trustGrid}>
+            {trustStripItems.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <div className={styles.trustItem} key={idx}>
+                  <div className={styles.trustIconCircle}>
+                    <IconComp size={22} strokeWidth={1.5} />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };
 
 export default Activities;
-

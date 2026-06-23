@@ -3,20 +3,21 @@ export const programsData = [
     id: "toddcare",
     title: "Toddcare",
     age: "1.5 – 2.5 Years",
-    accentColor: "#D4AF37", // Gold
-    lightBg: "#FFFDD0", // Cream
-    gradient: "linear-gradient(135deg, #FFFDD0 0%, #FAF0D7 100%)",
-    shadowColor: "rgba(212, 175, 55, 0.15)",
+    accentColor: "#E05A6D",
+    lightBg: "#FDF6F7",
+    gradient: "linear-gradient(135deg, #FDF6F7 0%, #F8E3E7 100%)",
+    shadowColor: "rgba(224, 90, 109, 0.15)",
     icon: "Baby",
     image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800",
     tagline: "Sensory Development & Playful Beginnings",
-    description: "Our Toddcare program is specifically structured to offer a warm, safe, and sensory-rich home away from home. We focus on physical growth, early toddler language transitions, and sensory investigations.",
+    description: "Our Toddcare program is specifically structured to offer a warm, safe, and sensory-rich home away from home..",
     features: [
-      "Sensory development and exploration play",
-      "Interactive social communication games",
-      "Fine & gross motor skill coordinates",
-      "Gentle visual habits & eating hygiene",
-      "Secure padded play surroundings"
+      "Sensory Exploration",
+      "Social Interaction",
+      "Motor Skills Development",
+      "Early Independence",
+      "Language & Communication",
+      "Creative Expression"
     ],
     activities: [
       "Texture bins and sound tubes",
@@ -31,20 +32,21 @@ export const programsData = [
     id: "nursery",
     title: "Nursery",
     age: "2.5 – 3.5 Years",
-    accentColor: "#541221", // Wine
-    lightBg: "#F5E6E8", // Soft Wine Light
-    gradient: "linear-gradient(135deg, #F5E6E8 0%, #E8CDD1 100%)",
-    shadowColor: "rgba(107, 29, 79, 0.15)",
+    accentColor: "#E67E22",
+    lightBg: "#FEF9F5",
+    gradient: "linear-gradient(135deg, #FEF9F5 0%, #F5CBA7 100%)",
+    shadowColor: "rgba(230, 126, 34, 0.15)",
     icon: "Smile",
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
     tagline: "Unleashing Imagination & Storytelling",
     description: "The Nursery curriculum focuses on early literacy, vocabulary, phonics, and creative expression. Children interact with picture books, clay crafts, and social sharing circles.",
     features: [
-      "Phonics foundations and speech clarity",
-      "Interactive storytelling and expression",
-      "Pre-writing finger grip patterns",
-      "Numbers and counting logic concepts",
-      "Sensory exploration and visual craft"
+      "Language Development",
+      "Social & Emotional Growth",
+      "Cognitive Development",
+      "Creative & Artistic Expression",
+      "Fine Motor Skills",
+      "Early Numeracy & Literacy"
     ],
     activities: [
       "Letter sounds & phonics jigsaws",
@@ -59,20 +61,21 @@ export const programsData = [
     id: "junior-kg",
     title: "Junior KG (LKG)",
     age: "3.5 – 4.5 Years",
-    accentColor: "#E67E22", // Active Orange
-    lightBg: "#FDF2E9",
-    gradient: "linear-gradient(135deg, #FDF2E9 0%, #F5CBA7 100%)",
-    shadowColor: "rgba(230, 126, 34, 0.15)",
+    accentColor: "#27AE60",
+    lightBg: "#F4FAF6",
+    gradient: "linear-gradient(135deg, #F4FAF6 0%, #E8F8F5 100%)",
+    shadowColor: "rgba(39, 174, 96, 0.15)",
     icon: "BookOpen",
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
     tagline: "Foundational Literacy & Active Discovery",
     description: "LKG guides kids through structured letter tracing, sentence construction, early science logic, and digital board blocks, preparing them for advanced logical inquiry.",
     features: [
-      "Sentence phrasing and early literacy",
-      "Advanced vocabulary and expression",
-      "Handwriting tracing and pencil control",
-      "Logical shapes and sizing mathematics",
-      "Hands-on scientific nature observation"
+      "Phonics & Early Reading",
+      "Creative Activities",
+      "Basic Numeracy",
+      "Physical Development",
+      "Logical Thinking",
+      "Values & Manners"
     ],
     activities: [
       "Sentence matching cards & alphabet circles",
@@ -87,20 +90,21 @@ export const programsData = [
     id: "senior-kg",
     title: "Senior KG (UKG)",
     age: "4.5 – 5.5 Years",
-    accentColor: "#2980B9", // Trustworthy Blue
-    lightBg: "#EBF5FB",
-    gradient: "linear-gradient(135deg, #EBF5FB 0%, #AED6F1 100%)",
-    shadowColor: "rgba(41, 128, 185, 0.15)",
+    accentColor: "#D4AF37",
+    lightBg: "#FFFDF5",
+    gradient: "linear-gradient(135deg, #FFFDF5 0%, #FEF9E7 100%)",
+    shadowColor: "rgba(212, 175, 55, 0.15)",
     icon: "GraduationCap",
     image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800",
     tagline: "Advanced School Readiness & Problem Solving",
     description: "UKG refines speech fluency, social collaboration, math counting logic, and independent problem-solving skills to build self-confidence for a smooth transition to formal primary schooling.",
     features: [
-      "Fluent English speech and reading focus",
-      "Basic addition, subtraction, and arithmetic logic",
-      "Advanced cognitive problem solving",
-      "Leadership roles and class assembly speeches",
-      "Social-emotional collaborative empathy checks"
+      "Advanced Literacy",
+      "Problem Solving & Reasoning",
+      "Mathematical Concepts",
+      "Creative & Expression",
+      "General Awareness",
+      "Life Skills & Independence"
     ],
     activities: [
       "Sight words reading & interactive dictations",

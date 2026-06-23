@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn } from 'lucide-react';
+import { X, ZoomIn, Image, Users, Home, Heart } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
-import { trackEvent } from '../services/analytics';
-import SectionTitle from '../components/common/SectionTitle';
 import SectionDivider from '../components/common/SectionDivider';
 import styles from './GalleryPage.module.scss';
 
@@ -13,10 +11,10 @@ const Gallery = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  // Compile dynamic filter tabs based on actually populated sheet categories
+  // Compile dynamic filter tabs
   const categories = ["All", ...new Set(gallery.map(photo => photo.category).filter(Boolean))];
 
-  // Close lightbox modal upon hitting the Escape keyboard button
+  // Close lightbox modal upon hitting Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -29,30 +27,50 @@ const Gallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedPhoto]);
 
-  // Track user gallery tab filters conversion
-  useEffect(() => {
-    trackEvent('filter', 'Gallery', activeTab);
-  }, [activeTab]);
-
   const filteredPhotos = activeTab === "All"
     ? gallery
     : gallery.filter(photo => photo.category === activeTab);
 
+  const statsList = [
+    {
+      icon: Image,
+      val: "500+",
+      lbl: "Cherished Moments"
+    },
+    {
+      icon: Users,
+      val: "50+",
+      lbl: "Activities & Events"
+    },
+    {
+      icon: Home,
+      val: "2+",
+      lbl: "Campus Locations"
+    },
+    {
+      icon: Heart,
+      val: "Countless",
+      lbl: "Smiles & Memories"
+    }
+  ];
 
   return (
     <div className={styles.galleryPage}>
       
-      {/* Banner Header */}
+      {/* Page Header */}
       <section className={styles.pageHeader}>
-        {/* Subtle background texture watermark */}
         <div 
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
+            opacity: 0.15
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className={styles.headerDecor}>
+            <span className={styles.decorStar}>✦</span>
+            <span className={styles.decorStar}>✦</span>
+          </div>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,31 +78,22 @@ const Gallery = () => {
           >
             Photo Gallery
           </motion.h1>
+          <div className={styles.heartLine}>
+            <Heart size={14} className={styles.heartIcon} />
+          </div>
           <p>Peek inside our colorful campus, active assemblies, scientific workshops, and playground memories.</p>
         </div>
       </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* Main mosaic list */}
-      <section className="section" style={{ position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      {/* Main Section */}
+      <section className="section" style={{ backgroundColor: '#FFFFFF', paddingTop: '56px', paddingBottom: '64px' }}>
+        <div className="container">
           
-          <SectionTitle 
-            tag="Capturing Memories"
-            title="Life & Discoveries at Kingdom of Learning"
-            highlightWord="Discoveries"
-            align="center"
-            subtitle="Filter images below to explore classrooms, campus yards, creative play circles, and seasonal festival highlights."
-          />
+          <div className={styles.sectionHeader}>
+            <span className={styles.upperTag}>CAPTURING MEMORIES</span>
+            <h2>Life & <span className={styles.italicHighlight}>Discoveries</span> at Kingdom of Learning</h2>
+            <p>Filter images below to explore classrooms, campus yards, creative play circles, and seasonal festival highlights.</p>
+          </div>
 
           {/* Filter Pills */}
           <div className={styles.filterBar}>
@@ -99,29 +108,28 @@ const Gallery = () => {
             ))}
           </div>
 
-          {/* Photo Mosaic Grid */}
-          <motion.div layout className={styles.mosaicGrid}>
+          {/* Uniform Grid of Photos */}
+          <motion.div layout className={styles.uniformGrid}>
             <AnimatePresence mode="popLayout">
               {filteredPhotos.map((photo, index) => (
                 <motion.div 
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.04 }}
-                  className={`${styles.photoCard} ${photo.sizeClass === 'tall' ? styles.tallCard : photo.sizeClass === 'wide' ? styles.wideCard : ''}`}
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
+                  className={styles.photoCard}
                   key={photo.id}
                   onClick={() => setSelectedPhoto(photo)}
                 >
                   <img 
                     src={photo.url} 
                     alt={photo.title} 
-                    className={styles.image} 
                     onError={(e) => { e.target.src = FALLBACK_IMAGES.gallery; }}
                     loading="lazy" 
                   />
                   
-                  {/* Overlay icon */}
+                  {/* Hover Overlay */}
                   <div className={styles.hoverOverlay}>
                     <ZoomIn className={styles.zoomIcon} size={22} strokeWidth={1.5} />
                     <h4 className={styles.photoTitle}>{photo.title}</h4>
@@ -132,10 +140,53 @@ const Gallery = () => {
             </AnimatePresence>
           </motion.div>
 
+          {/* Stats strip below the grid */}
+          <div className={styles.statsStripRow}>
+            {statsList.map((stat, idx) => {
+              const IconComp = stat.icon;
+              return (
+                <div className={styles.statBox} key={idx}>
+                  <div className={styles.statIconCircle}>
+                    <IconComp size={20} className={styles.statIcon} />
+                  </div>
+                  <div className={styles.statText}>
+                    <h3>{stat.val}</h3>
+                    <p>{stat.lbl}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Instagram Promo Banner */}
+          <div className={styles.instagramBanner}>
+            <div className={styles.instaLeft}>
+              <div className={styles.instaIconCircle}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div className={styles.instaText}>
+                <h3>More memories every day!</h3>
+                <p>Follow our journey on Instagram for daily snapshots of joy and learning.</p>
+              </div>
+            </div>
+            <div className={styles.instaRight}>
+              <motion.a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.instaBtn}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Follow Us on Instagram</span>
+              </motion.a>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* Full-Screen Lightbox Modal */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedPhoto && (
           <motion.div 
@@ -174,7 +225,6 @@ const Gallery = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
 
     </div>
   );

@@ -1,305 +1,367 @@
 @import '../styles/variables.scss';
 
 .programsPage {
-  padding-bottom: 60px;
+  background-color: $color-bg-white;
 }
 
+.headerDecor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+
+  .decorStar {
+    color: $color-gold;
+    font-size: 0.9rem;
+  }
+  .decorCrown {
+    font-size: 1.2rem;
+  }
+}
+
+.taglineUpper {
+  font-size: 0.8rem;
+  color: $color-wine;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.heartLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 20px 0;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background-color: rgba($color-gold, 0.4);
+  }
+  &::before { right: 50%; margin-right: 16px; }
+  &::after { left: 50%; margin-left: 16px; }
+
+  .heartIcon {
+    color: #E05A6D;
+    fill: #E05A6D;
+  }
+}
+
+.italicHighlight {
+  font-family: $font-heading;
+  font-style: italic;
+  font-weight: 400;
+  color: $color-wine;
+}
+
+// Page Header
 .pageHeader {
   background-color: $color-cream;
   color: $color-text-dark;
-  padding: 96px 0 32px 0;
+  padding: 110px 0 40px 0;
   text-align: center;
   border-bottom: 1px solid rgba($color-beige, 0.6);
   position: relative;
   overflow: hidden;
 
   h1 {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     color: $color-wine;
-    margin-bottom: 14px;
+    margin-bottom: 4px;
     font-family: $font-heading;
     font-weight: 500;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
 
     @include responsive(mobile) {
-      font-size: 2.2rem;
+      font-size: 1.9rem;
     }
   }
 
-  p {
+  .subtitleText {
     color: $color-text-light;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
     line-height: 1.5;
 
     @include responsive(mobile) {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      padding: 0 16px;
     }
   }
 }
 
-// Curriculum detailed list
-.programDetailsList {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-
-  @include responsive(mobile) {
-    gap: 48px;
-  }
-}
-
-.progBlock {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 56px;
-  align-items: center;
-
-  &.reverseBlock {
-    grid-template-columns: 1.5fr 1fr;
-
-    .visualCol {
-      order: 2;
-    }
-    .textCol {
-      order: 1;
-    }
-  }
-
-  @include responsive(mobile) {
-    grid-template-columns: 1fr !important;
-    gap: 32px;
-
-    .visualCol {
-      order: 1 !important;
-    }
-    .textCol {
-      order: 2 !important;
-    }
-  }
-
-  @include responsive(tablet) {
-    grid-template-columns: 1fr !important;
-    gap: 40px;
-
-    .visualCol {
-      order: 1 !important;
-    }
-    .textCol {
-      order: 2 !important;
-    }
-  }
-}
-
-// Left visual panel
-.visualCol {
-  @include flex-center;
-  width: 100%;
-}
-
-.illustrationCard {
-  width: 100%;
-  max-width: 360px;
-  height: 440px;
-  border-radius: 180px 180px 24px 24px; // Arch framing
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: $shadow-soft;
-  border: 1px solid rgba($color-beige, 0.5);
-  transition: $transition-smooth;
-  position: relative;
-
-  &:hover {
-    box-shadow: $shadow-hover;
-    transform: translateY(-4px);
-
-    img {
-      transform: scale(1.04);
-    }
-  }
-
-  @include responsive(mobile) {
-    height: 320px;
-    max-width: 280px;
-  }
-}
-
-.imageOverlayContainer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 24px;
-  background: linear-gradient(to top, rgba($color-deep-wine, 0.75) 0%, rgba($color-deep-wine, 0) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  z-index: 2;
-}
-
-.imageOverlayTitle {
-  font-family: $font-heading;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: $color-bg-white !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.agePill {
-  font-family: $font-body;
-  background-color: rgba($color-cream, 0.2) !important;
-  color: $color-cream !important;
-  border: 1px solid rgba($color-cream, 0.4);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: $radius-full;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-// Right description details
-.textCol {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-
-  .title {
-    font-family: $font-heading;
-    font-size: 2.2rem;
-    font-weight: 500;
-    color: $color-text-dark;
-    margin-bottom: 6px;
-    line-height: 1.25;
-
-    @include responsive(mobile) {
-      font-size: 1.6rem;
-    }
-  }
-
-  .tagline {
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: $color-wine !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-  }
-
-  .descText {
-    font-size: 0.98rem;
-    line-height: 1.65;
-    color: $color-text-light;
-    margin-bottom: 24px;
-    font-weight: 400;
-  }
-}
-
+// 2x2 Grid of cards
 .curriculumGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
-  width: 100%;
-  margin-bottom: 24px;
-
-  h4 {
-    font-family: $font-heading;
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: $color-text-dark;
-    margin-bottom: 12px;
-  }
 
   @include responsive(mobile) {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 }
 
-.checkList {
-  list-style: none;
+.curriculumCard {
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-beige, 0.5);
+  display: grid;
+  grid-template-columns: 1.1fr 1.5fr;
+  overflow: hidden;
+  transition: $transition-smooth;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
+    
+    .cardImageCol img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.cardImageCol {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  @include responsive(mobile) {
+    height: 200px;
+    min-height: 200px;
+  }
+}
+
+.cardContentCol {
+  padding: 32px;
   display: flex;
   flex-direction: column;
+  text-align: left;
+
+  @include responsive(mobile) {
+    padding: 24px;
+  }
+
+  @include responsive(tablet) {
+    padding: 20px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.iconCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.numberLabel {
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 1.35rem;
+  color: $color-text-dark;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cardDesc {
+  font-size: 0.88rem;
+  color: $color-text-light;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.milestonesSection {
+  border-top: 1px solid rgba($color-beige, 0.4);
+  padding-top: 16px;
+}
+
+.checkList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 
   li {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 0.92rem;
-    font-weight: 500;
+    font-size: 0.82rem;
     color: $color-text-dark;
+    line-height: 1.3;
+
+    .checkIcon {
+      color: $color-brown;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
+// Five-column feature strip
+.featureStripSection {
+  background-color: $color-cream;
+  border-top: 1px solid rgba($color-beige, 0.5);
+  border-bottom: 1px solid rgba($color-beige, 0.5);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.featureStripGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+.stripItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    color: $color-text-dark;
+    margin: 12px 0 6px 0;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: $color-text-light;
     line-height: 1.4;
   }
 }
 
-.checkIcon {
-  color: $color-wine !important;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.bulletDot {
-  width: 6px;
-  height: 6px;
+.stripIconCircle {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-  margin-top: 6px;
-  background-color: $color-brown !important;
-}
-
-.methodologyBox {
+  background-color: rgba($color-wine, 0.05);
+  color: $color-wine;
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background-color: rgba($color-beige, 0.15) !important;
-  border-left: 3px solid $color-wine !important;
-  padding: 14px 18px;
-  border-radius: $radius-sm;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba($color-brown, 0.2);
+  transition: transform 0.3s ease;
 
-  .methodIcon {
-    color: $color-wine !important;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  strong {
-    color: $color-text-dark;
-    font-size: 0.92rem;
-  }
-
-  span {
-    font-size: 0.92rem;
-    color: $color-text-light;
-    font-weight: 400;
+  &:hover {
+    transform: scale(1.1);
+    background-color: $color-wine;
+    color: $color-bg-white;
   }
 }
 
-// CTA Enrollment bottom callout
-.ctaBox {
-  background-color: $color-deep-wine !important;
-  color: $color-cream !important;
+// Bottom CTA Card
+.ctaBannerBox {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=1200');
+  background-size: cover;
+  background-position: center;
+  box-shadow: $shadow-medium;
+  padding: 56px 24px;
   text-align: center;
-  padding: 64px 40px;
-  border-radius: $radius-lg; // 24px
-  @include flex-center;
-  flex-direction: column;
-  border: 1px solid rgba($color-beige, 0.4);
-  @include luxury-grain;
+  border: 1px solid rgba($color-beige, 0.6);
+
+  @include responsive(mobile) {
+    padding: 40px 16px;
+  }
+}
+
+.ctaBlurBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-cream, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+
+  .ctaCrownIcon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
 
   h2 {
     font-family: $font-heading;
     font-size: 2.2rem;
+    color: $color-wine;
     font-weight: 500;
-    color: $color-bg-white !important;
     margin-bottom: 12px;
 
     @include responsive(mobile) {
@@ -308,38 +370,36 @@
   }
 
   p {
-    font-size: 1.05rem;
-    color: rgba($color-cream, 0.75) !important;
-    max-width: 600px;
-    margin-bottom: 32px;
+    font-size: 1rem;
+    color: $color-text-dark;
     line-height: 1.5;
-    font-weight: 400;
+    margin-bottom: 28px;
+
+    @include responsive(mobile) {
+      font-size: 0.88rem;
+    }
   }
 }
 
-.enrollBtn {
-  background-color: $color-cream !important;
-  color: $color-deep-wine !important;
-  border: 1px solid $color-cream !important;
-  padding: 14px 36px;
+.ctaBtn {
+  background-color: $color-wine;
+  color: $color-cream;
+  border: none;
+  padding: 14px 28px;
   border-radius: $radius-full;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  box-shadow: $shadow-soft;
-  @include flex-center;
-  gap: 8px;
+  box-shadow: 0 4px 15px rgba($color-wine, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: $transition-smooth;
 
   &:hover {
-    background-color: transparent !important;
-    color: $color-cream !important;
-    transform: translateY(-2px);
-    box-shadow: $shadow-hover;
-  }
-
-  @include responsive(mobile) {
-    width: 100%;
-    justify-content: center;
+    background-color: $color-deep-wine;
+    box-shadow: 0 6px 20px rgba($color-wine, 0.3);
   }
 }

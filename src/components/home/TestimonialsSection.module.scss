@@ -19,8 +19,8 @@
 
 .testimonialCard {
   background-color: $color-bg-white;
-  padding: 28px 24px;
-  border-radius: $radius-lg; // 24px
+  padding: 44px 24px 28px 24px;
+  border-radius: 24px;
   box-shadow: $shadow-soft;
   border: 1px solid rgba($color-beige, 0.6);
   display: flex;
@@ -28,36 +28,68 @@
   align-items: flex-start;
   text-align: left;
   position: relative;
+  overflow: hidden;
   transition: $transition-smooth;
 
   &:hover {
-    border-color: $color-brown;
     box-shadow: $shadow-hover;
     transform: translateY(-4px);
   }
-}
 
-.quoteIcon {
-  position: absolute;
-  top: 36px;
-  right: 32px;
-  opacity: 0.15;
-  color: $color-wine;
+  .cornerDecoration {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 56px;
+    height: 56px;
+    border-bottom-right-radius: 32px;
+    @include flex-center;
+    color: #FFFFFF;
+  }
+
+  .quoteIcon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 2.2rem;
+    line-height: 1;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    opacity: 0.18;
+  }
+
+  // Themes
+  &.theme-0 {
+    border-color: rgba(#E05A6D, 0.25);
+    .cornerDecoration { background-color: #E05A6D; }
+    .quoteIcon { color: #E05A6D; }
+  }
+
+  &.theme-1 {
+    border-color: rgba(#27AE60, 0.25);
+    .cornerDecoration { background-color: #27AE60; }
+    .quoteIcon { color: #27AE60; }
+  }
+
+  &.theme-2 {
+    border-color: rgba(#E67E22, 0.25);
+    .cornerDecoration { background-color: #E67E22; }
+    .quoteIcon { color: #E67E22; }
+  }
 }
 
 .starsRow {
   display: flex;
   gap: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   color: $color-gold;
 }
 
 .quoteText {
-  font-family: $font-heading;
-  font-size: 1.15rem;
+  font-family: $font-body;
+  font-size: 1.02rem;
   line-height: 1.6;
   color: $color-text-dark;
-  font-style: italic;
   margin-bottom: 24px;
   flex-grow: 1;
   font-weight: 400;
@@ -90,12 +122,12 @@
 .authorInfo {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .authorName {
   font-family: $font-heading;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: $color-text-dark;
   margin-bottom: 2px;
@@ -105,6 +137,26 @@
   font-size: 0.78rem;
   color: $color-text-light;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+}
+
+// Active slider indicator dots
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba($color-wine, 0.2);
+  cursor: pointer;
+  transition: $transition-smooth;
+
+  &.activeDot {
+    background-color: $color-wine;
+    transform: scale(1.15);
+  }
 }

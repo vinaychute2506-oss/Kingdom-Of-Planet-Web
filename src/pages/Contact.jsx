@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2, AlertTriangle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle, Loader2, AlertTriangle, Shield, Heart } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { submitForm } from '../services/api';
 import { trackEvent } from '../services/analytics';
-import SectionTitle from '../components/common/SectionTitle';
 import SectionDivider from '../components/common/SectionDivider';
 import styles from './Contact.module.scss';
 
@@ -16,7 +15,7 @@ const Contact = () => {
     phone: '',
     email: '',
     message: '',
-    honeypot: '', // bot protection honeypot
+    honeypot: '', // bot protection
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +24,6 @@ const Contact = () => {
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // Cooldown countdown loop
   useEffect(() => {
     let interval = null;
     if (cooldown && cooldownSeconds > 0) {
@@ -44,22 +42,20 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg(null); // Clear previous errors
+    setErrorMsg(null);
 
     if (cooldown) {
       setErrorMsg(`Rate-limiting protection: Please wait ${cooldownSeconds}s before sending another message.`);
       return;
     }
 
-    // Bot detection honey trap
     if (formData.honeypot) {
-      console.warn("Spam-bot trigger intercepted!");
       setShowModal(true);
       return;
     }
 
     if (!formData.parentName || !formData.phone || !formData.message) {
-      setErrorMsg("Required inputs missing! Please fill in your name, contact phone number, and message context.");
+      setErrorMsg("Required fields missing! Please enter your name, phone, and message.");
       return;
     }
 
@@ -77,18 +73,12 @@ const Contact = () => {
         trackEvent('submit', 'Inquiry', 'Contact Form Success');
         setShowModal(true);
         setCooldown(true);
-        setCooldownSeconds(10); // 10-second spam protection lock
+        setCooldownSeconds(10);
       } else {
-        throw new Error(response?.message || 'Server responded with an unexpected error status.');
+        throw new Error(response?.message || 'Unexpected response status.');
       }
     } catch (err) {
-      // Enhanced diagnostic logging for network/CORS failures
-      console.error('[Forms Dispatch Failure] Diagnostics Details:', {
-         exception: err.message,
-         payloadPreserved: formData,
-         apiUrlTargeted: import.meta.env.VITE_CMS_API
-      });
-      setErrorMsg("Message dispatch failed due to an API connection error. We have preserved your inputs. Please check your network and try again.");
+      setErrorMsg("Connection error: We preserved your inputs. Please check your network and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -111,15 +101,19 @@ const Contact = () => {
       
       {/* Page Header */}
       <section className={styles.pageHeader}>
-        {/* Subtle background texture watermark */}
         <div 
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
+            opacity: 0.15
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className={styles.headerDecor}>
+            <span className={styles.decorLeaf}>🌿</span>
+            <span className={styles.decorTag}>WE'D LOVE TO HEAR FROM YOU</span>
+            <span className={styles.decorLeaf}>🌿</span>
+          </div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,39 +121,39 @@ const Contact = () => {
           >
             Contact Admissions
           </motion.h1>
+          <div className={styles.heartLine}>
+            <Heart size={14} className={styles.heartIcon} />
+          </div>
           <p>Get in touch with Mrs. Komal Singh and our administrative team to schedule your visitation.</p>
         </div>
       </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* Main split grid */}
-      <section className="section" style={{ position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      {/* Main Form & Location Section */}
+      <section className="section" style={{ backgroundColor: '#FAF6EE', paddingTop: '56px', paddingBottom: '64px' }}>
+        <div className="container">
           
-          <div className={styles.splitGrid}>
+          <div className={styles.contactGrid}>
             
-            {/* Left Column: Inquiry Form */}
+            {/* Left: Inquiry Form Panel */}
             <div className={styles.formPanel}>
-              <SectionTitle 
-                tag="Write to Us"
-                title="Send a Direct Message"
-                highlightWord="Direct"
-                align="left"
-                subtitle="Have any specific queries about early development milestones, fees, seat slots, or child support? We are here to help."
-              />
+              
+              <div className={styles.formHeader}>
+                <span className={styles.writeTag}>WRITE TO US</span>
+                <h2>Send a <span className={styles.italicHighlight}>Direct</span> Message</h2>
+                
+                {/* Hand-drawn sketches simulation on the right */}
+                <div className={styles.sketchDecors}>
+                  <div className={styles.sketchHeart}>❤️</div>
+                  <div className={styles.sketchPencil}>✏️</div>
+                  <div className={styles.sketchBook}>📖</div>
+                </div>
+
+                <p className={styles.formSubtitle}>
+                  Have any specific queries about early development milestones, fees, seat slots, or child support? We are here to help.
+                </p>
+              </div>
 
               <form onSubmit={handleSubmit} className={styles.contactForm}>
-                
-                {/* Bot-protection Honeypot field (hidden from view) */}
                 <input 
                   type="text" 
                   name="honeypot" 
@@ -174,12 +168,11 @@ const Contact = () => {
                   {errorMsg && (
                     <motion.div 
                       className={styles.errorNotice}
-                      initial={{ opacity: 0, height: 0, y: -10 }}
-                      animate={{ opacity: 1, height: 'auto', y: 0 }}
-                      exit={{ opacity: 0, height: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
                     >
-                      <AlertTriangle size={18} className={styles.errorIcon} />
+                      <AlertTriangle size={16} className={styles.errorIcon} />
                       <span>{errorMsg}</span>
                       <button type="button" className={styles.errorClose} onClick={() => setErrorMsg(null)}>×</button>
                     </motion.div>
@@ -230,7 +223,7 @@ const Contact = () => {
                   <textarea 
                     id="message" 
                     name="message" 
-                    rows="5" 
+                    rows="4" 
                     placeholder="Enter your questions or child guidelines here..." 
                     value={formData.message}
                     onChange={handleChange}
@@ -248,7 +241,7 @@ const Contact = () => {
                   {submitting ? (
                     <Loader2 size={16} className="animate-spin" />
                   ) : (
-                    <Send size={16} strokeWidth={1.5} />
+                    <Send size={16} />
                   )}
                   <span>
                     {submitting 
@@ -258,14 +251,25 @@ const Contact = () => {
                         : "Send Direct Message"}
                   </span>
                 </motion.button>
+
+                <div className={styles.infoSafeLine}>
+                  <Shield size={14} className={styles.shieldIcon} />
+                  <span>Your information is safe with us and will never be shared.</span>
+                </div>
+
               </form>
             </div>
 
-            {/* Right Column: Contact Details & Real Google Map */}
+            {/* Right: Map & Details Panel */}
             <div className={styles.detailsPanel}>
               
-              {/* Real Google Maps embed centering on Shahpur Jat */}
+              {/* Map embed */}
               <div className={styles.mapCard}>
+                <div className={styles.mapOverlayLink}>
+                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapBtn}>
+                    Open in Maps ↗
+                  </a>
+                </div>
                 <iframe 
                   src={schoolInfo.mapEmbedUrl} 
                   width="100%" 
@@ -278,14 +282,14 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Quick Contacts details */}
-              <div className={styles.detailsGrid}>
+              {/* Detail Cards */}
+              <div className={styles.detailCardsStack}>
                 
                 <div className={styles.detailCard}>
                   <div className={styles.iconCircle}>
-                    <MapPin size={20} strokeWidth={1.5} />
+                    <MapPin size={18} strokeWidth={1.8} />
                   </div>
-                  <div>
+                  <div className={styles.detailText}>
                     <h4>School Location</h4>
                     <p>{schoolInfo.address}</p>
                   </div>
@@ -293,9 +297,9 @@ const Contact = () => {
 
                 <div className={styles.detailCard}>
                   <div className={styles.iconCircle}>
-                    <Phone size={20} strokeWidth={1.5} />
+                    <Phone size={18} strokeWidth={1.8} />
                   </div>
-                  <div>
+                  <div className={styles.detailText}>
                     <h4>Admissions Hotline</h4>
                     <p>{schoolInfo.phone}</p>
                   </div>
@@ -303,24 +307,11 @@ const Contact = () => {
 
                 <div className={styles.detailCard}>
                   <div className={styles.iconCircle}>
-                    <Mail size={20} strokeWidth={1.5} />
+                    <Mail size={18} strokeWidth={1.8} />
                   </div>
-                  <div>
+                  <div className={styles.detailText}>
                     <h4>Professional Email</h4>
                     <p>{schoolInfo.email}<br />{schoolInfo.altEmail}</p>
-                  </div>
-                </div>
-
-                <div className={styles.detailCard}>
-                  <div className={styles.iconCircle}>
-                    <Clock size={20} strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h4>School Timings</h4>
-                    <p>
-                      <strong>Toddcare:</strong> {schoolInfo.toddcareTimings}<br />
-                      <strong>Nursery/KG:</strong> {schoolInfo.nurseryKGTimings}
-                    </p>
                   </div>
                 </div>
 
@@ -351,14 +342,14 @@ const Contact = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className={styles.modalSuccessBox}>
-                <CheckCircle size={40} strokeWidth={1.5} />
+                <CheckCircle size={36} strokeWidth={1.5} />
               </div>
               <h3 className={styles.mTitle}>Message Dispatched!</h3>
               <p className={styles.mText}>
                 Dear <strong>{formData.parentName}</strong>, your message was successfully sent.
               </p>
               <p className={styles.mSubtext}>
-                We will contact you at <strong>{formData.phone}</strong> or send details to <strong>{schoolInfo.altEmail}</strong> shortly.
+                We will contact you at <strong>{formData.phone}</strong> shortly.
               </p>
               <button className={styles.mBtn} onClick={handleCloseModal}>
                 Dismiss Panel

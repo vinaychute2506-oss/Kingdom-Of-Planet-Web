@@ -1,53 +1,76 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Sparkles, BookOpen, Music, Users, Compass } from 'lucide-react';
+import { Shield, Sparkles, BookOpen, Palette, Lightbulb, Search, Award, Users, GraduationCap, Scale, Heart } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import { FALLBACK_IMAGES } from '../config/cms';
-import SectionTitle from '../components/common/SectionTitle';
-import MethodologySection from '../components/common/MethodologySection';
 import SectionDivider from '../components/common/SectionDivider';
 import styles from './About.module.scss';
 
-const facilitiesList = [
-  {
-    icon: Sparkles,
-    title: "Sensory Playground",
-    desc: "Rubber-padded turf with swings, sensory bins, sandpits, and child-safe climbing structures."
-  },
-  {
-    icon: BookOpen,
-    title: "Story Library Nest",
-    desc: "A warm, circular reading lounge loaded with interactive picture books and storytelling puppets."
-  },
-  {
-    icon: Music,
-    title: "Creative Art Studio",
-    desc: "Dedicated workshop with child-safe watercolor tables, clay blocks, and keyboards."
-  },
-  {
-    icon: Shield,
-    title: "CCTV Enabled Transit",
-    desc: "Air-conditioned school vans with live GPS systems, caring matrons, and seat belts."
-  }
-];
-
 const About = () => {
   const { schoolInfo, teachers } = useCMS();
+
+  const benefitsList = [
+    {
+      icon: Sparkles,
+      title: "Child-Centered Learning",
+      desc: "We nurture curiosity, creativity, and confidence through play, exploration, and joyful discovery.",
+      colorClass: styles.benefitRose
+    },
+    {
+      icon: Shield,
+      title: "Safe & Nurturing Campus",
+      desc: "From secure premises to hygiene standards, we ensure a safe, caring, and loving environment every day.",
+      colorClass: styles.benefitGreen
+    },
+    {
+      icon: Users,
+      title: "Experienced Educators",
+      desc: "Our qualified and passionate teachers bring warmth, patience, and expertise to every learning moment.",
+      colorClass: styles.benefitOrange
+    }
+  ];
+
+  const methodologyItems = [
+    {
+      icon: BookOpen,
+      title: "Play-Way Learning",
+      desc: "Learning through play makes concepts easier to grasp and learning truly enjoyable."
+    },
+    {
+      icon: Palette,
+      title: "Activity-Based Education",
+      desc: "Hands-on activities spark curiosity and help children understand through experience."
+    },
+    {
+      icon: Lightbulb,
+      title: "Experiential Learning",
+      desc: "Real-life experiences build understanding, confidence, and lifelong skills."
+    },
+    {
+      icon: Search,
+      title: "Hands-On Exploration",
+      desc: "Children explore, discover, and create—building curiosity and a love for learning."
+    }
+  ];
 
   return (
     <div className={styles.aboutPage}>
       
       {/* Page Header */}
       <section className={styles.pageHeader}>
-        {/* Subtle background texture watermark */}
         <div 
           className="section-bg-watermark" 
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
+            opacity: 0.15
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className={styles.headerDecor}>
+            <span className={styles.decorStar}>✦</span>
+            <span className={styles.decorCrown}>👑</span>
+            <span className={styles.decorStar}>✦</span>
+          </div>
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,24 +78,19 @@ const About = () => {
           >
             About Our School
           </motion.h1>
-          <p>A Kingdom Where Learning Comes Alive - Explore our vision, values, principal message, and certified staff.</p>
+          <div className={styles.heartLine}>
+            <Heart size={14} className={styles.heartIcon} />
+          </div>
+          <p>A Kingdom Where Learning Comes Alive – Explore our vision, values, and our promise to nurture joyful, confident learners.</p>
         </div>
       </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* 1. Principal Message */}
-      <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className={styles.principalCard}>
+      {/* 1. Welcome Section & Benefit Cards */}
+      <section className="section" style={{ backgroundColor: '#FAF6EE', paddingTop: '56px', paddingBottom: '56px' }}>
+        <div className="container">
+          
+          {/* Welcome Box */}
+          <div className={styles.welcomeBox}>
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
                 <img 
@@ -83,7 +101,10 @@ const About = () => {
                 />
               </div>
               <h3 className={styles.principalName}>{schoolInfo.principalName}</h3>
-              <p className={styles.principalRole}>Founder & Principal</p>
+              <p className={styles.principalRole}>FOUNDER & PRINCIPAL</p>
+              <div className={styles.frameDecorHeart}>
+                <Heart size={14} fill="#E05A6D" stroke="none" />
+              </div>
             </div>
             
             <div className={styles.messageCol}>
@@ -93,169 +114,152 @@ const About = () => {
                 At <strong>{schoolInfo.schoolName}</strong>, we believe every child is a unique explorer. Our modern early childhood learning center is dedicated to providing a safe, joyful, and engaging environment for young learners.
               </p>
               <p className={styles.messageText}>
-                {schoolInfo.principalBio}
+                Passionate about early childhood learning, Mrs. Komal guides our curriculum pathways, blending experiential and play-way educational templates with warm care.
               </p>
               <p className={styles.messageText}>
                 We maintain an exceptionally low student-to-teacher ratio to confirm every child receives focused diagnostic guidance. I invite you to visit our secure campus in Shahpur Jat, New Delhi and experience how we make learning come alive!
               </p>
               <div className={styles.signature}>
+                <p className={styles.sigCursive}>Komal Singh</p>
                 <p className={styles.sigName}>{schoolInfo.principalName}</p>
                 <p className={styles.sigTitle}>Founder & Principal, {schoolInfo.schoolName}</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* 2. Vision & Mission Cards */}
-      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26,
-            borderRadius: '32px'
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className={styles.visionGrid}>
-            <motion.div 
-              className={`${styles.visionCard} ${styles.cardPurple}`}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3>Our Vision</h3>
-              <p>
-                To provide high-quality early childhood education that inspires young minds to discover the world, develop lifelong values, and build a strong foundation for the future.
-              </p>
-            </motion.div>
- 
-            <motion.div 
-              className={`${styles.visionCard} ${styles.cardGreen}`}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-            >
-              <h3>Our Mission</h3>
-              <p>
-                To provide a safe, nurturing, and joyful learning environment where every child is encouraged to explore, learn, create, and grow with confidence.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
- 
-      <SectionDivider type="wave" bgColor="#FFFFFF" fillColor="#541221" height="48px" />
- 
-      {/* 3. Central Dark Wine Stats Banner (moodboard central bar) */}
-      <section className={styles.statsBanner} style={{ position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.12
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className={styles.statsGrid}>
-            <div className={styles.statItem}>
-              <h3 className={styles.statVal}>15+</h3>
-              <p className={styles.statLbl}>Years Excellence</p>
-            </div>
-            <div className={styles.statItem}>
-              <h3 className={styles.statVal}>25+</h3>
-              <p className={styles.statLbl}>Certified Staff</p>
-            </div>
-            <div className={styles.statItem}>
-              <h3 className={styles.statVal}>300+</h3>
-              <p className={styles.statLbl}>Happy Students</p>
-            </div>
-            <div className={styles.statItem}>
-              <h3 className={styles.statVal}>10:1</h3>
-              <p className={styles.statLbl}>Teacher Ratio</p>
-            </div>
-          </div>
-        </div>
-      </section>
- 
-      <SectionDivider type="organic" bgColor="#541221" fillColor="#FAF6EE" height="48px" />
- 
-      {/* 4. Reusable Methodology Section */}
-      <MethodologySection />
- 
-      <SectionDivider type="wave" bgColor="#FAF6EE" fillColor="#FFFFFF" height="48px" />
-
-      {/* 5. Facilities Grid */}
-      <section className="section" style={{ backgroundColor: '#FFFFFF', position: 'relative' }}>
-        {/* Subtle background texture watermark */}
-        <div 
-          className="section-bg-watermark" 
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26
-          }} 
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <SectionTitle 
-            tag="Our Facilities"
-            title="Premium Secure Preschool Environment"
-            highlightWord="Environment"
-            align="center"
-            subtitle="Explore our secure campus classrooms and yards structured with soft, padded child-proof materials for healthy visual and physical explorations."
-          />
-
-          <div className={styles.facilitiesGrid}>
-            {facilitiesList.map((facility, idx) => {
-              const IconComp = facility.icon;
+          {/* Three Benefit Cards */}
+          <div className={styles.benefitsRow}>
+            {benefitsList.map((benefit, idx) => {
+              const IconComp = benefit.icon;
               return (
                 <motion.div 
-                  className={styles.facilityCard}
+                  className={`${styles.benefitCard} ${benefit.colorClass}`}
                   key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  <div className={styles.facIconBox}>
-                    <IconComp size={22} strokeWidth={1.5} />
+                  <div className={styles.benefitIconBox}>
+                    <IconComp size={24} strokeWidth={1.8} />
                   </div>
-                  <h3>{facility.title}</h3>
-                  <p>{facility.desc}</p>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.desc}</p>
                 </motion.div>
               );
             })}
           </div>
+
         </div>
       </section>
 
-      <SectionDivider type="line" bgColor="#FFFFFF" />
-
-      {/* 6. Teachers list */}
-      <section className="section section-accent" style={{ backgroundColor: '#FAF6EE', margin: '0 24px', borderRadius: '32px', position: 'relative' }}>
-        {/* Subtle background texture watermark */}
+      {/* 2. Teaching Methodology Section */}
+      <section className="section" style={{ backgroundColor: '#FFFFFF', paddingTop: '64px', paddingBottom: '64px', position: 'relative' }}>
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1600')`,
-            opacity: 0.26,
-            borderRadius: '32px'
+            backgroundImage: `url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.15
           }} 
         />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <SectionTitle 
-            tag="Our Caregivers"
-            title="Meet Our Certified, Loving Staff"
-            highlightWord="Staff"
-            align="center"
-            subtitle="Our educators combine high academic credentials in early development with deep empathy, patience, and warmth."
-          />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          
+          <div className={styles.methodologyHeader}>
+            <div className={styles.headerDecor}>
+              <span className={styles.decorStar}>✦</span>
+              <span className={styles.decorCrown}>👑</span>
+              <span className={styles.decorStar}>✦</span>
+            </div>
+            <h2>Our Premium Teaching <br /><span className={styles.italicHighlight}>Methodology</span></h2>
+            <div className={styles.heartLine}>
+              <Heart size={14} className={styles.heartIcon} />
+            </div>
+            <p className={styles.methodologySubtitle}>
+              At Kingdom of Learning, we combine play, exploration, and creativity to make learning joyful, meaningful, and future-ready.
+            </p>
+          </div>
+
+          <div className={styles.methodologyShowcase}>
+            
+            {/* Left Arch Column */}
+            <motion.div 
+              className={styles.methodArchCol}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className={styles.methodArch}>
+                <img 
+                  src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=600" 
+                  alt="Play-Way learning blocks" 
+                  loading="lazy"
+                />
+              </div>
+              <div className={styles.archHeartDecor}>
+                <Heart size={12} fill="#E05A6D" stroke="none" />
+              </div>
+            </motion.div>
+
+            {/* Center Grid Column */}
+            <div className={styles.methodGridCol}>
+              {methodologyItems.map((item, idx) => {
+                const IconComp = item.icon;
+                return (
+                  <motion.div 
+                    className={styles.methodCard}
+                    key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  >
+                    <div className={styles.methodIconCircle}>
+                      <IconComp size={22} strokeWidth={1.8} />
+                    </div>
+                    <div className={styles.methodText}>
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right Arch Column */}
+            <motion.div 
+              className={styles.methodArchCol}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className={styles.methodArch}>
+                <img 
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" 
+                  alt="Activity classroom learning" 
+                  loading="lazy"
+                />
+              </div>
+              <div className={styles.archHeartDecor}>
+                <Heart size={12} fill="#E05A6D" stroke="none" />
+              </div>
+            </motion.div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Caregivers / Certified Staff List */}
+      <section className="section" style={{ backgroundColor: '#FAF6EE', paddingTop: '64px', paddingBottom: '64px' }}>
+        <div className="container">
+          
+          <div className={styles.teachersHeader}>
+            <span className={styles.teacherTag}>OUR CAREGIVERS</span>
+            <h2>Meet Our Certified, Loving <span className={styles.italicHighlight}>Staff</span></h2>
+            <p>Our educators combine high academic credentials with early development expertise, empathy, patience, and warmth.</p>
+          </div>
 
           <div className={styles.teachersGrid}>
             {teachers.map((teacher, index) => {
@@ -279,12 +283,70 @@ const About = () => {
                   <div className={styles.teacherDetails}>
                     <h3 className={styles.tName}>{teacher.name}</h3>
                     <p className={styles.tRole}>{teacher.role}</p>
-                    <p className={styles.tExp}>{teacher.experience}</p>
+                    <span className={styles.tDivider}>•</span>
                     <p className={styles.tBio}>{teacher.bio}</p>
+                    <div className={styles.linkedinBox}>
+                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.linkedinBtn} aria-label="LinkedIn profile">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                          <rect x="2" y="9" width="4" height="12"></rect>
+                          <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               );
             })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. Wine Red Stats Banner */}
+      <section className={styles.statsBanner}>
+        <div 
+          className="section-bg-watermark" 
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1600')`,
+            opacity: 0.12
+          }} 
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className={styles.statsGrid}>
+            
+            <div className={styles.statItem}>
+              <div className={styles.statIconCircle}>
+                <Award size={24} className={styles.statIcon} />
+              </div>
+              <h3 className={styles.statVal}>15+</h3>
+              <p className={styles.statLbl}>Years Excellence</p>
+            </div>
+
+            <div className={styles.statItem}>
+              <div className={styles.statIconCircle}>
+                <Users size={24} className={styles.statIcon} />
+              </div>
+              <h3 className={styles.statVal}>25+</h3>
+              <p className={styles.statLbl}>Certified Staff</p>
+            </div>
+
+            <div className={styles.statItem}>
+              <div className={styles.statIconCircle}>
+                <GraduationCap size={24} className={styles.statIcon} />
+              </div>
+              <h3 className={styles.statVal}>300+</h3>
+              <p className={styles.statLbl}>Happy Students</p>
+            </div>
+
+            <div className={styles.statItem}>
+              <div className={styles.statIconCircle}>
+                <Scale size={24} className={styles.statIcon} />
+              </div>
+              <h3 className={styles.statVal}>10:1</h3>
+              <p className={styles.statLbl}>Teacher Ratio</p>
+            </div>
+
           </div>
         </div>
       </section>
@@ -294,4 +356,3 @@ const About = () => {
 };
 
 export default About;
-
