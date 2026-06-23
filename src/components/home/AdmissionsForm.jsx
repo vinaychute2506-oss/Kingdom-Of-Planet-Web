@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, User, Phone, Mail, Award, Shield, Users, Target, FileText, Calendar, Bell, AlertTriangle, Loader2, Lock } from 'lucide-react';
+import { Send, CheckCircle, User, Phone, Mail, Award, Shield, Users, Target, FileText, Calendar, Bell, AlertTriangle, Loader2, Lock, Heart } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
 import { submitForm } from '../../services/api';
 import { trackEvent } from '../../services/analytics';
