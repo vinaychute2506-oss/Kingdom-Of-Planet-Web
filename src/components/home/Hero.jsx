@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Calendar, Users, BookOpen, Heart, ArrowRight } from 'lucide-react';
 import { useCMS } from '../../context/CMSContext';
+import { FALLBACK_IMAGES } from '../../config/cms';
 import styles from './Hero.module.scss';
 
 const containerVariants = {
@@ -37,7 +38,15 @@ const Hero = () => {
 
   return (
     <section className={styles.heroSection}>
-      {/* Background Image is set via CSS for optimal control, blending, and performance */}
+      {/* Cinematic Luxury Background Video */}
+      <video 
+        className={styles.bgVideo} 
+        src={FALLBACK_IMAGES.heroVideo} 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+      />
       <div className={styles.heroOverlay} />
       
       {/* Subtle sun flare glow */}
