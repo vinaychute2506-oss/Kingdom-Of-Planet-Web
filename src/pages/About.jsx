@@ -102,9 +102,6 @@ const About = () => {
               </div>
               <h3 className={styles.principalName}>{schoolInfo.principalName}</h3>
               <p className={styles.principalRole}>FOUNDER & PRINCIPAL</p>
-              <div className={styles.frameDecorHeart}>
-                <Heart size={14} fill="#E05A6D" stroke="none" />
-              </div>
             </div>
             
             <div className={styles.messageCol}>

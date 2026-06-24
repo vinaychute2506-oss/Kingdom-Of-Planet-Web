@@ -177,21 +177,16 @@
 }
 
 .highlight {
-  font-family: 'Dancing Script', cursive;
+  font-family: $font-heading;
+  font-style: italic;
   color: $color-wine;
-  font-size: 4.2rem;
-  font-weight: 700;
+  font-size: inherit;
+  font-weight: inherit;
   display: inline-block;
-  transform: translateY(4px);
-  margin-left: 4px;
+  margin-left: 6px;
 
   @include responsive(mobile) {
-    font-size: 2.6rem;
-    transform: translateY(2px);
-  }
-
-  @include responsive(tablet) {
-    font-size: 3.6rem;
+    margin-left: 4px;
   }
 }
 
