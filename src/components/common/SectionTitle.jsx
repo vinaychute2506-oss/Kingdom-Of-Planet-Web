@@ -12,7 +12,7 @@ const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center', h
     return (
       <>
         {parts[0]}
-        <span className={styles.highlight}>{highlightWord}</span>
+        <span className={styles.highlight} style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic', fontWeight: 'inherit' }}>{highlightWord}</span>
         {parts[1]}
       </>
     );

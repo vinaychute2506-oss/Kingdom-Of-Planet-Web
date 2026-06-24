@@ -95,7 +95,7 @@ const Hero = () => {
               <svg className={styles.brushUnderline} viewBox="0 0 300 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 14C80 7 180 4 295 10" stroke="#C8B39A" strokeWidth="3" strokeLinecap="round" />
               </svg>
-            </span> <span className={styles.highlight}>Shines</span>
+            </span> <span className={styles.highlight} style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic', fontWeight: 'inherit' }}>Shines</span>
           </motion.h1>
 
           <motion.p 
