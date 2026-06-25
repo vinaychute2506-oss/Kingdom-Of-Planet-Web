@@ -4,8 +4,9 @@ import { Heart } from 'lucide-react';
 import styles from './SectionTitle.module.scss';
 
 const SectionTitle = ({ tag, title, subtitle, highlightWord, align = 'center', hasHeartDivider = false }) => {
-  // Render title with the highlighted word styled differently
   const renderTitle = () => {
+    if (!title) return '';
+    if (typeof title !== 'string') return title;
     if (!highlightWord) return title;
     
     const parts = title.split(highlightWord);
