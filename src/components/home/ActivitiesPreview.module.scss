@@ -48,9 +48,9 @@
   line-height: 1.2;
 
   .highlight {
-    color: $color-wine;
-    font-style: italic;
-    font-weight: 500;
+    color: inherit;
+    font-style: inherit;
+    font-weight: inherit;
   }
 
   @include responsive(mobile) {

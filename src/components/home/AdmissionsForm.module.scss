@@ -72,8 +72,8 @@
   margin-bottom: 18px;
 
   .highlight {
-    color: $color-gold !important;
-    font-style: italic;
+    color: inherit !important;
+    font-style: inherit;
   }
 
   @include responsive(mobile) {

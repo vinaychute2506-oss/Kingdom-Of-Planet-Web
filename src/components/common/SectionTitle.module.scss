@@ -51,9 +51,9 @@
 }
 
 .highlight {
-  font-family: $font-heading;
-  font-style: italic;
-  color: $color-wine;
+  font-family: inherit;
+  font-style: inherit;
+  color: inherit;
   font-weight: inherit;
   font-size: inherit;
   display: inline-block;
