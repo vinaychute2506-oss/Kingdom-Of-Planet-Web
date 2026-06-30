@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, GraduationCap } from 'lucide-react';
+import { useCMS } from '../../context/CMSContext';
 import styles from './Navbar.module.scss';
 
 const Navbar = ({ currentHash }) => {
+  const { schoolInfo } = useCMS();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -49,9 +51,21 @@ const Navbar = ({ currentHash }) => {
   const handleEnrollClick = () => {
     window.location.hash = '#contact';
   };
+
+  const handleWhatsAppClick = () => {
+    const rawPhone = (schoolInfo && schoolInfo.whatsapp) || '+919667708285';
+    const cleanPhone = rawPhone.replace(/\D/g, '');
+    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admissions%20for%20the%202-6%20age%20group%20at%20Kingdom%20of%20Learning%20Pre%20School.`, "_blank");
+  };
  
   return (
     <>
+      <div className={styles.admissionsNotice} onClick={handleWhatsAppClick}>
+        <span className={styles.noticeText}>
+          ✨ Admissions are open for age group <strong>2-6 years</strong>! Contact through WhatsApp
+        </span>
+        <span className={styles.noticeLink}>Chat Now &rarr;</span>
+      </div>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={`container ${styles.navbarContainer}`}>
           
