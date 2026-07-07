@@ -192,6 +192,24 @@ const Admissions = () => {
       {/* Section Divider */}
       <SectionDivider color="#FAF6EE" />
 
+      {/* Admissions Note */}
+      <section className="section" style={{ backgroundColor: '#FFFFFF', paddingTop: '40px', paddingBottom: '0' }}>
+        <div className="container">
+          <motion.div
+            className={styles.admissionNote}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Heart size={16} style={{ color: '#6B1E2E', flexShrink: 0 }} />
+            <p>
+              Admissions are open throughout the year, subject to seat availability. We welcome every child with warmth, care, and a commitment to providing a joyful beginning to their learning journey.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* 3. Embedded Admissions Inquiry Form */}
       <AdmissionsForm />
 

@@ -352,3 +352,33 @@
     border: none;
   }
 }
+
+/* Admissions Note Banner */
+.admissionNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 28px;
+  background-color: #FAF6EE;
+  border-left: 4px solid $color-wine;
+  border-radius: 8px;
+  border-top: 1px solid #EADFCF;
+  border-right: 1px solid #EADFCF;
+  border-bottom: 1px solid #EADFCF;
+
+  p {
+    margin: 0;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #3A2F2B;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    gap: 10px;
+  }
+}
