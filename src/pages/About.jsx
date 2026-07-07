@@ -270,16 +270,27 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
                   <div className={styles.teacherImgBox}>
-                    <img 
-                      src={teacher.avatar} 
-                      alt={teacher.name} 
-                      style={{ 
-                        objectPosition: teacher.objectPosition || 'center',
-                        objectFit: teacher.objectFit || 'cover'
-                      }}
-                      onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
-                      loading="lazy" 
-                    />
+                    {(() => {
+                      const customStyle = { objectFit: 'cover', objectPosition: 'center' };
+                      const roleLower = (teacher.role || '').toLowerCase();
+                      if (roleLower.includes('academic') || roleLower.includes('coordinator')) {
+                        customStyle.objectFit = 'contain';
+                        customStyle.objectPosition = 'center 22%';
+                      } else if (roleLower.includes('operations')) {
+                        customStyle.objectPosition = 'center 38%';
+                      } else if (roleLower.includes('founder') || roleLower.includes('principal') || roleLower.includes('director')) {
+                        customStyle.objectPosition = 'center 20%';
+                      }
+                      return (
+                        <img 
+                          src={teacher.avatar} 
+                          alt={teacher.name} 
+                          style={customStyle}
+                          onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
+                          loading="lazy" 
+                        />
+                      );
+                    })()}
                   </div>
                   <div className={styles.teacherDetails}>
                     <h3 className={styles.tName}>{teacher.name}</h3>
