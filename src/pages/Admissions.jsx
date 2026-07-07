@@ -202,7 +202,9 @@ const Admissions = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <Heart size={16} style={{ color: '#6B1E2E', flexShrink: 0 }} />
+            <div className={styles.noteHeartBadge}>
+              <Heart size={14} fill="#6B1E2E" color="#6B1E2E" />
+            </div>
             <p>
               Admissions are open throughout the year, subject to seat availability. We welcome every child with warmth, care, and a commitment to providing a joyful beginning to their learning journey.
             </p>
