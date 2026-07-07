@@ -15,7 +15,8 @@ export const teachersData = [
     experience: "Curriculum Implementation & NEP 2020",
     bio: "Ensures the smooth implementation of the school's curriculum and maintains high teaching standards. Prepares annual, monthly, and weekly lesson plans, guides teachers, monitors development, conducts training, and coordinates academic events in alignment with NEP 2020.",
     avatar: "/academic-coordinator.png",
-    objectPosition: "center 22%"
+    objectPosition: "center 22%",
+    objectFit: "contain"
   },
   {
     id: 3,
