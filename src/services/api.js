@@ -48,32 +48,29 @@ export const submitForm = async (formData) => {
   }
 
   try {
-    // We send payload as a "text/plain" simple request.
-    // This avoids CORS preflight checks completely and works flawless with Apps Script doPost.
+    // Google Apps Script always issues a 302 redirect on POST requests.
+    // Using mode:'no-cors' with Content-Type:'text/plain' makes it a "simple request"
+    // that avoids CORS preflight and follows the redirect transparently.
+    // The response will be opaque (type: 'opaque', status: 0), but the data
+    // still reaches doPost() on the server side.
     const response = await fetch(CMS_API_URL, {
       method: 'POST',
-      mode: 'cors',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'text/plain;charset=utf-8'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
+      redirect: 'follow'
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
+    // With no-cors, a successful request returns an opaque response (type 'opaque', status 0).
+    // A true network failure would throw before reaching here.
+    // So if we get here, the request was delivered.
+    if (response.type === 'opaque' || response.status === 0 || response.ok) {
+      return { status: 'success', message: 'Enquiry submitted successfully!' };
     }
 
-    const text = await response.text();
-    try {
-      const json = JSON.parse(text);
-      return json;
-    } catch (parseErr) {
-      // If Apps Script returns raw text on no-cors or redirect issues
-      if (text.includes('success') || response.status === 200) {
-        return { status: 'success', message: 'Recorded successfully.' };
-      }
-      throw new Error('Invalid JSON response from server.');
-    }
+    throw new Error(`Unexpected response: ${response.status}`);
   } catch (error) {
     console.error('submitForm failure:', error);
     throw error;
