@@ -3,7 +3,7 @@ export const testimonialsData = [
     id: 1,
     quote: "The warm care and joyful learning environment has truly transformed my daughter.",
     author: "Anita Sharma",
-    childName: "Anya (Toddcare)",
+    childName: "Anya (Playgroup)",
     rating: 5,
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Anita"
   },

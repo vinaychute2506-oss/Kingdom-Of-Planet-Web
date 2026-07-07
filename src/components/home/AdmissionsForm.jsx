@@ -299,10 +299,10 @@ const AdmissionsForm = () => {
                       required
                     >
                       <option value="">Choose program</option>
-                      <option value="Toddcare">Toddcare (1.5 - 2.5 Yrs)</option>
-                      <option value="Nursery">Nursery (2.5 - 3.5 Yrs)</option>
-                      <option value="Junior KG">Junior KG / LKG (3.5 - 4.5 Yrs)</option>
-                      <option value="Senior KG">Senior KG / UKG (4.5 - 5.5 Yrs)</option>
+                      <option value="Playgroup">Playgroup (2 - 3 Yrs)</option>
+                      <option value="Nursery">Nursery (3 - 4 Yrs)</option>
+                      <option value="Junior KG">Lower Kindergarten / LKG (4 - 5 Yrs)</option>
+                      <option value="Senior KG">Upper Kindergarten / UKG (5 - 6 Yrs)</option>
                     </select>
                   </div>
                 </div>

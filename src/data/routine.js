@@ -23,7 +23,7 @@ export const routineData = [
   {
     time: "11:00 AM - 12:00 PM",
     title: "Sensory & Gross Motor Play",
-    description: "High-energy indoor sensory bins, foam crawls, gymnastics balance paths, and outdoor turf games. (Toddcare program successfully concludes at 12:00 PM).",
+    description: "High-energy indoor sensory bins, foam crawls, gymnastics balance paths, and outdoor turf games. (Playgroup program successfully concludes at 12:00 PM).",
     color: "#27AE60", // Green
     icon: "Bike"
   },

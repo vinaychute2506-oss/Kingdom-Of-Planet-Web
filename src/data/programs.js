@@ -1,8 +1,8 @@
 export const programsData = [
   {
     id: "toddcare",
-    title: "Toddcare",
-    age: "1.5 – 2.5 Years",
+    title: "Playgroup",
+    age: "2 – 3 Years",
     accentColor: "#E05A6D",
     lightBg: "#FDF6F7",
     gradient: "linear-gradient(135deg, #FDF6F7 0%, #F8E3E7 100%)",
@@ -10,7 +10,7 @@ export const programsData = [
     icon: "Baby",
     image: "/toddcare.png",
     tagline: "Sensory Development & Playful Beginnings",
-    description: "Our Toddcare program is specifically structured to offer a warm, safe, and sensory-rich home away from home..",
+    description: "Our Playgroup program is specifically structured to offer a warm, safe, and sensory-rich home away from home..",
     features: [
       "Sensory Exploration",
       "Social Interaction",
@@ -31,7 +31,7 @@ export const programsData = [
   {
     id: "nursery",
     title: "Nursery",
-    age: "2.5 – 3.5 Years",
+    age: "3 – 4 Years",
     accentColor: "#E67E22",
     lightBg: "#FEF9F5",
     gradient: "linear-gradient(135deg, #FEF9F5 0%, #F5CBA7 100%)",
@@ -59,8 +59,8 @@ export const programsData = [
   },
   {
     id: "junior-kg",
-    title: "Junior KG (LKG)",
-    age: "3.5 – 4.5 Years",
+    title: "Lower Kindergarten (LKG)",
+    age: "4 – 5 Years",
     accentColor: "#27AE60",
     lightBg: "#F4FAF6",
     gradient: "linear-gradient(135deg, #F4FAF6 0%, #E8F8F5 100%)",
@@ -88,8 +88,8 @@ export const programsData = [
   },
   {
     id: "senior-kg",
-    title: "Senior KG (UKG)",
-    age: "4.5 – 5.5 Years",
+    title: "Upper Kindergarten (UKG)",
+    age: "5 – 6 Years",
     accentColor: "#D4AF37",
     lightBg: "#FFFDF5",
     gradient: "linear-gradient(135deg, #FFFDF5 0%, #FEF9E7 100%)",
