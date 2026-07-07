@@ -96,7 +96,7 @@ const Footer = () => {
             </li>
             <li>
               <Phone size={20} />
-              <span>{schoolInfo.phone || "+91 9667706285"}</span>
+              <span>{schoolInfo.phone || "+91 9667708285"}</span>
             </li>
             <li>
               <Mail size={20} />

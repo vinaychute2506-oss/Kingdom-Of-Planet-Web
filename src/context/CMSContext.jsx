@@ -39,7 +39,7 @@ const getProgramFallbackImage = (id) => {
 const schoolInfoFallback = {
   schoolName: "Kingdom of Learning Pre School",
   tagline: "Warmth • Creativity • Trust",
-  phone: "+91 9667706285",
+  phone: "+91 9667708285",
   whatsapp: "+91 9667708285",
   email: "admin@kingdomoflearning.com",
   altEmail: "singh.komal.tvf@gmail.com",
