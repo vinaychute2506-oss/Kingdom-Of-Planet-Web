@@ -45,11 +45,12 @@ const Navbar = ({ currentHash }) => {
     { name: 'Programs', hash: '#programs' },
     { name: 'Activities', hash: '#activities' },
     { name: 'Gallery', hash: '#gallery' },
+    { name: 'Admissions', hash: '#admissions' },
     { name: 'Contact', hash: '#contact' },
   ];
  
   const handleEnrollClick = () => {
-    window.location.hash = '#contact';
+    window.location.hash = '#admissions';
   };
   const handleWhatsAppClick = () => {
     const rawPhone = (schoolInfo && (schoolInfo.whatsapp || schoolInfo.phone)) || '+919667708285';

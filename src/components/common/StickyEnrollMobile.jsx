@@ -4,11 +4,11 @@ import { Calendar } from 'lucide-react';
 import styles from './StickyEnrollMobile.module.scss';
 
 const StickyEnrollMobile = ({ currentHash }) => {
-  // Hide sticky enroll bar if user is already on the contact page or looking at the admission form
-  const isFormPage = currentHash === '#contact';
+  // Hide sticky enroll bar if user is already on the contact page or admissions page
+  const isFormPage = currentHash === '#contact' || currentHash === '#admissions';
 
   const handleClick = () => {
-    window.location.hash = '#contact';
+    window.location.hash = '#admissions';
   };
 
   return (

@@ -13,6 +13,7 @@ import Programs from './pages/Programs';
 import Activities from './pages/Activities';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
+import Admissions from './pages/Admissions';
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#home');
@@ -69,6 +70,8 @@ function App() {
         return <Gallery />;
       case '#contact':
         return <Contact />;
+      case '#admissions':
+        return <Admissions />;
       default:
         return <Home />;
     }

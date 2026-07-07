@@ -82,6 +82,7 @@ const Footer = () => {
             <li><button onClick={() => handleQuickLink('#programs')}>Programs</button></li>
             <li><button onClick={() => handleQuickLink('#activities')}>Activities</button></li>
             <li><button onClick={() => handleQuickLink('#gallery')}>Gallery</button></li>
+            <li><button onClick={() => handleQuickLink('#admissions')}>Admissions</button></li>
             <li><button onClick={() => handleQuickLink('#contact')}>Contact</button></li>
           </ul>
         </div>

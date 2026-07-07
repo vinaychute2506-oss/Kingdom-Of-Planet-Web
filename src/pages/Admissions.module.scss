@@ -1,0 +1,352 @@
+@import '../styles/variables.scss';
+
+.admissionsPage {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+}
+
+/* Page Header Banner */
+.pageHeader {
+  background-color: $color-wine;
+  color: #FFFFFF;
+  padding: 80px 0 64px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  h1 {
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 12px 0;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-weight: 300;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+      padding: 0 15px;
+    }
+  }
+}
+
+.headerDecor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+
+  .decorStar {
+    color: $color-gold;
+    font-size: 1.1rem;
+  }
+  .decorCrown {
+    font-size: 1.4rem;
+  }
+}
+
+.heartLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px auto 16px auto;
+  width: 100%;
+  max-width: 250px;
+
+  &::before, &::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg, 
+      transparent, 
+      rgba($color-gold, 0.4) 50%, 
+      transparent
+    );
+  }
+
+  .heartIcon {
+    color: $color-gold;
+    animation: pulse 2.5s infinite ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+
+  h2 {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    color: $color-wine;
+    margin: 10px 0;
+    font-weight: 700;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  .italicHighlight {
+    font-family: 'Dancing Script', cursive;
+    color: $color-gold;
+    font-size: 2.5rem;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: 5px;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .sectionSubtitle {
+    font-size: 1.05rem;
+    color: $color-brown;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+/* Timeline Layout */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba($color-wine, 0.15);
+    transform: translateX(-50%);
+
+    @media (max-width: 768px) {
+      left: 31px;
+    }
+  }
+}
+
+.timelineItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+  width: 50%;
+  padding-right: 40px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 64px;
+    justify-content: flex-start !important;
+  }
+}
+
+.timelineItemRight {
+  align-self: flex-end;
+  justify-content: flex-end;
+  padding-right: 0;
+  padding-left: 40px;
+
+  .timelineBadge {
+    left: -20px;
+    right: auto;
+
+    @media (max-width: 768px) {
+      left: 11px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 64px;
+  }
+}
+
+.timelineItem:not(.timelineItemRight) {
+  align-self: flex-start;
+  
+  .timelineBadge {
+    right: -20px;
+    left: auto;
+
+    @media (max-width: 768px) {
+      left: 11px;
+      right: auto;
+    }
+  }
+}
+
+.timelineBadge {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $color-wine;
+  border: 3px solid #FAF6EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-shadow: $shadow-soft;
+
+  span {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: $font-heading;
+  }
+
+  @media (max-width: 768px) {
+    top: 24px;
+    transform: none;
+    left: 11px;
+  }
+}
+
+.timelineCard {
+  background-color: #FFFFFF;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: $shadow-soft;
+  border: 1px solid rgba($color-wine, 0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-medium;
+    border-color: rgba($color-gold, 0.3);
+  }
+
+  h3 {
+    font-family: $font-heading;
+    color: $color-wine;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  p {
+    color: $color-brown;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+/* Documents Grid */
+.docsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.docCard {
+  background-color: #FAF6EE;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid rgba($color-gold, 0.15);
+  box-shadow: $shadow-soft;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #FFFDF9;
+    border-color: $color-gold;
+  }
+}
+
+.docIconBox {
+  background-color: rgba($color-wine, 0.08);
+  color: $color-wine;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.docText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h4 {
+    font-family: $font-heading;
+    color: $color-wine;
+    font-size: 1.05rem;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+}
+
+.checkBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #27AE60;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+
+  svg {
+    stroke-width: 3px;
+  }
+}
+
+/* Form Container */
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba($color-wine, 0.05);
+
+  @media (max-width: 768px) {
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+  }
+}
