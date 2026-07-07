@@ -49,7 +49,7 @@ const schoolInfoFallback = {
   principalBio: "Passionate early childhood learning leader dedicated to providing safe, activity-based play-way education for young minds.",
   admissionsNotice: "Limited seats for this academic year! Admissions are on a first-come, first-served basis.",
   toddcareTimings: "Mon - Fri: 09:00 AM - 12:00 PM",
-  nurseryKGTimings: "Mon - Fri: 09:00 AM - 01:00 PM",
+  nurseryKGTimings: "Mon - Fri: 09:00 AM - 12:00 PM",
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14015.460458428588!2d77.2066373!3d28.5738096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd00318029c7%3A0x444d32a9a463a56!2sShahpur%20Jat%2C%20New%20Delhi%2C%20Delhi%20110049!5e0!3m2!1sen!2sin!4v1716482937512!5m2!1sen!2sin",
   facebookUrl: "https://facebook.com",
   instagramUrl: "https://instagram.com",

@@ -112,14 +112,14 @@ const Footer = () => {
             <Clock size={20} />
             <div>
               <p className={styles.days}>Toddlers Hours</p>
-              <p className={styles.time}>Mon – Fri: 09:00 AM – 12:00 PM</p>
+              <p className={styles.time}>{schoolInfo.toddcareTimings || "Mon – Fri: 09:00 AM – 12:00 PM"}</p>
             </div>
           </div>
           <div className={styles.hoursBox}>
             <Compass size={20} />
             <div>
               <p className={styles.days}>Nursery & KG Hours</p>
-              <p className={styles.time}>Mon – Fri: 09:00 AM – 01:00 PM</p>
+              <p className={styles.time}>{schoolInfo.nurseryKGTimings || "Mon – Fri: 09:00 AM – 12:00 PM"}</p>
             </div>
           </div>
         </div>
