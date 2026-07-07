@@ -42,42 +42,59 @@ export const fetchCMSData = async () => {
  * @param {Object} formData - Full form data including formType ('admission' | 'contact')
  * @returns {Promise<Object>} - Status result
  */
-export const submitForm = async (formData) => {
+export const submitForm = (formData) => {
   if (!CMS_API_URL) {
-    throw new Error('CMS API URL is not configured in environment variables.');
+    return Promise.reject(new Error('CMS API URL is not configured in environment variables.'));
   }
 
-  try {
-    // Log the URL for debugging — remove once confirmed working
-    console.log('[submitForm] Posting to:', CMS_API_URL);
-    console.log('[submitForm] Payload:', JSON.stringify(formData));
+  console.log('[submitForm] Posting to:', CMS_API_URL);
+  console.log('[submitForm] Payload:', formData);
 
-    // Google Apps Script processes doPost() and then returns a 302 redirect.
-    // Using redirect:'manual' ensures the POST body is sent and processed
-    // without the browser following the redirect (which would convert POST→GET).
-    // The opaqueredirect response confirms the request was delivered.
-    const response = await fetch(CMS_API_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify(formData),
-      redirect: 'manual'
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      // Use a hidden iframe + native HTML form to completely bypass CORS.
+      // Google Apps Script's 302 redirect is handled natively by the browser,
+      // and the form data arrives in e.parameter on the server side.
+      const iframeName = 'kol_form_frame_' + Date.now();
+      const iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
 
-    // With no-cors + redirect:manual, a successful delivery returns
-    // response.type === 'opaqueredirect' (status 0).
-    // A true network failure would throw before reaching here.
-    console.log('[submitForm] Response type:', response.type, 'status:', response.status);
-    
-    if (response.type === 'opaqueredirect' || response.type === 'opaque' || response.status === 0 || response.ok) {
-      return { status: 'success', message: 'Enquiry submitted successfully!' };
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = CMS_API_URL;
+      form.target = iframeName;
+
+      // Add each field as a hidden input
+      Object.entries(formData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = String(value);
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+
+      // The form submission fires and forgets — we can't read the iframe response
+      // due to cross-origin restrictions, but the data reaches the server.
+      // Clean up after a short delay and resolve as success.
+      setTimeout(() => {
+        try {
+          document.body.removeChild(form);
+          document.body.removeChild(iframe);
+        } catch (cleanupErr) {
+          // ignore cleanup errors
+        }
+        console.log('[submitForm] Form submitted via hidden iframe — success assumed');
+        resolve({ status: 'success', message: 'Enquiry submitted successfully!' });
+      }, 3000);
+
+    } catch (error) {
+      console.error('submitForm failure:', error);
+      reject(error);
     }
-
-    throw new Error(`Unexpected response: ${response.status}`);
-  } catch (error) {
-    console.error('submitForm failure:', error);
-    throw error;
-  }
+  });
 };

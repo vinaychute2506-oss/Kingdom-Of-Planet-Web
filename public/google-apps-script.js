@@ -94,9 +94,14 @@ function doPost(e) {
   try {
     var params = {};
     if (e.postData && e.postData.contents) {
-      params = JSON.parse(e.postData.contents);
+      try {
+        params = JSON.parse(e.postData.contents);
+      } catch (parseErr) {
+        // Form-encoded data (from HTML form POST) — fall back to e.parameter
+        params = e.parameter || {};
+      }
     } else {
-      params = e.parameter;
+      params = e.parameter || {};
     }
     
     var formType = params.formType || "contact"; // "admission", "contact", or "analytics"
