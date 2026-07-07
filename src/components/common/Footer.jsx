@@ -92,15 +92,15 @@ const Footer = () => {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={20} />
-              <span>190-A, GF, Shastri Ji Rd, <br />New Delhi - 110052</span>
+              <span>{schoolInfo.address || "190-A, G/F Shahpur Jat, New Delhi - 110049"}</span>
             </li>
             <li>
               <Phone size={20} />
-              <span>+91 98707 92328</span>
+              <span>{schoolInfo.phone || "+91 9667706285"}</span>
             </li>
             <li>
               <Mail size={20} />
-              <span>admissions@kingdomlearning.com</span>
+              <span>{schoolInfo.email || "admin@kingdomoflearning.com"}</span>
             </li>
           </ul>
         </div>
