@@ -273,6 +273,7 @@ const About = () => {
                     <img 
                       src={teacher.avatar} 
                       alt={teacher.name} 
+                      style={{ objectPosition: teacher.objectPosition || 'center' }}
                       onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
                       loading="lazy" 
                     />
