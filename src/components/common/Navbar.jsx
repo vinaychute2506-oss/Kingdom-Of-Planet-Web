@@ -51,11 +51,10 @@ const Navbar = ({ currentHash }) => {
   const handleEnrollClick = () => {
     window.location.hash = '#contact';
   };
-
   const handleWhatsAppClick = () => {
-    const rawPhone = (schoolInfo && schoolInfo.whatsapp) || '+919667708285';
+    const rawPhone = (schoolInfo && (schoolInfo.whatsapp || schoolInfo.phone)) || '+919667708285';
     const cleanPhone = rawPhone.replace(/\D/g, '');
-    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admissions%20for%20the%202-6%20age%20group%20at%20Kingdom%20of%20Learning%20Pre%20School.`, "_blank");
+    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admission.`, "_blank");
   };
  
   return (

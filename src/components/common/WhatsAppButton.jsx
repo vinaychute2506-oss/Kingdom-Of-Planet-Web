@@ -10,7 +10,7 @@ const WhatsAppButton = () => {
   const { schoolInfo } = useCMS();
   
   const handleClick = () => {
-    const rawPhone = schoolInfo.whatsapp || '+919667708285';
+    const rawPhone = schoolInfo.whatsapp || schoolInfo.phone || '+919667708285';
     // Sanitize number by stripping any space, plus, or dashes
     const cleanPhone = rawPhone.replace(/\D/g, '');
     
@@ -21,7 +21,7 @@ const WhatsAppButton = () => {
     submitForm({ formType: 'analytics', metric: 'WhatsAppClick' })
       .catch((err) => console.warn('[Analytics] WhatsApp click sheet logging failed:', err));
     
-    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admissions%20at%20Kingdom%20of%20Learning%20Pre%20School.`, "_blank");
+    window.open(`https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20interested%20in%20admission.`, "_blank");
   };
 
 
