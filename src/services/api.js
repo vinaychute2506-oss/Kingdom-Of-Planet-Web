@@ -48,11 +48,14 @@ export const submitForm = async (formData) => {
   }
 
   try {
-    // Google Apps Script always issues a 302 redirect on POST requests.
-    // Using mode:'no-cors' with Content-Type:'text/plain' makes it a "simple request"
-    // that avoids CORS preflight and follows the redirect transparently.
-    // The response will be opaque (type: 'opaque', status: 0), but the data
-    // still reaches doPost() on the server side.
+    // Log the URL for debugging — remove once confirmed working
+    console.log('[submitForm] Posting to:', CMS_API_URL);
+    console.log('[submitForm] Payload:', JSON.stringify(formData));
+
+    // Google Apps Script processes doPost() and then returns a 302 redirect.
+    // Using redirect:'manual' ensures the POST body is sent and processed
+    // without the browser following the redirect (which would convert POST→GET).
+    // The opaqueredirect response confirms the request was delivered.
     const response = await fetch(CMS_API_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -60,13 +63,15 @@ export const submitForm = async (formData) => {
         'Content-Type': 'text/plain;charset=utf-8'
       },
       body: JSON.stringify(formData),
-      redirect: 'follow'
+      redirect: 'manual'
     });
 
-    // With no-cors, a successful request returns an opaque response (type 'opaque', status 0).
+    // With no-cors + redirect:manual, a successful delivery returns
+    // response.type === 'opaqueredirect' (status 0).
     // A true network failure would throw before reaching here.
-    // So if we get here, the request was delivered.
-    if (response.type === 'opaque' || response.status === 0 || response.ok) {
+    console.log('[submitForm] Response type:', response.type, 'status:', response.status);
+    
+    if (response.type === 'opaqueredirect' || response.type === 'opaque' || response.status === 0 || response.ok) {
       return { status: 'success', message: 'Enquiry submitted successfully!' };
     }
 
