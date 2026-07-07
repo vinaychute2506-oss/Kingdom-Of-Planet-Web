@@ -30,6 +30,14 @@ export const teachersData = [
     experience: "6+ Years in Experiential Logic Building",
     bio: "Rajan coordinates active learning, sportsmanship and building early collaborative STEM challenges to prepare Kids well for our future academic success.",
     avatar: "/teacher-rajan.png"
+  },
+  {
+    id: 5,
+    name: "Academic Coordinator",
+    role: "ACADEMIC & CURRICULUM LEAD",
+    experience: "Curriculum Implementation & NEP 2020",
+    bio: "Ensures the smooth implementation of the school's curriculum and maintains high teaching standards. Prepares annual, monthly, and weekly lesson plans, guides teachers, monitors development, conducts training, and coordinates academic events in alignment with NEP 2020.",
+    avatar: ""
   }
 ];
 export default teachersData;
