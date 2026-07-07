@@ -208,7 +208,7 @@ function doPost(e) {
     // PREMIUM EMAIL AUTOMATION (Branded & HTML-Styled)
     // ==========================================
     try {
-      var adminEmail = "singh.komal.tvf@gmail.com"; // Principal's fallback email
+      var adminEmail = "kingdom.of.learning.pre.school@gmail.com"; // Principal's fallback email
       var schoolInfoSheet = spreadsheet.getSheetByName("SchoolInfo");
       if (schoolInfoSheet) {
         var infoData = schoolInfoSheet.getDataRange().getValues();
@@ -413,7 +413,7 @@ function sendMonthlyReport() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   
   // Fetch recipient email
-  var adminEmail = "singh.komal.tvf@gmail.com";
+  var adminEmail = "kingdom.of.learning.pre.school@gmail.com";
   var schoolInfoSheet = spreadsheet.getSheetByName("SchoolInfo");
   if (schoolInfoSheet) {
     var infoData = schoolInfoSheet.getDataRange().getValues();
