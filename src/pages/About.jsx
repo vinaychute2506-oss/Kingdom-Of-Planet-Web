@@ -316,15 +316,15 @@ const About = () => {
               <div className={styles.statIconCircle}>
                 <Award size={24} className={styles.statIcon} />
               </div>
-              <h3 className={styles.statVal}>15+</h3>
-              <p className={styles.statLbl}>Years Excellence</p>
+              <h3 className={styles.statVal}>12+ Yrs</h3>
+              <p className={styles.statLbl}>Leadership Exp</p>
             </div>
 
             <div className={styles.statItem}>
               <div className={styles.statIconCircle}>
                 <Users size={24} className={styles.statIcon} />
               </div>
-              <h3 className={styles.statVal}>25+</h3>
+              <h3 className={styles.statVal}>100%</h3>
               <p className={styles.statLbl}>Certified Staff</p>
             </div>
 
@@ -332,15 +332,15 @@ const About = () => {
               <div className={styles.statIconCircle}>
                 <GraduationCap size={24} className={styles.statIcon} />
               </div>
-              <h3 className={styles.statVal}>300+</h3>
-              <p className={styles.statLbl}>Happy Students</p>
+              <h3 className={styles.statVal}>1</h3>
+              <p className={styles.statLbl}>Secure Campus</p>
             </div>
 
             <div className={styles.statItem}>
               <div className={styles.statIconCircle}>
                 <Scale size={24} className={styles.statIcon} />
               </div>
-              <h3 className={styles.statVal}>10:1</h3>
+              <h3 className={styles.statVal}>1:8</h3>
               <p className={styles.statLbl}>Teacher Ratio</p>
             </div>
 

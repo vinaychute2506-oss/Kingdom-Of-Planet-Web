@@ -34,23 +34,23 @@ const Gallery = () => {
   const statsList = [
     {
       icon: Image,
-      val: "500+",
-      lbl: "Cherished Moments"
+      val: "100%",
+      lbl: "Safe Play Space"
     },
     {
       icon: Users,
-      val: "50+",
-      lbl: "Activities & Events"
+      val: "25+",
+      lbl: "Activities & Themes"
     },
     {
       icon: Home,
-      val: "2+",
-      lbl: "Campus Locations"
+      val: "1",
+      lbl: "Secure Campus"
     },
     {
       icon: Heart,
       val: "Countless",
-      lbl: "Smiles & Memories"
+      lbl: "Smiles & Milestones"
     }
   ];
 

@@ -130,8 +130,8 @@ const Hero = () => {
                 <Users size={20} />
               </div>
               <div className={styles.metricText}>
-                <h3 className={styles.number}>12+</h3>
-                <p className={styles.label}>Years Legacy</p>
+                <h3 className={styles.number}>12+ Yrs</h3>
+                <p className={styles.label}>Leadership Exp</p>
               </div>
             </div>
 
@@ -140,8 +140,8 @@ const Hero = () => {
                 <BookOpen size={20} />
               </div>
               <div className={styles.metricText}>
-                <h3 className={styles.number}>15+</h3>
-                <p className={styles.label}>Certified Guides</p>
+                <h3 className={styles.number}>1:8</h3>
+                <p className={styles.label}>Teacher Ratio</p>
               </div>
             </div>
 
