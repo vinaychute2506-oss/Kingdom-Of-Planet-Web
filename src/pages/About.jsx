@@ -94,14 +94,14 @@ const About = () => {
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
                 <img 
-                  src={FALLBACK_IMAGES.teacher} 
+                  src="/teacher-komal.png" 
                   alt={schoolInfo.principalName} 
                   onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
                   loading="lazy" 
                 />
               </div>
               <h3 className={styles.principalName}>{schoolInfo.principalName}</h3>
-              <p className={styles.principalRole}>FOUNDER & PRINCIPAL</p>
+              <p className={styles.principalRole}>FOUNDER | DIRECTOR | HEAD OF LEARNING</p>
             </div>
             
             <div className={styles.messageCol}>
@@ -119,7 +119,7 @@ const About = () => {
               <div className={styles.signature}>
                 <p className={styles.sigCursive}>Komal Singh</p>
                 <p className={styles.sigName}>{schoolInfo.principalName}</p>
-                <p className={styles.sigTitle}>Founder & Principal, {schoolInfo.schoolName}</p>
+                <p className={styles.sigTitle}>Founder | Director | Head of Learning, {schoolInfo.schoolName}</p>
               </div>
             </div>
           </div>

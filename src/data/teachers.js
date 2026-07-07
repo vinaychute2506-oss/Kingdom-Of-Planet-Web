@@ -1,5 +1,13 @@
 export const teachersData = [
   {
+    id: 1,
+    name: "Mrs. Komal Singh",
+    role: "FOUNDER | DIRECTOR | HEAD OF LEARNING",
+    experience: "12+ Years in Premium Preschool Administration",
+    bio: "As the Founder, Director, and Head of Learning at Kingdom of Learning Pre School, Komal Singh is dedicated to creating a safe, nurturing, and inspiring environment where every child feels valued and encouraged to learn. She leads the school's vision, curriculum, and educational programs, ensuring that every learning experience is engaging, meaningful, and developmentally appropriate. Her focus is on fostering curiosity, creativity, confidence, and a lifelong love for learning while building strong partnerships with families to support each child's holistic growth.",
+    avatar: "/teacher-komal.png"
+  },
+  {
     id: 2,
     name: "Miss. Sarah Kapoor",
     role: "LEAD TODDLER EDUCATOR",
