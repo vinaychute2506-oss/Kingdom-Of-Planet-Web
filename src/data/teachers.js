@@ -1,13 +1,5 @@
 export const teachersData = [
   {
-    id: 1,
-    name: "Mrs. Komal Singh",
-    role: "FOUNDER & PRINCIPAL",
-    experience: "12+ Years in Premium Preschool Administration",
-    bio: "Passionate early childhood learning leader dedicated to providing safe, activity-based play-way education for young minds.",
-    avatar: "/teacher-komal.png"
-  },
-  {
     id: 2,
     name: "Miss. Sarah Kapoor",
     role: "LEAD TODDLER EDUCATOR",
