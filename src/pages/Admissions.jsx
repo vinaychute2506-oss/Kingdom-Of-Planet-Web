@@ -193,13 +193,7 @@ const Admissions = () => {
       <SectionDivider color="#FAF6EE" />
 
       {/* 3. Embedded Admissions Inquiry Form */}
-      <section className="section" style={{ backgroundColor: '#FAF6EE', paddingTop: '64px', paddingBottom: '64px' }}>
-        <div className="container">
-          <div className={styles.formContainer}>
-            <AdmissionsForm />
-          </div>
-        </div>
-      </section>
+      <AdmissionsForm />
 
     </div>
   );
