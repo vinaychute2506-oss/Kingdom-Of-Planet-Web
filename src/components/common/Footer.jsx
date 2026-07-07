@@ -98,9 +98,12 @@ const Footer = () => {
               <Phone size={20} />
               <span>{schoolInfo.phone || "+91 9667708285"}</span>
             </li>
-            <li>
-              <Mail size={20} />
-              <span>{schoolInfo.email || "admin@kingdomoflearning.com"}</span>
+            <li style={{ alignItems: 'flex-start' }}>
+              <Mail size={20} style={{ marginTop: '2px' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <span>{schoolInfo.email || "kingdom.of.learning.pre.school@gmail.com"}</span>
+                <span>{schoolInfo.altEmail || "admin@kingdomoflearning.com"}</span>
+              </div>
             </li>
           </ul>
         </div>

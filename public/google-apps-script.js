@@ -314,7 +314,7 @@ function doPost(e) {
           '<!-- Footer -->' +
           '<div style="background-color: #521320; padding: 30px; text-align: center; font-size: 12px; color: #C8B39A; font-family: \'Helvetica Neue\', \'Arial\', sans-serif;">' +
           '<p style="margin: 0 0 8px 0; color: #FFFFFF; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Delhi Sanctuary Location</p>' +
-          '<p style="margin: 0 0 20px 0; line-height: 1.4;">190-A, Ground Floor, Shahpur Jat, New Delhi - 110049<br/>Hotline: +91 9667708285 | Email: admin@kingdomoflearning.com</p>' +
+          '<p style="margin: 0 0 20px 0; line-height: 1.4;">190-A, Ground Floor, Shahpur Jat, New Delhi - 110049<br/>Hotline: +91 9667708285 | Email: kingdom.of.learning.pre.school@gmail.com</p>' +
           '<p style="margin: 0; border-top: 1px solid rgba(200, 179, 154, 0.2); padding-top: 15px; font-size: 11px;">&copy; 2026 Kingdom of Learning Pre School. All rights reserved.</p>' +
           '</div>' +
           
