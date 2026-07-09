@@ -1,0 +1,18 @@
+# Kingdom of Learning Pre School — Robots.txt
+# https://www.kingdomoflearning.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.env
+
+# Sitemap location
+Sitemap: https://www.kingdomoflearning.com/sitemap.xml
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
