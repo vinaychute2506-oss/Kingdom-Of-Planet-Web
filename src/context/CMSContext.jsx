@@ -12,26 +12,26 @@ import { eventsData } from '../data/events';
 
 // In-line gallery fallback images mapping
 const galleryFallbackPhotos = [
-  { id: 1, url: "/gallery-1.png", title: "Interactive Storytelling Library", category: "Campus", sizeClass: "" },
-  { id: 2, url: "/gallery-2.png", title: "Outdoor Soft Slide Play", category: "Play", sizeClass: "tall" },
-  { id: 3, url: "/gallery-3.png", title: "Watercolor & Painting Workshop", category: "Play", sizeClass: "" },
-  { id: 4, url: "/gallery-4.png", title: "STEM Experiential Science Setup", category: "Learn", sizeClass: "wide" },
-  { id: 5, url: "/gallery-5.png", title: "Grand Annual Day Stage Choreography", category: "Events", sizeClass: "" },
-  { id: 6, url: "/gallery-6.png", title: "Early Alphabet Tracing Lessons", category: "Learn", sizeClass: "tall" },
-  { id: 7, url: "/gallery-7.png", title: "Creative Montessori Activity Desks", category: "Campus", sizeClass: "" },
-  { id: 8, url: "/gallery-8.png", title: "Early Childhood Phonics Session", category: "Learn", sizeClass: "" }
+  { id: 1, url: "/gallery-1.webp", title: "Interactive Storytelling Library", category: "Campus", sizeClass: "" },
+  { id: 2, url: "/gallery-2.webp", title: "Outdoor Soft Slide Play", category: "Play", sizeClass: "tall" },
+  { id: 3, url: "/gallery-3.webp", title: "Watercolor & Painting Workshop", category: "Play", sizeClass: "" },
+  { id: 4, url: "/gallery-4.webp", title: "STEM Experiential Science Setup", category: "Learn", sizeClass: "wide" },
+  { id: 5, url: "/gallery-5.webp", title: "Grand Annual Day Stage Choreography", category: "Events", sizeClass: "" },
+  { id: 6, url: "/gallery-6.webp", title: "Early Alphabet Tracing Lessons", category: "Learn", sizeClass: "tall" },
+  { id: 7, url: "/gallery-7.webp", title: "Creative Montessori Activity Desks", category: "Campus", sizeClass: "" },
+  { id: 8, url: "/gallery-8.webp", title: "Early Childhood Phonics Session", category: "Learn", sizeClass: "" }
 ];
 
 const getProgramFallbackImage = (id) => {
   const cleanId = String(id).toLowerCase();
   if (cleanId.includes('todd') || cleanId.includes('play')) {
-    return '/toddcare.png';
+    return '/toddcare.webp';
   } else if (cleanId.includes('nursery')) {
-    return '/nursery.png';
+    return '/nursery.webp';
   } else if (cleanId.includes('junior') || cleanId.includes('lkg') || cleanId.includes('kg')) {
-    return '/junior-kg.png';
+    return '/junior-kg.webp';
   } else if (cleanId.includes('senior') || cleanId.includes('ukg')) {
-    return '/senior-kg.png';
+    return '/senior-kg.webp';
   }
   return FALLBACK_IMAGES.program;
 };

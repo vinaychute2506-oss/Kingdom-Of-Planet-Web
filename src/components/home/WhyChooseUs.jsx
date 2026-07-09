@@ -6,7 +6,7 @@ import styles from './WhyChooseUs.module.scss';
 
 const rowData = [
   {
-    image: "/why-choose-1.png",
+    image: "/why-choose-1.webp",
     imageAlt: "Safe preschool playground sandbox",
     features: [
       {
@@ -22,7 +22,7 @@ const rowData = [
     ]
   },
   {
-    image: "/why-choose-2.png",
+    image: "/why-choose-2.webp",
     imageAlt: "Teacher child studying guidance",
     features: [
       {
@@ -38,7 +38,7 @@ const rowData = [
     ]
   },
   {
-    image: "/why-choose-3.png",
+    image: "/why-choose-3.webp",
     imageAlt: "Music and singing class",
     features: [
       {
@@ -62,7 +62,7 @@ const WhyChooseUs = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-bg.png')`,
+          backgroundImage: `url('/classroom-bg.webp')`,
           opacity: 0.26
         }} 
       />

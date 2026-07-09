@@ -6,7 +6,7 @@ export const eventsData = [
     time: "4:00 PM - 7:30 PM",
     theme: "Kingdom of Dreams & Galaxy Stories",
     color: "#8A4FFF", // Purple
-    image: "/event-annual.png",
+    image: "/event-annual.webp",
     description: "Our signature stage event where kids participate in colorful dramas, musical plays, choral singing, and preschool ballet on a grand scale, building immense confidence."
   },
   {
@@ -16,7 +16,7 @@ export const eventsData = [
     time: "9:00 AM - 1:00 PM",
     theme: "Fast, Safe, and Fun Team spirit",
     color: "#FF7043", // Orange
-    image: "/event-sports.png",
+    image: "/event-sports.webp",
     description: "An energetic day of hurdles, crawling tunnels, animal relays, mini football tournaments, and parent-child cooperative races. Focuses on sportsmanship and health."
   },
   {
@@ -26,7 +26,7 @@ export const eventsData = [
     time: "10:00 AM - 2:00 PM",
     theme: "Planet Earth & Soft Nature",
     color: "#FFC83B", // Yellow
-    image: "/event-art.png",
+    image: "/event-art.webp",
     description: "A bright creative showcase where students paint giant paper murals, mold clay models of futuristic school spaces, and explore mixed-media texturing."
   },
   {
@@ -36,7 +36,7 @@ export const eventsData = [
     time: "8:30 AM - 12:30 PM",
     theme: "Robotics, Puppet Shows, and Baking",
     color: "#4CAF50", // Green
-    image: "/event-summer.png",
+    image: "/event-summer.webp",
     description: "A two-week summer extravaganza offering early baking classes, puppet theatre scripting, Lego structural engineering, coding fundamentals, and splash pool swimming."
   }
 ];

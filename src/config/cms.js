@@ -12,12 +12,12 @@ export const CACHE_COOLDOWN_MS = 5 * 60 * 1000;
 export const FALLBACK_IMAGES = {
   logo: '/logo.png',
   heroVideo: '/hero-video.mp4',
-  classroom: '/classroom-kids.png',
-  program: '/toddcare.png',
-  activity: '/activity-art.png',
-  teacher: '/teacher-komal.png',
+  classroom: '/classroom-kids.webp',
+  program: '/toddcare.webp',
+  activity: '/activity-art.webp',
+  teacher: '/teacher-komal.webp',
   testimonial: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Preschooler',
-  gallery: '/gallery-1.png'
+  gallery: '/gallery-1.webp'
 };
 
 // Toggle branding watermarks overlay dynamically on all Cloudinary assets (Asset protection)

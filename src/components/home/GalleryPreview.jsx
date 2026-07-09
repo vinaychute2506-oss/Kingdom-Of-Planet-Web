@@ -6,32 +6,32 @@ import styles from './GalleryPreview.module.scss';
 
 const previewImages = [
   {
-    url: "/gallery-1.png",
+    url: "/gallery-1.webp",
     title: "Classroom Learning",
     category: "Academic"
   },
   {
-    url: "/gallery-2.png",
+    url: "/gallery-2.webp",
     title: "Outdoor Playground",
     category: "Playtime"
   },
   {
-    url: "/gallery-3.png",
+    url: "/gallery-3.webp",
     title: "Creative Art Class",
     category: "Creativity"
   },
   {
-    url: "/gallery-4.png",
+    url: "/gallery-4.webp",
     title: "Science Experiments",
     category: "Explore"
   },
   {
-    url: "/gallery-5.png",
+    url: "/gallery-5.webp",
     title: "Annual Stage Dance",
     category: "Events"
   },
   {
-    url: "/gallery-6.png",
+    url: "/gallery-6.webp",
     title: "Early Reading Club",
     category: "Cognitive"
   }
@@ -48,7 +48,7 @@ const GalleryPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-bg.png')`,
+          backgroundImage: `url('/classroom-bg.webp')`,
           opacity: 0.26
         }} 
       />

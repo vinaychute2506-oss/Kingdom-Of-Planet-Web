@@ -38,7 +38,7 @@ const SafetySection = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-bg.png')`,
+          backgroundImage: `url('/classroom-bg.webp')`,
           opacity: 0.12
         }} 
       />
@@ -93,7 +93,7 @@ const SafetySection = () => {
           >
             <div className={styles.safetyImageCard}>
               <img 
-                src="/safety-kids.png" 
+                src="/safety-kids.webp" 
                 alt="Teacher helping children build blocks in classroom" 
                 loading="lazy" 
               />

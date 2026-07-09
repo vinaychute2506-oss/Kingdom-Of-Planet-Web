@@ -104,7 +104,7 @@ const Contact = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('/classroom-bg.png')`,
+            backgroundImage: `url('/classroom-bg.webp')`,
             opacity: 0.12
           }} 
         />
@@ -266,7 +266,7 @@ const Contact = () => {
               {/* Map embed */}
               <div className={styles.mapCard}>
                 <div className={styles.mapOverlayLink}>
-                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapBtn}>
+                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapBtn} aria-label="Open school location in Google Maps">
                     Open in Maps ↗
                   </a>
                 </div>

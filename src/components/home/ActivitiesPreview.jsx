@@ -20,18 +20,18 @@ const iconMap = {
 
 const getBgImage = (id) => {
   const mapping = {
-    'art-craft': '/activity-art.png',
-    'music-dance': '/activity-music.png',
-    'storytelling-rhymes': '/activity-storytelling.png',
-    'indoor-outdoor-games': '/activity-games.png',
-    'sensory-activities': '/activity-sensory.png',
-    'festival-celebrations': '/activity-festivals.png',
-    'personality-development': '/activity-personality.png',
-    'creative-learning': '/activity-creative.png',
-    'motor-skill-development': '/activity-motor.png',
-    'fun-learning-activities': '/classroom-kids.png'
+    'art-craft': '/activity-art.webp',
+    'music-dance': '/activity-music.webp',
+    'storytelling-rhymes': '/activity-storytelling.webp',
+    'indoor-outdoor-games': '/activity-games.webp',
+    'sensory-activities': '/activity-sensory.webp',
+    'festival-celebrations': '/activity-festivals.webp',
+    'personality-development': '/activity-personality.webp',
+    'creative-learning': '/activity-creative.webp',
+    'motor-skill-development': '/activity-motor.webp',
+    'fun-learning-activities': '/classroom-kids.webp'
   };
-  return mapping[id] || '/activity-art.png';
+  return mapping[id] || '/activity-art.webp';
 };
 
 const ActivitiesPreview = () => {
@@ -49,7 +49,7 @@ const ActivitiesPreview = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-bg.png')`,
+          backgroundImage: `url('/classroom-bg.webp')`,
           opacity: 0.28
         }} 
       />
@@ -80,21 +80,21 @@ const ActivitiesPreview = () => {
           <div className={styles.storytellingCollage}>
             <div className={`${styles.collageItem} ${styles.archFrame1}`}>
               <img 
-                src="/collage-1.png" 
+                src="/collage-1.webp" 
                 alt="Smiling toddler playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame2}`}>
               <img 
-                src="/collage-2.png" 
+                src="/collage-2.webp" 
                 alt="Smiling children playing with blocks" 
                 loading="lazy"
               />
             </div>
             <div className={`${styles.collageItem} ${styles.archFrame3}`}>
               <img 
-                src="/collage-3.png" 
+                src="/collage-3.webp" 
                 alt="Teacher explaining reading book" 
                 loading="lazy"
               />

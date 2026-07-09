@@ -12,7 +12,7 @@ const EventHighlights = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-bg.png')`,
+          backgroundImage: `url('/classroom-bg.webp')`,
           opacity: 0.26
         }} 
       />

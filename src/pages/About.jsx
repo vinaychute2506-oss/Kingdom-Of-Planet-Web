@@ -61,7 +61,7 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('/classroom-bg.png')`,
+            backgroundImage: `url('/classroom-bg.webp')`,
             opacity: 0.12
           }} 
         />
@@ -94,7 +94,7 @@ const About = () => {
             <div className={styles.principalAvatarCol}>
               <div className={styles.principalFrame}>
                 <img 
-                  src="/teacher-komal.png" 
+                  src="/teacher-komal.webp" 
                   alt={schoolInfo.principalName} 
                   onError={(e) => { e.target.src = FALLBACK_IMAGES.teacher; }}
                   loading="lazy" 
@@ -155,7 +155,7 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('/classroom-bg.png')`,
+            backgroundImage: `url('/classroom-bg.webp')`,
             opacity: 0.12
           }} 
         />
@@ -188,7 +188,7 @@ const About = () => {
             >
               <div className={styles.methodArch}>
                 <img 
-                  src="/play-way-method.png" 
+                  src="/play-way-method.webp" 
                   alt="Play-Way learning blocks" 
                   loading="lazy"
                 />
@@ -233,7 +233,7 @@ const About = () => {
             >
               <div className={styles.methodArch}>
                 <img 
-                  src="/storytelling-method.png" 
+                  src="/storytelling-method.webp" 
                   alt="Activity classroom learning" 
                   loading="lazy"
                 />
@@ -298,7 +298,7 @@ const About = () => {
                     <span className={styles.tDivider}>•</span>
                     <p className={styles.tBio}>{teacher.bio}</p>
                     <div className={styles.linkedinBox}>
-                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.linkedinBtn} aria-label="LinkedIn profile">
+                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.linkedinBtn} aria-label={`LinkedIn profile of ${teacher.name}`}>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                           <rect x="2" y="9" width="4" height="12"></rect>
@@ -320,7 +320,7 @@ const About = () => {
         <div 
           className="section-bg-watermark" 
           style={{ 
-            backgroundImage: `url('/classroom-bg.png')`,
+            backgroundImage: `url('/classroom-bg.webp')`,
             opacity: 0.08
           }} 
         />

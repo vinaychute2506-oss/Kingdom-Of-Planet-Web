@@ -70,7 +70,7 @@ const Navbar = ({ currentHash }) => {
         <div className={`container ${styles.navbarContainer}`}>
           
           {/* Custom Royal Crest Logo */}
-          <a href="#home" className={styles.logo}>
+          <a href="#home" className={styles.logo} aria-label="Kingdom of Learning Pre School Home">
             <img src="/logo.png" alt="Kingdom of Learning Pre School" className={styles.logoImg} />
           </a>
  

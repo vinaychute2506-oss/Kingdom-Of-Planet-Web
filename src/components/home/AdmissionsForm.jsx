@@ -117,7 +117,7 @@ const AdmissionsForm = () => {
       <div 
         className="section-bg-watermark" 
         style={{ 
-          backgroundImage: `url('/classroom-kids.png')`,
+          backgroundImage: `url('/classroom-kids.webp')`,
           opacity: 0.16
         }} 
       />

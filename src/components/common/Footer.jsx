@@ -49,7 +49,7 @@ const Footer = () => {
         
         {/* Info Column */}
         <div className={styles.infoCol}>
-          <a href="#home" className={styles.logo}>
+          <a href="#home" className={styles.logo} aria-label="Kingdom of Learning Home">
             <img 
               src={FALLBACK_IMAGES.logo} 
               alt={schoolInfo.schoolName} 
@@ -61,13 +61,13 @@ const Footer = () => {
             A premium early childhood learning center in New Delhi dedicated to providing safe, nurturing and activity-based environment that prepares every child for a bright future.
           </p>
           <div className={styles.socials}>
-            <a href={schoolInfo.facebookUrl || "https://facebook.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#3b5998' }}>
+            <a href={schoolInfo.facebookUrl || "https://facebook.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#3b5998' }} aria-label="Visit our Facebook page">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href={schoolInfo.instagramUrl || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#e1306c' }}>
+            <a href={schoolInfo.instagramUrl || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#e1306c' }} aria-label="Visit our Instagram page">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href={schoolInfo.youtubeUrl || "https://youtube.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#ff0000' }}>
+            <a href={schoolInfo.youtubeUrl || "https://youtube.com"} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} style={{ '--hover-color': '#ff0000' }} aria-label="Visit our YouTube channel">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.54a29 29 0 0 0 .46 5.12 2.78 2.78 0 0 0 1.95 1.96c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96 29 29 0 0 0 .46-5.12 29 29 0 0 0-.46-5.12z"/><polyline points="9.75 15.02 15.5 11.54 9.75 8.06 9.75 15.02"/></svg>
             </a>
           </div>
